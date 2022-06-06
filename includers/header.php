@@ -4,6 +4,8 @@
     <link type="text/css" href="Shared/style.css" rel="stylesheet">
     <head>
         <div id ='nav-bar'>
-          print_r("hellooooo");
+            <ul>
+		        <li><a href="/index.php">Home</a></li>
+	        </ul>
         </div>
     </head>
