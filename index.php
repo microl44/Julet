@@ -1,4 +1,5 @@
 <?php
+include 'includers/header.php';
 include "Database.php";
 $sql = "SELECT * FROM movie ORDER BY nr";
 
