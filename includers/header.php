@@ -1,8 +1,10 @@
 <!DOCTYPE HTML>
+
 <html>
     <head>
         <div id ='nav-bar'>
-            
-        </div>
 
+        </div>
+    
+        <link type="text/css" href="Shared/style.css" rel="stylesheet">
     </head>

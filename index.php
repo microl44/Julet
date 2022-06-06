@@ -1,5 +1,5 @@
 <?php
-include 'includers/header.php';
+include "includers/header.php";
 include "Database.php";
 $sql = "SELECT * FROM movie ORDER BY nr";
 
@@ -9,17 +9,16 @@ if ($result = $conn -> query($sql))
 
   echo "<br>";
   echo "<table border='1' style='font-weight: bold;'>";
-
-  echo "<tr style='font-weight: italic;'>";
-  echo "<td id='Hnr'>Nr</td>";
-  echo "<td id='Hname'>Name</td>";
-  echo "<td id='Hgenre_namn'>Genre</td>";
-  echo "<td id='Hgrade'>IMDB Grade</td>";
-  echo "<td id='Hjayornay'>Jay or Nay</td>";
-  echo "<td id='Hpicked_by'>Picked By</td>";
-  echo "<td id='Hparticipants'>Participants</td>";
-  echo "<td id='His_major'>Wheel Type</td>";
-  echo "</tr>";
+    echo "<tr style='font-weight: italic;'>";
+    echo "<td id='Hnr'>Nr</td>";
+    echo "<td id='Hname'>Name</td>";
+    echo "<td id='Hgenre_namn'>Genre</td>";
+    echo "<td id='Hgrade'>IMDB Grade</td>";
+    echo "<td id='Hjayornay'>Jay or Nay</td>";
+    echo "<td id='Hpicked_by'>Picked By</td>";
+    echo "<td id='Hparticipants'>Participants</td>";
+    echo "<td id='His_major'>Wheel Type</td>";
+    echo "</tr>";
 
   while ($row = mysqli_fetch_assoc($result)) 
   {
