@@ -1,0 +1,24 @@
+<?php
+include 'Database.php';
+$conn = OpenCon();
+$sql = "SELECT * FROM movie ORDER BY nr";
+
+if ($result = $conn -> query($sql))
+{
+  echo "<input type='text' id='hejsan'> <button type='submit'>RUN QUERY</button></input>" ;
+
+  echo "<br>";
+  echo "<table border='1'>";
+  while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr style='font-weight: bold;'>";
+        echo "<td id='nr'>" . $row['nr'] . "</td>";
+        echo "<td id='namn'>" . $row['namn'] . "</td>";
+        echo "<td id='genre_namn'>" . $row['genre_namn'] . "</td>";
+        echo "<td id='imdbBetyg'>" . $row['imdbBetyg'] . "</td>";
+        echo "<td id='jayornay'>" . $row['jayornay'] . "</td>";
+        echo "<td id='väljare'>" . $row['väljare'] . "</td>";
+      echo "</tr>";
+  }
+  echo "</table>";
+}
+CloseCon($conn);
