@@ -1,0 +1,23 @@
+.Table{
+	border-collapse: collapse;
+}
+
+.TableHeader{
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.TableItem{
+	height: 30px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.TableRow{
+	border: 1px solid;
+}
