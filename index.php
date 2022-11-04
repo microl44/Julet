@@ -6,8 +6,8 @@ include "function.php";
 if(isset($_POST['addName'])){
   try
   {
-    $sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)
-                      VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
+    $sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
+    $sql = $sql . "VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
     
     $stmp = $conn->prepare($sql);
     $stmp->bindvalue(':addName',$_POST['addName']);
@@ -18,7 +18,6 @@ if(isset($_POST['addName'])){
     $stmp->bindvalue(':addParticipants',$_POST['addParticipants']);
     $stmp->bindvalue(':addIs_major',$_POST['addIs_major']);
 
-  
     if(!$stmp->execute())
     {
       throw new Exception("unknown error");
@@ -34,22 +33,35 @@ if(isset($_POST['addName'])){
 
 // serach for winner of wheel
 echo "<form action='index.php' method='POST'>";
-echo "<label for='input'>Search for winner: </lable>";
-echo "<input type='string' name='searchValue'/>";
+echo "<label for='input'>Search by winner: </lable>";
+echo "<input type='string' name='searchByWinner'/>";
 echo "<input type='submit' value='Search'/>";
 echo "</form>";
 // form end
 
+echo "<form action='index.php' method='POST'>";
+echo "<label for='searchParticipants'>Search by Participant: </lable>";
+echo "<input type='string' name='searchParticipants'/>";
+echo "<input type='submit' value='Search'/>";
+echo "</form>";
+
 //show table
-if(isset($_POST['searchValue']))
+if(isset($_POST['searchByWinner']))
 {
   $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
   $stmp = $conn->prepare($sql);
-  $temp = "%" . $_POST['searchValue'] ."%";
+  $temp = "%" . $_POST['searchByWinner'] ."%";
   $stmp->bindvalue(":input",$temp);
   $result = $stmp->execute();
   PrintMovieTable($result,$stmp);
-
+}
+else if(isset($_POST['searchParticipants'])){
+  $sql = "SELECT * FROM movie WHERE participants LIKE :input";
+  $stmp = $conn->prepare($sql);
+  $temp = "%" . $_POST['searchParticipants'] ."%";
+  $stmp->bindvalue(":input",$temp);
+  $result = $stmp->execute();
+  PrintMovieTable($result,$stmp);
 }
 else
 {
