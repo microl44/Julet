@@ -3,6 +3,13 @@ include "includers/header.php";
 include "Database.php";
 include "function.php";
 
+if(isset($_POST['deleteId'])){
+  $sql = "delete from movie where id = :id";
+  $stmp = $conn->prepare($sql);
+  $stmp->bindvalue(':id',$_POST['deleteId']);
+  $stmp->execute();
+}
+
 if(isset($_POST['addName'])){
   try
   {

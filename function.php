@@ -35,6 +35,12 @@ function PrintMovieTable($result,$stmp){
       {
         echo "<td id='is_major'>Small Wheel</td>";
       }
+      echo "<td class='tableItem'>";
+      echo "<form action='index.php' method='POST'>";
+      echo "<input type='hidden' name='deleteId' value='" .$row['id'] ."'/>";
+      echo "<input type='submit' value='Delete this entry'/>";
+      echo "</form>";
+      echo "</td>";
       echo "</tr>";
     }
     echo "</table>";
