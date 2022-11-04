@@ -1,1 +1,1 @@
-<a href="install.php"> Reinstall Database?</a>
+<a href="./install.php"> Reinstall Database?</a>

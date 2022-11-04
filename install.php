@@ -11,5 +11,4 @@ try{
 catch(Exception $e){
     echo "<h1> ooh fuck ooh shit ooh fuck </h1>";
 }
-
 ?>

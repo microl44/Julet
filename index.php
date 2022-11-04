@@ -42,8 +42,15 @@ if ($result = $conn -> query($sql))
       echo "</tr>";
   }
   echo "</table>";
+
 }
 
 
-include "includes/footer.php";
+// serach for winner of wheel
+echo "<form action='index.php' method='POST'>";
+echo " Search for winner: <input type='string' name='input'/>";
+echo "<input type='submit' value='Search'/>";
+echo "</form>";
+
+include "includers/footer.php";
 ?>
