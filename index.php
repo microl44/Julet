@@ -45,5 +45,5 @@ if ($result = $conn -> query($sql))
 }
 
 
-
+include "includes/footer.php";
 ?>
