@@ -2,15 +2,15 @@
 include "includers/header.php";
 include "Database.php";
 
-$sql = "SELECT * FROM movie ORDER BY nr";
+$sql = "SELECT * FROM movie ORDER BY id";
 
 if ($result = $conn -> query($sql))
 {
-  echo "<input type='text' id='hejsan'> <button type='submit'>RUN QUERY</button></input>" ;
+  echo "<input type='hidden' id='hejsan'> <input type='hidden'></button></input>" ;
 
   echo "<br>";
-  echo "<table border='1' style='font-weight: bold;'>";
-    echo "<tr style='font-weight: italic;'>";
+  echo "<table>";
+    echo "<tr class='TableRow'>";
     echo "<td class='TableName'>Nr</td>";
     echo "<td class='TableName'>Name</td>";
     echo "<td class='TableName'>Genre</td>";
@@ -21,23 +21,23 @@ if ($result = $conn -> query($sql))
     echo "<td class='TableName'>Wheel Type</td>";
     echo "</tr>";
 
-  while ($row = mysqli_fetch_assoc($result)) 
+  while ($row = $result->fetch()) 
   {
-      echo "<tr>";
-        echo "<td id='nr'>" . $row['nr'] . "</td>";
-        echo "<td id='name'>" . $row['name'] . "</td>";
-        echo "<td id='genre_namn'>" . $row['genre_name'] . "</td>";
-        echo "<td id='imdbGrade'>" . $row['imdb_rating'] . "</td>";
-        echo "<td id='jayornay'>" . $row['jayornay'] . "</td>";
-        echo "<td id='picked_by'>" . $row['picked_by'] . "</td>";
-	      echo "<td id='participants'>" . $row['participants'] . "</td>";
+      echo "<tr class='TableRow'>";
+        echo "<td class='TableItem'>" . $row['id'] . "</td>";
+        echo "<td class='TableItem'>" . $row['name'] . "</td>";
+        echo "<td class='TableItem'>" . $row['genre_name'] . "</td>";
+        echo "<td class='TableItem'>" . $row['imdb_rating'] . "</td>";
+        echo "<td class='TableItem'>" . $row['jayornay'] . "</td>";
+        echo "<td class='TableItem'>" . $row['picked_by'] . "</td>";
+	      echo "<td class='TableItem'>" . $row['participants'] . "</td>";
 	      if($row['is_major'] == 1)
 	      {
-	      	echo "<td id='is_major'>Major</td>";
+	      	echo "<td id='is_major'>Big Wheel</td>";
 	      }
 	      else
 	      {
-	      	echo "<td id='is_major'>Minor</td>";
+	      	echo "<td id='is_major'>Small Wheel</td>";
 	      }
       echo "</tr>";
   }
