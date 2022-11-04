@@ -9,23 +9,23 @@ if ($result = $conn -> query($sql))
   echo "<input type='hidden' id='hejsan'> <input type='hidden'></button></input>" ;
 
   echo "<br>";
-  echo "<table>";
+  echo "<table class='Table'>";
     echo "<tr class='TableRow'>";
-    echo "<td class='TableName'>Nr</td>";
-    echo "<td class='TableName'>Name</td>";
-    echo "<td class='TableName'>Genre</td>";
-    echo "<td class='TableName'>IMDB Grade</td>";
-    echo "<td class='TableName'>Jay or Nay</td>";
-    echo "<td class='TableName'>Picked By</td>";
-    echo "<td class='TableName'>Participants</td>";
-    echo "<td class='TableName'>Wheel Type</td>";
+    echo "<td class='TableItem TableHeader'>Nr</td>";
+    echo "<td class='TableItem TableHeader'>Name</td>";
+    echo "<td class='TableItem TableHeader'>Genre</td>";
+    echo "<td class='TableItem TableHeader'>IMDB Grade</td>";
+    echo "<td class='TableItem TableHeader'>Jay or Nay</td>";
+    echo "<td class='TableItem TableHeader'>Picked By</td>";
+    echo "<td class='TableItem TableHeader'>Participants</td>";
+    echo "<td class='TableItem TableHeader'>Wheel Type</td>";
     echo "</tr>";
 
   while ($row = $result->fetch()) 
   {
       echo "<tr class='TableRow'>";
         echo "<td class='TableItem'>" . $row['id'] . "</td>";
-        echo "<td class='TableItem'>" . $row['name'] . "</td>";
+        echo "<td class='TableItem' id='movieName'>" . $row['name'] . "</td>";
         echo "<td class='TableItem'>" . $row['genre_name'] . "</td>";
         echo "<td class='TableItem'>" . $row['imdb_rating'] . "</td>";
         echo "<td class='TableItem'>" . $row['jayornay'] . "</td>";
