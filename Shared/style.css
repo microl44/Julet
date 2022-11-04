@@ -1,5 +1,7 @@
 .Table{
 	border-collapse: collapse;
+	max-height: 150px;
+	overflow: auto;
 }
 
 .TableHeader{
