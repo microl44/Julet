@@ -23,7 +23,7 @@ imdb_rating float,
 jayornay varchar(255),
 picked_by varchar(255),
 participants varchar(255),
-is_major bit(1),
+is_major char(1),
 PRIMARY KEY (id),
 FOREIGN KEY (genre_name) REFERENCES genre(name),
 FOREIGN KEY (picked_by) REFERENCES participant(name)
@@ -52,3 +52,5 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("Inglorious basterds", "War", 8.3, "Jay", "UNK", "Micke, Behrad, Crippe, Linus", 0), ("A bug's life", "Adventure", 7.2, "Jay", "Micke", "Micke, Crippe, Linus", 0), 
 ("Zootopia", "Crime", 8, "Jay", "Micke", "Micke, Crippe, Linus, Behrad, Momme", 0), ("Treasure planet", "Animation", 7.2, "Jay", "Gabbe", "Micke, Crippe, Gabbe, Linus", 1), 
 ("The Wolf of Wall Street", "Biography", 8.2, "Jay", "Crippe", "Micke, Crippe, Linus, Behrad", 0), ("The revenant", "Western", 8, "Mexican standoff", "Crippe", "Micke, Crippe", 0);
+
+DELETE FROM jul.movie WHERE id = 25;
