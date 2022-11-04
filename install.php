@@ -1,6 +1,6 @@
 <?php
 include "includers/header.php";
-include "Database.php";
+include "Shared/connection.php";
 
 try{
     $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));

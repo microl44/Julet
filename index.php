@@ -1,6 +1,6 @@
 <?php
 include "includers/header.php";
-include "Database.php";
+include "Shared/connection.php";
 
 $sql = "SELECT * FROM movie ORDER BY id";
 
