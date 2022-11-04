@@ -2,7 +2,8 @@
 include "includers/header.php";
 include "Database.php";
 
-$sql = "SELECT * FROM movie ORDER BY id";
+
+$sql = "SELECT * FROM movie";
 
 if ($result = $conn -> query($sql))
 {
