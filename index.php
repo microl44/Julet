@@ -31,6 +31,15 @@ if(isset($_POST['addName'])){
 
 }
 
+// serach for winner of wheel
+echo "<form action='index.php' method='POST'>";
+echo "<label for='input'>Search for winner: </lable>";
+echo "<input type='string' name='searchValue'/>";
+echo "<input type='submit' value='Search'/>";
+echo "</form>";
+// form end
+
+//show table
 if(isset($_POST['searchValue']))
 {
   $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
@@ -48,33 +57,26 @@ else
   $result = $stmp-> execute();
   printtable($result,$stmp);
 }
-
-// serach for winner of wheel
-echo "<form action='index.php' method='POST'>";
-echo "<label for='input'>Search for winner: </lable>";
-echo "<input type='string' name='searchValue'/>";
-echo "<input type='submit' value='Search'/>";
-echo "</form>";
-// form end
+// show table end
 
 // insert new movie form
 echo "<h3>Add new movie </h3>";
 echo "<form action='index.php' method='POST'>";
 
 echo "<label for='addName'> Name</label>";
-echo "<input type='string' name='addName' required/> <br/>";
+echo "<input type='string' name='addName' required/> ";
 
 echo "<label for='addGenre'> Genre </label>";
 echo "<input type='string' name='addGenre' requred /> <br/>";
 
 echo "<label for='addIMDB'> IMDB Grade </label>";
-echo "<input type='string' name='addIMDB' requred /> <br/>";
+echo "<input type='string' name='addIMDB' requred /> ";
 
 echo "<label for='addjayornay'> Jay or Nay </label>";
 echo "<input type='string' name='addjayornay' requred /> <br/>";
 
 echo "<label for='addPickedBy'> Picked BY </label>";
-echo "<input type='string' name='addPickedBy' requred /> <br/>";
+echo "<input type='string' name='addPickedBy' requred /> ";
 
 echo "<label for='addParticipants'> Participants </label>";
 echo "<input type='string' name='addParticipants' requred /> <br/>";
