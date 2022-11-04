@@ -1,7 +1,6 @@
 <?php
 function PrintMovieTable($result,$stmp){
-  if ($result)
-  {
+  if ($result){
     echo "<input type='hidden' id='hejsan'> <input type='hidden'></button></input>" ;
     
     echo "<br>";
@@ -44,7 +43,18 @@ function PrintMovieTable($result,$stmp){
       echo "</tr>";
     }
     echo "</table>";
-    
   }
+}
+
+function exists($var)
+{
+  if(isset($var) && !empty($var))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
 }
 ?>
