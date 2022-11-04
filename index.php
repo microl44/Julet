@@ -25,7 +25,7 @@ if ($result = $conn -> query($sql))
   {
       echo "<tr class='TableRow'>";
         echo "<td class='TableItem'>" . $row['id'] . "</td>";
-        echo "<td class='TableItem'>" . $row['name'] . "</td>";
+        echo "<td class='TableItem' id='movieName'>" . $row['name'] . "</td>";
         echo "<td class='TableItem'>" . $row['genre_name'] . "</td>";
         echo "<td class='TableItem'>" . $row['imdb_rating'] . "</td>";
         echo "<td class='TableItem'>" . $row['jayornay'] . "</td>";
