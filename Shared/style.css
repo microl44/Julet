@@ -1,18 +1,22 @@
+body{
+	background-color: #BBCADB;
+}
+
 h3{
 	text-align: center;
 	margin-right: 10%;
 }
-
 .Table{
+	background-color: ;
 	border-collapse: collapse;
 	max-height: 150px;
 	max-width: 95%;
 	overflow: auto;
 	font-family: sans-serif;
+	border-radius: 5px;
 }
 
 .Table td:hover{
-	background-color: darker;
 	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
@@ -26,6 +30,10 @@ h3{
 	padding-right: 15px;
 }
 
+.TableHeader td{
+	#background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
+}
+
 .TableItem{
 	height: 30px;
 	text-align: center;
@@ -35,6 +43,7 @@ h3{
 
 .TableRow{
 	border: 1px solid;
+	border-left: 3px;
 	font-size: 16px;
 	font-weight: bolder;
 }
@@ -44,7 +53,7 @@ h3{
 }
 
 .TableRow:nth-child(odd){
-	opacity: 95%;
+	background-color: #BAC3E8;
 }
 
 #movieName{

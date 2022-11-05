@@ -12,6 +12,7 @@ function PrintMovieTable($result,$stmp){
     echo "<td class='TableItem TableHeader'>Picked By</td>";
     echo "<td class='TableItem TableHeader'>Participants</td>";
     echo "<td class='TableItem TableHeader'>Wheel Type</td>";
+    echo "<td style='display:none;' class='TableItem TableHeader'> Delete Record </td>";
     echo "</tr>";
     
     while ($row = $stmp->fetch()) 
@@ -35,7 +36,7 @@ function PrintMovieTable($result,$stmp){
       echo "<td class='tableItem'>";
       echo "<form action='index.php' method='POST'>";
       echo "<input type='hidden' name='deleteId' value='" .$row['id'] ."'/>";
-      echo "<input type='submit' value='Delete this entry'/>";
+      echo "<input type='hidden' value='Delete this entry'/>";
       echo "</form>";
       echo "</td>";
       echo "</tr>";
