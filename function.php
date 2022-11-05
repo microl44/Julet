@@ -1,8 +1,6 @@
 <?php
 function PrintMovieTable($result,$stmp){
   if ($result){
-    echo "<input type='hidden' id='hejsan'> <input type='hidden'></button></input>" ;
-    
     echo "<br>";
     echo "<table class='Table'>";
     echo "<tr class='TableRow'>";

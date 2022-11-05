@@ -1,7 +1,19 @@
+h3{
+	text-align: center;
+	margin-right: 10%;
+}
+
 .Table{
 	border-collapse: collapse;
 	max-height: 150px;
+	max-width: 95%;
 	overflow: auto;
+	font-family: sans-serif;
+}
+
+.Table td:hover{
+	background-color: darker;
+	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
 .TableHeader{
@@ -18,14 +30,51 @@
 	height: 30px;
 	text-align: center;
 	vertical-align: middle;
+	border-left: 1px solid;
 }
 
 .TableRow{
 	border: 1px solid;
+	font-size: 16px;
+	font-weight: bolder;
 }
 
+.TableRow:nth-child(even){
+	background-color: #d9d9d9;
+}
 
+.TableRow:nth-child(odd){
+	opacity: 95%;
+}
 
 #movieName{
 	font-weight: bold;
+}
+
+.addMovieDiv{
+	display: contents;
+	text-align: left;
+	border: 1px solid;
+}
+
+.addMovieDiv input{
+	#width: 70%;
+}
+
+.addMovieDivFirst{
+	float:left;
+	margin-left: 20%;
+}
+
+.addMovieDivSecond{
+	float: right;
+	margin-right: 40%;
+}
+
+#addMovieBtn{
+	#width: 100%;
+}
+
+footer{
+	margin-top: 100px;
 }
