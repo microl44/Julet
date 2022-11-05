@@ -1,8 +1,9 @@
 <?php
-include "includers/header.php";
-include "Database.php";
+include_once "includers/header.php";
+include_once "Database.php";
 
 try{
+	$conn = CreateConn();
     $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
     $stmp->execute();
     foreach($stmp->fetchall() as $row){print_r($row);}

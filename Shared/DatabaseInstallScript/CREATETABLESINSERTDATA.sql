@@ -10,10 +10,12 @@ PRIMARY KEY (name)
 ) engine = InnoDB;
 
 CREATE TABLE participant(
-id int,
+id int auto_increment,
 name varchar(255),
-PRIMARY KEY (name)
+PRIMARY KEY (id)
 ) eNGINE = InnoDB;
+
+CREATE INDEX hejsan ON participant(name);
 
 CREATE TABLE movie(
 id int auto_increment,
