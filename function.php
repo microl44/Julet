@@ -12,7 +12,7 @@ function PrintMovieTable($result,$stmp){
     echo "<td class='TableItem TableHeader'>Picked By</td>";
     echo "<td class='TableItem TableHeader'>Participants</td>";
     echo "<td class='TableItem TableHeader'>Wheel Type</td>";
-    echo "<td style='display:none;' class='TableItem TableHeader'> Delete Record </td>";
+    echo "<td class='TableItem TableHeader'> Delete Record </td>";
     echo "</tr>";
     
     while ($row = $stmp->fetch()) 
@@ -27,16 +27,16 @@ function PrintMovieTable($result,$stmp){
       echo "<td class='TableItem'>" . $row['participants'] . "</td>";
       if($row['is_major'] == 1)
       {
-        echo "<td id='is_major'>Big Wheel</td>";
+        echo "<td style='border-left: 1px solid;' id='is_major'>Big Wheel</td>";
       }
       else
       {
-        echo "<td id='is_major'>Small Wheel</td>";
+        echo "<td style='border-left: 1px solid;' id='is_major'>Small Wheel</td>";
       }
       echo "<td class='tableItem'>";
-      echo "<form action='index.php' method='POST'>";
+      echo "<form action='query.php' method='POST'>";
       echo "<input type='hidden' name='deleteId' value='" .$row['id'] ."'/>";
-      echo "<input type='hidden' value='Delete this entry'/>";
+      echo "<input type='submit' value='Delete this entry'/>";
       echo "</form>";
       echo "</td>";
       echo "</tr>";
@@ -45,6 +45,7 @@ function PrintMovieTable($result,$stmp){
   }
 }
 
+//används inte, maybe borde användas, idk
 function exists($var)
 {
   if(isset($var) && !empty($var))

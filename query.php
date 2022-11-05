@@ -6,6 +6,10 @@ if(exists($_POST['addName']))
 {
 	InsertMovie();
 }
+else if(exists($_POST['deleteId']))
+{
+	DeleteMovie();
+}
 header('Location: index.php');
 
 
@@ -48,4 +52,13 @@ function InsertMovie()
 		unset($_POST['addParticipants']);
 		unset($_POST['addIs_major']);
 	}
+}
+
+function DeleteMovie()
+{
+	$conn = createConn();
+	$sql = "delete from movie where id = :id";
+	$stmp = $conn->prepare($sql);
+	$stmp->bindvalue(':id',$_POST['deleteId']);
+	$stmp->execute();
 }

@@ -7,7 +7,6 @@ h3{
 	margin-right: 10%;
 }
 .Table{
-	background-color: ;
 	border-collapse: collapse;
 	max-height: 150px;
 	max-width: 95%;
@@ -31,7 +30,7 @@ h3{
 }
 
 .TableHeader td{
-	#background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
+	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
 .TableItem{
@@ -43,7 +42,6 @@ h3{
 
 .TableRow{
 	border: 1px solid;
-	border-left: 3px;
 	font-size: 16px;
 	font-weight: bolder;
 }
@@ -61,29 +59,46 @@ h3{
 }
 
 .addMovieDiv{
-	display: contents;
-	text-align: left;
-	border: 1px solid;
+	display: flex;
+	width: 100%;
+	/*text-align: center;*/
+	/*align-content: center;*/
+	justify-content: center;
 }
 
 .addMovieDiv input{
-	#width: 70%;
+	height: 20px;
+	width: 400px;
+	float: left;
+}
+
+.addMovieDiv label{
+	font-size: 20px;
+	font-family: cursive;
+}
+
+.addMovieDiv select{
+	text-align: center;
+	width: 400px;
+	height: 30px;
+	background-color: #d9d9d9;
 }
 
 .addMovieDivFirst{
 	float:left;
-	margin-left: 20%;
+	height:100%;
 }
 
 .addMovieDivSecond{
 	float: right;
-	margin-right: 40%;
+	height:100%;
 }
 
-#addMovieBtn{
-	#width: 100%;
+.navbar{
+	background-color:red;
+	width:100%;
 }
 
 footer{
-	margin-top: 100px;
+
 }

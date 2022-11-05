@@ -57,9 +57,9 @@ echo "<body>";
     echo "<h3>Add new movie </h3>";
     
     echo "<div class='addMovieDiv'>";
-    echo "<form action='query.php' method='POST'>";
-      echo "<div class='addMovieDivFirst'>";
-        echo "<label for='addName'> Name: </label>";
+    echo "<div class='addMovieDivFirst'>";
+      echo "<form action='query.php' method='POST'>";
+        echo "<label> Name: </label>";
         echo "<input type='text' name='addName' required/> <br/>";
 
         echo "<label for='addGenre'> Genre: </label>";
@@ -70,12 +70,11 @@ echo "<body>";
           }
         echo "</select> <br/>";
 
-        echo "<label for='addIMDB'> IMDB Grade; </label>";
         echo "<input type='text' name='addIMDB' requred /> <br/>";
 
         echo "<label for='addjayornay'> Jay or Nay </label>";
         echo "<input type='text' name='addjayornay' requred /> <br/>";
-      echo "</div>";
+    echo "</div>";
       echo "<div class='addMovieDivSecond'>";
         echo "<label for='addPickedBy'> Picked By: </label>";
         echo "<select name='addPickedBy'>";
