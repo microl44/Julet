@@ -27,13 +27,13 @@ function PrintMovieTable($result,$stmp){
       echo "<td class='TableItem'>" . $row['participants'] . "</td>";
       if($row['is_major'] == 1)
       {
-        echo "<td style='border-left: 1px solid;' id='is_major'>Big Wheel</td>";
+        echo "<td class='TableItem' style='border-left: 1px solid;' id='is_major'>Big Wheel</td>";
       }
       else
       {
-        echo "<td style='border-left: 1px solid;' id='is_major'>Small Wheel</td>";
+        echo "<td class='TableItem' style='border-left: 1px solid;' id='is_major'>Small Wheel</td>";
       }
-      echo "<td class='tableItem'>";
+      echo "<td class='TableItem deleteBtn'>";
       echo "<form action='query.php' method='POST'>";
       echo "<input type='hidden' name='deleteId' value='" .$row['id'] ."'/>";
       echo "<input type='submit' value='Delete this entry'/>";

@@ -1,5 +1,5 @@
+<!DOCTYPE html>
 <?php
-require_once "includers/header.php";
 require_once "Database.php";
 require_once "function.php";
 //init vars
@@ -12,6 +12,8 @@ $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
 $genres = $stmt->fetchAll();
 
 echo "<body>";
+require_once "includers/header.php";
+echo "<div id='content'>";
   // serach for winner of wheel
   echo "<form action='index.php' method='POST'>";
   echo "<label for='input'>Search by winner: </lable>";
@@ -73,8 +75,9 @@ echo "<body>";
     echo "<div class='addMovieDiv'>";
     echo "<div class='addMovieDivFirst'>";
       echo "<form action='query.php' method='POST'>";
-        echo "<label> Name: </label>";
-        echo "<input type='text' name='addName' required/> <br/>";
+
+        echo "<label for='addName'>Name: </label>";
+        echo "<input id='addName' type='text' name='addName' required/><br/>";
 
         echo "<label for='addGenre'> Genre: </label>";
         echo "<select name='addGenre'>";
@@ -84,10 +87,11 @@ echo "<body>";
           }
         echo "</select> <br/>";
 
-        echo "<input type='text' name='addIMDB' requred /> <br/>";
+        echo "<label>  IMDB grade: <input type='text' name='addIMDB' required /></label> </br>";
 
-        echo "<label for='addjayornay'> Jay or Nay </label>";
-        echo "<input type='text' name='addjayornay' requred /> <br/>";
+        echo "<label for='addjayornay'> Jay or Nay";
+            echo "<input type='text' name='addjayornay' required /> <br/>";
+        echo "</label>";
     echo "</div>";
       echo "<div class='addMovieDivSecond'>";
         echo "<label for='addPickedBy'> Picked By: </label>";
@@ -99,20 +103,20 @@ echo "<body>";
         echo "</select> <br/>";
 
         echo "<label for='addParticipants'> Participants </label>";
-        echo "<input type='text' name='addParticipants' requred /> <br/>";
+        echo "<input type='text' name='addParticipants' required /> <br/>";
 
         echo "<label for='addIs_major'>WheelType </label>";
         echo "<select name='addIs_major' type='number'> <br/>";
-
           echo "<option value='1'> Big Wheel </option>";
           echo "<option value='0'> Small Wheel </option>";
-          echo "</select> </br>";
+        echo "</select> </br>";
 
         echo "<input id='addMovieBtn' type='submit' value='add movie'/>";
       echo "</div>";
     echo "</form>";
   echo "</div>";
   // form end
+echo "</div>";
 
   include "includers/footer.php";
 echo "</body>";
