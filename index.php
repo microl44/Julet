@@ -34,6 +34,12 @@ echo "<div id='content'>";
   echo "<input type='submit' value='Search'/>";
   echo "</form>";
 
+  echo "<form action='index.php' method='POST'>";
+  echo "<label for='searchMovie'>Search by Movie Name: </lable>";
+  echo "<input type='string' name='searchMovie'/>";
+  echo "<input type='submit' value='Search'/>";
+  echo "</form>";
+
   //show table
   if(isset($_POST['searchByWinner']))
   {
@@ -48,6 +54,14 @@ echo "<div id='content'>";
     $sql = "SELECT * FROM movie WHERE participants LIKE :input";
     $stmp = $conn->prepare($sql);
     $temp = "%" . $_POST['searchParticipants'] ."%";
+    $stmp->bindvalue(":input",$temp);
+    $result = $stmp->execute();
+    PrintMovieTable($result,$stmp);
+  }
+  else if(isset($_POST['searchMovie'])){
+    $sql = "SELECT * FROM movie WHERE name LIKE :input";
+    $stmp = $conn->prepare($sql);
+    $temp = "%" . $_POST['searchMovie'] ."%";
     $stmp->bindvalue(":input",$temp);
     $result = $stmp->execute();
     PrintMovieTable($result,$stmp);
