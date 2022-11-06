@@ -4,9 +4,17 @@ include_once "Database.php";
 
 try{
 	$conn = CreateConn();
+
     $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
     $stmp->execute();
     foreach($stmp->fetchall() as $row){print_r($row);}
+    $stmp->closeCursor();
+
+    $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/Procedures.sql'));
+    $stmp->execute();
+    foreach($stmp->fetchall() as $row){print_r($row);}
+    $stmp->closeCursor();
+    
     echo "<br/><br/><br/><h1> we good boizzzzz</h1>";
 }
 catch(Exception $e){
