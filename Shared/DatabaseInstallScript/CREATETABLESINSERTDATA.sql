@@ -40,33 +40,32 @@ FOREIGN KEY (movie) REFERENCES movie(id)
 ) ENGINE = InnoDB;
 
 # --------PROCEDURES-------#
-DELIMITER //
+
 CREATE PROCEDURE GetParticipationRate(participantName varchar(255))
 BEGIN
 	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.participants like CONCAT("%", participantName, "%")) / (SELECT COUNT(*) FROM movie)) * 100) AS "Participation rate";
-END //
+END;
 
 CREATE PROCEDURE GetLeastCommonGenre()
 BEGIN
 	SELECT movie.genre_name, count(movie.genre_name) FROM movie GROUP BY movie.genre_name ORDER BY count(movie.genre_name) ASC LIMIT 1;
-END //
+END;
 
 CREATE PROCEDURE GetJayRatio()
 BEGIN
 	SELECT ((SELECT COUNT(*) FROM movie WHERE movie.jayornay = "Jay") / (SELECT COUNT(*) FROM movie) * 100) AS "Jay Ratio";
-END //
+END;
 
 CREATE PROCEDURE GetWinRate(participantName varchar(255))
 BEGIN
 	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.picked_by = participantName) / (SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT('%', participantName, '%'))) * 100) AS "Winrate";
-END //
+END;
 
 CREATE PROCEDURE GetPickedMovies(participantName varchar(255))
 BEGIN
 	SELECT movie.name FROM movie WHERE movie.picked_by = participantName ORDER BY movie.name;
-END //
+END; 
 # --------INSERTS----------#
-DELIMITER ;
 
 INSERT INTO genre(name)
 VALUES ("Action"),("Adventure"),("Animation"),("Biography"),("Comedy"),("Crime"),("CUSTOM RULES"),
