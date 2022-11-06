@@ -14,7 +14,8 @@
 		$stmt2 = $conn2->query("CALL GetParticipationRate('" . $participant['name'] . "')");
 		foreach($stmt2->fetchAll() as $row)
 		{
-			echo $participant['name'] . " " . $row['Participation rate'] . "<br/>";
+			//meningen att calla PrintParticipantInfo() i function.php som genererar en div som innehåller all information för användare X
+			echo $participant['name'] . " " . $row['Participation rate'] . "%<br/>";
 		} 
 	}
 ?>
