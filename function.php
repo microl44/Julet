@@ -48,15 +48,15 @@ function PrintMovieTable($result,$stmp){
 //I'm so sorry for this, idk what I'm doing and it's 5 in the morning oh god
 function PrintParticipantInfo($participant)
 {
-  $conn = CreateConn();
+  $conn = GetConnection();
   $stmt = $conn->query("CALL GetParticipationRate('" . $participant['name'] . "')");
   $participationRate = $stmt->fetchAll();
 
-  $conn = CreateConn();
+  $conn = GetConnection();
   $stmt = $conn->query("CALL GetWinRate('" . $participant['name'] . "')");
   $winrate = $stmt->fetchAll();
 
-  $conn = CreateConn();
+  $conn = GetConnection();
   $stmt = $conn->query("CALL GetPickedMovies('" . $participant['name'] . "')");
   $pickedMovies = $stmt->fetchAll();
 
