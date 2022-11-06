@@ -129,5 +129,11 @@ footer{
 }
 
 .gridItem{
-	padding:20px;
+	background: linear-gradient(#bbcadb, #9CC5E0, #3B7DD5);
+	margin: 10px;
+	padding: 10px;
+	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+
+.gridItemContent{
 }
