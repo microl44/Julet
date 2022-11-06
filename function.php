@@ -45,12 +45,24 @@ function PrintMovieTable($result,$stmp){
   }
 }
 
-function PrintParticipantInfo($lmaoWhatIsThisVar, $participant)
+//I'm so sorry for this, idk what I'm doing and it's 5 in the morning oh god
+function PrintParticipantInfo($participant)
 {
+  $conn = CreateConn();
+  $stmt = $conn->query("CALL GetParticipationRate('" . $participant['name'] . "')");
+  $participationRate = $stmt->fetchAll();
+
+  $conn = CreateConn();
+  $stmt = $conn->query("CALL GetWinRate('" . $participant['name'] . "')");
+  $winrate = $stmt->fetchAll();
+
   echo "<div class='gridItem'>";
-    echo "<h2 class='gridItemTitle'>" . $lmaoWhatIsThisVar['name'] . "</h3>";
-    echo "<div class='gridItemContent'>";
-      echo "Attendance rate: " . $participant['Participation rate'] . "%<br/>";
+  echo "<h2 class='gridItemTitle'>" . $participant['name'] . "</h3>";
+  echo "<div class='gridItemContent'>";
+
+    //                  WTF is this????
+    echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%<br/>";
+    echo "Winrate: " . $winrate[0]['Winrate'] . "%</br>";
     echo "</div>";
   echo "</div>";
 }

@@ -12,14 +12,9 @@
 	echo "<div class='gridContainer'>";
 	foreach($participants as $participant)
 	{
-		$conn2 = CreateConn();
-		$stmt2 = $conn2->query("CALL GetParticipationRate('" . $participant['name'] . "')");
 		if($participant['name'] != "UNK")
 		{
-			foreach($stmt2->fetchAll() as $row)
-			{
-				PrintParticipantInfo($participant, $row);
-			}
+			PrintParticipantInfo($participant);
 		}
 
 	}

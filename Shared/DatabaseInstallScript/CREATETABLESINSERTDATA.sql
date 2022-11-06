@@ -43,7 +43,7 @@ FOREIGN KEY (movie) REFERENCES movie(id)
 DELIMITER //
 CREATE PROCEDURE GetParticipationRate(participantName varchar(255))
 BEGIN
-	SELECT ((SELECT COUNT(*) FROM movie WHERE movie.participants like CONCAT("%", participantName, "%")) / (SELECT COUNT(*) FROM movie)) * 100 AS "Participation rate";
+	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.participants like CONCAT("%", participantName, "%")) / (SELECT COUNT(*) FROM movie)) * 100) AS "Participation rate";
 END //
 
 CREATE PROCEDURE GetLeastCommonGenre()
@@ -58,7 +58,7 @@ END //
 
 CREATE PROCEDURE GetWinRate(participantName varchar(255))
 BEGIN
-	SELECT ((SELECT COUNT(*) FROM movie WHERE movie.picked_by = participantName) / (SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT("%", participantName, "%"))) * 100 AS "Winrate";
+	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.picked_by = participantName) / (SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT('%', participantName, '%'))) * 100) AS "Winrate";
 END //
 # --------INSERTS----------#
 DELIMITER ;
