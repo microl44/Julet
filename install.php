@@ -18,6 +18,7 @@ try{
     echo "<br/><br/><br/><h1> we good boizzzzz</h1>";
 }
 catch(Exception $e){
-    echo "<h1> ooh fuck ooh shit ooh fuck </h1>";
+    echo "<br/><br/><br/> <h1> ooh fuck ooh shit ooh fuck </h1>";
+    echo $e->getmessage();
 }
 ?>
