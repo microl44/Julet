@@ -39,7 +39,15 @@ FOREIGN KEY (participant) REFERENCES participant(id),
 FOREIGN KEY (movie) REFERENCES movie(id)
 ) ENGINE = InnoDB;
 
+# --------PROCEDURES-------#
+DELIMITER //
+CREATE PROCEDURE GetParticipationRate(participantName varchar(255))
+BEGIN
+	SELECT ((SELECT COUNT(*) FROM movie WHERE movie.participants like CONCAT("%", participantName, "%")) / (SELECT COUNT(*) FROM movie)) * 100 AS "Participation rate";
+END //
+
 # --------INSERTS----------#
+DELIMITER ;
 
 INSERT INTO genre(name)
 VALUES ("Action"),("Adventure"),("Animation"),("Biography"),("Comedy"),("Crime"),("CUSTOM RULES"),
