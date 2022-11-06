@@ -121,3 +121,13 @@ footer{
 
 .deleteBtn{
 }
+
+.gridContainer{
+	display: inline-grid;
+	grid-template-columns: auto auto auto;
+	width:100%;
+}
+
+.gridItem{
+	padding:20px;
+}

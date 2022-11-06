@@ -45,6 +45,16 @@ function PrintMovieTable($result,$stmp){
   }
 }
 
+function PrintParticipantInfo($lmaoWhatIsThisVar, $participant)
+{
+  echo "<div class='gridItem'>";
+    echo "<h2 class='gridItemTitle'>" . $lmaoWhatIsThisVar['name'] . "</h3>";
+    echo "<div class='gridItemContent'>";
+      echo "Attendance rate: " . $participant['Participation rate'] . "%<br/>";
+    echo "</div>";
+  echo "</div>";
+}
+
 //används inte, maybe borde användas, idk
 function exists($var)
 {
