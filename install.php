@@ -17,6 +17,11 @@ if(isset($_SESSION['username']) || isset($_SESSION['password'])){
         foreach($stmp->fetchall() as $row){print_r($row);}
         $stmp->closeCursor();
         
+        $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/Views.sql'));
+        $stmp->execute();
+        foreach($stmp->fetchall() as $row){print_r($row);}
+        $stmp->closeCursor();
+
         echo "<br/><br/><br/> <br/><br/><br/> <h1> we good boizzzzz</h1>";
     }
     catch(Exception $e){

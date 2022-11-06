@@ -57,7 +57,8 @@ function PrintParticipantInfo($participant)
   $winrate = $stmt->fetchAll();
 
   $conn = GetConnection();
-  $stmt = $conn->query("CALL GetPickedMovies('" . $participant['name'] . "')");
+  // $stmt = $conn->query("CALL GetPickedMovies('" . $participant['name'] . "')");
+  $stmt = $conn->query("select * from GetPickedMoviesView where GetPickedMoviesView.Pname ='" . $participant['name'] ."';");
   $pickedMovies = $stmt->fetchAll();
 
   echo "<div class='gridItem'>";
