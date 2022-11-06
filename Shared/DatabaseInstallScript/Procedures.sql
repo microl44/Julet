@@ -25,7 +25,7 @@ END ;
 
 DROP PROCEDURE IF EXISTS `add_User`;
 
-CREATE PROCEDURE `add_User`(IN `p_Name` VARCHAR(45), IN `p_Passw` VARCHAR(200))
+CREATE PROCEDURE `add_User`(`p_Name` VARCHAR(45),`p_Passw` VARCHAR(200))
 BEGIN
     DECLARE `_HOST` CHAR(14) DEFAULT '@\'localhost\'';
     SET `p_Name` := CONCAT('\'', REPLACE(TRIM(`p_Name`), CHAR(39), CONCAT(CHAR(92), CHAR(39))), '\''),
