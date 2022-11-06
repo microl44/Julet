@@ -60,6 +60,11 @@ CREATE PROCEDURE GetWinRate(participantName varchar(255))
 BEGIN
 	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.picked_by = participantName) / (SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT('%', participantName, '%'))) * 100) AS "Winrate";
 END //
+
+CREATE PROCEDURE GetPickedMovies(participantName varchar(255))
+BEGIN
+	SELECT movie.name FROM movie WHERE movie.picked_by = participantName ORDER BY movie.name;
+END //
 # --------INSERTS----------#
 DELIMITER ;
 

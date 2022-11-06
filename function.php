@@ -56,6 +56,10 @@ function PrintParticipantInfo($participant)
   $stmt = $conn->query("CALL GetWinRate('" . $participant['name'] . "')");
   $winrate = $stmt->fetchAll();
 
+  $conn = CreateConn();
+  $stmt = $conn->query("CALL GetPickedMovies('" . $participant['name'] . "')");
+  $pickedMovies = $stmt->fetchAll();
+
   echo "<div class='gridItem'>";
   echo "<h2 class='gridItemTitle'>" . $participant['name'] . "</h3>";
   echo "<div class='gridItemContent'>";
@@ -63,6 +67,14 @@ function PrintParticipantInfo($participant)
     //                  WTF is this????
     echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%<br/>";
     echo "Winrate: " . $winrate[0]['Winrate'] . "%</br>";
+    echo "<div class='pickedMovies'>";
+    echo "Movies picked: ";
+      foreach($pickedMovies as $row)
+      {
+        echo $row['name'] . ", ";
+      }
+    echo ".";
+    echo "</div>";
     echo "</div>";
   echo "</div>";
 }
