@@ -1,5 +1,6 @@
 body{
 	background-color: #BBCADB;
+	padding-bottom: 20px;
 }
 
 header{
@@ -84,39 +85,51 @@ h3{
 }
 
 .addMovieDiv{
-	background-color: red;
 	width: 100%;
 	display: inline-block;
+	min-width: 800px;
+	min-width: 1600px;
 }
 
 .addMovieDiv input{
 	height: 20px;
-	width: 400px;
+	width: 60%;
+	float:right;
+	margin-right: 20%;
 }
 
 .addMovieDiv label{
 	font-size: 20px;
 	width: 100px;
 	font-family: cursive;
-	display:inline-block;
 }
 
 .addMovieDiv select{
-	width: 400px;
-	height: 30px;
+	width: 61%;
+	height: 25px;
 	background-color: #d9d9d9;
 	text-align: center;
+	float:right;
+	margin-right: 20%;
 }
 
 .addMovieDivFirst{
-
+	width:50%;
+	float:left;
+	min-width: 800px;
+	height:100%;
 }
 
 .addMovieDivSecond{
+	width:50%;
+	float:right;
+	min-width: 800px;
+	height:100%;
 }
 
 footer{
-
+position: fixed;
+bottom: 0;
 }
 
 .deleteBtn{
