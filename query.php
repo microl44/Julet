@@ -1,6 +1,7 @@
 <?php
 require_once "loginFunctions.php";
 require_once "function.php";
+
 if(exists($_POST['addName']))
 {
 	InsertMovie();
@@ -9,8 +10,7 @@ else if(exists($_POST['deleteId']))
 {
 	DeleteMovie();
 }
-header('Location: index.php');
-
+header(('Location: index.php'));
 
 function InsertMovie()
 {
@@ -62,12 +62,20 @@ function DeleteMovie()
 {
 	try{
 		$conn = GetConnection();
+		
+		$sql = "delete from participated where movieID = :id";
+		$stmp = $conn->prepare($sql);
+		$stmp->bindvalue(':id',$_POST['deleteId']);
+		$stmp->execute();
+		$stmp->closeCursor();
+
 		$sql = "delete from movie where id = :id";
 		$stmp = $conn->prepare($sql);
 		$stmp->bindvalue(':id',$_POST['deleteId']);
 		$stmp->execute();
 	}
 	catch(Exception $e){
+		print_r($e->getMessage());
 		catchStatent();
 	}
 }
