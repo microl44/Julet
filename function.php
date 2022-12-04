@@ -91,4 +91,9 @@ function exists($var)
       return false;
     }
 }
+
+function catchStatent(){
+  echo '<h1>fuuuuuuuck</h1>';
+}
+
 ?>
