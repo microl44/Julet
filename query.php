@@ -75,7 +75,6 @@ function DeleteMovie()
 		$stmp->execute();
 	}
 	catch(Exception $e){
-		print_r($e->getMessage());
 		catchStatent();
 	}
 }
