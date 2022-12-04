@@ -66,6 +66,7 @@ function DeleteMovie()
 		$sql = "delete from participated where movieID = :id";
 		$stmp = $conn->prepare($sql);
 		$stmp->bindvalue(':id',$_POST['deleteId']);
+		$stmp->execute();
 		$stmp->closeCursor();
 
 		$sql = "delete from movie where id = :id";
