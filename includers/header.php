@@ -8,6 +8,7 @@
 		<?php
 		if(isset($_SESSION['username'])){
 			echo "<a href='loggout.php'> logg out</a>";
+			include 'genre.php';
 		}
 		else{
 			include 'login.php';
