@@ -6,6 +6,7 @@ USE Jul;
 
 CREATE TABLE genre(
 name varchar(255) NOT NULL,
+next BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY (name)
 ) engine = InnoDB;
 
@@ -38,6 +39,8 @@ PRIMARY KEY (movieID, participantID),
 FOREIGN KEY (participantID) REFERENCES participant(id),
 FOREIGN KEY (movieID) REFERENCES movie(id)
 ) ENGINE = InnoDB;
+
+
 
 # --------INSERTS----------#
 
