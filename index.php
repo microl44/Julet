@@ -15,7 +15,7 @@
     ?>
   
     <body>
-      <div id='content'>
+      <div class='content'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
           <form action='index.php' method='POST'>

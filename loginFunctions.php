@@ -22,9 +22,9 @@ function GetConnection(){
 
 function notLoggedIn(){
     echo "<body>";
-    echo "<div id='content'>";
-      echo "<h1>Please logg in first </h1>";
-    echo "</div>";
+        echo "<div class='content'>";
+          echo "<h1>Please login to view the Christmas_Tree.png</h1>";
+        echo "</div>";
     echo "</body>";
 }
 ?>

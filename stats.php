@@ -4,8 +4,8 @@
 	require_once "function.php";
 	require_once "includers/header.php";
 
+	echo "<div class='content'>";
 	if(isset($_SESSION['username']) || isset($_SESSION['password'])){
-		echo "<br/><br/><br/><br/><br/><br/>";
 		$conn = GetConnection();
 		$stmt = $conn->query("SELECT name FROM participant");
 		$participants = $stmt->fetchAll();
@@ -24,4 +24,5 @@
 	else{
 		notLoggedIn();
 	}
+	echo "</div>";
 ?>

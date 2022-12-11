@@ -17,7 +17,7 @@ require_once "loginFunctions.php";
 			<?php
 				if(isset($_SESSION['username']))
 				{
-					echo "<a href='logout.php'> LOGOUT</a>";
+					echo "<a href='logout.php'>LOGOUT</a>";
 				}
 				else
 				{
@@ -28,11 +28,11 @@ require_once "loginFunctions.php";
 						die();
 					}?>
 
-				 	<form action='login.php' method='POST'>
-						<label for='username'>Username :</label>
+				 	<form action='index.php' method='POST'>
+						<label for='username'>Username: </label>
 						<input type='text' name='username'/>
 
-						<label for='password'>Password :</label>
+						<label for='password'>Password: </label>
 						<input type='password' name='password'/>
 
 						<input type='submit' value='login'/>
