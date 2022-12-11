@@ -1,145 +1,152 @@
 <!DOCTYPE html>
 <?php
-require_once "loginFunctions.php";
-require_once "function.php";
-require_once "includers/header.php";
+  require_once "loginFunctions.php";
+  require_once "function.php";
+  require_once "includers/header.php";
 
-//init vars
-if(isset($_SESSION['username']) || isset($_SESSION['password'])){
-  $conn = GetConnection();
+  if(isset($_SESSION['username']) || isset($_SESSION['password'])){
+    $conn = GetConnection();
+    
+    $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
+    $participants = $stmt->fetchAll();
+
+    $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
+    $genres = $stmt->fetchAll();
+    ?>
   
-  $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
-  $participants = $stmt->fetchAll();
+    <body>
+      <div id='content'>
+        <!----------FILTER TABLE SECTION START---------->
+        <div id=filterDiv>
+          <form action='index.php' method='POST'>
+            <label for='input'>Search by winner: </label>
+            <input type='string' name='searchByWinner'/>
+            <input class='filterSubmit' type='submit' value='Search'/>
+          </form>
 
-  $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
-  $genres = $stmt->fetchAll();
+          <div>
+            <form action='index.php' method='POST'>
+              <label for='searchParticipants'>Search by Participant: </label>
+              <input type='string' name='searchParticipants'/>
+              <input class='filterSubmit' type='submit' value='Search'/>
+            </form>
+          </div>
 
-  echo "<body>";
-  echo "<div id='content'>";
-  // serach for winner of wheel
-  echo "<form action='index.php' method='POST'>";
-  echo "<label for='input'>Search by winner: </lable>";
-  echo "<input type='string' name='searchByWinner'/>";
-  echo "<input type='submit' value='Search'/>";
-  echo "</form>";
-  // form end
+          <form action='index.php' method='POST'>
+            <label for='searchGenre'>Search by Genre: </label>
+            <input type='string' name='searchGenre'/>
+            <input class='filterSubmit' type='submit' value='Search'/>
+          </form>
+            
+          <form action='index.php' method='POST'>
+            <label for='searchMovie'>Search by Movie Name: </label>
+            <input type='string' name='searchMovie'/>
+            <input class='filterSubmit' type='submit' value='Search'/>
+          </form>
+        </div>
+        <!----------FILTER TABLE SECTION END---------->
 
-  echo "<form action='index.php' method='POST'>";
-  echo "<label for='searchParticipants'>Search by Participant: </lable>";
-  echo "<input type='string' name='searchParticipants'/>";
-  echo "<input type='submit' value='Search'/>";
-  echo "</form>";
+        <!----------DISPLAY TABLE SECTION START---------->
+        <?php
+        if(isset($_POST['searchByWinner']))
+        {
+          $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
+          $stmp = $conn->prepare($sql);
+          $temp = "%" . $_POST['searchByWinner'] ."%";
+          $stmp->bindvalue(":input",$temp);
+          $result = $stmp->execute();
+          PrintMovieTable($result,$stmp);
+        }
+        else if(isset($_POST['searchParticipants']))
+        {
+          $sql = "SELECT * FROM movie WHERE participants LIKE :input";
+          $stmp = $conn->prepare($sql);
+          $temp = "%" . $_POST['searchParticipants'] ."%";
+          $stmp->bindvalue(":input",$temp);
+          $result = $stmp->execute();
+          PrintMovieTable($result,$stmp);
+        }
+        else if(isset($_POST['searchMovie']))
+        {
+          $sql = "SELECT * FROM movie WHERE name LIKE :input";
+          $stmp = $conn->prepare($sql);
+          $temp = "%" . $_POST['searchMovie'] ."%";
+          $stmp->bindvalue(":input",$temp);
+          $result = $stmp->execute();
+          PrintMovieTable($result,$stmp);
+        }
+        else if(isset($_POST['searchGenre']))
+        {
+          $sql = "SELECT * FROM movie WHERE genre_name LIKE :input";
+          $stmp = $conn->prepare($sql);
+          $temp = "%" . $_POST['searchGenre'] ."%";
+          $stmp->bindvalue(":input",$temp);
+          $result = $stmp->execute();
+          PrintMovieTable($result,$stmp);
+        }
+        else
+        {
+          $sql = "SELECT * FROM movie ORDER BY id";
+          $stmp = $conn->prepare($sql);
+          $result = $stmp-> execute();
+          PrintMovieTable($result,$stmp);
+        }
+        ?>
+        <!----------DISPLAY TABLE SECTION END---------->
+        
+        <!----------INSERT NEW MOVIE FORM START---------->
+        <h3>Add new movie </h3>
+        <div class='addMovieDiv'>
+            <form action='query.php' method='POST'>
+              <div class='addMovieDivFirst'>
+                <label for='addName'>Name: </label>
+                <input id='addName' type='text' name='addName' required/><br/>
 
-  echo "<form action='index.php' method='POST'>";
-  echo "<label for='searchGenre'>Search by Genre: </lable>";
-    echo "<input type='string' name='searchGenre'/>";
-    echo "<input type='submit' value='Search'/>";
-    echo "</form>";
-    
-  echo "<form action='index.php' method='POST'>";
-  echo "<label for='searchMovie'>Search by Movie Name: </lable>";
-  echo "<input type='string' name='searchMovie'/>";
-  echo "<input type='submit' value='Search'/>";
-  echo "</form>";
+                <label for='addParticipants'> Participants: </label>
+                <input type='text' name='addParticipants' required /> <br/>
+                
+                <label for='addIMDB'>  IMDB grade: </label>
+                <input type='text' name='addIMDB' required /> </br>
 
-    //show table
-    if(isset($_POST['searchByWinner']))
-    {
-      $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
-      $stmp = $conn->prepare($sql);
-      $temp = "%" . $_POST['searchByWinner'] ."%";
-      $stmp->bindvalue(":input",$temp);
-      $result = $stmp->execute();
-      PrintMovieTable($result,$stmp);
-    }
-    else if(isset($_POST['searchParticipants'])){
-      $sql = "SELECT * FROM movie WHERE participants LIKE :input";
-      $stmp = $conn->prepare($sql);
-      $temp = "%" . $_POST['searchParticipants'] ."%";
-      $stmp->bindvalue(":input",$temp);
-      $result = $stmp->execute();
-      PrintMovieTable($result,$stmp);
-    }
-  else if(isset($_POST['searchMovie'])){
-    $sql = "SELECT * FROM movie WHERE name LIKE :input";
-    $stmp = $conn->prepare($sql);
-    $temp = "%" . $_POST['searchMovie'] ."%";
-    $stmp->bindvalue(":input",$temp);
-    $result = $stmp->execute();
-    PrintMovieTable($result,$stmp);
+                <label for='addjayornay'> Jay or Nay: </label>
+                <input type='text' name='addjayornay' required /> <br/>
+                </label>
+              </div>
+
+              <div class='addMovieDivSecond'>
+                <label for='addPickedBy'> Picked By: </label>
+                <select name='addPickedBy'> <?php 
+                  foreach($participants as $participant)
+                  {
+                    echo "<option>" . $participant[0] . "</option>";
+                  }?>
+                </select> <br/>
+                
+                <label for='addGenre'> Genre: </label>
+                <select name='addGenre'> <?php
+                  foreach($genres as $genre)
+                  {
+                    echo "<option>" . $genre[0] . "</option>";
+                  }?>
+                </select> <br/>
+
+                <label for='addIs_major'>WheelType </label>
+                <select name='addIs_major' type='number'> <br/>
+                  <option value='1'> Big Wheel </option>
+                  <option value='0'> Small Wheel </option>
+                </select> </br>
+
+                <input id='addMovieBtn' type='submit' value='add movie'/>
+              </div>
+            </form>
+        </div>
+        <!----------INSERT NEW MOVIE FORM END---------->
+      </div>
+    </body>
+  <?php
   }
-    else if(isset($_POST['searchGenre'])){
-      $sql = "SELECT * FROM movie WHERE genre_name LIKE :input";
-      $stmp = $conn->prepare($sql);
-      $temp = "%" . $_POST['searchGenre'] ."%";
-      $stmp->bindvalue(":input",$temp);
-      $result = $stmp->execute();
-      PrintMovieTable($result,$stmp);
-    }
-    else
-    {
-      $sql = "SELECT * FROM movie ORDER BY id";
-      $stmp = $conn->prepare($sql);
-      $result = $stmp-> execute();
-      PrintMovieTable($result,$stmp);
-    }
-    // show table end
-    
-    // insert new movie form
-    echo "<h3>Add new movie </h3>";
-    
-    echo "<div class='addMovieDiv'>";
-    echo "<div class='addMovieDivFirst'>";
-    echo "<form action='query.php' method='POST'>";
-    
-    echo "<label for='addName'>Name: </label>";
-    echo "<input id='addName' type='text' name='addName' required/><br/>";
-    
-
-    echo "<label for='addParticipants'> Participants </label>";
-    echo "<input type='text' name='addParticipants' required /> <br/>";
-    
-    echo "<label>  IMDB grade: <input type='text' name='addIMDB' required /></label> </br>";
-    
-    echo "<label for='addjayornay'> Jay or Nay";
-    echo "<input type='text' name='addjayornay' required /> <br/>";
-    echo "</label>";
-    echo "</div>";
-    echo "<div class='addMovieDivSecond'>";
-    echo "<label for='addPickedBy'> Picked By: </label>";
-    echo "<select name='addPickedBy'>";
-    foreach($participants as $participant)
-    {
-      echo "<option>" . $participant[0] . "</option>";
-    }
-    echo "</select> <br/>";
-    
-    echo "<label for='addGenre'> Genre: </label>";
-    echo "<select name='addGenre'>";
-    foreach($genres as $genre)
-    {
-      echo "<option>" . $genre[0] . "</option>";
-    }
-    echo "</select> <br/>";
-
-
-    echo "<label for='addIs_major'>WheelType </label>";
-    echo "<select name='addIs_major' type='number'> <br/>";
-    echo "<option value='1'> Big Wheel </option>";
-    echo "<option value='0'> Small Wheel </option>";
-    echo "</select> </br>";
-    
-    echo "<input id='addMovieBtn' type='submit' value='add movie'/>";
-    echo "</div>";
-    echo "</form>";
-    echo "</div>";
-    // form end
-    echo "</div>";
-
-    echo "</body>";
-}
-else{
-  notLoggedIn();
-}
+  else{
+    notLoggedIn();
+  }
 include "includers/footer.php";
 ?>

@@ -44,3 +44,30 @@ BEGIN
     DEALLOCATE PREPARE `stmt`;
     FLUSH PRIVILEGES;
 END;
+
+CREATE PROCEDURE addParticipants(IN movie_ID INT, IN participants_string VARCHAR(255))
+BEGIN
+	DECLARE participant_name VARCHAR(255);
+	DECLARE temp_string VARCHAR(255);
+	DECLARE temp_string_2 VARCHAR(255);
+	
+	SET temp_string = participants_string;
+	
+	WHILE temp_string != '' DO
+		SET temp_string_2 = SUBSTRING_INDEX(temp_string, ',', 1);
+		SET temp_string = REPLACE(temp_string, CONCAT(temp_string_2, ','), '');
+		
+		SELECT name INTO participant_name FROM participant WHERE name = temp_string_2;
+		
+		IF participant_name IS NULL THEN
+			SELECT name INTO participant_name FROM participant WHERE name = 'UNK';
+			IF participant_name IS NOT NULL THEN
+				INSERT INTO participated (movieID, participantID)
+				VALUES (movie_ID, (SELECT id FROM participant WHERE name = 'UNK'));
+			END IF;
+		ELSE
+			INSERT INTO participated (movieID, participantID)
+			VALUES (movie_ID, (SELECT id FROM participant WHERE name = temp_string_2));
+		END IF;
+	END WHILE;
+END;
