@@ -298,3 +298,32 @@ footer{
 	align-self: center;
 	justify-content: center;
 }
+
+.login-form {
+	width: 300px;
+	padding: 20px;
+	background-color: #f5f5f5;
+	margin: 0 auto;
+	border: 1px solid #e3e3e3;
+}
+
+.login-form label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	margin-top: 10px;
+}

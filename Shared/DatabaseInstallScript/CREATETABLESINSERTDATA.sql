@@ -39,6 +39,14 @@ FOREIGN KEY (participantID) REFERENCES participant(id),
 FOREIGN KEY (movieID) REFERENCES movie(id)
 ) ENGINE = InnoDB;
 
+CREATE TABLE users (
+  user_id int NOT NULL AUTO_INCREMENT,
+  username varchar(50) NOT NULL,
+  email varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
 # --------INSERTS----------#
 
 INSERT INTO genre(name)
@@ -71,6 +79,9 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (14,5), (15,1), (15,2), (15,3), (15,4), (15,6), (15,7), (16,1), (16,3), (16,4), (16,5), (16,6), (17,1), (17,4), (17,5), (18,1), (18,3), (18,4), (18,5), (19,1), (19,3), (19,5), (20,1), (20,3), 
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6);
+
+INSERT INTO users(username, email, password)
+VALUES ('testUser', 'a20micro@student.his.se', 'password');
 
 CREATE VIEW movie_participants AS
 	SELECT m.id as 'id', m.name as 'name', m.genre_name as genre, m.imdb_rating as rating, m.jayornay as 'Jay or Nay', m.picked_by as 'picked by',

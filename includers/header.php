@@ -9,7 +9,7 @@ require_once "loginFunctions.php";
 		<!-- MAIN PAGE REDIRECTION LINKS START-->
 		<a href="index.php"> HOME </a>
 		<a href="stats.php"> STATS </a>
-		<a href="Pages/movies.php"> MOVIES </a>
+		<a href="movies.php"> MOVIES </a>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
 
 		<!-- LOGIN FORM START -->
