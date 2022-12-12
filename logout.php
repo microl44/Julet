@@ -7,6 +7,5 @@ if(isset($_SESSION['username']) || isset($_SESSION['password'])){
     die();   
 }
 else{
-    echo "<br/><br/><br/><br/><br/><h1>mother fucker suck my dick why are you like this??? fuck PHP</h1>";
 }
 ?>

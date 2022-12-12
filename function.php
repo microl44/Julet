@@ -82,14 +82,7 @@ function PrintParticipantInfo($participant)
 //används inte, maybe borde användas, idk
 function exists($var)
 {
-  if(isset($var) && !empty($var))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+  return (isset($var) && !empty($var));
 }
 
 function catchStatent(){
