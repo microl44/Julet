@@ -20,6 +20,7 @@ body{
 }
 
 .navbar a{
+  height: 100%;
   float: left;
   display: block;
   text-align: center;
@@ -27,6 +28,11 @@ body{
   text-decoration: none;
   font-size: 30px;
   overflow: hidden;
+  margin-bottom: 0;
+}
+
+.navbar a:hover{
+	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
 h3{
@@ -37,6 +43,7 @@ h3{
 .content{
 	margin-top: 7%;
     width:auto;
+    max-width: 90%;
     text-align: center;
 }
 
@@ -208,3 +215,56 @@ bottom: 0;
 #logoutBtn{
 	float:right;
 }
+
+#filterDiv{
+	margin-bottom: 20px;
+	margin-left: 30%;
+	min-width: 30%;
+	text-align: right;
+	padding-left: 3%;
+	float: left;
+	width: auto;
+	padding-bottom: 10px;
+	background-color: #BAC3E8;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #3B7DD5;
+}
+
+#filterDiv form{
+	padding: 3px;
+}
+
+#filterDiv label{
+	font-weight: bold;
+	float: left;
+}
+
+.filterSubmit{
+	margin-left: 10px;
+	background-color: #9CC5E0;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #3B7DD5;
+	padding: 5px 12px;
+	font-weight: bold;
+}
+
+.filterSubmit:hover{
+	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
+}
+
+.filterLabel{
+	border-width: 1px #3B7DD5;
+	border-radius: 5px;
+	min-width: 200px;
+	padding: 0px;
+}
+
+.jesusChrist{
+	width: 192px;
+	height: 20px;
+	font-size: 18px;
+	border-width: 1px #3B7DD5;
+	border-radius: 5px;
+}
+
+
