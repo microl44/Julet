@@ -12,6 +12,8 @@
 
     $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
     $genres = $stmt->fetchAll();
+
+    #$stmt = $conn->query("SELECT ")
     ?>
   
     <body>
@@ -20,27 +22,46 @@
         <div id=filterDiv>
           <form action='index.php' method='POST'>
             <label for='input'>Search by winner: </label>
-            <input type='string' name='searchByWinner'/>
+              <select class='filterLabel' name='searchByWinner'> 
+                <option> SELECT </option>
+                <?php 
+                foreach($participants as $participant)
+                {
+                  echo "<option>" . $participant[0] . "</option>";
+                }?>
+              </select>
             <input class='filterSubmit' type='submit' value='Search'/>
           </form>
 
-          <div>
-            <form action='index.php' method='POST'>
-              <label for='searchParticipants'>Search by Participant: </label>
-              <input type='string' name='searchParticipants'/>
-              <input class='filterSubmit' type='submit' value='Search'/>
-            </form>
-          </div>
+          <form action='index.php' method='POST'>
+            <label for='searchParticipants'>Search by Participant: </label>
+            <select class='filterLabel' name='searchParticipants'> 
+              <option> SELECT </option>
+              <?php 
+              foreach($participants as $participant)
+              {
+                echo "<option>" . $participant[0] . "</option>";
+              }?>
+            </select>
+            <input class='filterSubmit' type='submit' value='Search'/>
+          </form>
 
           <form action='index.php' method='POST'>
             <label for='searchGenre'>Search by Genre: </label>
-            <input type='string' name='searchGenre'/>
+            <select style="text-align: left;" class='filterLabel' name='searchGenre'> 
+              <option> SELECT </option>
+              <?php 
+              foreach($genres as $genre)
+              {
+                echo "<option>" . $genre[0] . "</option>";
+              }?>
+            </select>
             <input class='filterSubmit' type='submit' value='Search'/>
           </form>
             
           <form action='index.php' method='POST'>
             <label for='searchMovie'>Search by Movie Name: </label>
-            <input type='string' name='searchMovie'/>
+            <input class='jesusChrist' type='string' name='searchMovie'/>
             <input class='filterSubmit' type='submit' value='Search'/>
           </form>
         </div>
