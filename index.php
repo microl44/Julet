@@ -68,51 +68,53 @@
         <!----------FILTER TABLE SECTION END---------->
 
         <!----------DISPLAY TABLE SECTION START---------->
+        <div id='tableContainer'>
         <?php
-        if(isset($_POST['searchByWinner']))
-        {
-          $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
-          $stmp = $conn->prepare($sql);
-          $temp = "%" . $_POST['searchByWinner'] ."%";
-          $stmp->bindvalue(":input",$temp);
-          $result = $stmp->execute();
-          PrintMovieTable($result,$stmp);
-        }
-        else if(isset($_POST['searchParticipants']))
-        {
-          $sql = "SELECT * FROM movie WHERE participants LIKE :input";
-          $stmp = $conn->prepare($sql);
-          $temp = "%" . $_POST['searchParticipants'] ."%";
-          $stmp->bindvalue(":input",$temp);
-          $result = $stmp->execute();
-          PrintMovieTable($result,$stmp);
-        }
-        else if(isset($_POST['searchMovie']))
-        {
-          $sql = "SELECT * FROM movie WHERE name LIKE :input";
-          $stmp = $conn->prepare($sql);
-          $temp = "%" . $_POST['searchMovie'] ."%";
-          $stmp->bindvalue(":input",$temp);
-          $result = $stmp->execute();
-          PrintMovieTable($result,$stmp);
-        }
-        else if(isset($_POST['searchGenre']))
-        {
-          $sql = "SELECT * FROM movie WHERE genre_name LIKE :input";
-          $stmp = $conn->prepare($sql);
-          $temp = "%" . $_POST['searchGenre'] ."%";
-          $stmp->bindvalue(":input",$temp);
-          $result = $stmp->execute();
-          PrintMovieTable($result,$stmp);
-        }
-        else
-        {
-          $sql = "SELECT * FROM movie ORDER BY id";
-          $stmp = $conn->prepare($sql);
-          $result = $stmp-> execute();
-          PrintMovieTable($result,$stmp);
-        }
+          if(isset($_POST['searchByWinner']))
+          {
+            $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
+            $stmp = $conn->prepare($sql);
+            $temp = "%" . $_POST['searchByWinner'] ."%";
+            $stmp->bindvalue(":input",$temp);
+            $result = $stmp->execute();
+            PrintMovieTable($result,$stmp);
+          }
+          else if(isset($_POST['searchParticipants']))
+          {
+            $sql = "SELECT * FROM movie WHERE participants LIKE :input";
+            $stmp = $conn->prepare($sql);
+            $temp = "%" . $_POST['searchParticipants'] ."%";
+            $stmp->bindvalue(":input",$temp);
+            $result = $stmp->execute();
+            PrintMovieTable($result,$stmp);
+          }
+          else if(isset($_POST['searchMovie']))
+          {
+            $sql = "SELECT * FROM movie WHERE name LIKE :input";
+            $stmp = $conn->prepare($sql);
+            $temp = "%" . $_POST['searchMovie'] ."%";
+            $stmp->bindvalue(":input",$temp);
+            $result = $stmp->execute();
+            PrintMovieTable($result,$stmp);
+          }
+          else if(isset($_POST['searchGenre']))
+          {
+            $sql = "SELECT * FROM movie WHERE genre_name LIKE :input";
+            $stmp = $conn->prepare($sql);
+            $temp = "%" . $_POST['searchGenre'] ."%";
+            $stmp->bindvalue(":input",$temp);
+            $result = $stmp->execute();
+            PrintMovieTable($result,$stmp);
+          }
+          else
+          {
+            $sql = "SELECT * FROM movie ORDER BY id";
+            $stmp = $conn->prepare($sql);
+            $result = $stmp-> execute();
+            PrintMovieTable($result,$stmp);
+          }
         ?>
+      </div>
         <!----------DISPLAY TABLE SECTION END---------->
         
         <!----------INSERT NEW MOVIE FORM START---------->

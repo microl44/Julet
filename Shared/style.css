@@ -20,15 +20,15 @@ body{
 }
 
 .navbar a{
-  height: 100%;
-  float: left;
-  display: block;
-  text-align: center;
-  padding: 30px;
-  text-decoration: none;
-  font-size: 30px;
-  overflow: hidden;
-  margin-bottom: 0;
+	height: 100%;
+	float: left;
+	display: block;
+	text-align: center;
+	padding: 30px;
+	text-decoration: none;
+	font-size: 30px;
+	overflow: hidden;
+	margin-bottom: 0;
 }
 
 .navbar a:hover{
@@ -41,9 +41,9 @@ h3{
 }
 
 .content{
+	width: 100%;
 	margin-top: 7%;
-    width:auto;
-    max-width: 90%;
+    max-width: 100%;
     text-align: center;
 }
 
@@ -53,6 +53,7 @@ h3{
 	overflow: auto;
 	font-family: sans-serif;
 	border-radius: 5px;
+	align-self: center;
 }
 
 .Table td:hover{
@@ -93,6 +94,35 @@ h3{
 
 .TableRow:nth-child(odd){
 	background-color: #BAC3E8;
+}
+
+.TableRow:nth-child(even) > .deleteBtn input[type='submit']{
+	background-color: #d9d9d9;
+	border:1px;
+	font-weight: bolder;
+	font-family: sans-serif;
+}
+
+.TableRow:nth-child(odd) > .deleteBtn  input[type='submit']{
+	background-color: #BAC3E8;
+	border:1px;
+	font-weight: bolder;
+}
+
+.deleteBtn form{
+	height: 100%;
+	width: 100%;
+}
+
+.deleteBtn input[type='submit']{
+	height: 100%;
+	width: 100%;
+	padding: 5px;
+	font-weight: bold;
+}
+
+.deleteBtn input:hover{
+	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
 .addMovieDiv{
@@ -139,11 +169,8 @@ h3{
 }
 
 footer{
-position: fixed;
-bottom: 0;
-}
-
-.deleteBtn{
+	position: fixed;
+	bottom: 0;
 }
 
 .gridContainer{
@@ -267,4 +294,7 @@ bottom: 0;
 	border-radius: 5px;
 }
 
-
+#tableContainer{
+	align-self: center;
+	justify-content: center;
+}
