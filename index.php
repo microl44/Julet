@@ -99,14 +99,11 @@
         <div class='addMovieDiv'>
             <form action='query.php' method='POST'>
               <div class='addMovieDivFirst'>
-                <label for='addName'>Name: </label>
+                <label for='addName'>IMDB Link: </label>
                 <input id='addName' type='text' name='addName' required/><br/>
 
                 <label for='addParticipants'> Participants: </label>
                 <input type='text' name='addParticipants' required /> <br/>
-                
-                <label for='addIMDB'>  IMDB grade: </label>
-                <input type='text' name='addIMDB' required /> </br>
 
                 <label for='addjayornay'> Jay or Nay: </label>
                 <input type='text' name='addjayornay' required /> <br/>

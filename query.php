@@ -1,7 +1,7 @@
 <?php
 require_once "loginFunctions.php";
 require_once "function.php";
-if(exists($_POST['addName']))
+if(exists($_POST['addName']) && exists($_POST['addGenre']))
 {
 	InsertMovie();
 }
@@ -15,19 +15,48 @@ header('Location: index.php');
 function InsertMovie()
 {
 	try{
-
 		$conn = GetConnection();
 		if(isset($_POST['addName']) && isset($_POST['addGenre']) && isset($_POST['addPickedBy']) && isset($_POST['addIs_major']))
 		{
+			$title = null;
+			$grade = null;
+			try{
+				if (exists($_POST['addName'])) 
+				{
+				    $imdbLink = $_POST['addName'];
+				    $html = file_get_contents($imdbLink);
+				    $dom = new DOMDocument();
+				    @$dom->loadHTML($html);
+				    $xpath = new DOMXPath($dom);
+				    $tempTitle = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0);
+				    $tempGrade = $xpath->query('//span[@class="sc-7ab21ed2-1 jGRxWM"]')->item(0);
+				    $title = $tempTitle->nodeValue;
+
+				    if(exists($xpath->query('//*[@data-testid="hero-title-block__original-title"]')->item(0)->nodeValue))
+				    {
+				   		$title = substr($xpath->query('//*[@data-testid="hero-title-block__original-title"]')->item(0)->nodeValue, 16);
+				    }
+				    else
+				    {
+				    	$title = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0)->nodeValue;
+				    }
+				    $grade = $tempGrade->nodeValue;
+				}
+			}
+			catch(Exception $e)
+			{
+				print_r($e);
+				die();
+			}
 			try
 			{
 				$sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
 				$sql = $sql . "VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
 				
 				$stmp = $conn->prepare($sql);
-				$stmp->bindvalue(':addName',$_POST['addName']);
+				$stmp->bindvalue(':addName',$title);
 				$stmp->bindvalue(':addGenre',$_POST['addGenre']);
-				$stmp->bindvalue(':addIMDB',$_POST['addIMDB']);
+				$stmp->bindvalue(':addIMDB',$grade);
 				$stmp->bindvalue(':addjayornay',$_POST['addjayornay']);
 				$stmp->bindvalue(':addPickedBy',$_POST['addPickedBy']);
 				$stmp->bindvalue(':addParticipants',$_POST['addParticipants']);

@@ -7,10 +7,12 @@ function LoginAttempt($username, $password){
         $connection = new PDO(getConnectionString(),$username,$password);
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
+        $_SESSION['LoginFail'] = False;
+        header("Refresh:0");
     }
     catch(Exception $e){
-        echo "<br/><br/><br/><br/><h1>Error logging in try again</h1>";
-        print_r($e->getmessage());
+        $_SESSION['LoginFail'] = True;
+        header("Refresh:0");
     }
 }
 
