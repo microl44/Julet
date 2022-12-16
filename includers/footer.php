@@ -1,3 +1,3 @@
 <footer>
-	<a href="./install.php"> Reinstall Database?</a>
+	<a class='footerLink' href="./install.php"> Reinstall Database?</a>
 </footer>
