@@ -53,15 +53,16 @@ h3{
     max-width: 100%;
     text-align: center;
     padding-bottom: 70px;
+    align-self: center;
+    justify-content: center;
 }
 
 .Table{
 	border-collapse: collapse;
-	width: 90%;
+	width: 100%;
 	overflow: auto;
 	font-family: sans-serif;
 	border-radius: 5px;
-	align-self: center;
 }
 
 .Table td:hover{
@@ -210,8 +211,7 @@ footer{
 	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
 }
 
-.gridItemContent{
-}
+.gridItemContent{}
 
 #loginDiv {
 	height:100%;
@@ -321,6 +321,8 @@ footer{
 #tableContainer{
 	align-self: center;
 	justify-content: center;
+	width:90%;
+	margin: auto;
 }
 
 .login-form {
