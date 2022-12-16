@@ -6,6 +6,7 @@ USE Jul;
 
 CREATE TABLE genre(
 name varchar(255) NOT NULL,
+NextGenre BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY (name)
 ) engine = InnoDB;
 
