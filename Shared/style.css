@@ -57,12 +57,30 @@ h3{
     justify-content: center;
 }
 
+@keyframes pop 
+{
+  from 
+  {
+    transform: scale(1);
+  }
+  	50% 
+  {
+    transform: scale(1.002);
+  }
+  to 
+  {
+    transform: scale(1);
+  }
+}
+
 .Table{
+	animation: pop 3s infinite;
+	border: 2px solid #3B7DD5; /* Yellow border */
+  	box-shadow: 1px 1px 5px #3B7DD5;
 	border-collapse: collapse;
 	width: 100%;
 	overflow: auto;
 	font-family: sans-serif;
-	border-radius: 5px;
 }
 
 .Table td:hover{
