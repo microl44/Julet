@@ -162,11 +162,11 @@
         </div>
         <!----------INSERT NEW MOVIE FORM END---------->
       </div>
-    </body>
+      <?php include "includers/footer.php"; ?>
+     </body> 
   <?php
   }
   else{
     notLoggedIn();
   }
-include "includers/footer.php";
 ?>

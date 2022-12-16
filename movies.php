@@ -7,15 +7,9 @@
 ?>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div class='content'>
-	<div class="login-form">
-		<form method="post" onsubmit="loginFunction()">
-			<label for="username">Username:</label>
-			<input type="text" name="username" id="username" />
-
-			<label for="password">Password:</label>
-			<input type="password" name="password" id="password" />
-
-			<input type="submit" value="Login" />
-		</form>
-	</div>
+	<form action="movies.php" method="post" name="login-form">
+	 <input type="text" name="user" placeholder="Username" required />
+	 <input type="password" name="pass" placeholder="Password" required />
+	 <input type="submit" name="login" value="Login" />
+	</form>
 </div>
