@@ -20,6 +20,7 @@
       <div class='content'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
+          <h3> FILTER TABLE </h3>
           <form action='index.php' method='POST'>
             <label for='input'>Search by winner: </label>
               <select class='filterLabel' name='searchByWinner'> 
@@ -162,7 +163,9 @@
         </div>
         <!----------INSERT NEW MOVIE FORM END---------->
       </div>
-      <?php include "includers/footer.php"; ?>
+      <?php include_once "includers/footer.php"; 
+      ?>
+
      </body> 
   <?php
   }
@@ -170,3 +173,4 @@
     notLoggedIn();
   }
 ?>
+     <script type="text/javascript" src="./javascript/functions.js"></script>

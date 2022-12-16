@@ -1,7 +1,7 @@
 <?php
 require_once "loginFunctions.php";
 ?>
-
+<script type="text/javascript" src="file.js"></script>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
 <script type="text/javascript" src="./Shared/general.js"></script>
 <header>

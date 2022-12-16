@@ -15,11 +15,80 @@ function getMovieData()
     xhttp.send();
 }
 
-function login() {
-    const errMessage = document.getElementById("err-message");
- if(error) {
-   errMessage.innerHTML = "Login failed! Please try again.";
- } else {
-   errMessage.innerHTML = "Login successful!";
- }
+var sortOrder = 'ascending';
+
+function sortTable(column) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementsByClassName("Table")[0];
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[column];
+      y = rows[i + 1].getElementsByTagName("TD")[column];
+      //check if the two rows should switch place:
+      if (column === 0 || column === 3) {
+        // Sort numerically
+        if (sortOrder === 'ascending') {
+          if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      } else if (column !== 8) {
+        // Sort alphabetically
+        if (sortOrder === 'ascending') {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+  // Reverse the sort order
+  sortOrder = (sortOrder === 'ascending') ? 'descending' : 'ascending';
 }
+
+document.getElementsByClassName("TableHeader")[0].addEventListener("click", function() {
+  sortTable(0);});
+document.getElementsByClassName("TableHeader")[1].addEventListener("click", function() {
+  sortTable(1);});
+document.getElementsByClassName("TableHeader")[2].addEventListener("click", function() {
+  sortTable(2);});
+document.getElementsByClassName("TableHeader")[3].addEventListener("click", function() {
+  sortTable(3);});
+document.getElementsByClassName("TableHeader")[4].addEventListener("click", function() {
+  sortTable(4);});
+document.getElementsByClassName("TableHeader")[5].addEventListener("click", function() {
+  sortTable(5);});
+document.getElementsByClassName("TableHeader")[6].addEventListener("click", function() {
+  sortTable(6);});
+document.getElementsByClassName("TableHeader")[7].addEventListener("click", function() {
+  sortTable(7);});

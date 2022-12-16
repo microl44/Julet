@@ -3,7 +3,6 @@
 	require_once "Database.php";
 	require_once "function.php";
 	require_once "includers/header.php";
-	require_once "Javascript/functions.js";
 ?>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div class='content'>

@@ -25,4 +25,5 @@
 		notLoggedIn();
 	}
 	echo "</div>";
+	include_once "includers/footer.php";
 ?>

@@ -18,6 +18,27 @@ BEGIN
 	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.picked_by = participantName) / (SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT('%', participantName, '%'))) * 100) AS "Winrate";
 END ;
 
+CREATE PROCEDURE GetWeightedWinRate(IN participantName varchar(255))
+BEGIN
+	-- Calculate the number of movies where the given participant was picked_by
+	SELECT COUNT(*) AS num_movies INTO @num_movies
+	FROM movie
+	WHERE movie.picked_by = participantName;
+
+	-- Calculate the total number of participants in these movies
+	SELECT SUM(LENGTH(participants) - LENGTH(REPLACE(participants, ',', '')) + 1) AS total_participants INTO @total_participants
+	FROM movie
+	WHERE movie.picked_by = participantName;
+
+	-- Calculate the winrate, taking into account the number of participants in each movie
+	SELECT ROUND((@num_movies / @total_participants) * 100) AS "Winrate";
+END ;
+
+
+
+
+
+
 CREATE PROCEDURE GetPickedMovies(participantName varchar(255))
 BEGIN
 	SELECT movie.name FROM movie WHERE movie.picked_by = participantName ORDER BY movie.name;

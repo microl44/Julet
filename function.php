@@ -56,6 +56,10 @@ function PrintParticipantInfo($participant)
   $winrate = $stmt->fetchAll();
 
   $conn = GetConnection();
+  $stmt = $conn->query("CALL GetWeightedWinRate('" . $participant['name'] . "')");
+  $winrateWeighted = $stmt->fetchAll();
+
+  $conn = GetConnection();
   $stmt = $conn->query("CALL GetPickedMovies('" . $participant['name'] . "')");
   $pickedMovies = $stmt->fetchAll();
 
@@ -65,7 +69,8 @@ function PrintParticipantInfo($participant)
 
     //                  WTF is this????
     echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%<br/>";
-    echo "Winrate: " . $winrate[0]['Winrate'] . "%</br>";
+    echo "Winrate: " . $winrate['0']['Winrate'] . "%</br>";
+    echo "Weighted Winrate: " . $winrateWeighted['0']['Winrate'] . "%</br>";
     echo "<div class='pickedMovies'>";
     echo "Movies picked: ";
       foreach($pickedMovies as $row)
@@ -76,6 +81,11 @@ function PrintParticipantInfo($participant)
     echo "</div>";
     echo "</div>";
   echo "</div>";
+}
+
+function PrintGenericStats($conn)
+{
+
 }
 
 //används inte, maybe borde användas, idk
