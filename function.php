@@ -69,15 +69,38 @@ function PrintParticipantInfo($participant)
 
     //                  WTF is this????
     echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%<br/>";
-    echo "Winrate: " . $winrate['0']['Winrate'] . "%</br>";
-    echo "Weighted Winrate: " . $winrateWeighted['0']['Winrate'] . "%</br>";
+    if(exists($winrate['0']['Winrate']))
+    {
+      echo "Winrate: " . $winrate['0']['Winrate'] . "%</br>";
+    }
+    else
+    {
+      echo "Winrate: NO WINS </br>";
+    }
+
+    if(exists($winrate['0']['Winrate']))
+    {
+      echo "Weighted Winrate: " . $winrateWeighted['0']['Winrate'] . "%</br>";
+    }
+    else
+    {
+      echo "Winrate: NO WINS </br>";
+    }
+
     echo "<div class='pickedMovies'>";
     echo "Movies picked: ";
+    if(exists($pickedMovies))
+    {
       foreach($pickedMovies as $row)
       {
         echo $row['name'] . ", ";
       }
-    echo ".";
+    }
+    else
+    {
+      echo "NO WINS";
+    }
+
     echo "</div>";
     echo "</div>";
   echo "</div>";

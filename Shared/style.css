@@ -39,6 +39,7 @@ body{
 }
 
 .navbar a:hover{
+	box-shadow: 10px 10px 50px black);
 	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
@@ -65,7 +66,7 @@ h3{
   }
   	50% 
   {
-    transform: scale(1.002);
+    transform: scale(1.0015);
   }
   to 
   {
@@ -232,7 +233,9 @@ footer{
 .gridItemContent{}
 
 #loginDiv {
+	padding-right: 50px;
 	height:100%;
+	float: right;
 }
 
 #loginForm {
