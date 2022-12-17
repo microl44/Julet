@@ -6,6 +6,7 @@ html, body{
 }
 
 body{
+	background-image: url("background.jpg");
 	background-color: #BBCADB;
 	min-width: 1200px;
 	font-family: Arial;
@@ -25,8 +26,9 @@ body{
 	box-shadow: 0px 10px 50px #3B7DD5;
 }
 
-
-.navbar a{
+.navbarLink{
+	background-color: Transparent;
+	border: none;
 	float: left;
 	display: block;
 	text-align: center;
@@ -38,9 +40,14 @@ body{
 	height: 100%;
 }
 
-.navbar a:hover{
+.navbarLink:hover{
 	box-shadow: 10px 10px 50px black);
 	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
+}
+
+.logoutBtn{
+	cursor:pointer;
+	color: #551A8B;
 }
 
 h3{
@@ -373,4 +380,17 @@ footer{
 	border: none;
 	cursor: pointer;
 	margin-top: 10px;
+}
+
+.movieDisplayDiv{
+	height: 40%;
+	width: 100%;
+	background-color: red;
+}
+
+.movieCoverHolder{
+	text-align: left;
+	margin-right: 10%;
+	padding-left: 11%;
+	border: 2px solid black;
 }

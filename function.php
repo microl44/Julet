@@ -106,12 +106,24 @@ function PrintParticipantInfo($participant)
   echo "</div>";
 }
 
-function PrintGenericStats($conn)
+function PrintMovies()
 {
+    $imageDir = 'C:/xampp/htdocs/Julet/Shared/Images/';
+    $images = scandir($imageDir, SCANDIR_SORT_DESCENDING);
 
+    foreach($images as $image)
+    {
+      if($image != '.' && $image != '..')
+      {
+        echo "<div class='movieDisplayDiv'>";
+          echo "<div class='movieCoverHolder'>";
+            echo "<img src='Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
+          echo "</div>"; 
+        echo "</div>";
+      }
+    }
 }
 
-//används inte, maybe borde användas, idk
 function exists($var)
 {
   return (isset($var) && !empty($var));
@@ -121,4 +133,62 @@ function catchStatent(){
   echo '<h1>fuuuuuuuck</h1>';
 }
 
+// function to scrape cover art from IMDB page and save it as a .png on the server
+function scrapeCoverArt($url, $savePath) {
+   // create a variable to keep track of the number to append to the file name
+  $count = 1;
+
+  // create a variable to store the modified save path
+  $modifiedSavePath = $savePath;
+
+  // check if the file already exists
+  while (file_exists($modifiedSavePath)) {
+    // if the file exists, modify the save path to include the number
+    $modifiedSavePath = preg_replace('/\.png$/', $count . '.png', $savePath);
+    $count++;
+  }
+
+  // use cURL to send an HTTP request to the web page
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $html = curl_exec($ch);
+  $error = curl_error($ch);
+  curl_close($ch);
+
+  if ($error) {
+    echo "Error: " . $error;
+    return;
+  }
+
+  // use DOMDocument to parse the HTML
+  $dom = new DOMDocument();
+  @$dom->loadHTML($html);
+
+  // use DOMXPath to find the img tag with the class "ipc-image"
+  $xpath = new DOMXPath($dom);
+  $img = $xpath->query("//img[@srcset]")->item(0);
+
+  if (!$img) {
+    echo "Error: Could not find image tag";
+    return;
+  }
+
+  // if the img tag was found, download the image file and save it as a .png on the server
+  $imageUrl = $img->getAttribute('src');
+  $imageData = file_get_contents($imageUrl);
+  if (!$imageData) {
+    echo "Error: Could not retrieve image data from " . $imageUrl;
+    return;
+  }
+  if (!file_put_contents($modifiedSavePath, $imageData)) {
+    echo "Error: Could not save image data to " . $modifiedSavePath;
+    return;
+  }
+}
+
+function tempSaveFile(){
+  $weird = file_get_contents("C:/xampp/htdocs/Julet/Cat.png");
+
+  file_put_contents("C:/xampp/htdocs/Julet/cover.png", $weird);
+}
 ?>

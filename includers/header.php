@@ -7,9 +7,9 @@ require_once "loginFunctions.php";
 <header>
 	<div class='navbar'>
 		<!-- MAIN PAGE REDIRECTION LINKS START-->
-		<a href="index.php"> HOME </a>
-		<a href="stats.php"> STATS </a>
-		<a href="movies.php"> MOVIES </a>
+		<a class='navbarLink' href="index.php"> HOME </a>
+		<a class='navbarLink' href="stats.php"> STATS </a>
+		<a class='navbarLink' href="movies.php"> MOVIES </a>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
 
 		<!-- LOGIN FORM START -->
@@ -17,26 +17,27 @@ require_once "loginFunctions.php";
 			<?php
 				if(isset($_SESSION['username']))
 				{
-					echo "<a href='logout.php'>LOGOUT</a>";
+					echo "<form style='height: 100%;' action='/logout.php' method='POST'>";
+						echo "<input class='navbarLink logoutBtn' type='submit' value='LOGOUT'/>";
+						echo "<input type='hidden' value='".$_SERVER['REQUEST_URI']."' name='url2'> </input>";
+					echo "</form>";
 				}
 				else
 				{
 					if(isset($_POST['username']))
 					{
 						LoginAttempt($_POST['username'],$_POST['password']);
-						header('location: ./index.php');
-						die();
 					}?>
 
-				 	<form action='index.php' method='POST'>
-						<label for='username'>Username: </label>
-						<input type='text' name='username'/>
+					<form action='login.php' method='POST'>
+					    <label for='username'>Username :</lable>
+					    <input type='text' name='username'/>
+					    <label for='password'>Password :</lable>
+					    <input type='password' name='password'/>
+					    <input type='submit' value='login'/> 
 
-						<label for='password'>Password: </label>
-						<input type='password' name='password'/>
-
-						<input type='submit' value='login'/>
-				 	</form>
+					    <?php echo "<input type='hidden' value='" . $_SERVER['REQUEST_URI'] . "' name='url'> </input>"; ?>
+					</form>
 				<?php
 				}?>
 		</div>

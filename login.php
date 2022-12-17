@@ -1,17 +1,10 @@
 <?php
+session_start();
 require_once "loginFunctions.php";
-
 
 if(isset($_POST['username'])){
     LoginAttempt($_POST['username'],$_POST['password']);
-    header('location: ./index.php');
+    header('location: ' . $_POST['url']);
     die();
 }
 ?>
-<form action='login.php' method='POST'>
-    <label for='username'>Username :</lable>
-    <input type='text' name='username'/>
-    <label for='password'>Password :</lable>
-    <input type='password' name='password'/>
-    <input type='submit' value='login'/> 
-</form>
