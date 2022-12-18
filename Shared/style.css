@@ -21,14 +21,14 @@ body{
 	top: 0;
 	z-index: 1030;
 	background: linear-gradient(#BAC3E8, #5397EE);
-	border-bottom: 2px solid black;
 	overflow: hidden;
-	box-shadow: 0px 10px 50px #3B7DD5;
+	box-shadow: 0px 5px 30px #3B7DD5;
 }
 
 .navbarLink{
 	background-color: Transparent;
 	border: none;
+	border-radius: 5px;
 	float: left;
 	display: block;
 	text-align: center;
@@ -385,12 +385,18 @@ footer{
 .movieDisplayDiv{
 	height: 40%;
 	width: 100%;
-	background-color: red;
 }
 
 .movieCoverHolder{
 	text-align: left;
-	margin-right: 10%;
-	padding-left: 11%;
-	border: 2px solid black;
+	margin-left: 10%;
+	padding-left: 5%;
+	border: 1px solid;
+	height: 281px;
+	width: 60%;
+	border-radius: 40px;
+}
+.movieCoverHolder img{
+	float: left;
+	padding-right: 4%;
 }

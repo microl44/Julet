@@ -118,6 +118,8 @@ function PrintMovies()
         echo "<div class='movieDisplayDiv'>";
           echo "<div class='movieCoverHolder'>";
             echo "<img src='Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
+            echo "<h2> Title: </h2> hsdfsdf";
+            echo "<p> hello there </p>";
           echo "</div>"; 
         echo "</div>";
       }

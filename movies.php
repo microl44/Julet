@@ -5,19 +5,17 @@
 	require_once "includers/header.php";
 
 	// test the function by scraping the cover art from the IMDB page
-	echo "<br/><br/><br/><br/><br/><br/><br/><br/><br/>";
 	$url = 'https://www.imdb.com/title/tt0298203/';
 	$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';
 	#scrapeCoverArt($url, $savePath);
 
 ?>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div class='content'>
 	<?php PrintMovies();?>
 	<form action="movies.php" method="post" name="login-form">
-	 <input type="text" name="user" placeholder="Username" required />
-	 <input type="password" name="pass" placeholder="Password" required />
-	 <input type="submit" name="login" value="Login"/>
+		<input type="text" name="user" placeholder="Username" required />
+		<input type="password" name="pass" placeholder="Password" required />
+		<input type="submit" name="login" value="Login"/>
 	</form>
 </div>
 
