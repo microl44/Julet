@@ -171,7 +171,6 @@ function scrapeCoverArt($url, $savePath) {
   // use DOMXPath to find the img tag with the class "ipc-image"
   $xpath = new DOMXPath($dom);
   $img = $xpath->query("//img[@srcset]")->item(0);
-
   if (!$img) {
     echo "Error: Could not find image tag";
     return;
@@ -188,6 +187,7 @@ function scrapeCoverArt($url, $savePath) {
     echo "Error: Could not save image data to " . $modifiedSavePath;
     return;
   }
+  return $count;
 }
 
 function tempSaveFile(){

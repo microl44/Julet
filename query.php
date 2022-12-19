@@ -14,6 +14,8 @@ header('Location: index.php');
 
 function InsertMovie()
 {
+	$tempDescription = null; 
+	$count = 0;
 	try{
 		$conn = GetConnection();
 		if(isset($_POST['addName']) && isset($_POST['addGenre']) && isset($_POST['addPickedBy']) && isset($_POST['addIs_major']))
@@ -24,13 +26,13 @@ function InsertMovie()
 			try{
 				if (exists($_POST['addName'])) 
 				{
-					scrapeCoverArt($_POST['addName'], $savePath);
+					$count = scrapeCoverArt($_POST['addName'], $savePath);
 				    $imdbLink = $_POST['addName'];
 				    $html = file_get_contents($imdbLink);
 				    $dom = new DOMDocument();
 				    @$dom->loadHTML($html);
 				    $xpath = new DOMXPath($dom);
-				    $tempDescription = $xpath->query('//span[@class="sc-16ede01-1 kgphFu"]')->item(0);
+				    $tempDescription = $xpath->query('//span[@class="sc-16ede01-1 kgphFu"]')->item(0)->nodeValue;
 				    $tempTitle = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0);
 				    $tempGrade = $xpath->query('//span[@class="sc-7ab21ed2-1 jGRxWM"]')->item(0);
 				    $title = $tempTitle->nodeValue;
@@ -44,6 +46,7 @@ function InsertMovie()
 				    	$title = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0)->nodeValue;
 				    }
 				    $grade = $tempGrade->nodeValue;
+				    $sql = "INSERT INTO movieDescription(movieID, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
 				}
 			}
 			catch(Exception $e)
@@ -65,16 +68,21 @@ function InsertMovie()
 				$stmp->bindvalue(':addParticipants',$_POST['addParticipants']);
 				$stmp->bindvalue(':addIs_major',$_POST['addIs_major']);
 				
-		    if(!$stmp->execute())
-		    {
-				throw new Exception("unknown error");
-		    }
-		}
-		catch(Exception $e)
-		{
-			echo "<h3> Insert was fucky wucky, insert died</h3>";
-			echo "message: " . $e->getMessage();
-		}
+			    if(!$stmp->execute())
+			    {
+					throw new Exception("unknown error");
+			    }
+
+			    if(exists($tempDescription))
+			    {
+			    	insertDescription($count, $tempDescription);
+			    }
+			}
+			catch(Exception $e)
+			{
+				echo "<h3> Insert was fucky wucky, insert died</h3>";
+				echo "message: " . $e->getMessage();
+			}
 		
 			unset($_POST['addName']);
 			unset($_POST['addGenre']);
@@ -88,6 +96,15 @@ function InsertMovie()
 	catch (Exception $e){
 		catchStatent();
 	}
+}
+
+function insertDescription($count, $description)
+{
+	$escapedDescription = addcslashes($description, '"\'');
+	$conn = GetConnection();
+	$sql = "INSERT INTO movieDescription(movieID, cover_path, description)
+	VALUES(".$count.", 'C:/xampp/htdocs/Julet/Shared/Images/cover".($count-1).".png', '".$escapedDescription."' )";
+	$conn->query($sql);
 }
 
 function DeleteMovie()
