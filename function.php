@@ -111,16 +111,19 @@ function PrintMovies()
     $imageDir = 'C:/xampp/htdocs/Julet/Shared/Images/';
     $images = scandir($imageDir, SCANDIR_SORT_DESCENDING);
 
+    $conn = GetConnection();
+    $descriptions = $conn->query("SELECT description from movieDescription ORDER BY movieID;");
+
     foreach($images as $image)
     {
       if($image != '.' && $image != '..')
       {
+        $description = $descriptions->fetch(PDO::FETCH_ASSOC);
         echo "<div class='movieDisplayDiv'>";
           echo "<div class='movieCoverHolder'>";
             echo "<img src='Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
             echo "<div class='movieTitleHolder'>";
-              echo "<h2> Title: </h2> hsdfsdf";
-              echo "<p> hello there </p>";
+              echo "<p>".$description['description']."</p>";
             echo "</div>";
           echo "</div>"; 
         echo "</div>";

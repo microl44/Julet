@@ -14,12 +14,14 @@
 if(isset($_SESSION['username']) || isset($_SESSION['password']))
 {?>
 	<div class='content'>
-		<?php PrintMovies();?>
-		<form action="movies.php" method="post" name="login-form">
-			<input type="text" name="user" placeholder="Username" required />
-			<input type="password" name="pass" placeholder="Password" required />
-			<input type="submit" name="login" value="Login"/>
-		</form>
+		<div class='moviePageWrapper'>
+			<?php PrintMovies();?>
+			<form action="movies.php" method="post" name="login-form">
+				<input type="text" name="user" placeholder="Username" required />
+				<input type="password" name="pass" placeholder="Password" required />
+				<input type="submit" name="login" value="Login"/>
+			</form>
+		</div>
 	</div>
 <?php include_once "includers/footer.php";
 }
