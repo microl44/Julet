@@ -1,6 +1,23 @@
 
 <?php session_start();
 
+
+
+if(!file_exists('./Database.php')){
+    echo'<h1> in the if statement </h1>';
+
+    $myfile = fopen('Database.php','w');
+    $txt = '<?php
+        function getConnectionString(){
+            return "mysql:host=localhost;dbname=Jul";
+        };?>';
+    fwrite($myfile,$txt);
+    fclose($myfile);
+}
+
+include_once "Database.php";
+include_once "loginFunctions.php";
+
 function actualInstall(){
     try{
         $conn = GetConnection();  
@@ -23,25 +40,10 @@ function actualInstall(){
     }
 }
 
-if(!file_exists('./Database.php')){
-    echo'<h1> in the if statement </h1>';
-
-    $myfile = fopen('Database.php','w');
-    $txt = '<?php
-        function getConnectionString(){
-            return "mysql:host=localhost;dbname=Jul";
-        };?>';
-    fwrite($myfile,$txt);
-    fclose($myfile);
-}
-
-include_once "Database.php";
-include_once "loginFunctions.php";
-
 if(isset($_SESSION['username']) || isset($_SESSION['password'])){
     $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
-    acutalInstall();
+    actualInstall();
 }
 else if(isset($_POST['username']) AND isset($_POST['password'])){
     
