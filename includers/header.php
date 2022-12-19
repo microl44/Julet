@@ -10,6 +10,7 @@ require_once "loginFunctions.php";
 		<a class='navbarLink' href="index.php"> HOME </a>
 		<a class='navbarLink' href="stats.php"> STATS </a>
 		<a class='navbarLink' href="movies.php"> MOVIES </a>
+		<a class='navbarLink' href="rules.php"> JUL-RULES </a>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
 
 		<!-- LOGIN FORM START -->

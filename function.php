@@ -1,4 +1,5 @@
 <?php
+session_start();
 function PrintMovieTable($result,$stmp){
   if ($result){
     echo "<table class='Table'>";

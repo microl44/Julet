@@ -394,7 +394,10 @@ footer{
 	padding-left: 5%;
 	border: 1px solid;
 	height: 281px;
-	border-radius: 40px;
+	padding-bottom: 10px;
+    background-color: #BAC3E8;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #3b7dd5;
 }
 .movieCoverHolder img{
 	float: left;
@@ -404,18 +407,19 @@ footer{
 .movieTitleHolder{
 	display: inline;
 	vertical-align: top;
+	padding-top: 20px;
 	font-size: 16px;
 	line-height: 28px;
 }
 
 .movieTitleHolder p{
 	width: 100%;
-	padding-right: 10px;
+	margin-right: 400px;
 }
 
 .moviePageWrapper{
 	display: grid;
-	grid-template-rows: repeat(3, 1fr);
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 10px;
+	grid-template-rows: repeat(3, auto);
+	grid-template-columns: repeat(3, auto);
+	grid-gap: 15px;
 }
