@@ -21,7 +21,7 @@ function GetConnectionInstall($user,$pass){
 
 if(isset($_SESSION['username']) || isset($_SESSION['password'])){
     try{
-        $conn = GetConnection();    
+        $conn = GetConnection();
         
         $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
         $stmp->execute();

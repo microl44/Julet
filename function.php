@@ -109,8 +109,8 @@ function PrintParticipantInfo($participant)
 function PrintMovies()
 {
     $imageDir = 'C:/xampp/htdocs/Julet/Shared/Images/';
-    $images = scandir($imageDir, SCANDIR_SORT_DESCENDING);
-
+    $images = scandir($imageDir);
+    natsort($images);
     $conn = GetConnection();
     $descriptions = $conn->query("SELECT description from movieDescription ORDER BY movieID;");
 
