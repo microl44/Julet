@@ -1,27 +1,10 @@
+
 <?php session_start();
-if(!file_exists('./Database.php')){
-    echo'<h1> in the if statement </h1>';
-    $myfile = fopen('Database.php','w');
-    $txt = '<?php
-        function getConnectionString(){
-            return "mysql:host=localhost;dbname=Jul";
-        };?>';
-    fwrite($myfile,$txt);
-    fclose($myfile);
-}
 
-include_once "Database.php";
-include_once "loginFunctions.php";
-
-function GetConnectionInstall($user,$pass){
-    $conn = new PDO("mysql:host=localhost", $user, $pass);
-	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
-}
-
-if(isset($_SESSION['username']) || isset($_SESSION['password'])){
+function actualInstall(){
     try{
-        $conn = GetConnection();    
+        $conn = GetConnection();  
+        $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
         
         $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
         $stmp->execute();
@@ -39,7 +22,43 @@ if(isset($_SESSION['username']) || isset($_SESSION['password'])){
         echo $e->getmessage();
     }
 }
+
+if(!file_exists('./Database.php')){
+    echo'<h1> in the if statement </h1>';
+
+    $myfile = fopen('Database.php','w');
+    $txt = '<?php
+        function getConnectionString(){
+            return "mysql:host=localhost;dbname=Jul";
+        };?>';
+    fwrite($myfile,$txt);
+    fclose($myfile);
+}
+
+include_once "Database.php";
+include_once "loginFunctions.php";
+
+if(isset($_SESSION['username']) || isset($_SESSION['password'])){
+    $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
+    $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
+    acutalInstall();
+}
+else if(isset($_POST['username']) AND isset($_POST['password'])){
+    
+    $conn = new PDO('mysql:host=localhost;',$_POST['username'], $_POST['password']);  
+    $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
+
+    LoginAttempt($_POST['username'], $_POST['password']);
+    actualInstall();
+}
 else{
-    print_r($_SESSION);
+    echo "<br/><br/><br/><br/><br/><br/>";
+    echo "<form action='install.php' method='POST'>";
+    echo "<label for='username'>Username :</lable>";
+    echo "<input type='text' name='username'/>";
+    echo "<label for='password'>Password :</lable>";
+    echo "<input type='password' name='password'/>";
+    echo "<input type='submit' value='login'/>" ;
+    echo "</form>";
 }
 ?>
