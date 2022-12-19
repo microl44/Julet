@@ -68,23 +68,23 @@ function PrintParticipantInfo($participant)
   echo "<div class='gridItemContent'>";
 
     //                  WTF is this????
-    echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%<br/>";
+    echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%";
     if(exists($winrate['0']['Winrate']))
     {
-      echo "Winrate: " . $winrate['0']['Winrate'] . "%</br>";
+      echo "<p> Winrate: " . $winrate['0']['Winrate'] . "% </p>";
     }
     else
     {
-      echo "Winrate: NO WINS </br>";
+      echo "<p> Winrate: NO WINS </br>";
     }
 
     if(exists($winrate['0']['Winrate']))
     {
-      echo "Weighted Winrate: " . $winrateWeighted['0']['Winrate'] . "%</br>";
+      echo "<p> Weighted Winrate: " . $winrateWeighted['0']['Winrate'] . "% </p>";
     }
     else
     {
-      echo "Winrate: NO WINS </br>";
+      echo "<p> Winrate: NO WINS  </p>";
     }
 
     echo "<div class='pickedMovies'>";
@@ -118,8 +118,10 @@ function PrintMovies()
         echo "<div class='movieDisplayDiv'>";
           echo "<div class='movieCoverHolder'>";
             echo "<img src='Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
-            echo "<h2> Title: </h2> hsdfsdf";
-            echo "<p> hello there </p>";
+            echo "<div class='movieTitleHolder'>";
+              echo "<h2> Title: </h2> hsdfsdf";
+              echo "<p> hello there </p>";
+            echo "</div>";
           echo "</div>"; 
         echo "</div>";
       }

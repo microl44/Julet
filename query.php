@@ -18,16 +18,19 @@ function InsertMovie()
 		$conn = GetConnection();
 		if(isset($_POST['addName']) && isset($_POST['addGenre']) && isset($_POST['addPickedBy']) && isset($_POST['addIs_major']))
 		{
+			$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';
 			$title = null;
 			$grade = null;
 			try{
 				if (exists($_POST['addName'])) 
 				{
+					scrapeCoverArt($_POST['addName'], $savePath);
 				    $imdbLink = $_POST['addName'];
 				    $html = file_get_contents($imdbLink);
 				    $dom = new DOMDocument();
 				    @$dom->loadHTML($html);
 				    $xpath = new DOMXPath($dom);
+				    $tempDescription = $xpath->query('//span[@class="sc-16ede01-1 kgphFu"]')->item(0);
 				    $tempTitle = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0);
 				    $tempGrade = $xpath->query('//span[@class="sc-7ab21ed2-1 jGRxWM"]')->item(0);
 				    $title = $tempTitle->nodeValue;
