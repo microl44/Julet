@@ -18,7 +18,7 @@ The guide will explain based on xampp structure on windows 10,
 - Install xampp using standard instructions. 
 - Clone the repository in teh htdocs folder. 
 
-Once installed create an empty database file. 
+Once installed create an empty database file (.db). 
 
 Needs to create a file called Database.php file in the top of the repository.  
 
