@@ -229,7 +229,8 @@ footer{
 	grid-template-columns: auto auto auto;
 	width: 100%;
 	height: 100%;
-	padding-bottom: 30px;
+	border-radius: 5px;
+	padding-bottom: 10px;
 }
 
 .gridItem{
@@ -398,13 +399,18 @@ footer{
 	border: 1px solid;
 	height: 281px;
 	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
     background-color: #BAC3E8;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px #3b7dd5;
+    box-shadow: 1px 1px 3px #3b7dd5;
 }
 .movieCoverHolder img{
 	float: left;
-	padding-right: 4%;
+	margin-right: 4%;
+	box-shadow: 2px -2px 5px #3b7dd5;
+	border-radius: 10px;
+	border: 2px outset #3b7dd5;
 }
 
 .movieTitleHolder{
