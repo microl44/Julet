@@ -76,19 +76,24 @@ function sortTable(column) {
   sortOrder = (sortOrder === 'ascending') ? 'descending' : 'ascending';
 }
 
-document.getElementsByClassName("TableHeader")[0].addEventListener("click", function() {
-  sortTable(0);});
-document.getElementsByClassName("TableHeader")[1].addEventListener("click", function() {
-  sortTable(1);});
-document.getElementsByClassName("TableHeader")[2].addEventListener("click", function() {
-  sortTable(2);});
-document.getElementsByClassName("TableHeader")[3].addEventListener("click", function() {
-  sortTable(3);});
-document.getElementsByClassName("TableHeader")[4].addEventListener("click", function() {
-  sortTable(4);});
-document.getElementsByClassName("TableHeader")[5].addEventListener("click", function() {
-  sortTable(5);});
-document.getElementsByClassName("TableHeader")[6].addEventListener("click", function() {
-  sortTable(6);});
-document.getElementsByClassName("TableHeader")[7].addEventListener("click", function() {
-  sortTable(7);});
+var items = document.getElementsByClassName("TableHeader")
+
+if(items.length > 0)
+{
+    document.getElementsByClassName("TableHeader")[0].addEventListener("click", function() {
+      sortTable(0);});
+    document.getElementsByClassName("TableHeader")[1].addEventListener("click", function() {
+      sortTable(1);});
+    document.getElementsByClassName("TableHeader")[2].addEventListener("click", function() {
+      sortTable(2);});
+    document.getElementsByClassName("TableHeader")[3].addEventListener("click", function() {
+      sortTable(3);});
+    document.getElementsByClassName("TableHeader")[4].addEventListener("click", function() {
+      sortTable(4);});
+    document.getElementsByClassName("TableHeader")[5].addEventListener("click", function() {
+      sortTable(5);});
+    document.getElementsByClassName("TableHeader")[6].addEventListener("click", function() {
+      sortTable(6);});
+    document.getElementsByClassName("TableHeader")[7].addEventListener("click", function() {
+      sortTable(7);});
+}
