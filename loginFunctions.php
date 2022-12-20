@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php 
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+?>
 <?php 
 require_once "Database.php";
 

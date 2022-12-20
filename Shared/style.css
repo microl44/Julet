@@ -56,7 +56,7 @@ h3{
 }
 
 .content{
-	padding-top: 130px;
+	padding-top: 100px;
 	width: 100%;
     max-width: 100%;
     text-align: center;
@@ -207,8 +207,7 @@ footer{
 	bottom: 0;
     min-width: 100%;
     width: 100%;
-    height: 80px;
-    z-index: 1031;
+    height: 45px;
     position: fixed;
     background: linear-gradient(#5397EE, #BAC3E8);
     overflow: hidden;
@@ -228,17 +227,21 @@ footer{
 .gridContainer{
 	display: inline-grid;
 	grid-template-columns: auto auto auto;
-	width:100%;
+	width: 100%;
+	height: 100%;
+	padding-bottom: 30px;
 }
 
 .gridItem{
 	background: linear-gradient(#bbcadb, #9CC5E0, #3B7DD5);
 	margin: 10px;
-	padding: 10px;
+	height: 80%;
 	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
 }
 
-.gridItemContent{}
+.gridItemContent{
+
+}
 
 #loginDiv {
 	padding-right: 50px;

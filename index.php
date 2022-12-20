@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php
+  if(!isset($_SESSION))
+  {
+    session_start();
+  }
   require_once "loginFunctions.php";
   require_once "function.php";
   require_once "includers/header.php";
