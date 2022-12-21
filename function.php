@@ -15,7 +15,7 @@ function PrintMovieTable($result,$stmp){
       echo "<td class='TableItem TableHeader'>Picked By</td>";
       echo "<td class='TableItem TableHeader'>Participants</td>";
       echo "<td class='TableItem TableHeader'>Wheel Type</td>";
-      echo "<td class='TableItem TableHeader'> Delete Record </td>";
+      echo "<td class='TableItem TableHeader'>Delete Record</td>";
     echo "</tr>";
     
     while ($row = $stmp->fetch()) 

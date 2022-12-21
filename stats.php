@@ -6,11 +6,11 @@
 	require_once "loginFunctions.php";
 	require_once "Database.php";
 	require_once "function.php";
-	require_once "includers/header.php";
+	include_once "includers/header.php";
 
-	echo "<div class='content'>";
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
+			echo "<div class='content'>";
 			$conn = GetConnection();
 			$stmt = $conn->query("SELECT name FROM participant");
 			$participants = $stmt->fetchAll();

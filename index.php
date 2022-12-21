@@ -20,7 +20,6 @@
     #$stmt = $conn->query("SELECT ")
     ?>
   
-    <body>
       <div class='content'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
@@ -169,8 +168,6 @@
       </div>
       <?php include_once "includers/footer.php"; 
       ?>
-
-     </body> 
   <?php
   }
   else{

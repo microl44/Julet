@@ -44,3 +44,4 @@ require_once "loginFunctions.php";
 		<!-- LOGIN FORM END -->
 	</div>
 </head>
+<body>

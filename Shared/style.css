@@ -7,7 +7,9 @@ html, body{
 
 body{
 	background-color: #BBCADB;
-	min-width: 1200px;
+	min-width: 680px;
+	width: 100%;
+	height: 100%;
 	font-family: Arial;
 }
 
