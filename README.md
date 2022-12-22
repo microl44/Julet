@@ -18,8 +18,8 @@ The guide will explain based on xampp structure on windows 10,
 - Install xampp using standard instructions. 
 - Clone the repository in the htdocs folder. 
 
-Once installed create an empty database file (.db). 
-- navigate to *https://localhost/julet/install.php*
+Once installed, run the install.php script. 
+- navigate to *https://localhost/Julet/install.php*
 
 Logg in using the mysql info 
 Default username is *root* empty password
