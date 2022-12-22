@@ -213,7 +213,6 @@ footer{
     position: fixed;
     background: linear-gradient(#5397EE, #BAC3E8);
     overflow: hidden;
-    display: inline-block;
     border-radius: 5px;
     box-shadow: 1px -1px 5px #3B7DD5;
 }
@@ -441,23 +440,4 @@ footer{
 	grid-template-rows: repeat(3, auto);
 	grid-template-columns: repeat(3, auto);
 	grid-gap: 15px;
-}
-
-#carousel {
-  width: 100%;
-  overflow: hidden;
-}
-
-.slides {
-  display: flex;
-  width: 300%;
-}
-
-.slide {
-  flex: 0 0 33.3333%;
-  transition: all 0.5s ease-in-out;
-}
-
-.slide img {
-  width: 100%;
 }

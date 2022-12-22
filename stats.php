@@ -10,7 +10,7 @@
 
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
-			echo "<div class='content'>";
+		echo "<div class='content'>";
 			$conn = GetConnection();
 			$stmt = $conn->query("SELECT name FROM participant");
 			$participants = $stmt->fetchAll();

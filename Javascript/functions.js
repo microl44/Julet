@@ -1,3 +1,38 @@
+function showCards() {
+    const card = document.querySelectorAll('.cards');
+    let currentCard = 0;
+
+    function showCard(cardIndex) {
+        // Hide all cards
+    cards.forEach(card => 
+    {
+        card.style.display = 'none';
+    });
+        // Show the current card
+        cards[cardIndex].style.display = 'block';
+    }
+    console.log("hello!");
+
+    // Show the first card
+    showCard(currentCard);
+
+    const nextBtn = document.querySelector('#nextBtn');
+    const prevBtn = document.querySelector('#prevBtn');
+
+    nextBtn.addEventListener('click', () => 
+    {
+        currentCard = (currentCard + 1) % cards.length;
+        showCard(currentCard);
+    });
+
+    prevBtn.addEventListener('click', () => 
+    {
+        currentCard = (currentCard - 1 + cards.length) % cards.length;
+        showCard(currentCard);
+    });
+}
+
+
 function getMovieData() 
 {
     let imdbLink = document.getElementById('imdb-link-input').value;

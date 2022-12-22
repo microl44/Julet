@@ -174,4 +174,4 @@
     notLoggedIn();
   }
 ?>
-     <script type="text/javascript" src="./javascript/functions.js"></script>
+<script type="text/javascript" src="Javascript/functions.js"></script>
