@@ -1,12 +1,12 @@
 <?php
 $dbname = "";
 $host = "";
-$post = "";
+$port = "";
 $tempUser = "";
 $tempPassword = "";
 function getConnectionString()
 {
-   return "mysql:dbname 
+   return "mysql:dbname=".$jul.";host=".host.";port=".$port;
 }
 
 function CreateConn()
