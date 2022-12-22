@@ -26,7 +26,6 @@ function createChoiceWheel() {
   spinButton.addEventListener('click', () => {
     // Calculate a random angle to rotate the wheel
     angle = Math.floor((Math.random() * (30000 - 15000) + 15000));
-    console.log(angle);
     // Apply the rotation to the wheel using a CSS transition
     wheel.style.transition = 'transform 3s cubic-bezier(0, -0.55, 0.265, 0)';
     wheel.style.transform = `rotate(${angle}deg)`;
@@ -36,6 +35,13 @@ function createChoiceWheel() {
   // Append the choice wheel and spin button to the container
   container.appendChild(wheel);
   container.appendChild(spinButton);
+
+  const left = wheel.offsetWidth;
+  const top = wheel.offsetHeight;
+
+  console.log(left);
+  console.log(top);
+  console.log(wheel);
 
   return container;
 }

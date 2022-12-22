@@ -11,7 +11,6 @@ function showCards() {
         // Show the current card
         cards[cardIndex].style.display = 'block';
     }
-    console.log("hello!");
 
     // Show the first card
     showCard(currentCard);
@@ -31,8 +30,6 @@ function showCards() {
         showCard(currentCard);
     });
 }
-
-
 function getMovieData() 
 {
     let imdbLink = document.getElementById('imdb-link-input').value;
