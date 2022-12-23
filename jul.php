@@ -7,12 +7,11 @@
 	require_once "Database.php";
 	require_once "includers/header.php";
 
+
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{?>
-		<div id='rulesDiv'>
-			
-		</div>
-		<?php
+		<script type="text/javascript" src="Javascript/julMS.js"></script>
+	<?php
 		include_once("includers/footer.php");
 	}
 	else
