@@ -19,7 +19,6 @@ function createChoiceWheel() {
     wheel.appendChild(choiceElement);
   });
   var angle;
-
   // Create the spin button
   const spinButton = document.createElement('button');
   spinButton.textContent = 'Spin';
@@ -36,13 +35,7 @@ function createChoiceWheel() {
   container.appendChild(wheel);
   container.appendChild(spinButton);
 
-  const left = wheel.offsetWidth;
-  const top = wheel.offsetHeight;
-
-  console.log(left);
-  console.log(top);
-  console.log(wheel);
-
+  var element = document.querySelector('.choice-wheel');
   return container;
 }
 
@@ -80,17 +73,6 @@ style2.textContent = `
     margin: 0 25px;
   }
 
-  .choice-wheel-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 2px;
-    transform: rotate(90deg) scale(0.5);
-    background-color: black;
-  }
-
   .choice-wheel-section:last-of-type {
     border-right: none;
   }
@@ -116,3 +98,42 @@ style2.textContent = `
   }
 `;
 document.head.appendChild(style2);
+
+var container = document.getElementsByClassName('choice-wheel');
+var rect = container[0].getBoundingClientRect();
+console.log(rect.right);
+
+var posX = 250;
+var posY = 250;
+
+drawLines(posX, posY, 3);
+
+function drawLines(posX, posY, sections) {
+  // Calculate the rotation angle for each line
+  var angle = 360 / sections;
+  
+  // Draw the lines
+  for (var i = 0; i < sections; i++) {
+    var degree = angle * i;
+    
+    // Calculate the end position of the line
+    var endX = Math.floor(posX + 50 * Math.cos(degree * Math.PI / 180));
+    var endY = Math.floor(posY + 50 * Math.sin(degree * Math.PI / 180));
+    
+    // Create a div element to represent the line
+    var line = document.createElement("div");
+    line.classList.add("line");
+    
+    // Set the position and size of the line
+    line.style.left = 0 + "px";  // Change the left position to posX
+    line.style.top = 0 + "px";  // Change the top position to posY
+    line.style.width = "3px";
+    line.style.height = "250px";
+    line.style.transform = "rotate(" + degree + "deg)";
+    line.style.backgroundColor = "#000000";
+    
+    // Add the line to the choice-wheel element
+    var choiceWheel = document.querySelector(".choice-wheel");
+    choiceWheel.appendChild(line);
+  }
+}
