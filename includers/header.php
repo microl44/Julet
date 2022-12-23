@@ -14,6 +14,7 @@ require_once "includers/basic.php";
 		<a class='navbarLink' href="stats.php"> STATS </a>
 		<a class='navbarLink' href="movies.php"> MOVIES </a>
 		<a class='navbarLink' href="rules.php"> JUL-RULES </a>
+		<a class='navbarLink' href="jul.php"> JUL-JUL </a>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
 
 		<!-- LOGIN FORM START -->
