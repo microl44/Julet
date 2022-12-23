@@ -1,5 +1,9 @@
 <?php
+if(!isset($_SESSION))
+{ session_start();}
+
 require_once "loginFunctions.php";
+require_once "includers/header.php";
 ?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
 <head>

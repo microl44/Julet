@@ -92,3 +92,9 @@ BEGIN
 		END IF;
 	END WHILE;
 END;
+
+DROP USER IF EXISTS "user"@"localhost";
+DROP USER IF EXISTS "admin"@"localhost";
+
+call add_User("user", "");
+call add_User("admin", "password");
