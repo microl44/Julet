@@ -128,7 +128,7 @@ function drawLines(posX, posY, sections) {
     line.style.left = 0 + "px";  // Change the left position to posX
     line.style.top = 0 + "px";  // Change the top position to posY
     line.style.width = "3px";
-    line.style.height = "250px";
+    line.style.height = "500px";
     line.style.transform = "rotate(" + degree + "deg)";
     line.style.backgroundColor = "#000000";
     

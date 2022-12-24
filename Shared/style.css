@@ -441,3 +441,19 @@ footer{
 	grid-template-columns: repeat(3, auto);
 	grid-gap: 15px;
 }
+
+.rulesDisplay{
+	width:40%;
+	height: 50%;
+	display: flex;
+	align-self: center;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+}
+
+.rulesDisplay .item{
+	padding-top: 50px;
+	width:100%;
+	flex-shrink: 0;
+	scroll-snap-align: center;
+}
