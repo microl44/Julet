@@ -219,7 +219,7 @@ function giveRandomQuote(){
   "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account", "Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", 
   "A constant? Of course it is, I haven't touched it yet","BRUH", "Hjulen på bussen de går runt runt runt, runt runt run-Ahmen vafan, Linus! Det är något fel på hjulet!",
   "Please don't touch anything. Code displayed is fragile and will disintegrate on touch.", 
-  "Bugs are to be expected. On finding any bug-free functionality, please immediately contact an admin for correction.", "All bugs are welcome. Except spiders, but only because they're arachnoids and not bugs.", "Please only use SQL injections for good purposes", "Fucking magnets, how do they work?", "Battle not with monsters, lest ye become a monster, and if you gaze into JavaScript, the JavaScript gazes also into you", "I write HTML, therefore I ain't", "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?", "");
+  "Bugs are to be expected. On finding any bug-free functionality, please immediately contact an admin for correction.", "All bugs are welcome. Except spiders, but only because they're arachnoids and not bugs.", "Please only use SQL injections for good purposes", "Fucking magnets, how do they work?", "Battle not with monsters, lest ye become a monster, and if you gaze into JavaScript, the JavaScript gazes also into you", "I write HTML, therefore I ain't", "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?");
   
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
@@ -227,7 +227,6 @@ function giveRandomQuote(){
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
-  $randomQuote = "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?";
   if($randomQuote == "It is during our darkest moments that we must focus to see the light")
   {
     $randomQuotee = "Guy who never won";
