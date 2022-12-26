@@ -13,9 +13,14 @@ $quotes = array("Nu är det hjul igen, nu är det hjul igen, hjulen varar fram t
 "The greatest trick the devil played was making humans believe the wheel wasn't rigged", "The wheel is probably not rigged. Probably...",
 "It is during our darkest moments that we must focus to see the light", "Thanos should've won", "Yeah Spider-Man was great and all but have you seen Black Widow?",
 "Om en funktion saknas så var det helt enkelt en fråga om prioriteringar", "Do you think god stays in heaven because he too lives in fear of what he's created?", "It's like printing my own money!",
-"i volunteer as tribute!", "Screaming goats are fucking hillarious!");
+"i volunteer as tribute!", "Screaming goats are fucking hillarious!", "The council will decide on your fate", "I hearby sentence you to eternal damnation!", 
+"Gentlemen, it's with great pleasure to imform you that I just won the wheel", "Allt är Henriks fel!", "REEEEEEEEEEEEEEEEEEEEEE", "Gabbe köp en riktig stol för fan!",
+"Where is the server goblin when you need him?", "Bro It's like gambling but I literally can't lose!", "Du är för dålig för att snurra hjul",
+"Ant-Man could've easily defated Thanos if he just jumped int-", "Because that's what heroes do", "do you know how much I've sacrificed!?",
+"Fun Isn’t Something One Considers When programming in JavaScript. But This… Does Put A Smile On My Face.", "I'm a survivor", "Asså, vi har ett alvarligt problem!", 
+"Eyy Behrad, kör DS3 DLC istället för att sitta här", "I think I'm gonna die out here", "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account");
 $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
-"Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock");
+"Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos");
 
 
 $randomQuote = $quotes[rand(0, count($quotes)-1)];
@@ -35,6 +40,30 @@ if($randomQuote == "It's like printing my own money!")
 if($randomQuote == "i volunteer as tribute!")
 {
 	$randomQuotee = "Black Widow";
+}
+if($randomQuote == "I hearby sentence you to eternal damnation!")
+{
+	$randomQuotee = "Julrådet straffar Momme (colorized) (2022)";
+}
+if($randomQuote == "Bro It's like gambling but I literally can't lose!")
+{
+	$randomQuotee = "Linus, när han köper boosters";
+}
+if($randomQuote == "Du är för dålig för att snurra hjul")
+{
+	$randomQuotee = "Micke, till alla andra";
+}
+if($randomQuote == "do you know how much I've sacrificed!?")
+{
+	$randomQuotee = "Pol Pot";
+}
+if($randomQuote == "I'm a survivor")
+{
+	$randomQuotee = "Micke & Linus efter projektet";
+}
+if($randomQuote == "Asså, vi har ett alvarligt problem!")
+{
+	$randomQuotee = "Mats & Denna sida";
 }
 ?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
