@@ -204,7 +204,6 @@ function tempSaveFile(){
 }
 
 function giveRandomQuote(){
-
   $quotes = array("Nu är det hjul igen, nu är det hjul igen, hjulen varar fram till kl 23.00", "Antman 2 är hot garbage", "Any similarities to real holidays is purely coincidental.", 
   "The better jul", "Seeing the 4th movie first should be illegal", "I have a dream, that a movie shall not be judged by the image on the cover, but by the content of the story!",
   "Höhöhö sån färg borde man ha", "Linus vinner alltid", "Linus vinner aldrig", "I created Ultron, and I'd do it again!", "It's the ballot or the wheel!", 
@@ -216,14 +215,19 @@ function giveRandomQuote(){
   "Where is the server goblin when you need him?", "Bro It's like gambling but I literally can't lose!", "Du är för dålig för att snurra hjul",
   "Ant-Man could've easily defated Thanos if he just jumped int-", "Because that's what heroes do", "do you know how much I've sacrificed!?",
   "Fun Isn’t Something One Considers When programming in JavaScript. But This… Does Put A Smile On My Face.", "I'm a survivor", "Asså, vi har ett alvarligt problem!", 
-  "Eyy Behrad, kör DS3 DLC istället för att sitta här", "I think I'm gonna die out here", "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account",
-  "Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", "A constant? Of course it is, I haven't touched it yet","BRUH");
+  "Eyy Behrad, kör DS3 DLC istället för att sitta här", "I think I'm gonna die out here", 
+  "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account", "Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", 
+  "A constant? Of course it is, I haven't touched it yet","BRUH", "Hjulen på bussen de går runt runt runt, runt runt run-Ahmen vafan, Linus! Det är något fel på hjulet!",
+  "Please don't touch anything. Code displayed is fragile and will disintegrate on touch.", 
+  "Bugs are to be expected. On finding any bug-free functionality, please immediately contact an admin for correction.", "All bugs are welcome. Except spiders, but only because they're arachnoids and not bugs.", "Please only use SQL injections for good purposes", "Fucking magnets, how do they work?", "Battle not with monsters, lest ye become a monster, and if you gaze into JavaScript, the JavaScript gazes also into you", "I write HTML, therefore I ain't", "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?", "");
   
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
-  "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos");
+  "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
+  "Friedrich Nietzsche", );
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
+  $randomQuote = "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?";
   if($randomQuote == "It is during our darkest moments that we must focus to see the light")
   {
     $randomQuotee = "Guy who never won";
@@ -231,7 +235,7 @@ function giveRandomQuote(){
   else if($randomQuote == "Do you think god stays in heaven because he too lives in fear of what he's created?")
   {
     $randomQuotee = "Behrad, när någon pillrar på install.php";
-  }
+  } 
   else if($randomQuote == "It's like printing my own money!")
   {
     $randomQuotee = "Disney";

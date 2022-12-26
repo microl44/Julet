@@ -5,7 +5,8 @@ if(!isset($_SESSION))
 require_once "loginFunctions.php";
 require_once "includers/basic.php";
 require_once "function.php";
-$titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!");
+$titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!",
+"En ännu mer spännande undertitel!", "Wheel 2, Electric Bogaloo");
 
 $quote= giveRandomQuote();
 ?>
@@ -24,9 +25,9 @@ $quote= giveRandomQuote();
 		<a class='navbarLink' href="rules.php"> JUL-RULES </a>
 		<a class='navbarLink' href="jul.php"> JUL-JUL </a>
 		<?php 
-			echo "<div style='float:right; position: fixed; font-size: 40px; margin-left: 75%; margin-top: 5%;transform: rotate(20deg);'>
-				<p style='font-size: 30px; font-weight: bold; '>".$quote['Quote']."</p>
-				<p style='font-size: 20px; margin-top: -20px;'> -".$quote['Author']."</p>
+			echo "<div class='quoteDiv'>
+				<p class='quotequote'>".$quote['Quote']."</p>
+				<p class='quoteauthor'>- ".$quote['Author']."</p>
 			</div>";
 		?>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
