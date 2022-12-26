@@ -20,7 +20,7 @@ $quotes = array("Nu är det hjul igen, nu är det hjul igen, hjulen varar fram t
 "Fun Isn’t Something One Considers When programming in JavaScript. But This… Does Put A Smile On My Face.", "I'm a survivor", "Asså, vi har ett alvarligt problem!", 
 "Eyy Behrad, kör DS3 DLC istället för att sitta här", "I think I'm gonna die out here", "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account",
 "Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", "A constant? Of course it is, I haven't touched it yet", "I'm tired boss, dog tired...", "WILDCARD BITCHES! YEE-HAW!",
-"I will eat your babies, bitch!", "I have a PDH in cryptography *shows code*", "");
+"I will eat your babies, bitch!", "I have a PDH in cryptography *shows code*", "I really liked \"Lincoln\" (2012) but I just wish they didn't make it so political" );
 $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
 "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos");
 
