@@ -14,7 +14,7 @@ CREATE TABLE participant(
 id int auto_increment,
 name varchar(255),
 PRIMARY KEY (id)
-) eNGINE = InnoDB;
+) Engine = InnoDB;
 
 CREATE INDEX hejsan ON participant(name);
 
@@ -32,8 +32,16 @@ FOREIGN KEY (genre_name) REFERENCES genre(name),
 FOREIGN KEY (picked_by) REFERENCES participant(name)
 ) Engine = InnoDB;
 
+CREATE TABLE marvel(
+id int auto_increment,
+name varchar(255) NOT NULL,
+imdb_rating float,
+average_rating float,
+PRIMARY KEY (id)
+) Engine = InnoDB;
+
 CREATE TABLE movieDescription(
-	movieID int,
+    movieID int,
     cover_path varchar(255),
     description TEXT,
     PRIMARY KEY (movieID),
@@ -48,13 +56,22 @@ FOREIGN KEY (participantID) REFERENCES participant(id),
 FOREIGN KEY (movieID) REFERENCES movie(id)
 ) ENGINE = InnoDB;
 
+CREATE TABLE marvel_participated(
+marvelID int,
+marvelparticipantID int,
+marvel_grade int NOT NULL,
+PRIMARY KEY(marvelID, marvelparticipantID),
+FOREIGN KEY(marvelID) REFERENCES marvel(id),
+FOREIGN KEY(marvelparticipantID) REFERENCES participant(id)
+) Engine = InnoDB;
+
 CREATE TABLE users (
   user_id int NOT NULL AUTO_INCREMENT,
   username varchar(50) NOT NULL,
   email varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   PRIMARY KEY (user_id)
-);
+) Engine = InnoDB;
 
 # --------INSERTS----------#
 
@@ -83,6 +100,14 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("Lilo & Stitch", "Fantasy", 7.3, "Jay", "Momme", "Micke, Crippe, Behrad, Momme", 0), ("Hot Fuzz", "Mystery", 7.8, "Jay", "Crippe", "Micke, Gabbe, Crippe, Behrad, Linus, Momme", 1),
 ("Braveheart", "Biography", 8.4, "Nay", "Crippe", "Micke, Crippe, Behrad", 0), ("Dodgeball: A True Underdog Story", "Sport", 6.7, "Jay", "Micke", "Micke, Crippe, Behrad, Linus", 0),
 ("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0);
+
+INSERT INTO marvel(name)
+VALUES("Captain America"), ("Captain Marvel"), ("Iron Man"), ("Iron Man 2"), ("The Incredible Hulk"),
+("Thor"), ("Avengers"), ("Thor - The Dark World"), ("Iron Man 3"), ("Captain America - The Winter Soldier"), 
+("Guardians of the Galaxy"), ("Guardians of the Galaxy 2"), ("Avengers - Age of Ultron"), ("Ant Man"), ("Captain America - Civil War"), 
+("Spider Man - Homecoming"), ("Black Panther"), ("Black Widow"), ("Doctor Strange"), ("Thor - Ragnarök"),
+("Ant Man and the Wasp"), ("Avengers: Infinity War"), ("Avengers: End Game"), ("Spider Man - Far From Home"), ("Spider Man - No Way Home"), 
+("Shang-Chi and The Legend of the Ten Rings"), ("Eternals"), ("Dr Strange - In the Multiverse of Madness"), ("Thor - Love and Thunder");   
 
 INSERT INTO movieDescription(movieID, cover_path, description)
 VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is cursed to become a monster for the rest of his life, unless he learns to fall in love with a beautiful young woman he keeps prisoner."), 
@@ -122,6 +147,20 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (14,5), (15,1), (15,2), (15,3), (15,4), (15,6), (15,7), (16,1), (16,3), (16,4), (16,5), (16,6), (17,1), (17,4), (17,5), (18,1), (18,3), (18,4), (18,5), (19,1), (19,3), (19,5), (20,1), (20,3), 
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6);
+
+INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
+VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
+(3,6,6), (4,2,5), (4,1,1), (4,3,6), (4,6,7), (5,2,5), (5,1,3), (5,3,4), (6,2,6), (6,1,4), 
+(6,3,5), (6,4,7), (7,2,8), (7,1,7), (7,3,8), (7,6,7), (8,2,5), (8,1,4), (8,3,5), (8,7,5),
+(9,2,6), (9,1,4), (9,3,7), (10,2,4), (10,1,1), (10,3,4), (10,6,3), (11,2,7), (11,1,4), (11,3,7), 
+(11,6,5), (12,2,8), (12,1,7), (12,3,6), (12,6,8), (13,2,5), (13,1,9), (13,3,5), (13,6,4), (14,2,5), 
+(14,1,1), (14,3,4), (15,2,5), (15,1,6), (15,3,5), (15,6,4), (16,2,7), (16,1,9), (16,3,9), (16,6,8),
+(18,2,2), (18,1,1), (18,3,3), (19,2,8), (19,1,7), (19,3,8), (19,6,7), (20,2,7), (20,1,10), (20,3,9), (20,4,8), 
+(21,1,1), (21,3,1), (21,4,1), (21,6,3), (22,2,10), (22,1,10), (22,3,7), (22,4,9), (22,6,9), (23,2,10),
+(23,1,9), (23,3,7), (23,4,9), (23,6,7), (24,2,8), (24,1,7), (24,3,8), (24,4,9), (24,6,6), (24,7,7),
+(25,2,9), (25,1,10), (25,3,9), (25,4,8), (25,6,9), (26,2,5), (26,1,2), (26,3,3), (26,4,4), (26,6,4), 
+(27,2,3), (27,1,1), (27,3,2), (27,4,5), (27,6,5), (28,2,7), (28,1,9), (28,3,9), (28,4,7), (28,5,9), 
+(28,6,9), (29,2,7), (29,1,6), (29,3,4), (29,4,4), (29,5,5),  (29,6,6);
 
 INSERT INTO users(username, email, password)
 VALUES ('testUser', 'a20micro@student.his.se', 'password');
