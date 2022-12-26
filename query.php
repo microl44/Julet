@@ -118,10 +118,39 @@ function DeleteMovie()
 		$stmp->execute();
 		$stmp->closeCursor();
 
+		$sql = "delete from movieDescription where movieID = :id";
+		$stmp = $conn->prepare($sql);
+		$stmp->bindValue(':id',$_POST['deleteId']);
+		$stmp->execute();
+		$stmp->closeCursor();
+
 		$sql = "delete from movie where id = :id";
 		$stmp = $conn->prepare($sql);
 		$stmp->bindvalue(':id',$_POST['deleteId']);
 		$stmp->execute();
+		$stmp->closeCursor();
+
+		//redundency because you can't trust ctype_digit and I don't have the patience to test edge-cases.
+		//5 extra steel walls is implemented instead.
+		$number = number_format($_POST['deleteId']);
+		$number = strval($number-1);
+		
+		if(!ctype_digit($number) || preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-][A-Z][a-z]/', $number))
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
+		else
+		{
+			$file = "Shared/Images/cover".$number.".png";
+			if(!unlink($file))
+			{
+				echo "file was deleted";
+			}
+			else
+			{
+				echo "we fuckd boizz, root is gone.";
+			}
+		}
 	}
 	catch(Exception $e){
 		catchStatent();
