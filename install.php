@@ -6,7 +6,6 @@ if(!isset($_SESSION))
 
 
 if(!file_exists('./Database.php')){
-    echo'<h1> in the if statement </h1>';
 
     $myfile = fopen('Database.php','w');
     $txt = '<?php
