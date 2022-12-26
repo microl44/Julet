@@ -4,9 +4,10 @@ if(!isset($_SESSION))
 
 require_once "loginFunctions.php";
 require_once "includers/basic.php";
-require_once "functions.php"
+require_once "function.php";
+$titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!");
 
-
+$quote= giveRandomQuote();
 ?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
 <head>
