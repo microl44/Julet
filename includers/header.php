@@ -12,14 +12,15 @@ $quotes = array("Nu är det hjul igen, nu är det hjul igen, hjulen varar fram t
 "Höhöhö sån färg borde man ha", "Linus vinner alltid", "Linus vinner aldrig", "I created Ultron, and I'd do it again!", "It's the ballot or the wheel!", 
 "The greatest trick the devil played was making humans believe the wheel wasn't rigged", "The wheel is probably not rigged. Probably...",
 "It is during our darkest moments that we must focus to see the light", "Thanos should've won", "Yeah Spider-Man was great and all but have you seen Black Widow?",
-"Om en funktion saknas så var det helt enkelt en fråga om prioriteringar", "Do you think god stays in heaven because he too lives in fear of what he's created?", "It's like printing my own money!",
-"i volunteer as tribute!", "Screaming goats are fucking hillarious!", "The council will decide on your fate", "I hearby sentence you to eternal damnation!", 
-"Gentlemen, it's with great pleasure to imform you that I just won the wheel", "Allt är Henriks fel!", "REEEEEEEEEEEEEEEEEEEEEE", "Gabbe köp en riktig stol för fan!",
-"Where is the server goblin when you need him?", "Bro It's like gambling but I literally can't lose!", "Du är för dålig för att snurra hjul",
+"Om en funktion saknas så var det helt enkelt en fråga om prioriteringar", "Do you think god stays in heaven because he too lives in fear of what he's created?", 
+"It's like printing my own money!","i volunteer as tribute!", "Screaming goats are fucking hillarious!", "The council will decide on your fate", 
+"I hearby sentence you to eternal damnation!", "Gentlemen, it's with great pleasure to imform you that I just won the wheel", "Allt är Henriks fel!", "REEEEEEEEEEEEEEEEEEEEEE", 
+"Gabbe köp en riktig stol för fan!", "Where is the server goblin when you need him?", "Bro It's like gambling but I literally can't lose!", "Du är för dålig för att snurra hjul",
 "Ant-Man could've easily defated Thanos if he just jumped int-", "Because that's what heroes do", "do you know how much I've sacrificed!?",
 "Fun Isn’t Something One Considers When programming in JavaScript. But This… Does Put A Smile On My Face.", "I'm a survivor", "Asså, vi har ett alvarligt problem!", 
 "Eyy Behrad, kör DS3 DLC istället för att sitta här", "I think I'm gonna die out here", "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account",
-"Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", "A constant? Of course it is, I haven't touched it yet");
+"Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", "A constant? Of course it is, I haven't touched it yet", "I'm tired boss, dog tired...", "WILDCARD BITCHES! YEE-HAW!",
+"I will eat your babies, bitch!", "I have a PDH in cryptography *shows code*", "");
 $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
 "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos");
 
@@ -30,45 +31,53 @@ if($randomQuote == "It is during our darkest moments that we must focus to see t
 {
 	$randomQuotee = "Guy who never won";
 }
-if($randomQuote == "Do you think god stays in heaven because he too lives in fear of what he's created?")
+else if($randomQuote == "Do you think god stays in heaven because he too lives in fear of what he's created?")
 {
 	$randomQuotee = "Behrad, när någon pillrar på install.php";
 }
-if($randomQuote == "It's like printing my own money!")
+else if($randomQuote == "It's like printing my own money!")
 {
 	$randomQuotee = "Disney";
 }
-if($randomQuote == "i volunteer as tribute!")
+else if($randomQuote == "i volunteer as tribute!")
 {
 	$randomQuotee = "Black Widow";
 }
-if($randomQuote == "I hearby sentence you to eternal damnation!")
+else if($randomQuote == "I hearby sentence you to eternal damnation!")
 {
 	$randomQuotee = "Julrådet straffar Momme (colorized) (2022)";
 }
-if($randomQuote == "Bro It's like gambling but I literally can't lose!")
+else if($randomQuote == "Bro It's like gambling but I literally can't lose!")
 {
 	$randomQuotee = "Linus, när han köper boosters";
 }
-if($randomQuote == "Du är för dålig för att snurra hjul")
+else if($randomQuote == "Du är för dålig för att snurra hjul")
 {
 	$randomQuotee = "Micke, till alla andra";
 }
-if($randomQuote == "do you know how much I've sacrificed!?")
+else if($randomQuote == "do you know how much I've sacrificed!?")
 {
 	$randomQuotee = "Pol Pot";
 }
-if($randomQuote == "I'm a survivor")
+else if($randomQuote == "I'm a survivor")
 {
 	$randomQuotee = "Micke & Linus efter projektet";
 }
-if($randomQuote == "Asså, vi har ett alvarligt problem!")
+else if($randomQuote == "Asså, vi har ett alvarligt problem!")
 {
 	$randomQuotee = "Mats & Denna sida";
 }
-if($randomQuote == "A constant? Of course it is, I haven't touched it yet")
+else if($randomQuote == "A constant? Of course it is, I haven't touched it yet")
 {
 	$randomQuotee = "Python";
+}
+else if($randomQuote == "I'm tired boss, dog tired...")
+{
+	$randomQuotee = "Micke, efter att ha kommit på puns för 5 filmer";
+}
+else if($randomQuote == "WILDCARD BITCHES! YEE-HAW!")
+{
+	$randomQuotee = "Guy pushing directly to main";
 }
 ?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
