@@ -219,11 +219,15 @@ function giveRandomQuote(){
   "Due to budget cuts we must band together, as a family, and reallocate all profits to my bank account", "Imagine att spendera 180kr för att se Ant-Man 2 på bio HÖHÖHÖ", 
   "A constant? Of course it is, I haven't touched it yet","BRUH", "Hjulen på bussen de går runt runt runt, runt runt run-Ahmen vafan, Linus! Det är något fel på hjulet!",
   "Please don't touch anything. Code displayed is fragile and will disintegrate on touch.", 
-  "Bugs are to be expected. On finding any bug-free functionality, please immediately contact an admin for correction.", "All bugs are welcome. Except spiders, but only because they're arachnoids and not bugs.", "Please only use SQL injections for good purposes", "Fucking magnets, how do they work?", "Battle not with monsters, lest ye become a monster, and if you gaze into JavaScript, the JavaScript gazes also into you", "I write HTML, therefore I ain't", "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?");
+  "Bugs are to be expected. On finding any bug-free functionality, please immediately contact an admin for correction.", "All bugs are welcome. Except spiders, but only because they're arachnoids and not bugs.", "Please only use SQL injections for good purposes", "Fucking magnets, how do they work?", "Battle not with monsters, lest ye become a monster, and if you gaze into JavaScript, the JavaScript gazes also into you", "I write HTML, therefore I ain't", "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?",
+  "Borderlands 3 session, when?", "If only I had a website that could depict movie stats and 53 random quotes at the same time...", 
+  "See, marvel movies are like Onions. Each layer... Wait, why's there only 1 layer?", "We sped up the natural cycle of life and death! We gave these two suckers a shortcut!",
+  "Fuck that 8 year old, she's a fucking bitch", "AI written code sounds cool, until you realize it's responsible for breaking this website every week", "DNA is just uncompiled machine-code",
+  "Don't mind your PC lifting, it's just the bitcoin mining doing what it's supposed to.");
   
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
-  "Friedrich Nietzsche", );
+  "Friedrich Nietzsche", "Marvel Hater");
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
@@ -270,6 +274,10 @@ function giveRandomQuote(){
   else if($randomQuote == "A constant? Of course it is, I haven't touched it yet")
   {
     $randomQuotee = "Python";
+  }
+  else if($randomQuote == "Fuck that 8 year old, she's a fucking bitch")
+  {
+    $randomQuotee = "Bunch of grown-ass-men watching kids nation";
   }
   $quote['Quote'] = $randomQuote;
   $quote['Author'] = $randomQuotee;
