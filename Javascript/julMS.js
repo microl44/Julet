@@ -4,6 +4,9 @@ function createChoiceWheel() {
   const container = document.createElement('div');
   container.classList.add('choice-wheel-container');
 
+  const winner = document.createElement('div');
+  winner.classList.add('winner-mark');
+  container.appendChild(winner);    
   // Create the choice wheel
   const wheel = document.createElement('div');
   wheel.classList.add('choice-wheel');
@@ -11,7 +14,7 @@ function createChoiceWheel() {
   wheel.style.animationPlayState = 'paused';
 
   // Create the choices for the choice wheel
-  const choices = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+  const choices = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6'];
   choices.forEach((choice) => {
     const choiceElement = document.createElement('div');
     choiceElement.classList.add('choice-wheel-section');
@@ -57,6 +60,18 @@ style2.textContent = `
     transform-style: preserve-3d;
   }
 
+  .winner-mark {
+    position: absolute;
+    width: 0.01%;
+    height: 3%;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-top: 100px solid red;
+    margin-left: 246px;
+    margin-top: -5px;
+    z-index: 10;
+  }
+
   .choice-wheel-section {
     position: absolute;
     top: 0;
@@ -67,7 +82,7 @@ style2.textContent = `
     align-items: center;
     justify-content: left;
     transform-origin: center;
-    transform: rotate(calc((360deg / 5) * var(--section-index)));
+    transform: rotate(calc((360deg / 6) * var(--section-index)));
     writing-mode: vertical;
     text-align: center;
     margin: 0 25px;
@@ -95,6 +110,9 @@ style2.textContent = `
 
   .choice-wheel-section:nth-of-type(5) {
     --section-index: 4;
+  }
+  .choice-wheel-section:nth-of-type(6) {
+    --section-index: 5;
   }
 `;
 document.head.appendChild(style2);
@@ -127,7 +145,7 @@ function drawLines(posX, posY, sections) {
     // Set the position and size of the line
     line.style.left = 0 + "px";  // Change the left position to posX
     line.style.top = 0 + "px";  // Change the top position to posY
-    line.style.width = "3px";
+    line.style.width = "1px";
     line.style.height = "500px";
     line.style.transform = "rotate(" + degree + "deg)";
     line.style.backgroundColor = "#000000";
