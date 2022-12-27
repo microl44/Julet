@@ -8,7 +8,7 @@ require_once "function.php";
 $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!",
 "En ännu mer spännande undertitel!", "Wheel 2, Electric Bogaloo");
 
-$quote= giveRandomQuote();
+$quote=giveRandomQuote();
 ?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
 <head>
@@ -25,7 +25,7 @@ $quote= giveRandomQuote();
 		<a class='navbarLink' href="rules.php"> JUL-RULES </a>
 		<a class='navbarLink' href="jul.php"> JUL-JUL </a>
 		<?php 
-			echo "<div class='quoteDiv'>
+			echo "<div class='quoteDiv' onload='hideOnScroll()'>
 				<p class='quotequote'>".$quote['Quote']."</p>
 				<p class='quoteauthor'>- ".$quote['Author']."</p>
 			</div>";
@@ -65,3 +65,4 @@ $quote= giveRandomQuote();
 	</div>
 </head>
 <body>
+	<script src='Javascript/functions.js'></script>
