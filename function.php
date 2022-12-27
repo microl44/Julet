@@ -229,14 +229,28 @@ function giveRandomQuote(){
   "Looking for front-end develops capable of center a div. Please send an email if this applies to you", "The syntax is more like guidelanes rather than actual rules",
   "I got a jar of dirt, I got a jar of dir!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
   "So long, and thanks for all the fish!", "Hörru, du har inte tid att kolla på film, du har skolarbete att göra.", "We didn't invent the wheel, we just perfected it",
-  "That Dicaprio guy is pretty good but I don't know if he's good enough for an oscar", );
+  "That Dicaprio guy is pretty good but I don't know if he's good enough for an oscar", "A list of a thousand movies begins with a single spin",
+  "the rumors of my death have been greatly exaggerated", "WHEEEEEELSON!!!", 
+  "Don't judge each other by the actions they take, instead judge each other by their Jul-winrates. Get fucked Linus.",
+  "Don't use a wheel to determine what's for dinner", "The greatest glory lies not in never failing, but to see shawshank redemtion lose to the bee movie.",
+  "Do you feel lucky, punk?", "You might not have won, but you've instead learned a valuable lesson in losing with grace.", 
+  "Holy shit, what an amazing website! Fuck it this is mine now", "Any web-scraping you find is approved by imdb. No need to contact them about it, I swear",
+  "There's good movies within every category. Yes, even Sports", "You miss 100% of the movies you don't bring to the wheel", 
+  "Only three things are certain in life: death, taxes and the fact that antman movies will throw in quantum physics for no reason",
+  "We might watch together, but we will always spin alone", "I pity the fool that hasn't won yet!", "Cult is an ugly word, I preffer 'up-and-coming religion'",
+  "Guess you could call Tarantino movies a 'cult-classic' around here", "I'd rather shit myself than join the army", "Brooks was here", "Arcane is NOT an anime", 
+  "Mr Behrad, I don't feel so good", "Hey, did the toys in that kids movie just embrace death?", "You have your mothers <s>eyes</s> shit taste in movies");
 
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
-  "Friedrich Nietzsche", "Marvel Hater", "Ghandi", "");
+  "Friedrich Nietzsche", "Marvel Hater", "Ghandi", "Nelson Mandela", "Babe Ruth", "Albert Einstein", "George Michael", "Clint Eastwood", "Bob Marley", "Barack Obama", 
+  "Franklin D Roosevelt", "Henry Ford", "Priest of the Wheel", "Professor Dumbeldore");
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
+  #$randomQuote = "You have your mothers <s>eyes</s> shit taste in movies";
+  #$randomQuote = count($quotes);
+  #$randomQuotee = count($quotees);
   if($randomQuote == "It is during our darkest moments that we must focus to see the light")
   {
     $randomQuotee = "Guy who never won";
@@ -289,10 +303,43 @@ function giveRandomQuote(){
   {
     $randomQuotee = "HTML & PHP";
   }
-  else if ($randomQuote == "I got a jar of dirt, I got a jar of dir!")
+  else if($randomQuote == "I got a jar of dirt, I got a jar of dir!")
   {
     $randomQuotee = "The people working on this website";
   }
+  else if($randomQuote == "the rumors of my death have been greatly exaggerated")
+  {
+    $randomQuotee = "Nelson Mandela";
+  }
+  else if($randomQuote == "WHEEEEEELSON!!!")
+  {
+    $randomQuotee = "Tom Hanks";
+  }
+  else if($randomQuote == "Holy shit, what an amazing website! Fuck it this is mine now")
+  {
+    $randomQuotee = "Thomas Edison";
+  }
+  else if($randomQuote == "I pity the fool that hasn't won yet!")
+  {
+    $randomQuotee = "Mr T";
+  }
+  else if($randomQuote == "Guess you could call Tarantino movies a 'cult-classic' around here")
+  {
+    $randomQuotee = "Priest of the Wheel";
+  }
+  else if($randomQuote == "I'd rather shit myself than join the army")
+  {
+    $randomQuotee = "Ted Nugent";
+  }
+  else if($randomQuote == "Brooks was here")
+  {
+    $randomQuotee = "Micke, efter 4 timmar av PDO error debugging";
+  }
+  else if($randomQuote == "Mr Behrad, I don't feel so good")
+  {
+    $randomQuotee = "install.php";
+  }
+
   $quote['Quote'] = $randomQuote;
   $quote['Author'] = $randomQuotee;
   return $quote;
