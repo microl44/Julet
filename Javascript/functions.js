@@ -1,37 +1,3 @@
-<<<<<<< Updated upstream
-=======
-function hideOnScroll() {
-window.onload = () => {
-  const quoteDiv = document.querySelector('.quoteDiv');
-
-  window.addEventListener('scroll', () => {
-    const scrollPercentage = window.scrollY / document.body.offsetHeight
-    if (scrollPercentage >= 0.2)
-    {
-      quoteDiv.style.transition = 'opacity 0.3s';
-      quoteDiv.style.opacity = 0;
-    } 
-    else 
-    {
-      quoteDiv.style.opacity = 1;
-    }
-  });
-};
-}
-hideOnScroll();
-
-function getPageHeight()
-{
-    var body = document.body,
-    html = document.documentElement;
-
-    var height = Math.max( body.scrollHeight, body.offsetHeight, 
-    html.clientHeight, html.scrollHeight, html.offsetHeight );
-    
-    return height;
-}
-
->>>>>>> Stashed changes
 function showCards() {
     const card = document.querySelectorAll('.cards');
     let currentCard = 0;
