@@ -38,11 +38,11 @@
           <form action='index.php' method='POST'>
             <label for='input'>Search by winner: </label>
               <select class='filterLabel' name='searchByWinner'> 
-                <option> SELECT </option>
+                <option class='filterLabelOption'> SELECT </option>
                 <?php 
                 foreach($participants as $participant)
                 {
-                  echo "<option>" . $participant[0] . "</option>";
+                  echo "<option class='filterLabelOption'>" . $participant[0] . "</option>";
                 }?>
               </select>
             <input class='filterSubmit' type='submit' value='Search'/>
@@ -51,11 +51,11 @@
           <form action='index.php' method='POST'>
             <label for='searchParticipants'>Search by Participant: </label>
             <select class='filterLabel' name='searchParticipants'> 
-              <option> SELECT </option>
+              <option class='filterLabelOption'> SELECT </option>
               <?php 
               foreach($participants as $participant)
               {
-                echo "<option>" . $participant[0] . "</option>";
+                echo "<option class='filterLabelOption'>" . $participant[0] . "</option>";
               }?>
             </select>
             <input class='filterSubmit' type='submit' value='Search'/>
@@ -64,11 +64,11 @@
           <form action='index.php' method='POST'>
             <label for='searchGenre'>Search by Genre: </label>
             <select style="text-align: left;" class='filterLabel' name='searchGenre'> 
-              <option> SELECT </option>
+              <option class='filterLabelOption'> SELECT </option>
               <?php 
               foreach($genres as $genre)
               {
-                echo "<option>" . $genre[0] . "</option>";
+                echo "<option class='filterLabelOption'>" . $genre[0] . "</option>";
               }?>
             </select>
             <input class='filterSubmit' type='submit' value='Search'/>
