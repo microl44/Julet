@@ -223,11 +223,17 @@ function giveRandomQuote(){
   "Borderlands 3 session, when?", "If only I had a website that could depict movie stats and 53 random quotes at the same time...", 
   "See, marvel movies are like Onions. Each layer... Wait, why's there only 1 layer?", "We sped up the natural cycle of life and death! We gave these two suckers a shortcut!",
   "Fuck that 8 year old, she's a fucking bitch", "AI written code sounds cool, until you realize it's responsible for breaking this website every week", "DNA is just uncompiled machine-code",
-  "Don't mind your PC lifting, it's just the bitcoin mining doing what it's supposed to.");
-  
+  "Don't mind your PC lifting, it's just the bitcoin-miner doing what it's supposed to.", "The wheel giveth, the wheel taketh. However, for some it seems it's mostly taketh",
+  "Please donate to my patreon. Together we can fund enough money and buy the right to Ant Man 2 so no one has to see it again", 
+  "Lord of the rings is dumb, they could've just taken the eagles to mordor", "There's always another after-credits scene", 
+  "Looking for front-end develops capable of center a div. Please send an email if this applies to you", "The syntax is more like guidelanes rather than actual rules",
+  "I got a jar of dirt, I got a jar of dir!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
+  "So long, and thanks for all the fish!", "Hörru, du har inte tid att kolla på film, du har skolarbete att göra.", "We didn't invent the wheel, we just perfected it",
+  "That Dicaprio guy is pretty good but I don't know if he's good enough for an oscar", );
+
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
-  "Friedrich Nietzsche", "Marvel Hater");
+  "Friedrich Nietzsche", "Marvel Hater", "Ghandi", "");
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
@@ -278,6 +284,14 @@ function giveRandomQuote(){
   else if($randomQuote == "Fuck that 8 year old, she's a fucking bitch")
   {
     $randomQuotee = "Bunch of grown-ass-men watching kids nation";
+  }
+  else if($randomQuote == "The syntax is more like guidelanes rather than actual rules")
+  {
+    $randomQuotee = "HTML & PHP";
+  }
+  else if ($randomQuote == "I got a jar of dirt, I got a jar of dir!")
+  {
+    $randomQuotee = "The people working on this website";
   }
   $quote['Quote'] = $randomQuote;
   $quote['Author'] = $randomQuotee;
