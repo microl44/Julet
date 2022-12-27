@@ -204,7 +204,7 @@ function tempSaveFile(){
 }
 
 function giveRandomQuote(){
-  $quotes = array("Nu är det hjul igen, nu är det hjul igen, hjulen varar fram till kl 23.00", "Antman 2 är hot garbage", "Any similarities to real holidays is purely coincidental.", 
+  $quotes = array("Nu är det hjul igen, o nu är det hjul igen, o hjulen varar fram till kl elva", "Antman 2 är hot garbage", "Any similarities to real holidays is purely coincidental.", 
   "The better jul", "Seeing the 4th movie first should be illegal", "I have a dream, that a movie shall not be judged by the image on the cover, but by the content of the story!",
   "Höhöhö sån färg borde man ha", "Linus vinner alltid", "Linus vinner aldrig", "I created Ultron, and I'd do it again!", "It's the ballot or the wheel!", 
   "The greatest trick the devil played was making humans believe the wheel wasn't rigged", "The wheel is probably not rigged. Probably...",
@@ -220,14 +220,14 @@ function giveRandomQuote(){
   "A constant? Of course it is, I haven't touched it yet","BRUH", "Hjulen på bussen de går runt runt runt, runt runt run-Ahmen vafan, Linus! Det är något fel på hjulet!",
   "Please don't touch anything. Code displayed is fragile and will disintegrate on touch.", 
   "Bugs are to be expected. On finding any bug-free functionality, please immediately contact an admin for correction.", "All bugs are welcome. Except spiders, but only because they're arachnoids and not bugs.", "Please only use SQL injections for good purposes", "Fucking magnets, how do they work?", "Battle not with monsters, lest ye become a monster, and if you gaze into JavaScript, the JavaScript gazes also into you", "I write HTML, therefore I ain't", "Why use margin when <\br><\br><\br><\br><\br><\br><\br><\br><\br><\br><\br> do trick?",
-  "Borderlands 3 session, when?", "If only I had a website that could depict movie stats and 53 random quotes at the same time...", 
+  "Borderlands 3 session, when?", "If only I had a website that could depict movie stats and 100 random quotes at the same time...", 
   "See, marvel movies are like Onions. Each layer... Wait, why's there only 1 layer?", "We sped up the natural cycle of life and death! We gave these two suckers a shortcut!",
-  "Fuck that 8 year old, she's a fucking bitch", "AI written code sounds cool, until you realize it's responsible for breaking this website every week", "DNA is just uncompiled machine-code",
+  "Fuck that 8 year old, she's a fucking bitch", "AI written code sounds cool, until you realize it's responsible for breaking this website every week", "DNA is just compiled protein-code",
   "Don't mind your PC lifting, it's just the bitcoin-miner doing what it's supposed to.", "The wheel giveth, the wheel taketh. However, for some it seems it's mostly taketh",
   "Please donate to my patreon. Together we can fund enough money and buy the right to Ant Man 2 so no one has to see it again", 
   "Lord of the rings is dumb, they could've just taken the eagles to mordor", "There's always another after-credits scene", 
-  "Looking for front-end develops capable of center a div. Please send an email if this applies to you", "The syntax is more like guidelanes rather than actual rules",
-  "I got a jar of dirt, I got a jar of dir!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
+  "Looking for front-end develops capable of center a div. Please send an email if this applies to you", "The syntax is more what you'd call guidelines than actual rules",
+  "I got a <s>jar</s> repo of dirt, I got a <s>jar</s> repo of dir!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
   "So long, and thanks for all the fish!", "Hörru, du har inte tid att kolla på film, du har skolarbete att göra.", "We didn't invent the wheel, we just perfected it",
   "That Dicaprio guy is pretty good but I don't know if he's good enough for an oscar", "A list of a thousand movies begins with a single spin",
   "the rumors of my death have been greatly exaggerated", "WHEEEEEELSON!!!", 
@@ -239,7 +239,9 @@ function giveRandomQuote(){
   "Only three things are certain in life: death, taxes and the fact that antman movies will throw in quantum physics for no reason",
   "We might watch together, but we will always spin alone", "I pity the fool that hasn't won yet!", "Cult is an ugly word, I preffer 'up-and-coming religion'",
   "Guess you could call Tarantino movies a 'cult-classic' around here", "I'd rather shit myself than join the army", "Brooks was here", "Arcane is NOT an anime", 
-  "Mr Behrad, I don't feel so good", "Hey, did the toys in that kids movie just embrace death?", "You have your mothers <s>eyes</s> shit taste in movies");
+  "Mr Behrad, I don't feel so good", "Hey, did the toys in that kids movie just embrace death?", "You have your mothers <s>eyes</s> shit taste in movies", "Now with working hash functions",
+  "Please keep any tears away from the wheel", "Say 'Hello' to my little wheel!", "I love the smell of napalm in the morning", "We're gonna need a bigger wheel",
+  "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "Fun fact: All your favorite actors are pedophiles");
 
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
@@ -339,7 +341,10 @@ function giveRandomQuote(){
   {
     $randomQuotee = "install.php";
   }
-
+  else if($randomQuote == "I love the smell of napalm in the morning")
+  {
+    $randomQuotee = "Linus, arriving at the server room";
+  }
   $quote['Quote'] = $randomQuote;
   $quote['Author'] = $randomQuotee;
   return $quote;
