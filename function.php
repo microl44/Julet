@@ -241,12 +241,13 @@ function giveRandomQuote(){
   "Guess you could call Tarantino movies a 'cult-classic' around here", "I'd rather shit myself than join the army", "Brooks was here", "Arcane is NOT an anime", 
   "Mr Behrad, I don't feel so good", "Hey, did the toys in that kids movie just embrace death?", "You have your mothers <s>eyes</s> shit taste in movies", "Now with working hash functions",
   "Please keep any tears away from the wheel", "Say 'Hello' to my little wheel!", "I love the smell of napalm in the morning", "We're gonna need a bigger wheel",
-  "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "The needs of the wheel outweighs the needs of the many");
+  "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "The needs of the wheel outweighs the needs of the many", 
+  "Seek Wheel, the rest will follow");
 
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
   "Friedrich Nietzsche", "Marvel Hater", "Ghandi", "Nelson Mandela", "Babe Ruth", "Albert Einstein", "George Michael", "Clint Eastwood", "Bob Marley", "Barack Obama", 
-  "Franklin D Roosevelt", "Henry Ford", "Priest of the Wheel", "Professor Dumbeldore");
+  "Franklin D Roosevelt", "Henry Ford", "Priest of the Wheel", "Professor Dumbeldore", "Oppenheimer", "Dalai Lama");
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
