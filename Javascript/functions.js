@@ -1,3 +1,23 @@
+function hideOnScroll() {
+window.onload = () => {
+  const quoteDiv = document.querySelector('.quoteDiv');
+
+  window.addEventListener('scroll', () => {
+    const scrollPercentage = window.scrollY / document.body.offsetHeight
+    if (scrollPercentage >= 0.2)
+    {
+      quoteDiv.style.transition = 'opacity 0.3s';
+      quoteDiv.style.opacity = 0;
+    } 
+    else 
+    {
+      quoteDiv.style.opacity = 1;
+    }
+  });
+};
+}
+hideOnScroll();
+
 function showCards() {
     const card = document.querySelectorAll('.cards');
     let currentCard = 0;
