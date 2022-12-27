@@ -491,21 +491,38 @@ footer{
 	padding-right: 20px;
 }
 
+@keyframes pop2{
+	from
+		{
+			transform: scale(0.95);
+		}
+			50%
+		{
+			transform: scale(1);
+		}
+	to
+		{
+			transform: scale(0.95);
+		}
+}
+
 .quoteDiv{
+	animation: pop2 3s infinite;
 	float:right; 
 	position: fixed; 
 	font-size: 40px; 
 	margin-left: 75%; 
 	margin-top: 5%;
-	transform: rotate(20deg);
 }
 
 .quotequote{
 	font-size: 30px; 
 	font-weight: bold; 
+	transform: rotate(20deg);
 }
 
 .quoteauthor{
 	font-size: 20px; 
 	margin-top: -20px;
+	transform: rotate(20deg);
 }
