@@ -21,8 +21,10 @@
 					for($itterator = 0; $itterator < count($titles); $itterator++)
 					{
 						echo "<div class='item'>";
+							echo "<button class='prevRuleBtn'><div class='prevArrow'><p><</p></div></button>";
 							echo "<p style='font-weight: bold;'>".$titles[$itterator]."</p>";
 							echo "<p>".$descriptions[$itterator]."</p>";
+							echo "<button class='nextRuleBtn'><div class='nextArrow'><p>></p></div></button>";
 						echo "</div>";
 					}
 					?>

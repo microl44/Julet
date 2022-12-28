@@ -25,10 +25,7 @@ $quote=giveRandomQuote();
 		<a class='navbarLink' href="rules.php"> JUL-RULES </a>
 		<a class='navbarLink' href="jul.php"> JUL-JUL </a>
 		<?php 
-			echo "<div class='quoteDiv' onload='hideOnScroll()'>
-				<p class='quotequote'>".$quote['Quote']."</p>
-				<p class='quoteauthor'>- ".$quote['Author']."</p>
-			</div>";
+
 		?>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
 

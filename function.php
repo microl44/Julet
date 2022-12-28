@@ -227,7 +227,7 @@ function giveRandomQuote(){
   "Please donate to my patreon. Together we can fund enough money and buy the right to Ant Man 2 so no one has to see it again", 
   "Lord of the rings is dumb, they could've just taken the eagles to mordor", "There's always another after-credits scene", 
   "Looking for front-end develops capable of center a div. Please send an email if this applies to you", "The syntax is more what you'd call guidelines than actual rules",
-  "I got a <s>jar</s> repo of dirt, I got a <s>jar</s> repo of dir!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
+  "I got a <s>jar</s> repo of dirt, I got a <s>jar</s> repo of dirt!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
   "So long, and thanks for all the fish!", "Hörru, du har inte tid att kolla på film, du har skolarbete att göra.", "We didn't invent the wheel, we just perfected it",
   "That Dicaprio guy is pretty good but I don't know if he's good enough for an oscar", "A list of a thousand movies begins with a single spin",
   "the rumors of my death have been greatly exaggerated", "WHEEEEEELSON!!!", 
@@ -242,12 +242,15 @@ function giveRandomQuote(){
   "Mr Behrad, I don't feel so good", "Hey, did the toys in that kids movie just embrace death?", "You have your mothers <s>eyes</s> shit taste in movies", "Now with working hash functions",
   "Please keep any tears away from the wheel", "Say 'Hello' to my little wheel!", "I love the smell of napalm in the morning", "We're gonna need a bigger wheel",
   "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "The needs of the wheel outweighs the needs of the many", 
-  "Seek Wheel, the rest will follow");
+  "Seek Wheel, the rest will follow", "Watching movies with friends is a sign of a good time. Creating a website about movies you watch is a sign of a wasted life",
+  "Bohemian Rhapsody is the greatest guns n roses song ever", "I'm tired boss, dog tired...", "Stop using memes, it's pissing me off!",
+  "");
 
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
   "Friedrich Nietzsche", "Marvel Hater", "Ghandi", "Nelson Mandela", "Babe Ruth", "Albert Einstein", "George Michael", "Clint Eastwood", "Bob Marley", "Barack Obama", 
-  "Franklin D Roosevelt", "Henry Ford", "Priest of the Wheel", "Professor Dumbeldore", "Oppenheimer", "Dalai Lama");
+  "Franklin D Roosevelt", "Henry Ford", "Priest of the Wheel", "Professor Dumbeldore", "Oppenheimer", "Dalai Lama", "Platon", "Deadpool", "Professor X", "Donald Trump",
+  "John Lenon", "Orville Wright", "Benjamin Franklin", "Tyrone", );
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
@@ -306,7 +309,7 @@ function giveRandomQuote(){
   {
     $randomQuotee = "HTML & PHP";
   }
-  else if($randomQuote == "I got a jar of dirt, I got a jar of dir!")
+  else if($randomQuote == "I got a <s>jar</s> repo of dirt, I got a <s>jar</s> repo of dirt!")
   {
     $randomQuotee = "The people working on this website";
   }
@@ -345,6 +348,14 @@ function giveRandomQuote(){
   else if($randomQuote == "I love the smell of napalm in the morning")
   {
     $randomQuotee = "Linus, arriving at the server room";
+  }
+  else if($randomQuote == "I'm tired boss, dog tired...")
+  {
+    $randomQuotee = "Behrad, när install.php går sönder för 8e gången";
+  }
+  else if($randomQuote == "Stop using memes, it's pissing me off!")
+  {
+    $randomQuotee = $randomQuotee." när Linus öppnar munnen";
   }
   $quote['Quote'] = $randomQuote;
   $quote['Author'] = $randomQuotee;

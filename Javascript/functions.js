@@ -1,22 +1,82 @@
-function hideOnScroll() {
-window.onload = () => {
-  const quoteDiv = document.querySelector('.quoteDiv');
+function hideOnScroll() 
+{
+  window.onload = () => 
+  {
+    const quoteDiv = document.querySelector('.quoteDiv');
 
-  window.addEventListener('scroll', () => {
-    const scrollPercentage = window.scrollY / document.body.offsetHeight
-    if (scrollPercentage >= 0.2)
+    window.addEventListener('scroll', () => 
     {
-      quoteDiv.style.transition = 'opacity 0.3s';
-      quoteDiv.style.opacity = 0;
-    } 
-    else 
+      const scrollPercentage = window.scrollY / document.body.offsetHeight
+      if (scrollPercentage >= 0.1)
+      {
+        quoteDiv.style.transition = 'opacity 0.3s';
+        quoteDiv.style.opacity = 0;
+      } 
+      else 
+      {
+        quoteDiv.style.opacity = 1;
+      }
+      console.log("Total Height: " + getTotalHeight());
+      console.log("ScrollY: " + window.scrollY);
+      console.log("Total Height / ScrollY: " + (window.scrollY + document.body.offsetHeight) / getTotalHeight());
+      console.log("Window height: " + window.innerHeight);
+    });
+    };
+}
+
+if (window.location.pathname.includes("index.php")) 
+{
+  hideOnScroll();
+}
+
+function getTotalHeight()
+{
+  var body = document.body,
+      html = document.documentElement;
+
+  return Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+}
+
+function addScroll(){
+  var scroll = 0;
+  var divWidth = 0;
+  window.onload = () =>
+  {
+  const allItems = document.querySelectorAll('.item');
+  const nextBtns = document.querySelectorAll('.nextRuleBtn');
+  const prevBtns = document.querySelectorAll('.prevRuleBtn');  
+  var parentDiv = document.querySelector('.rulesDisplay');
+  nextBtns.forEach(nextBtn =>
+  {
+    nextBtn.addEventListener('click', () =>
     {
-      quoteDiv.style.opacity = 1;
-    }
+      var divWidth = document.querySelector('.rulesDisplay').offsetWidth;
+      if(scroll <= (divWidth * allItems.length))
+      {
+        scroll = scroll + divWidth;
+        parentDiv.scroll(scroll, 0);
+      }
+    });
+  });
+  prevBtns.forEach(prevBtn =>
+  {
+    prevBtn.addEventListener('click', () =>
+    {
+      var divWidth = document.querySelector('.rulesDisplay').offsetWidth;
+      if(scroll >= divWidth)
+      {
+        scroll = scroll - divWidth;
+        parentDiv.scroll(scroll, 0);
+      }
+    });
   });
 };
 }
-hideOnScroll();
+
+if(window.location.pathname.includes("rules.php"))
+{
+  addScroll();
+}
 
 function showCards() {
     const card = document.querySelectorAll('.cards');

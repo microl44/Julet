@@ -26,7 +26,10 @@
 
     $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
     $genres = $stmt->fetchAll();
-
+    echo "<div class='quoteDiv' onload='hideOnScroll()'>";
+      echo "<p class='quotequote'>".$quote['Quote']."</p>";
+      echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";
+    echo "</div>";
     #$stmt = $conn->query("SELECT ")
     ?>
   
