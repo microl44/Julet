@@ -243,14 +243,15 @@ function giveRandomQuote(){
   "Please keep any tears away from the wheel", "Say 'Hello' to my little wheel!", "I love the smell of napalm in the morning", "We're gonna need a bigger wheel",
   "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "The needs of the wheel outweighs the needs of the many", 
   "Seek Wheel, the rest will follow", "Watching movies with friends is a sign of a good time. Creating a website about movies you watch is a sign of a wasted life",
-  "Bohemian Rhapsody is the greatest guns n roses song ever", "I'm tired boss, dog tired...", "Stop using memes, it's pissing me off!",
+  "Bohemian Rhapsody is the greatest guns n roses song ever", "I'm tired boss, dog tired...", "Stop using memes, it's pissing me off!", "Here's to the new us!",
   "");
 
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
   "Friedrich Nietzsche", "Marvel Hater", "Ghandi", "Nelson Mandela", "Babe Ruth", "Albert Einstein", "George Michael", "Clint Eastwood", "Bob Marley", "Barack Obama", 
   "Franklin D Roosevelt", "Henry Ford", "Priest of the Wheel", "Professor Dumbeldore", "Oppenheimer", "Dalai Lama", "Platon", "Deadpool", "Professor X", "Donald Trump",
-  "John Lenon", "Orville Wright", "Benjamin Franklin", "Tyrone", );
+  "John Lenon", "Orville Wright", "Benjamin Franklin", "Tyrone", "Sir Isaac Newton", "Charles Darwin", "Jesus", "Buddah", "Galileo", "Mozart", "Euclid", "Moses", "Sun Tzu",
+  "Adam Smith", "Karl Marx");
 
   $randomQuote = $quotes[rand(0, count($quotes)-1)];
   $randomQuotee = $quotees[rand(0, count($quotees)-1)];
@@ -356,6 +357,10 @@ function giveRandomQuote(){
   else if($randomQuote == "Stop using memes, it's pissing me off!")
   {
     $randomQuotee = $randomQuotee." när Linus öppnar munnen";
+  }
+  else if($randomQuote == "Here's to the new us!")
+  {
+    $randomQuotee = "Micke, till Behrad innan ändringar i databasen";
   }
   $quote['Quote'] = $randomQuote;
   $quote['Author'] = $randomQuotee;
