@@ -573,3 +573,7 @@ footer{
 	margin-top: -20px;
 	transform: rotate(20deg);
 }
+
+.wheel{
+	border-radius: 50%;
+}
