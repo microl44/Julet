@@ -44,7 +44,7 @@ function addScroll(){
   {
   const allItems = document.querySelectorAll('.item');
   const nextBtns = document.querySelectorAll('.nextRuleBtn');
-  const prevBtns = document.querySelectorAll('.prevRuleBtn');  
+  const prevBtns = document.querySelectorAll('.prevRuleBtn');
   var parentDiv = document.querySelector('.rulesDisplay');
   nextBtns.forEach(nextBtn =>
   {
@@ -56,6 +56,8 @@ function addScroll(){
         scroll = scroll + divWidth;
         parentDiv.scroll(scroll, 0);
       }
+      console.log("Next Btn, Scroll: " + scroll);
+      console.log("Next Btn, divWidth: " + divWidth);
     });
   });
   prevBtns.forEach(prevBtn =>
@@ -68,6 +70,8 @@ function addScroll(){
         scroll = scroll - divWidth;
         parentDiv.scroll(scroll, 0);
       }
+      console.log("Prev Btn, Scroll: " + scroll);
+      console.log("Prev Btn, divWidth: " + divWidth);
     });
   });
 };

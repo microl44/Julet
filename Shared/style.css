@@ -491,30 +491,15 @@ footer{
 	box-shadow: -100px 0px 2000px #3B7DD5, 100px 0px 2000px #3B7DD5;
 }
 
-.rulesDisplay .item p{
+.itemText{
 	padding-left: 80px;
-	padding-right: 80px;
+	padding-right: 80px;	
 }
 
-.rulesDisplay .item:first-child > .prevRuleBtn{
+.rulesDisplay .item:first-child > .prevRuleBtn, .rulesDisplay .item:last-child > .nextRuleBtn{
 	display: none;
 }
 
-.rulesDisplay .item:last-child > .prevRuleBtn{
-	margin-left: -100px;
-}
-
-.rulesDisplay .item:last-child > .nextRuleBtn{
-	margin-right: -10px;
-}
-
-.rulesDisplay .item:last-child > .nextRuleBtn{
-	display: none;
-}
-
-.rulesDisplay .item:last-child{
-	padding-right: 20px;
-}
 
 .prevRuleBtn{
 	font-size: 80px;
@@ -527,7 +512,7 @@ footer{
 	opacity: 0.1;
 	border: none;
 	margin-top: -50px;
-	margin-left: -50px;
+	margin-left: -40px;
 }
 
 .nextRuleBtn{
@@ -539,37 +524,37 @@ footer{
 	width: 15%;
 	background-color: white;
 	margin-top: -180px;
-	margin-right: -50px;
+	margin-right: -40px;
 	opacity: 0.1;
 	border: none;
 }
 
 .nextArrow p{
-	margin-left: -50px;
+	margin-left: -30px;
 }
 
 .prevArrow p{
 	margin-top: -15px;
-	margin-left: -50px;
+
 }
 
-@keyframes pop2{
+@keyframes pop2electricbogaloo{
 	from
-		{
-			transform: scale(0.95);
-		}
-			50%
-		{
-			transform: scale(1);
-		}
+	{
+		transform: scale(0.95);
+	}
+		50%
+	{
+		transform: scale(1);
+	}
 	to
-		{
-			transform: scale(0.95);
-		}
+	{
+		transform: scale(0.95);
+	}
 }
 
 .quoteDiv{
-	animation: pop2 3s infinite;
+	animation: pop2electricbogaloo 3s infinite;
 	float:right; 
 	position: fixed; 
 	font-size: 40px; 

@@ -10,7 +10,9 @@
 
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{?>
-		<script type="text/javascript" src="Javascript/julMS.js"></script>
+		<div class="content">
+			<script type="text/javascript" src="Javascript/julMS.js"></script>
+		</div>
 	<?php
 		include_once("includers/footer.php");
 	}
