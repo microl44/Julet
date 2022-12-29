@@ -1,159 +1,72 @@
-function createChoiceWheel() {
-  duration = 3;
-  // Create the container for the choice wheel
-  const container = document.createElement('div');
-  container.classList.add('choice-wheel-container');
+function createWheel()
+{
+  var options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"]
 
-  const winner = document.createElement('div');
-  winner.classList.add('winner-mark');
-  container.appendChild(winner);    
-  // Create the choice wheel
-  const wheel = document.createElement('div');
-  wheel.classList.add('choice-wheel');
-  wheel.style.animation = `spin ${duration}s linear`;
-  wheel.style.animationPlayState = 'paused';
+  var height = 500;
+  var width = 500;
+  var centerX = width / 2;
+  var centerY = height / 2;
+  var duration = 10;
+  var sections = 6;
 
-  // Create the choices for the choice wheel
-  const choices = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6'];
-  choices.forEach((choice) => {
-    const choiceElement = document.createElement('div');
-    choiceElement.classList.add('choice-wheel-section');
-    choiceElement.textContent = choice;
-    wheel.appendChild(choiceElement);
-  });
-  var angle;
-  // Create the spin button
+  var angle = 360 / (sections - 1);
+  var labels = [];
+
+  const content = document.querySelector('.content');
+  const canvas = document.createElement('canvas');
+  canvas.classList.add('wheel');
+  canvas.setAttribute("width", width);
+  canvas.setAttribute("height", height);
+  canvas.style.backgroundColor = "red";
+  canvas.style.borderRadius = "50%";
+  //canvas.style.backgroundColor = "white"
+
+  var ctx = canvas.getContext("2d");
+  for (let i = 0; i <= 360 ; i += angle)
+  {
+    labels.push(i + 30);
+    console.log(i);
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(centerX + 250 * Math.cos(i / 180 * Math.PI), centerY + 250 * Math.sin(i / 180 * Math.PI));
+    ctx.stroke();
+  }
+
+  ctx.font = '20px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  for(let i = 0; i < labels.length - 1; i++)
+  {
+    // Calculate the position of the label
+    const x = centerX + 200 * Math.cos(labels[i] / 180 * Math.PI);
+    const y = centerY + 200 * Math.sin(labels[i] / 180 * Math.PI);
+    // Draw the label on the canvas
+    ctx.fillText(`${options[i]}`, x, y);
+  }
+  ctx.beginPath();
+  ctx.arc(250, 250, 250, 0, 2 * Math.PI);
+  ctx.stroke();
+
   const spinButton = document.createElement('button');
   spinButton.textContent = 'Spin';
-  spinButton.addEventListener('click', () => {
-    // Calculate a random angle to rotate the wheel
-    angle = Math.floor((Math.random() * (30000 - 15000) + 15000));
+
+  var rotation = 0;
+  spinButton.addEventListener('click', () => 
+  {
+    canvas.style.transition = `transform 0s`;
+    canvas.style.transform = `rotate(${-rotation}deg)`;
+
+    rotation = rotation + Math.floor(2000 + (Math.random() * 360) + (Math.random() * 2000));
+
     // Apply the rotation to the wheel using a CSS transition
-    wheel.style.transition = 'transform 3s cubic-bezier(0, -0.55, 0.265, 0)';
-    wheel.style.transform = `rotate(${angle}deg)`;
-    wheel.style.animationPlayState ='running';
+    canvas.style.transition = 'transform 8s';
+    canvas.style.transform = `rotate(${rotation}deg)`;
   });
-
-  // Append the choice wheel and spin button to the container
-  container.appendChild(wheel);
-  container.appendChild(spinButton);
-
-  var element = document.querySelector('.choice-wheel');
-  return container;
-}
-
-const jul = createChoiceWheel();
-document.body.appendChild(jul);
-
-const style2 = document.createElement('style');
-style2.textContent = `
-  .choice-wheel {
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background-color: #ddd;
-    position: relative;
-    transform-style: preserve-3d;
-  }
-
-  .winner-mark {
-    position: absolute;
-    width: 0.01%;
-    height: 3%;
-    border-left: 2px solid transparent;
-    border-right: 2px solid transparent;
-    border-top: 100px solid red;
-    margin-left: 246px;
-    margin-top: -5px;
-    z-index: 10;
-  }
-
-  .choice-wheel-section {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    transform-origin: center;
-    transform: rotate(calc((360deg / 6) * var(--section-index)));
-    writing-mode: vertical;
-    text-align: center;
-    margin: 0 25px;
-  }
-
-  .choice-wheel-section:last-of-type {
-    border-right: none;
-  }
-
-  .choice-wheel-section:nth-of-type(1) {
-    --section-index: 0;
-  }
-
-  .choice-wheel-section:nth-of-type(2) {
-    --section-index: 1;
-  }
-
-  .choice-wheel-section:nth-of-type(3) {
-    --section-index: 2;
-  }
-
-  .choice-wheel-section:nth-of-type(4) {
-    --section-index: 3;
-  }
-
-  .choice-wheel-section:nth-of-type(5) {
-    --section-index: 4;
-  }
-  .choice-wheel-section:nth-of-type(6) {
-    --section-index: 5;
-  }
-`;
-document.head.appendChild(style2);
-
-var container = document.getElementsByClassName('choice-wheel');
-var rect = container[0].getBoundingClientRect();
-console.log(rect.right);
-
-var posX = 250;
-var posY = 250;
-
-drawLines(posX, posY, 3);
-
-function drawLines(posX, posY, sections) {
-  // Calculate the rotation angle for each line
-  var angle = 360 / sections;
   
-  // Draw the lines
-  for (var i = 0; i < sections; i++) {
-    var degree = angle * i;
-    
-    // Calculate the end position of the line
-    var endX = Math.floor(posX + 50 * Math.cos(degree * Math.PI / 180));
-    var endY = Math.floor(posY + 50 * Math.sin(degree * Math.PI / 180));
-    
-    // Create a div element to represent the line
-    var line = document.createElement("div");
-    line.classList.add("line");
-    
-    // Set the position and size of the line
-    line.style.left = 0 + "px";  // Change the left position to posX
-    line.style.top = 0 + "px";  // Change the top position to posY
-    line.style.width = "1px";
-    line.style.height = "500px";
-    line.style.transform = "rotate(" + degree + "deg)";
-    line.style.backgroundColor = "#000000";
-    
-    // Add the line to the choice-wheel element
-    var choiceWheel = document.querySelector(".choice-wheel");
-    choiceWheel.appendChild(line);
-  }
+  content.appendChild(spinButton);
+  return canvas;
 }
 
-// test commit
+const jul = createWheel();
+document.body.appendChild(jul);
