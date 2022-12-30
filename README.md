@@ -3,6 +3,9 @@ Website visualizing data from my watched movies, brought forward by julet.
 
 "Wheel giveth, Wheel taketh" - Abraham Lincoln
 
+# Announcement:
+#### We did it guys! 5000 lines of code and only 15% is css!
+
 # Coding Standards
 
 ## Indentation:
