@@ -560,6 +560,7 @@ footer{
 	font-size: 40px; 
 	margin-left: 75%; 
 	margin-top: 5%;
+	z-index: 1000000000;
 }
 
 .quotequote{

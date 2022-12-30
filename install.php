@@ -43,7 +43,8 @@ function actualInstall(){
     }
 }
 
-if(isset($_SESSION['username']) || isset($_SESSION['password'])){
+if(isset($_SESSION['username']) || isset($_SESSION['password']))
+{
     $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();

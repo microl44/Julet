@@ -61,6 +61,10 @@ BEGIN
     SET @`sql` := CONCAT('GRANT EXECUTE ON jul.* TO ', `p_Name`, `_HOST`);
     PREPARE `stmt` FROM @`sql`;
     EXECUTE `stmt`;
+
+    SET @`sql` := CONCAT('GRANT INSERT ON jul.activity_log TO ', `p_Name`, `_HOST`);
+    PREPARE `stmt` FROM @`sql`;
+    EXECUTE `stmt`;
     
     DEALLOCATE PREPARE `stmt`;
     FLUSH PRIVILEGES;

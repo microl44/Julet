@@ -11,13 +11,13 @@ $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2
 
 $quote=giveRandomQuote();
 ?>
+<script src='Javascript/functions.js'></script>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
 <head>
 	<link rel="shortcut icon" href="Shared/icons/tree2.png">
 	<?php 
 		echo "<title>".$titles[rand(0,count($titles)-1)]."</title>";
 	?>
-	<title>Nu är det hjul igen</title>
 	<div class='navbar'>
 		<!-- MAIN PAGE REDIRECTION LINKS START-->
 		<a class='navbarLink' href="index.php"> HOME </a>
@@ -38,4 +38,3 @@ $quote=giveRandomQuote();
 	</div>
 </head>
 <body>
-	<script src='Javascript/functions.js'></script>

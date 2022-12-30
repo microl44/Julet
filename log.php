@@ -5,6 +5,10 @@ if(!isset($_SESSION))
 }
 require_once "includers/basic.php";
 
+if(isset($_POST['arg']))
+{
+	addLog("Disconnected");
+}
 
 function addLog($activity = 'pageview')
 {
@@ -26,6 +30,7 @@ function addLog($activity = 'pageview')
 
 		$username = sanitizeInput($_SESSION['username']);
 		$action = $activity;
+
 		$data = json_encode(array('page_ulr' => $page, 'ip_address' => $ip));
 		$stmt->execute();
 	}	

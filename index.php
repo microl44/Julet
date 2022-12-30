@@ -8,15 +8,6 @@
   require_once "includers/header.php";
   require_once "includers/basic.php";
 
-
-  $conn = GetConnection();
-  $stmp = $conn->query("SELECT * FROM marvel_movies ORDER BY marvelID");
-
-  foreach($stmp->fetchAll() as $row)
-  {
-    print($row['average_rating']);
-    echo " ";
-  }
   if(isset($_SESSION['username']) || isset($_SESSION['password']))
   {
     addLog();

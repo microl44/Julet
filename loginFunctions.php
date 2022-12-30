@@ -4,6 +4,7 @@ if(!isset($_SESSION))
 
 require_once "Database.php";
 require_once "includers/basic.php";
+require_once "includers/header.php";
 
 if(isset($_POST['username']))
 {
@@ -19,7 +20,7 @@ function LoginAttempt($username, $password)
         $connection = new PDO(getConnectionString(),$username,$password);
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
-
+        addLog("Logged In");
         return true;
     }
     catch(Exception $e){
