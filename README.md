@@ -67,3 +67,9 @@ Once installed, run the install.php script.
 
 Logg in using the mysql info 
 Default username is *root* empty password
+
+# GDPR
+
+This website complies with the rules, guidelines and instructions provided by the General Data Protection Regulation (GDPR). https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32016R0679. Any saving of private data (not using the two freely availible accounts) is in according to article 6, section f, stating: "processing is necessary for the purposes of the legitimate interests pursued by the controller or by a third party, except where such interests are overridden by the interests or fundamental rights and freedoms of the data subject which require protection of personal data, in particular where the data subject is a child.".
+
+The creator and contributors takes no responsibility for any code that's stolen, changed and hosted by 3rd party users.
