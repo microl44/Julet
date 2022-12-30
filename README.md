@@ -70,9 +70,9 @@ Default username is *root* empty password
 
 # GDPR
 
-This website complies with the rules, guidelines and instructions provided by the General Data Protection Regulation (GDPR). https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32016R0679. Any saving of private data (not using the two freely availible accounts) is in according to article 6, section f.
+This website complies with the rules, guidelines and instructions provided by the General Data Protection Regulation (GDPR). https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32016R0679. Any processing of private data (not using the two freely availible accounts) is in according to article 6, section f.
 
-The creator and contributors takes no responsibility for any code that's stolen, changed and hosted by 3rd party users. Please view "policy.php" for additional instructions on how data is processed.
+The creator and contributors takes no responsibility for any code that's stolen, changed or hosted by 3rd party users. Please view "policy.php" for additional instructions on how data is processed.
 
 In case any external user wants to deploy their own copy of Julet, the following steps must be taken to comply with article 5, section e. The user has to set up a system in which private data is periodically removed. This includes any cookies saved and data within the "activity_log" table of the resulting database. Easy ways to accomplish this is to use cronJob for linux deployments, or the Task Scheduler app on windows deployments.
 Open the Task Scheduler by typing "Task Scheduler" into the Start menu search bar and selecting the app.
@@ -84,7 +84,8 @@ Open the Task Scheduler by typing "Task Scheduler" into the Start menu search ba
 5. On the next page, enter the path to the MySQL executable file (e.g. "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe") in the "Program/script" field, and enter the following command in the "Add arguments (optional)" field:
   -u [username] -p[password] Jul -e "DELETE FROM activity_log WHERE timestamp < DATE_SUB(NOW(), INTERVAL 30 DAY);"
 
-	
+In regards to article 6, section f: the only purpose of processed data is to identify, discourage and prevent malicious usage. Only strictly necessary information to accomplish this purpose is processed and saved. Any data processed is stored for 30 days, after which it's then deemed not necessary for said cause and deleted.
+
 Article 5, section e: 
 "kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed; personal data may be stored for longer periods insofar as the personal data will be processed solely for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Article 89(1) subject to implementation of the appropriate technical and organisational measures required by this Regulation in order to safeguard the rights and freedoms of the data subject (‘storage limitation’);".
 
