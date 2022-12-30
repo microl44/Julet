@@ -239,7 +239,8 @@ function giveRandomQuote(){
   "Please keep any tears away from the wheel", "Say 'Hello' to my little wheel!", "I love the smell of napalm in the morning", "We're gonna need a bigger wheel",
   "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "The needs of the wheel outweighs the needs of the many", 
   "Seek Wheel, the rest will follow", "Watching movies with friends is a sign of a good time. Creating a website about movies you watch is a sign of a wasted life",
-  "Bohemian Rhapsody is the greatest guns n roses song ever", "I'm tired boss, dog tired...", "Stop using memes, it's pissing me off!", "Here's to the new us!");
+  "Bohemian Rhapsody is the greatest guns n roses song ever", "I'm tired boss, dog tired...", "Stop using memes, it's pissing me off!", "Here's to the new us!",
+  "Any storing of IP, username, pages viewed, bank pin and name of first born is purely for security reasons");
 
   $quotees = array("Abraham Lincoln", "Winston Churchill", "Martin Luther King (jr)", "Santa", "Behrad", "Tony Stark", "Linus", "Malcolm X", "He who never wins", "Michael Bay",
   "Micke", "Gabbe", "Crippe", "Momme", "Julius Caesar", "Disney", "Captain Glock", "Thor", "Spider-Man", "Stephen Hawking", "Margaret Thatcher", "George Washington", "Thanos", 
