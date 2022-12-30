@@ -3,6 +3,7 @@ if(!isset($_SESSION))
 { session_start(); }
 
 require_once "Database.php";
+require_once "includers/basic.php";
 
 if(isset($_POST['username']))
 {
@@ -18,23 +19,10 @@ function LoginAttempt($username, $password)
         $connection = new PDO(getConnectionString(),$username,$password);
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
+
+        return true;
     }
     catch(Exception $e){
-        echo "<br/><br/><br/><br/><h1>Error logging in try again</h1>";
-        print_r($e->getmessage());
-    }
-}
-
-function GetConnection()
-{
-    try
-    {
-        $conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $conn;
-    }
-    catch(PDOException $e)
-    {
         notLoggedIn();
     }
 }
@@ -47,5 +35,15 @@ function notLoggedIn(){
     echo "</body>";
 }
 
+function GeneratePasswordHash($password, $algorithm = "PASSWORD_DEFAULT")
+{
+    if(!isset($password))
+    {
+        return null;
+    }
+
+    $password = password_hash($password, $algorithm);
+    return $password;
+}
 
 ?>

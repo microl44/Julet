@@ -4,7 +4,6 @@
   {
     session_start();
   }
-  require_once "loginFunctions.php";
   require_once "function.php";
   require_once "includers/header.php";
   require_once "includers/basic.php";
@@ -18,7 +17,9 @@
     print($row['average_rating']);
     echo " ";
   }
-  if(isset($_SESSION['username']) || isset($_SESSION['password'])){
+  if(isset($_SESSION['username']) || isset($_SESSION['password']))
+  {
+    addLog();
     $conn = GetConnection();
     
     $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
