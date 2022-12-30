@@ -173,6 +173,9 @@ VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3
 INSERT INTO users(username, email, password)
 VALUES ('testUser', 'a20micro@student.his.se', 'password');
 
+INSERT INTO activity_log(username, action, timestamp, data)
+VALUES("testUser", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1"}');
+
 CREATE VIEW marvel_movies AS
 	SELECT marvelID, ROUND(AVG(marvel_grade),2) AS average_rating
 	FROM marvel_participated
