@@ -18,6 +18,7 @@ if(!file_exists('./Database.php')){
 
 include_once "Database.php";
 include_once "loginFunctions.php";
+include_once "log.php";
 
 function actualInstall(){
     try{
@@ -33,6 +34,7 @@ function actualInstall(){
         $stmp->execute();
         foreach($stmp->fetchall() as $row){print_r($row);}
         $stmp->closeCursor();
+
         header('location: ./index.php');
     }
     catch(Exception $e){
@@ -45,6 +47,7 @@ if(isset($_SESSION['username']) || isset($_SESSION['password'])){
     $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();
+    addLog("Reinstalled Database");
 }
 else if(isset($_POST['username']) AND isset($_POST['password'])){
     

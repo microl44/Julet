@@ -1,6 +1,13 @@
 <?php
-require_once "loginFunctions.php";
+if(!isset($_SESSION))
+{
+	session_start();
+}
+
+require_once "includers/basic.php";
+require_once "includers/header.php";
 require_once "function.php";
+
 if(exists($_POST['addName']) && exists($_POST['addGenre']))
 {
 	InsertMovie();
@@ -10,7 +17,6 @@ else if(exists($_POST['deleteId']))
 	DeleteMovie();
 }
 header('Location: index.php');
-
 
 function InsertMovie()
 {
@@ -83,7 +89,27 @@ function InsertMovie()
 				echo "<h3> Insert was fucky wucky, insert died</h3>";
 				echo "message: " . $e->getMessage();
 			}
+			try
+			{
+				$sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
+				$sql = $sql . "VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
+				
+				$stmp = $conn->prepare($sql);
+				$stmp->bindvalue(':addName',$title);
+				$stmp->bindvalue(':addGenre',$_POST['addGenre']);
+				$stmp->bindvalue(':addIMDB',$grade);
+				$stmp->bindvalue(':addjayornay',$_POST['addjayornay']);
+				$stmp->bindvalue(':addPickedBy',$_POST['addPickedBy']);
+				$stmp->bindvalue(':addParticipants',$_POST['addParticipants']);
+				$stmp->bindvalue(':addIs_major',$_POST['addIs_major']);
+			}
+			catch(Exception $e)
+			{
+
+			}
 		
+			addLog("added movie");
+
 			unset($_POST['addName']);
 			unset($_POST['addGenre']);
 			unset($_POST['addIMDB']);
@@ -151,6 +177,7 @@ function DeleteMovie()
 				echo "we fuckd boizz, root is gone.";
 			}
 		}
+		addLog("deleted movie");
 	}
 	catch(Exception $e){
 		catchStatent();

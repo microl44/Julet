@@ -2,9 +2,10 @@
 if(!isset($_SESSION))
 { session_start();}
 
-require_once "loginFunctions.php";
 require_once "includers/basic.php";
 require_once "function.php";
+require_once "log.php";
+
 $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!",
 "En ännu mer spännande undertitel!", "Wheel 2, Electric Bogaloo");
 
