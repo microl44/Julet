@@ -1,14 +1,20 @@
 <?php 
-    if(!isset($_SESSION))
-    {
-        session_start();
-    }
-?>
-<?php 
+if(!isset($_SESSION))
+{ session_start(); }
+
 require_once "Database.php";
 
-function LoginAttempt($username, $password){
-    try{
+if(isset($_POST['username']))
+{
+    LoginAttempt($_POST['username'],$_POST['password']);
+    header('location: ' . $_POST['url']);
+    die();
+}
+
+function LoginAttempt($username, $password)
+{
+    try
+    {
         $connection = new PDO(getConnectionString(),$username,$password);
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
@@ -19,10 +25,18 @@ function LoginAttempt($username, $password){
     }
 }
 
-function GetConnection(){
-    $conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
-	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
+function GetConnection()
+{
+    try
+    {
+        $conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    }
+    catch(PDOException $e)
+    {
+        notLoggedIn();
+    }
 }
 
 function notLoggedIn(){
@@ -32,4 +46,6 @@ function notLoggedIn(){
         echo "</div>";
     echo "</body>";
 }
+
+
 ?>

@@ -73,6 +73,14 @@ CREATE TABLE users (
   PRIMARY KEY (user_id)
 ) Engine = InnoDB;
 
+CREATE TABLE activity_log (
+id int AUTO_INCREMENT PRIMARY KEY,
+user_id INT NOT NULL,
+action VARCHAR(255) NOT NULL,
+`timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+data JSON NOT NULL
+) ENGINE = InnoDB;
+
 # --------INSERTS----------#
 
 INSERT INTO genre(name)
@@ -177,5 +185,3 @@ CREATE VIEW movie_participants AS
 	JOIN participated part ON part.movieID = m.id
 	JOIN participant p ON p.id = part.participantID
 GROUP BY m.id;
-
-SELECT * FRom movie_participants;
