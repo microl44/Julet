@@ -2,8 +2,8 @@
 if(!isset($_SESSION))
 {
 	session_start();
-}
-echo "
+} ?>
+
 <div class='content'>
 <a href='index.php'> CLICK HERE TO GO BACK TO THE MAIN PAGE. </a>
 <h1>Privacy Policy of Julet</h1>
@@ -51,5 +51,4 @@ echo "
 <h2>Contact Us</h2>
 
 <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at JulMovieWheel@gmail.com</p>
-</div>";
-?>
+</div>
