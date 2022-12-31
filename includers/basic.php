@@ -13,7 +13,6 @@ function GetConn()
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=Jul", $_SESSION['username'], $_SESSION['password']);
 	}
-
 	return exists($conn) ? $conn : null;
 }
 //returns true if it exists and is not empty. Saves a bit of space I guess.

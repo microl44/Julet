@@ -16,7 +16,7 @@
 
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
-		addLog($conn)?>
+		addLog()?>
 		<div class='content'>
 			<div class='rulesDiv'>
 				<ul class='rulesDisplay'>
