@@ -1,11 +1,15 @@
 <?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+require_once "includers/basic.php";
 require_once "loginFunctions.php";
 require_once "function.php";
-require_once "includers/basic.php";
 
 if(isset($_POST['pickedGenre']) && (isset($_SESSION['username']) || isset($_SESSION['password'])) ){
 
-    $conn=GetConnection();
+    global $conn;
     $stmt = $conn->prepare("UPDATE genre SET NextGenre = 0;");
     $stmt->execute();
     $stmt->closeCursor();
@@ -18,7 +22,7 @@ if(isset($_POST['pickedGenre']) && (isset($_SESSION['username']) || isset($_SESS
 
 if(isset($_SESSION['username']) || isset($_SESSION['password'])){
 
-    $conn = GetConnection();
+    global $conn;
     $stmt = $conn->prepare("SELECT name FROM genre WHERE NextGenre = 1;");
 
     if($stmt->execute()){
@@ -28,7 +32,6 @@ if(isset($_SESSION['username']) || isset($_SESSION['password'])){
         }
     }
     $stmt->closeCursor();
-    $conn = GetConnection();
     $stmt = $conn->prepare("SELECT name FROM genre WHERE NextGenre = 0;");
     
     if($stmt->execute()){

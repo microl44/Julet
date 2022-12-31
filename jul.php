@@ -3,6 +3,7 @@
 	{
 		session_start();
 	}
+	require_once "includers/basic.php";
 	require_once "loginFunctions.php";
 	require_once "Database.php";
 	require_once "includers/header.php";

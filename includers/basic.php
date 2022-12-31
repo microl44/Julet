@@ -1,6 +1,17 @@
 <?php
+if(!isset($_SESSION))
+{
+	session_start();
+}
+include_once "Database.php";
+
+if(!isset($conn) && exists($_SESSION['username'] && exists($_SESSION['password'])))
+{
+	$conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
+}
+
+$_SESSION['connection_pool'] = array();
 //PHP GO DIE GO DIE!
-$connectionPool = array();
 
 //returns true if it exists and is not empty. Saves a bit of space I guess.
 function exists($var)
@@ -10,7 +21,10 @@ function exists($var)
 
 function RunOnAllPages()
 {
-	$_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
+	if(isset($_SERVER['HTTP_REFERER']))
+	{
+		$_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
+	}
 }
 
 //returns true if the username is either root or admin and the login is successful.
@@ -37,19 +51,19 @@ function IsAdmin()
 //sorts arrays depending on input type. natsort and natcasesort are used to sort on ASCII value, meaning "filename2.txt" will come before "filename10.txt";
 function SortArray($array, $sortType) 
 {
-	if($sortType == "ascending")
+	if($sortType == "ASCENDING")
 	{
 		sort($array);
 	}
-	else if($sortType == "descending")
+	else if($sortType == "DESCENDING")
 	{
 		rsort($array);
 	}
-	else if($sortType == "natural")
+	else if($sortType == "NATURAL")
 	{
 		natsort($array);
 	}
-	else if($sortType == "Case-insensitive")
+	else if($sortType == "CASE_INSENSITIVE")
 	{
 		natcasesort($array);
 	}
@@ -87,56 +101,11 @@ function getClientIP()
 	return $ip;
 }
 
-//returns PDO connection based on the  $_SESSION variables.
-function GetConnection()
-{	
-	global $connectionCounter;
-    try
-    {
-        $conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $connectionCounter++;
-        echo "current number of threads in circulation" . $connectionCounter;
-        return $conn;
-    }
-    catch(PDOException $e)
-    {
-        notLoggedIn();
-    }
-}
-
-function GetConnectionFromPool()
-{
-	global $connectionPool;
-	global $connectionCounter;
-
-	if (!isset($connectionPool)) 
-	{
-		$connectionPool = array();
-	}
-
-	if(count($connectionPool) > 0)
-	{
-		#echo "CONNECTION FROM THE POOL IS USED";
-		return array_shift($connectionPool);
-	}
-	else
-	{
-		return GetConnection();
-	}
-}
-
-function ReturnConnectionToPool($connection)
-{
-	global $connectionPool;
-	$connectionPool[] = $connection;
-}
-
 function addLog($activity = 'pageview')
 {
-	if(exists($_SESSION['username']))
+	global $conn;
+	if(exists($_SESSION['username']) && exists($conn))
 	{
-		$conn = GetConnectionFromPool();
 
 		$ip = getClientIP();
 		$page_url = parse_url($_SERVER['REQUEST_URI']);
@@ -155,6 +124,5 @@ function addLog($activity = 'pageview')
 
 		$data = json_encode(array('page_ulr' => $page, 'ip_address' => $ip));
 		$stmt->execute();
-		ReturnConnectionToPool($conn);
 	}	
 }

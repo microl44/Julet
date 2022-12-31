@@ -4,15 +4,15 @@
   {
     session_start();
   }
+  require_once "includers/basic.php";
   require_once "function.php";
   require_once "includers/header.php";
-  require_once "includers/basic.php";
-  
+
   RunOnAllPages();
   if(isset($_SESSION['username']) || isset($_SESSION['password']))
   {
     addLog();
-    $conn = GetConnectionFromPool();
+    global $conn;
     
     $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
     $participants = $stmt->fetchAll();
@@ -24,7 +24,6 @@
       echo "<p class='quotequote'>".$quote['Quote']."</p>";
       echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";
     echo "</div>";
-    #$stmt = $conn->query("SELECT ")
     ?>
   
       <div class='content'>

@@ -3,11 +3,11 @@
 	{
 		session_start();
 	}
+	require_once "includers/basic.php";
 	require_once "loginFunctions.php";
 	require_once "Database.php";
 	require_once "function.php";
 	include_once "includers/header.php";
-	require_once "includers/basic.php";
 
 	RunOnAllPages();
 	
@@ -15,10 +15,11 @@
 	{
 		addLog();
 		echo "<div class='content'>";
-			$conn = GetConnectionFromPool();
+			global $conn;
 			$stmt = $conn->query("SELECT name FROM participant");
 			$participants = $stmt->fetchAll();
-			ReturnConnectionToPool($conn);
+			$stmt->closeCursor();
+
 			echo "<div class='gridContainer'>";
 			foreach($participants as $participant)
 			{

@@ -15,13 +15,15 @@ if(!file_exists('./Database.php')){
     fclose($myfile);
 }
 
+require_once "includers/basic.php";
 include_once "Database.php";
 include_once "loginFunctions.php";
-include_once "includers/basic.php";
+
+$conn;
 
 function actualInstall(){
     try{
-        $conn = GetConnectionFromPool();
+        global $conn;
         $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
         
         $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
@@ -34,9 +36,15 @@ function actualInstall(){
         foreach($stmp->fetchall() as $row){print_r($row);}
         $stmp->closeCursor();
         addLog("Reinstalled Database");
-        ReturnConncetionToPool($conn);
         
-        header('location: ./index.php');
+        if(!exists($_SESSION['previous_page']))
+        {
+            header($_SESSION['previous_page']);
+        }
+        else
+        {
+            header('Location: index.php');
+        }
     }
     catch(Exception $e){
         echo "<h1> ooh fuck ooh shit ooh fuck </h1>";
@@ -46,12 +54,14 @@ function actualInstall(){
 
 if(isset($_SESSION['username']) || isset($_SESSION['password']))
 {
+    global $conn;
     $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();
 }
-else if(isset($_POST['username']) AND isset($_POST['password'])){
-    
+else if(isset($_POST['username']) AND isset($_POST['password']))
+{
+    global $conn;   
     $conn = new PDO('mysql:host=localhost;',$_POST['username'], $_POST['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
 
