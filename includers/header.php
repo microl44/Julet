@@ -4,7 +4,6 @@ if(!isset($_SESSION))
 
 require_once "includers/basic.php";
 require_once "function.php";
-require_once "log.php";
 
 $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!",
 "En ännu mer spännande undertitel!", "Wheel 2, Electric Bogaloo");
@@ -25,9 +24,6 @@ $quote=giveRandomQuote();
 		<a class='navbarLink' href="movies.php"> MOVIES </a>
 		<a class='navbarLink' href="rules.php"> JUL-RULES </a>
 		<a class='navbarLink' href="jul.php"> JUL-JUL </a>
-		<?php 
-
-		?>
 		<!-- MAIN PAGE REDIRECTION LINKS END-->
 
 		<!-- LOGIN FORM START -->

@@ -5,7 +5,8 @@
 	require_once "function.php";
 	require_once "includers/header.php";
 	require_once "includers/basic.php";
-
+	
+	RunOnAllPages();
 	// test the function by scraping the cover art from the IMDB page
 	#$url = 'https://www.imdb.com/title/tt0910970/?ref_=nv_sr_srsg_4';
 	#$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';

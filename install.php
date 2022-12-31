@@ -4,7 +4,6 @@ if(!isset($_SESSION))
     session_start();
 }
 
-
 if(!file_exists('./Database.php')){
 
     $myfile = fopen('Database.php','w');
@@ -18,11 +17,11 @@ if(!file_exists('./Database.php')){
 
 include_once "Database.php";
 include_once "loginFunctions.php";
-include_once "log.php";
+include_once "includers/basic.php";
 
 function actualInstall(){
     try{
-        $conn = GetConnection();  
+        $conn = GetConnectionFromPool();
         $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
         
         $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
@@ -34,7 +33,9 @@ function actualInstall(){
         $stmp->execute();
         foreach($stmp->fetchall() as $row){print_r($row);}
         $stmp->closeCursor();
-
+        addLog("Reinstalled Database");
+        ReturnConncetionToPool($conn);
+        
         header('location: ./index.php');
     }
     catch(Exception $e){
@@ -48,7 +49,6 @@ if(isset($_SESSION['username']) || isset($_SESSION['password']))
     $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();
-    addLog("Reinstalled Database");
 }
 else if(isset($_POST['username']) AND isset($_POST['password'])){
     

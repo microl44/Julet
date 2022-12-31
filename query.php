@@ -23,7 +23,7 @@ function InsertMovie()
 	$tempDescription = null; 
 	$count = 0;
 	try{
-		$conn = GetConnection();
+		$conn = GetConnectionFromPool();
 		if(isset($_POST['addName']) && isset($_POST['addGenre']) && isset($_POST['addPickedBy']) && isset($_POST['addIs_major']))
 		{
 			$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';
@@ -107,7 +107,7 @@ function InsertMovie()
 			{
 
 			}
-		
+			ReturnConnectionToPool($conn);
 			addLog("added movie");
 
 			unset($_POST['addName']);
@@ -127,17 +127,17 @@ function InsertMovie()
 function insertDescription($count, $description)
 {
 	$escapedDescription = addcslashes($description, '"\'');
-	$conn = GetConnection();
+	$conn = GetConnectionFromPool();
 	$sql = "INSERT INTO movieDescription(movieID, cover_path, description)
 	VALUES(".$count.", 'C:/xampp/htdocs/Julet/Shared/Images/cover".($count-1).".png', '".$escapedDescription."' )";
 	$conn->query($sql);
+	ReturnConnectionToPool($conn);
 }
 
 function DeleteMovie()
 {
 	try{
-		$conn = GetConnection();
-
+		$conn = GetConnectionFromPool();
 		$sql = "delete from participated where movieID = :id";
 		$stmp = $conn->prepare($sql);
 		$stmp->bindvalue(':id',$_POST['deleteId']);
@@ -156,6 +156,7 @@ function DeleteMovie()
 		$stmp->execute();
 		$stmp->closeCursor();
 
+		ReturnConnectionToPool($conn);
 		//redundency because you can't trust ctype_digit and I don't have the patience to test edge-cases.
 		//5 extra steel walls is implemented instead.
 		$number = number_format($_POST['deleteId']);

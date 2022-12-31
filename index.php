@@ -7,17 +7,19 @@
   require_once "function.php";
   require_once "includers/header.php";
   require_once "includers/basic.php";
-
+  
+  RunOnAllPages();
   if(isset($_SESSION['username']) || isset($_SESSION['password']))
   {
     addLog();
-    $conn = GetConnection();
+    $conn = GetConnectionFromPool();
     
     $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
     $participants = $stmt->fetchAll();
 
     $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
     $genres = $stmt->fetchAll();
+
     echo "<div class='quoteDiv' onload='hideOnScroll()'>";
       echo "<p class='quotequote'>".$quote['Quote']."</p>";
       echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";

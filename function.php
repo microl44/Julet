@@ -52,21 +52,29 @@ function PrintMovieTable($result,$stmp){
 //I'm so sorry for this, idk what I'm doing and it's 5 in the morning oh god
 function PrintParticipantInfo($participant)
 {
-  $conn = GetConnection();
+  $conn = GetConnectionFromPool();
   $stmt = $conn->query("CALL GetParticipationRate('" . $participant['name'] . "')");
   $participationRate = $stmt->fetchAll();
+  $stmt->closeCursor();
+  ReturnConnectionToPool($conn);
 
-  $conn = GetConnection();
+  $conn = GetConnectionFromPool();
   $stmt = $conn->query("CALL GetWinRate('" . $participant['name'] . "')");
   $winrate = $stmt->fetchAll();
+  $stmt->closeCursor();
+  ReturnConnectionToPool($conn);
 
-  $conn = GetConnection();
+  $conn = GetConnectionFromPool();
   $stmt = $conn->query("CALL GetWeightedWinRate('" . $participant['name'] . "')");
   $winrateWeighted = $stmt->fetchAll();
+  $stmt->closeCursor();
+  ReturnConnectionToPool($conn);
 
-  $conn = GetConnection();
+  $conn = GetConnectionFromPool();
   $stmt = $conn->query("CALL GetPickedMovies('" . $participant['name'] . "')");
   $pickedMovies = $stmt->fetchAll();
+  $stmt->closeCursor();
+  ReturnConnectionToPool($conn);
 
   echo "<div class='gridItem'>";
   echo "<h2 class='gridItemTitle'>" . $participant['name'] . "</h3>";
@@ -116,9 +124,9 @@ function PrintMovies()
     $imageDir = 'C:/xampp/htdocs/Julet/Shared/Images/';
     $images = scandir($imageDir);
     natsort($images);
-    $conn = GetConnection();
+    $conn = GetConnectionFromPool();
     $descriptions = $conn->query("SELECT description from movieDescription ORDER BY movieID;");
-
+    ReturnConnectionToPool($conn);
     foreach($images as $image)
     {
       if($image != '.' && $image != '..')

@@ -1,6 +1,7 @@
 <?php
 require_once "loginFunctions.php";
 require_once "function.php";
+require_once "includers/basic.php";
 
 if(isset($_POST['pickedGenre']) && (isset($_SESSION['username']) || isset($_SESSION['password'])) ){
 

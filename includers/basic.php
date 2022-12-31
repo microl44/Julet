@@ -1,9 +1,16 @@
 <?php
+//PHP GO DIE GO DIE!
+$connectionPool = array();
 
 //returns true if it exists and is not empty. Saves a bit of space I guess.
 function exists($var)
 {
   return (isset($var) && !empty($var));
+}
+
+function RunOnAllPages()
+{
+	$_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
 }
 
 //returns true if the username is either root or admin and the login is successful.
@@ -25,21 +32,6 @@ function IsAdmin()
 		}
 	}
 	return false;
-}
-
-//returns PDO connection based on the  $_SESSION variables.
-function GetConnection()
-{
-    try
-    {
-        $conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $conn;
-    }
-    catch(PDOException $e)
-    {
-        notLoggedIn();
-    }
 }
 
 //sorts arrays depending on input type. natsort and natcasesort are used to sort on ASCII value, meaning "filename2.txt" will come before "filename10.txt";
@@ -93,4 +85,76 @@ function getClientIP()
 	    $ip = "127.0.0.1";
 	}
 	return $ip;
+}
+
+//returns PDO connection based on the  $_SESSION variables.
+function GetConnection()
+{	
+	global $connectionCounter;
+    try
+    {
+        $conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $connectionCounter++;
+        echo "current number of threads in circulation" . $connectionCounter;
+        return $conn;
+    }
+    catch(PDOException $e)
+    {
+        notLoggedIn();
+    }
+}
+
+function GetConnectionFromPool()
+{
+	global $connectionPool;
+	global $connectionCounter;
+
+	if (!isset($connectionPool)) 
+	{
+		$connectionPool = array();
+	}
+
+	if(count($connectionPool) > 0)
+	{
+		#echo "CONNECTION FROM THE POOL IS USED";
+		return array_shift($connectionPool);
+	}
+	else
+	{
+		return GetConnection();
+	}
+}
+
+function ReturnConnectionToPool($connection)
+{
+	global $connectionPool;
+	$connectionPool[] = $connection;
+}
+
+function addLog($activity = 'pageview')
+{
+	if(exists($_SESSION['username']))
+	{
+		$conn = GetConnectionFromPool();
+
+		$ip = getClientIP();
+		$page_url = parse_url($_SERVER['REQUEST_URI']);
+		$path = $page_url['path'];
+		$page = basename($path);
+
+		$sql = "INSERT INTO activity_log (username, action, data) VALUES(:username, :action, :data)";
+		$stmt = $conn->prepare($sql);
+
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->bindParam(':action', $action, PDO::PARAM_STR);
+		$stmt->bindParam(':data', $data, PDO::PARAM_STR);
+
+		$username = sanitizeInput($_SESSION['username']);
+		$action = $activity;
+
+		$data = json_encode(array('page_ulr' => $page, 'ip_address' => $ip));
+		$stmt->execute();
+		ReturnConnectionToPool($conn);
+	}	
 }

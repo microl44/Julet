@@ -7,6 +7,8 @@
 	require_once "Database.php";
 	require_once "includers/header.php";
 
+	RunOnAllPages();
+	
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
 		addLog(); ?>
