@@ -99,6 +99,9 @@ END;
 
 DROP USER IF EXISTS "user"@"localhost";
 DROP USER IF EXISTS "admin"@"localhost";
+DROP USER IF EXISTS "M"@"localhost";
+DROP USER IF EXISTS "B"@"localhost";
+DROP USER IF EXISTS "L"@"localhost";
 
 call add_User("user", "");
 call add_User("admin", "password");
