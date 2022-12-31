@@ -6,11 +6,39 @@ require_once "includers/basic.php";
 require_once "Database.php";    
 require_once "includers/header.php";
 
+if(isset($_POST['url']))
+{
+    $previousPage = $_POST['url'];
+}
+else
+{
+    $previousPage = "index.php";
+}
+
 if(isset($_POST['username']))
 {
     LoginAttempt($_POST['username'],$_POST['password']);
-    header('location: ' . $_POST['url']);
+    unset($_POST['username']);
+    unset($_POST['password']);
+    header('location: ' . $previousPage);
     die();
+}
+else if (isset($_POST['user']) && isset($_POST['pass']))
+{
+    $previousPage = $_POST['URL'];
+
+    if(UserLogin($_POST['user'], $_POST['pass']))
+    {
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['user'] = $_POST['user'];
+        header('location: ' . $previousPage);
+        die();
+    }
+    else{
+        $_SESSION['login_error'] = "Wrong username or password";
+        header('location: ' . $previousPage);
+        die();
+    }
 }
 
 function LoginAttempt($username, $password)
@@ -36,6 +64,8 @@ function notLoggedIn(){
     echo "</body>";
 }
 
+
+
 function GeneratePasswordHash($password, $algorithm = "PASSWORD_DEFAULT")
 {
     if(!isset($password))
@@ -45,6 +75,28 @@ function GeneratePasswordHash($password, $algorithm = "PASSWORD_DEFAULT")
 
     $password = password_hash($password, $algorithm);
     return $password;
+}
+
+function UserLogin($username, $password)
+{
+    $conn = GetConn();
+
+    $stmt = $conn->prepare("SELECT * FROM users where username = :username AND password = :password");
+
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
+
+    $stmt->execute();
+    $results = $stmt->fetch();
+
+    if(exists($results))
+    {
+        $_SESSION['user'] = $username;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 ?>

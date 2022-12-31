@@ -3,13 +3,14 @@ if(!isset($_SESSION))
 {
 	session_start();
 }
+require_once "includers/basic.php";
 require_once "loginFunctions.php";
 
 if(isset($_SESSION['username']))
 {
     echo "<form style='height: 100%;' action='logout.php' method='POST'>";
         echo "<input class='navbarLink logoutBtn' type='submit' value='LOGOUT'/>";
-        echo "<input type='hidden' value='".$_SERVER['REQUEST_URI']."' name='url2'> </input>";
+        echo "<input type='hidden' value='".$_SERVER['REQUEST_URI']."' name='url'> </input>";
     echo "</form>";
 }
 else

@@ -102,3 +102,6 @@ DROP USER IF EXISTS "admin"@"localhost";
 
 call add_User("user", "");
 call add_User("admin", "password");
+call add_User("M", "123");
+call add_User("B", "123");
+call add_User("L", "123");
