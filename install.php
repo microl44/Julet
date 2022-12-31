@@ -19,11 +19,9 @@ require_once "includers/basic.php";
 include_once "Database.php";
 include_once "loginFunctions.php";
 
-$conn;
-
 function actualInstall(){
     try{
-        global $conn;
+        $conn = GetConn();
         $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
         
         $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
@@ -37,14 +35,7 @@ function actualInstall(){
         $stmp->closeCursor();
         addLog("Reinstalled Database");
         
-        if(!exists($_SESSION['previous_page']))
-        {
-            header($_SESSION['previous_page']);
-        }
-        else
-        {
-            header('Location: index.php');
-        }
+        header('Location: index.php');
     }
     catch(Exception $e){
         echo "<h1> ooh fuck ooh shit ooh fuck </h1>";
@@ -54,8 +45,7 @@ function actualInstall(){
 
 if(isset($_SESSION['username']) || isset($_SESSION['password']))
 {
-    global $conn;
-    $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);  
+    $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();
 }

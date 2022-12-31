@@ -7,9 +7,9 @@ require_once "includers/basic.php";
 require_once "loginFunctions.php";
 require_once "function.php";
 
-if(isset($_POST['pickedGenre']) && (isset($_SESSION['username']) || isset($_SESSION['password'])) ){
+    $conn = GetConn();
 
-    global $conn;
+if(isset($_POST['pickedGenre']) && (isset($_SESSION['username']) || isset($_SESSION['password'])) ){
     $stmt = $conn->prepare("UPDATE genre SET NextGenre = 0;");
     $stmt->execute();
     $stmt->closeCursor();
@@ -22,7 +22,6 @@ if(isset($_POST['pickedGenre']) && (isset($_SESSION['username']) || isset($_SESS
 
 if(isset($_SESSION['username']) || isset($_SESSION['password'])){
 
-    global $conn;
     $stmt = $conn->prepare("SELECT name FROM genre WHERE NextGenre = 1;");
 
     if($stmt->execute()){

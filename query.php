@@ -23,7 +23,7 @@ function InsertMovie()
 	$tempDescription = null; 
 	$count = 0;
 	try{
-		global $conn;
+		$conn = GetConn();
 		if(isset($_POST['addName']) && isset($_POST['addGenre']) && isset($_POST['addPickedBy']) && isset($_POST['addIs_major']))
 		{
 			$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';
@@ -125,18 +125,18 @@ function InsertMovie()
 
 function insertDescription($count, $description)
 {
-	global $conn;
+	$conn = GetConn();
 	$escapedDescription = addcslashes($description, '"\'');
 	$sql = "INSERT INTO movieDescription(movieID, cover_path, description)
 	VALUES(".$count.", 'C:/xampp/htdocs/Julet/Shared/Images/cover".($count-1).".png', '".$escapedDescription."' )";
 	$conn->query($sql);
-	ReturnConnectionToPool($conn);
 }
 
 function DeleteMovie()
 {
-	try{
-		global $conn;
+	try
+	{
+		$conn = GetConn();
 		$sql = "delete from participated where movieID = :id";
 		$stmp = $conn->prepare($sql);
 		$stmp->bindvalue(':id',$_POST['deleteId']);
@@ -178,7 +178,8 @@ function DeleteMovie()
 		}
 		addLog("deleted movie");
 	}
-	catch(Exception $e){
+	catch(Exception $e)
+	{
 		catchStatent();
 	}
 }

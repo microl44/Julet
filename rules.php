@@ -6,8 +6,6 @@
 	require_once "includers/basic.php";
 	require_once "includers/header.php";
 
-	RunOnAllPages();
-
 	$generalInfo = "The following is the rules of the Jul/Wheel/Christmas: A Genre-Jul is spun to determine what genre the Jul will be. Then each participant will have roughly 15 minutes to pick a movie within that genre and bring it to the wheel.";
 	$titles = array("Regular Wheel", "Reverse Wheel", "Dealers choice", "Custom Wheel", "Multi-choice Wheel", "Reverse Multi-wheels of madness");
 	$descriptions = array("This is a simple wheel. Each participant brings a single movie to the Jul, the Jul is spun and whatever movie it lands on is the winner.",
@@ -18,7 +16,7 @@
 
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
-		addLog()?>
+		addLog($conn)?>
 		<div class='content'>
 			<div class='rulesDiv'>
 				<ul class='rulesDisplay'>

@@ -8,17 +8,18 @@
   require_once "function.php";
   require_once "includers/header.php";
 
-  RunOnAllPages();
   if(isset($_SESSION['username']) || isset($_SESSION['password']))
   {
     addLog();
-    global $conn;
+    $conn = GetConn();
     
     $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
     $participants = $stmt->fetchAll();
+    $stmt->closeCursor();
 
     $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
     $genres = $stmt->fetchAll();
+    $stmt->closeCursor();
 
     echo "<div class='quoteDiv' onload='hideOnScroll()'>";
       echo "<p class='quotequote'>".$quote['Quote']."</p>";

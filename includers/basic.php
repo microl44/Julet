@@ -2,17 +2,20 @@
 if(!isset($_SESSION))
 {
 	session_start();
-}
-include_once "Database.php";
 
-if(!isset($conn) && exists($_SESSION['username'] && exists($_SESSION['password'])))
+}
+
+$conn;
+
+function GetConn()
 {
-	$conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
+	if(exists($_SESSION['username'] && exists($_SESSION['password'])))
+	{
+		$conn = new PDO("mysql:host=localhost;dbname=Jul", $_SESSION['username'], $_SESSION['password']);
+	}
+
+	return exists($conn) ? $conn : null;
 }
-
-$_SESSION['connection_pool'] = array();
-//PHP GO DIE GO DIE!
-
 //returns true if it exists and is not empty. Saves a bit of space I guess.
 function exists($var)
 {
@@ -21,9 +24,13 @@ function exists($var)
 
 function RunOnAllPages()
 {
-	if(isset($_SERVER['HTTP_REFERER']))
+	if(exists($_SESSION) && exists($_SERVER))
 	{
-		$_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
+		$page_url = parse_url($_SERVER['REQUEST_URI']);
+		$path = $page_url['path'];
+		$page = basename($path);
+		
+		$_SESSION['previous_page'] = "hejsan";
 	}
 }
 
@@ -103,7 +110,7 @@ function getClientIP()
 
 function addLog($activity = 'pageview')
 {
-	global $conn;
+	$conn = GetConn();
 	if(exists($_SESSION['username']) && exists($conn))
 	{
 

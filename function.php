@@ -52,7 +52,7 @@ function PrintMovieTable($result,$stmp){
 //I'm so sorry for this, idk what I'm doing and it's 5 in the morning oh god
 function PrintParticipantInfo($participant)
 {
-  global $conn;
+  $conn = GetConn();
 
   $stmt = $conn->query("CALL GetParticipationRate('" . $participant['name'] . "')");
   $participationRate = $stmt->fetchAll();
@@ -117,8 +117,8 @@ function PrintMovies()
 {
     $imageDir = 'C:/xampp/htdocs/Julet/Shared/Images/';
     $images = SortArray(scandir($imageDir), "NATURAL");
-    global $conn;
-    
+    $conn = GetConn();
+
     $descriptions = $conn->query("SELECT description from movieDescription ORDER BY movieID;");
 
     foreach($images as $image)

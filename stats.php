@@ -8,14 +8,12 @@
 	require_once "Database.php";
 	require_once "function.php";
 	include_once "includers/header.php";
-
-	RunOnAllPages();
 	
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
 		addLog();
 		echo "<div class='content'>";
-			global $conn;
+			$conn = GetConn();
 			$stmt = $conn->query("SELECT name FROM participant");
 			$participants = $stmt->fetchAll();
 			$stmt->closeCursor();
