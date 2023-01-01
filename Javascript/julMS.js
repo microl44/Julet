@@ -1,29 +1,40 @@
-function createWheel()
+function CreateWheel(initSections = 8, labels =["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6", "Option 7", "Option 8", "Option 9", "Option 10", "Option 11"])
 {
-  //placeholder labels until proper labeling is implemented
-  var options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6", "Option 7", "Option 8", "Option 9", "Option 10", "Option 11"];
-
   var height = 500;
   var width = 500;
   var centerX = width / 2;
   var centerY = height / 2;
-  var duration = 10;
-  var sections = 5;
+  var duration = 8  ;
+  var sections = initSections;
   var angle = 0;
 
   //7, 11 and 14 are magical numbers and as such I need to fucking multiply by 10000 and then devide by 10000. Determines the angle diff between each line for even areas.
   angle = Math.floor((360 / sections) * 10000) / 10000;
 
   //Contains the position of every label. As they're calculated to be the in-between point of two lines, and IDK how to select lines when drawn, it's a sperate array.
-  var labels = [];
+  var labelCoordinate = [];
 
   //creates the DOM element that is the wheel and sets the styling on it. As it's a MS, all styling should be within this file.
   const content = document.querySelector('.content');
+  const wheelHolder = document.createElement('div');
+  wheelHolder.style.display = "grid";
+  wheelHolder.classList.add('wheelHolder');
+  wheelHolder.setAttribute("width", "50%");
+  wheelHolder.setAttribute("height", "100%");
+  wheelHolder.style.float = "left"; 
+  wheelHolder.style.marginLeft = "40px";
+
   const canvas = document.createElement('canvas');
   canvas.classList.add('wheel');
   canvas.setAttribute("width", width);
   canvas.setAttribute("height", height);
+//  canvas.style.float = "left";
+//  canvas.style.marginLeft = "40px";
   canvas.style.borderRadius = "50%";
+  const durationInput = document.createElement('input');
+  durationInput.classList.add('wheelDuration');
+  durationInput.style.textAlign = "center";
+  durationInput.setAttribute("placeholder", "Spin duration DEFAULT (8)");
 
   //context is just the thing you use. Deal with it. Sets the width of lines drawn to 3 (1 i very small). Later set to 5 when drawing the border.
   //Counter is currently not needed (debugging console prints), or could be used to run % 2 === 0 operations when setting background color on segments.
@@ -37,7 +48,7 @@ function createWheel()
   //Warning, uses math.
   for (let i = angle; i <= 360; i += angle)
   {
-    labels.push(i + (angle / 2));
+    labelCoordinate.push(i + (angle / 2));
     console.log("Angle " + counter + ": " + Math.floor(i));
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
@@ -51,14 +62,14 @@ function createWheel()
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  //Calculate the point of where to put labels. Pretty much unique from the previous math stuff, except the "+ 200" prevents it from going all the way to the edge.
-  for(let i = 0; i < labels.length; i++)
+  //Calculate the point of where to put labels. Pretty much the same from the previous math stuff, except the "+ 200" prevents it from going all the way to the edge.
+  for(let i = 0; i < labelCoordinate.length; i++)
   {
 
-    const x = centerX + 200 * Math.cos(labels[i] / 180 * Math.PI);
-    const y = centerY + 200 * Math.sin(labels[i] / 180 * Math.PI);
+    const x = centerX + 200 * Math.cos(labelCoordinate[i] / 180 * Math.PI);
+    const y = centerY + 200 * Math.sin(labelCoordinate[i] / 180 * Math.PI);
 
-    ctx.fillText(`${options[i]}`, x, y);
+    ctx.fillText(`${labels[i]}`, x, y);
   }
 
   //Context settings to draw circle, and draws circle. The ctx.arc function uses mathy math stuff to find outer area.
@@ -74,8 +85,10 @@ function createWheel()
   //WHY THE FUCK DOESN'T JAVASCRIPT NEED SEMICOLONS?????? adds eventlistener to the button.
   //Listener finds a random number of degrees between 4000 and 6360 and spins the wheel that much, over the duration variable in seconds.
   var rotation = 0
+
   spinButton.addEventListener('click', () => 
   {
+    duration = durationInput.value;
     rotation = rotation + Math.floor(4000 + (Math.random() * 360) + (Math.random() * 2000));
     console.log(rotation);
     console.log(angle / (rotation % 360));
@@ -83,16 +96,168 @@ function createWheel()
     canvas.style.transition = `transform ${duration}s`;
     canvas.style.transform = `rotate(${rotation}deg)`;
   });
+
+  durationInput.addEventListener("keypress", function(event)
+  {
+    if(event.key === "Enter")
+    {
+      spinButton.click();
+    }
+  });
   
   //append both spin button and wheel canvas to the "content" div which is supposed to exist on every page. If attaching to body, the wheel will go under the navbar.
-  content.appendChild(canvas);
-  content.appendChild(spinButton);
+  wheelHolder.appendChild(canvas);
+  wheelHolder.appendChild(spinButton);
+  wheelHolder.appendChild(durationInput);
+
+  if(document.querySelector('.JulInputDiv'))
+  {
+    let JulInputDiv = document.querySelector('.JulInputDiv');
+    content.insertBefore(wheelHolder, JulInputDiv);
+  }
+  else
+  {
+    content.appendChild(wheelHolder);
+  }
+}
+
+function AddInputDiv()
+{
+  const content = document.querySelector('.content');
+  const inputDiv = document.createElement('div');
+  inputDiv.classList.add('JulInputDiv');
+  inputDiv.setAttribute("width", "50%");
+  inputDiv.setAttribute("height", "100%");
+  inputDiv.style.float = "left";
+  inputDiv.style.border = "3px solid";
+  inputDiv.style.padding = "20px";
+  inputDiv.style.borderRadius = "20px";
+  inputDiv.style.marginLeft = "100px";
+  const inputRow = document.createElement('div');
+  inputRow.classList.add('inputField');
+  inputRow.style.width = "500px";
+  inputRow.style.marginBottom = "5px";
+  inputRow.style.marginTop = "5px";
+  const inputBox = document.createElement('input');
+  inputBox.classList.add("inputBox");
+  inputBox.style.width = "80%";
+  inputBox.style.height = "40px";
+  inputBox.style.fontSize = "25px";
+  inputBox.style.float = "left";
+  inputBox.style.marginTop = "5px";
+  const deleteRowBtn = document.createElement('button');
+  deleteRowBtn.classList.add("deleteRowBtn");
+  deleteRowBtn.style.height = "40px";
+  deleteRowBtn.textContent = "Delete";
+  deleteRowBtn.style.padding = "0px 20px 0px 20px";
+  deleteRowBtn.style.float = "right";
+  deleteRowBtn.setAttribute("tabindex", "-1");
+  deleteRowBtn.style.marginTop = "5px";
+  const applyBtn = document.createElement('button');
+  applyBtn.classList.add('JulApplyBtn')
+  applyBtn.textContent = "Apply Changes";
+  applyBtn.style.padding = "20px 60px 20px 60px";
+  applyBtn.style.textAlign = "center";
+  applyBtn.style.float = "left";
+  applyBtn.style.marginBottom = "20px";
+
+  const addInputRowBtn = document.createElement('button');
+  addInputRowBtn.textContent = "Add Row";
+  addInputRowBtn.style.float = "right";
+  addInputRowBtn.style.padding = "20px 100px 20px 100px";
+
+  inputBoxesList = document.querySelectorAll('.inputBox');
+
+  deleteRowBtn.addEventListener('click', () =>
+  {
+    inputRow.remove();
+  });
+
+  inputBox.addEventListener("keypress", function(event)
+  {
+    if(event.key === "Enter")
+    {
+      applyBtn.click();
+    }
+  });
+
+  inputBox.addEventListener("keydown", function(event)
+  {
+    if(event.key === "Tab")
+    {
+      addInputRowBtn.click();
+    }
+  });
+
+  addInputRowBtn.addEventListener('click', () =>
+  {
+    var node = inputRow.cloneNode(true);
+    node.querySelector('.inputBox').value = "";
+
+    node.querySelector('.inputBox').addEventListener("keydown", function(event)
+    {
+      if(event.key === "Tab")
+      {
+        addInputRowBtn.click();
+      }
+    });
+
+    node.querySelector('.inputBox').addEventListener("keypress", function(event)
+    {
+    if(event.key === "Enter")
+    {
+      applyBtn.click();
+    }
+    });
+
+    node.querySelector('.deleteRowBtn').addEventListener('click', () =>
+    {
+      node.remove();
+    });
+
+    inputDiv.appendChild(node);
+  });
+
+  applyBtn.addEventListener('click', () =>
+  {
+    UpdateWheel();
+  });
+
+  inputDiv.appendChild(applyBtn);
+  inputDiv.appendChild(addInputRowBtn);
+  inputRow.appendChild(inputBox);
+  inputRow.appendChild(deleteRowBtn);
+  inputDiv.appendChild(inputRow);
+
+  content.appendChild(inputDiv);
+}
+
+function UpdateWheel()
+{
+  labels = [];
+  let sections = document.querySelectorAll('.inputBox');
+  console.log(sections.length);
+  for (var i = 0; i < sections.length; i++) 
+  {
+    if(sections[i].value == "")
+    {
+      labels[i] = "UNK";
+    }
+    else
+    {
+      labels[i] = sections[i].value;
+    }
+  }
+  const content = document.querySelector('.wheelHolder');
+  content.remove();
+  CreateWheel(sections.length, labels);
 }
 
 //lmao if the full path URL contains "jul.php" run this code. Lmaooo this is shit but fuck it, it works.
 if (window.location.pathname.includes("jul.php")) 
 {
-  createWheel();
+  CreateWheel(5);
+  AddInputDiv();
 }
 
 console.log("IHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPT");
