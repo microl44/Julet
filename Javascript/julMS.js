@@ -1,4 +1,4 @@
-function CreateWheel(initSections = 8, labels =["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6", "Option 7", "Option 8", "Option 9", "Option 10", "Option 11"])
+function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK"])
 {
   var height = 500;
   var width = 500;
@@ -221,6 +221,7 @@ function AddInputDiv()
       else if(event.key === "Escape")
       {
         node.querySelector('.deleteRowBtn').click();
+        applyBtn.click();
       }
     });
 
@@ -239,6 +240,7 @@ function AddInputDiv()
     });
 
     inputDiv.appendChild(node);
+    applyBtn.click();
   });
 
   applyBtn.addEventListener('click', () =>
@@ -276,11 +278,31 @@ function UpdateWheel()
   CreateWheel(sections.length, labels);
 }
 
+function PrintDescription()
+{
+  const content = document.querySelector('.content');
+  const instructionDiv = document.createElement('div');
+  instructionDiv.style.width = "20%";
+  instructionDiv.style.float = "left";
+  instructionDiv.style.marginLeft = "50px";
+  instructionDiv.style.textAlign = "left";
+  instructionDiv.textContent =
+  "Here's how to use the Wheel. You start by typing something into the input box to the left." +
+  "Then you can use the Add Row to create a new row and update the wheel. You can also press the Delete button to remove the box and update the wheel." + 
+  "You can also use Tab to create a new row, and then select the next box. In the same way you can use the Escape button instead of the graphical Delete button to remove and update the wheel" +
+  "Once you've determined all the inputs you will need, you can input a number into the input field under the wheel which determines how many seconds the wheel will spin for." +
+  "To spin the wheel you can either press enter when selecting the spin-duration selection box, or you can click the spin button.";
+
+  content.appendChild(instructionDiv);
+
+}
+
 //lmao if the full path URL contains "jul.php" run this code. Lmaooo this is shit but fuck it, it works.
 if (window.location.pathname.includes("jul.php")) 
-{
-  CreateWheel(5);
+{ 
+  CreateWheel(3);
   AddInputDiv();
+  PrintDescription();
 }
 
 console.log("IHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPT");
