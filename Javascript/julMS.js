@@ -131,6 +131,22 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   }
 }
 
+function AddWinnerMark()
+{
+  const content = document.querySelector('.content');
+  const winnerMark = document.createElement('div');
+  winnerMark.style.position = "absolute";
+  winnerMark.style.marginTop = "-10px";
+  winnerMark.style.marginLeft = "285px";
+  winnerMark.style.zIndex = "2000";
+  winnerMark.style.border = "1px black solid";
+  winnerMark.style.borderLeft = "5px solid transparent";
+  winnerMark.style.borderRight = "5px solid transparent";
+  winnerMark.style.borderTop = "80px solid red";
+
+  content.appendChild(winnerMark);
+}
+
 function AddInputDiv()
 {
   const content = document.querySelector('.content');
@@ -294,13 +310,13 @@ function PrintDescription()
   "To spin the wheel you can either press enter when selecting the spin-duration selection box, or you can click the spin button.";
 
   content.appendChild(instructionDiv);
-
 }
 
 //lmao if the full path URL contains "jul.php" run this code. Lmaooo this is shit but fuck it, it works.
 if (window.location.pathname.includes("jul.php")) 
 { 
   CreateWheel(3);
+  AddWinnerMark();
   AddInputDiv();
   PrintDescription();
 }
