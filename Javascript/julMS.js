@@ -4,7 +4,7 @@ function CreateWheel(initSections = 8, labels =["Option 1", "Option 2", "Option 
   var width = 500;
   var centerX = width / 2;
   var centerY = height / 2;
-  var duration = 8  ;
+  var duration = 8;
   var sections = initSections;
   var angle = 0;
 
@@ -62,21 +62,19 @@ function CreateWheel(initSections = 8, labels =["Option 1", "Option 2", "Option 
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  //Calculate the point of where to put labels. Pretty much the same from the previous math stuff, except the "+ 200" prevents it from going all the way to the edge.
-  for(let i = 0; i < labelCoordinate.length; i++)
-  {
-
-    const x = centerX + 200 * Math.cos(labelCoordinate[i] / 180 * Math.PI);
-    const y = centerY + 200 * Math.sin(labelCoordinate[i] / 180 * Math.PI);
-
-    ctx.fillText(`${labels[i]}`, x, y);
-  }
-
   //Context settings to draw circle, and draws circle. The ctx.arc function uses mathy math stuff to find outer area.
   ctx.lineWidth = 5;
   ctx.beginPath();
   ctx.arc(250, 250, 250, 0, 2 * Math.PI);
   ctx.stroke();
+
+  //Calculate the point of where to put labels. Pretty much the same from the previous math stuff, except the "+ 200" prevents it from going all the way to the edge.
+  for(let i = 0; i < labelCoordinate.length; i++)
+  {
+    const x = centerX + 200 * Math.cos(labelCoordinate[i] / 180 * Math.PI);
+    const y = centerY + 200 * Math.sin(labelCoordinate[i] / 180 * Math.PI);
+    ctx.fillText(`${labels[i]}`, x, y);
+  }
 
   //creates the spin button DOM element.
   const spinButton = document.createElement('button');
@@ -88,13 +86,25 @@ function CreateWheel(initSections = 8, labels =["Option 1", "Option 2", "Option 
 
   spinButton.addEventListener('click', () => 
   {
-    duration = durationInput.value;
+    console.log("button clicked");
+    if(!isNaN(parseInt(durationInput.value)))
+    {
+      duration = durationInput.value;
+      console.log("duration of: " + duration);
+    }
+    else
+    {
+      duration = 8;
+      console.log("not a number used as duration. Default value of 8 is used.");
+    }
+
     rotation = rotation + Math.floor(4000 + (Math.random() * 360) + (Math.random() * 2000));
     console.log(rotation);
     console.log(angle / (rotation % 360));
 
     canvas.style.transition = `transform ${duration}s`;
     canvas.style.transform = `rotate(${rotation}deg)`;
+    duration = 8;
   });
 
   durationInput.addEventListener("keypress", function(event)
@@ -171,6 +181,7 @@ function AddInputDiv()
   deleteRowBtn.addEventListener('click', () =>
   {
     inputRow.remove();
+    applyBtn.click();
   });
 
   inputBox.addEventListener("keypress", function(event)
@@ -186,6 +197,12 @@ function AddInputDiv()
     if(event.key === "Tab")
     {
       addInputRowBtn.click();
+      applyBtn.click();
+    }
+    else if(event.key === "Escape")
+    {
+      deleteRowBtn.click();
+      applyBtn.click();
     }
   });
 
@@ -199,20 +216,26 @@ function AddInputDiv()
       if(event.key === "Tab")
       {
         addInputRowBtn.click();
+        applyBtn.click();
+      }
+      else if(event.key === "Escape")
+      {
+        node.querySelector('.deleteRowBtn').click();
       }
     });
 
     node.querySelector('.inputBox').addEventListener("keypress", function(event)
     {
-    if(event.key === "Enter")
-    {
-      applyBtn.click();
-    }
+      if(event.key === "Enter")
+      {
+        applyBtn.click();
+      }
     });
 
     node.querySelector('.deleteRowBtn').addEventListener('click', () =>
     {
       node.remove();
+      applyBtn.click();
     });
 
     inputDiv.appendChild(node);
