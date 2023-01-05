@@ -140,13 +140,17 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
       console.log("not a number used as duration. Default value of 8 is used.");
     }
 
-    if(duration > 12)
+    if(duration > 12 && duration <= 20)
     {
-      rotation = rotation + Math.floor(8000 + (Math.random() * 360) + (Math.random() * 2000));
+      rotation = rotation + Math.floor(12000 + (Math.random() * 360) + (Math.random() * 2000));
+    }
+    else if (duration > 20)
+    {
+      rotation = rotation + Math.floor(20000 + (Math.random() * 360) + (Math.random() * 2000));
     }
     else
     {
-      rotation = rotation + Math.floor(4000 + (Math.random() * 360) + (Math.random() * 2000));
+      rotation = rotation + Math.floor(2000 + (Math.random() * 360) + (Math.random() * 2000));
     }
 
     if(rotation % Math.floor(angle) === 0)
