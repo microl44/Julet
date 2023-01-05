@@ -1,3 +1,6 @@
+Now has biblically accurate angels.
+![image](https://user-images.githubusercontent.com/71311176/210680435-0c2739ec-6a2b-4bb7-8113-8ecadfca4d10.png)
+
 # Julet
 Website visualizing data from my watched movies, brought forward by julet.
 
