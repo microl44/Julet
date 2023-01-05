@@ -46,6 +46,8 @@ function LoginAttempt($username, $password)
     try
     {
         $conn = new PDO(getConnectionString(),$username,$password);
+        setcookie('username', $username, time() + 2592000);
+        setcookie('password', $password, time() + 2592000);
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
         addLog("Logged In");

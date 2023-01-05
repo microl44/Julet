@@ -73,7 +73,6 @@ function PrintParticipantInfo($participant)
   echo "<div class='gridItem'>";
   echo "<h2 class='gridItemTitle'>" . $participant['name'] . "</h3>";
   echo "<div class='gridItemContent'>";
-
     //                  WTF is this????
     echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%";
     if(exists($winrate['0']['Winrate']))

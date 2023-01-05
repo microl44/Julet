@@ -6,6 +6,11 @@ if(!isset($_SESSION))
 require_once "includers/basic.php";
 require_once "loginFunctions.php";
 
+if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
+{
+    LoginAttempt($_COOKIE['username'], $_COOKIE['password']);
+}
+
 if(isset($_SESSION['username']))
 {
     echo "<form style='height: 100%;' action='logout.php' method='POST'>";

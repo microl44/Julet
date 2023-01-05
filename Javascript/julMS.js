@@ -40,7 +40,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //Counter is currently not needed (debugging console prints), or could be used to run % 2 === 0 operations when setting background color on segments.
   var ctx = canvas.getContext("2d");
   ctx.lineWidth = 3;
-  var counter = 1;
+  var counter = 0;
 
   //itterates up from 0, in intervalls equalling the angle variable, until it reaches 360, meaning it completed a full lap.
   //ctx.beginPath to begin drawing, ctx.moveTo to determine the first point, then lineTo for destination. Finally ctx.stroke to draw. Multiple lineTo can be chained.
@@ -48,32 +48,74 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //Warning, uses math.
   for (let i = angle; i <= 360; i += angle)
   {
+    if(counter % 2 == 0)
+    {
+      ctx.fillStyle = "#fecd00 ";
+    }
+    else
+    {
+      ctx.fillStyle = "#004Bff";
+    }
+    ctx.strokeStyle = "black";
     labelCoordinate.push(i + (angle / 2));
-    console.log("Angle " + counter + ": " + Math.floor(i));
+    //console.log("Angle " + counter + ": " + Math.floor(i));
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.lineTo(centerX + 250 * Math.cos(i / 180 * Math.PI), centerY + 250 * Math.sin(i / 180 * Math.PI));
+    ctx.moveTo(centerX, centerY);
+    radiostuffStart = i * (Math.PI / 180);
+    radiostuffEnd = (2 * Math.PI) / sections;
+    ctx.arc(250, 250, 250, radiostuffStart, radiostuffStart + radiostuffEnd, false);
+    ctx.lineTo(250, 250);
+    ctx.fill();
     ctx.stroke();
     counter += 1;
   }
 
   //Context settings to prepare for writing labels.
-  ctx.font = '20px Arial';
-  ctx.textAlign = 'center';
+  ctx.font = '28px Arial';
+  ctx.textAlign = "left";
   ctx.textBaseline = 'middle';
+  ctx.fillStyle = "black";
 
   //Context settings to draw circle, and draws circle. The ctx.arc function uses mathy math stuff to find outer area.
-  ctx.lineWidth = 5;
-  ctx.beginPath();
-  ctx.arc(250, 250, 250, 0, 2 * Math.PI);
-  ctx.stroke();
+  //ctx.lineWidth = 5;
+  //ctx.beginPath();
+  //ctx.arc(250, 250, 250, 0, 2 * Math.PI);
+  //ctx.stroke();
 
   //Calculate the point of where to put labels. Pretty much the same from the previous math stuff, except the "+ 200" prevents it from going all the way to the edge.
   for(let i = 0; i < labelCoordinate.length; i++)
   {
-    const x = centerX + 200 * Math.cos(labelCoordinate[i] / 180 * Math.PI);
-    const y = centerY + 200 * Math.sin(labelCoordinate[i] / 180 * Math.PI);
-    ctx.fillText(`${labels[i]}`, x, y);
+    ctx.save();
+    //console.log(ctx);
+    if(labels[i].length > 10)
+    {
+      //console.log(labels[i].length);
+      ctx.font = '20 Arial';
+      if(labels[i].length > 15)
+      {
+        ctx.font = '18px Arial';
+        if(labels[i].length > 20)
+        {
+          ctx.font = '16px Arial';
+          if(labels[i].length > 30)
+          {
+            ctx.font = '12px Arial';
+          }
+        }
+      }
+    }
+    //ctx.rotate(labelCoordinate[i] * (Math.PI / 180));
+    const x = centerX + 50 * Math.cos(labelCoordinate[i] / 180 * Math.PI);
+    const y = centerY + 50 * Math.sin(labelCoordinate[i] / 180 * Math.PI);
+    ctx.translate(x, y);
+    ctx.rotate(labelCoordinate[i] * (Math.PI / 180));
+    ctx.fillText(`${labels[i]}`, 0, 0);
+    ctx.translate(-x, -y);
+    ctx.font = '16px Arial';
+
+    ctx.restore();
   }
 
   //creates the spin button DOM element.
@@ -98,7 +140,20 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
       console.log("not a number used as duration. Default value of 8 is used.");
     }
 
-    rotation = rotation + Math.floor(4000 + (Math.random() * 360) + (Math.random() * 2000));
+    if(duration > 12)
+    {
+      rotation = rotation + Math.floor(8000 + (Math.random() * 360) + (Math.random() * 2000));
+    }
+    else
+    {
+      rotation = rotation + Math.floor(4000 + (Math.random() * 360) + (Math.random() * 2000));
+    }
+
+    if(rotation % Math.floor(angle) === 0)
+    {
+      rotation = rotation + 2;
+      console.log("that was a close one!");
+    }
     console.log(rotation);
     console.log(angle / (rotation % 360));
 
@@ -136,13 +191,13 @@ function AddWinnerMark()
   const content = document.querySelector('.content');
   const winnerMark = document.createElement('div');
   winnerMark.style.position = "absolute";
-  winnerMark.style.marginTop = "-10px";
+  winnerMark.style.marginTop = "-30px";
   winnerMark.style.marginLeft = "285px";
-  winnerMark.style.zIndex = "2000";
+  winnerMark.style.zIndex = "800";
   winnerMark.style.border = "1px black solid";
   winnerMark.style.borderLeft = "5px solid transparent";
   winnerMark.style.borderRight = "5px solid transparent";
-  winnerMark.style.borderTop = "80px solid red";
+  winnerMark.style.borderTop = "40px solid red";
 
   content.appendChild(winnerMark);
 }
@@ -277,7 +332,6 @@ function UpdateWheel()
 {
   labels = [];
   let sections = document.querySelectorAll('.inputBox');
-  console.log(sections.length);
   for (var i = 0; i < sections.length; i++) 
   {
     if(sections[i].value == "")
@@ -315,7 +369,7 @@ function PrintDescription()
 //lmao if the full path URL contains "jul.php" run this code. Lmaooo this is shit but fuck it, it works.
 if (window.location.pathname.includes("jul.php")) 
 { 
-  CreateWheel(3);
+  CreateWheel(8);
   AddWinnerMark();
   AddInputDiv();
   PrintDescription();

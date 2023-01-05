@@ -116,6 +116,10 @@ function addLog($activity = 'pageview')
 		$ip = getClientIP();
 		$page_url = parse_url($_SERVER['REQUEST_URI']);
 		$path = $page_url['path'];
+		if($path === "julet")
+		{
+			$path = "index.php";
+		}
 		$page = basename($path);
 
 		$sql = "INSERT INTO activity_log (username, action, data) VALUES(:username, :action, :data)";

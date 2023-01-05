@@ -8,9 +8,21 @@ require_once "function.php";
 $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!",
 "En ännu mer spännande undertitel!", "Wheel 2, Electric Bogaloo");
 
+$colorScheme = "light";
+
 $quote=giveRandomQuote();
 ?>
 <script src='Javascript/functions.js'></script>
+<?php
+	if(isset($_COOKIE['darkMode']))
+	{
+		echo "<link type=\"text/css\" href=\"Shared/styleDark.css\" rel=\"stylesheet\">";
+	}
+	else
+	{
+		echo "<link type=\"text/css\" href=\"Shared/style.css\" rel=\"stylesheet\">";
+	}
+?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">
 <head>
 	<link rel="shortcut icon" href="Shared/icons/tree2.png">
