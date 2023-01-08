@@ -46,6 +46,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //ctx.beginPath to begin drawing, ctx.moveTo to determine the first point, then lineTo for destination. Finally ctx.stroke to draw. Multiple lineTo can be chained.
   //also pushes the angle of each label in the "label" array
   //Warning, uses math.
+  ctx.save();
   for (let i = angle; i <= 360; i += angle)
   {
     if(counter % 2 == 0)
@@ -57,11 +58,12 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
       ctx.fillStyle = "#004Bff";
     }
     ctx.strokeStyle = "black";
-    labelCoordinate.push(i + (angle / 2));
-    //console.log("Angle " + counter + ": " + Math.floor(i));
+    labelCoordinate.push(i - (angle / 2));
+    console.log("Angle " + counter + ": " + Math.floor(i));
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.lineTo(centerX + 250 * Math.cos(i / 180 * Math.PI), centerY + 250 * Math.sin(i / 180 * Math.PI));
+    console.log()
     ctx.moveTo(centerX, centerY);
     radiostuffStart = i * (Math.PI / 180);
     radiostuffEnd = (2 * Math.PI) / sections;
@@ -71,7 +73,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     ctx.stroke();
     counter += 1;
   }
-
+  ctx.restore();
   //Context settings to prepare for writing labels.
   ctx.font = '28px Arial';
   ctx.textAlign = "left";
@@ -150,7 +152,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     }
     else
     {
-      rotation = rotation + Math.floor(2000 + (Math.random() * 360) + (Math.random() * 2000));
+      rotation = rotation + Math.floor(4000 + (Math.random() * 360) + (Math.random() * 2000));
     }
 
     if(rotation % Math.floor(angle) === 0)
@@ -174,6 +176,27 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     }
   });
   
+  canvas.addEventListener('transitionend', () =>
+  {
+    var largest = labelCoordinate[0];
+    for(var i = 0; i < labelCoordinate.length; i++)
+    {
+      if(largest < labelCoordinate[i])
+      {
+        largest = labelCoordinate[i];
+      }
+    }
+    tempStuff = Array.from(labelCoordinate);
+    curr = labelCoordinate[0]
+    let closest = tempStuff.sort( (a, b) => Math.abs(((rotation + angle) % 360) - a) - Math.abs(((rotation + angle) % 360) - b) )[0];
+    console.log(labelCoordinate);
+    console.log(labels);
+    console.log("raw angle: " + ((rotation + angle) % 360));
+    console.log("closest: " + closest);
+    console.log("index: " + labelCoordinate.indexOf(closest));
+    console.log("label: " + labels[labelCoordinate.indexOf(closest)]);
+  });
+
   //append both spin button and wheel canvas to the "content" div which is supposed to exist on every page. If attaching to body, the wheel will go under the navbar.
   wheelHolder.appendChild(canvas);
   wheelHolder.appendChild(spinButton);
