@@ -16,11 +16,11 @@ $quote=giveRandomQuote();
 <?php
 	if(isset($_COOKIE['darkMode']))
 	{
-		echo "<link type=\"text/css\" href=\"Shared/styleDark.css\" rel=\"stylesheet\">";
+		//echo "<link type=\"text/css\" href=\"Shared/styleDark.css\" rel=\"stylesheet\">";
 	}
 	else
 	{
-		echo "<link type=\"text/css\" href=\"Shared/style.css\" rel=\"stylesheet\">";
+		//echo "<link type=\"text/css\" href=\"Shared/style.css\" rel=\"stylesheet\">";
 	}
 ?>
 <link type="text/css" href="Shared/style.css" rel="stylesheet">

@@ -16,6 +16,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
 
   //creates the DOM element that is the wheel and sets the styling on it. As it's a MS, all styling should be within this file.
   const content = document.querySelector('.content');
+
   const wheelHolder = document.createElement('div');
   wheelHolder.style.display = "grid";
   wheelHolder.classList.add('wheelHolder');
@@ -28,9 +29,8 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   canvas.classList.add('wheel');
   canvas.setAttribute("width", width);
   canvas.setAttribute("height", height);
-//  canvas.style.float = "left";
-//  canvas.style.marginLeft = "40px";
   canvas.style.borderRadius = "50%";
+
   const durationInput = document.createElement('input');
   durationInput.classList.add('wheelDuration');
   durationInput.style.textAlign = "center";
@@ -49,9 +49,10 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   ctx.save();
   for (let i = angle; i <= 360; i += angle)
   {
+    ctx.save();
     if(counter % 2 == 0)
     {
-      ctx.fillStyle = "#fecd00 ";
+      ctx.fillStyle = "#fecd00";
     }
     else
     {
@@ -63,7 +64,6 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.lineTo(centerX + 250 * Math.cos(i / 180 * Math.PI), centerY + 250 * Math.sin(i / 180 * Math.PI));
-    console.log()
     ctx.moveTo(centerX, centerY);
     radiostuffStart = i * (Math.PI / 180);
     radiostuffEnd = (2 * Math.PI) / sections;
@@ -72,8 +72,8 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     ctx.fill();
     ctx.stroke();
     counter += 1;
+    ctx.restore();
   }
-  ctx.restore();
   //Context settings to prepare for writing labels.
   ctx.font = '28px Arial';
   ctx.textAlign = "left";
@@ -116,7 +116,8 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     ctx.fillText(`${labels[i]}`, 0, 0);
     ctx.translate(-x, -y);
     ctx.font = '16px Arial';
-
+    console.log("LabelCoordinate[i]: " + labelCoordinate[i]);
+    console.log(labelCoordinate[i] + " " + labels[i]);
     ctx.restore();
   }
 
@@ -126,7 +127,8 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
 
   //WHY THE FUCK DOESN'T JAVASCRIPT NEED SEMICOLONS?????? adds eventlistener to the button.
   //Listener finds a random number of degrees between 4000 and 6360 and spins the wheel that much, over the duration variable in seconds.
-  var rotation = 0
+  var rotation = 0;
+
 
   spinButton.addEventListener('click', () => 
   {
@@ -196,6 +198,8 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     console.log("index: " + labelCoordinate.indexOf(closest));
     console.log("label: " + labels[labelCoordinate.indexOf(closest)]);
   });
+
+  console.log(canvas);
 
   //append both spin button and wheel canvas to the "content" div which is supposed to exist on every page. If attaching to body, the wheel will go under the navbar.
   wheelHolder.appendChild(canvas);
@@ -370,6 +374,7 @@ function UpdateWheel()
       labels[i] = sections[i].value;
     }
   }
+  console.log(labels);
   const content = document.querySelector('.wheelHolder');
   content.remove();
   CreateWheel(sections.length, labels);

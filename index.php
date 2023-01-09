@@ -8,6 +8,7 @@
   require_once "function.php";
   require_once "includers/header.php";
 
+
   if(isset($_SESSION['username']) || isset($_SESSION['password']))
   {
     addLog();
@@ -26,7 +27,12 @@
       echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";
     echo "</div>";
     ?>
-  
+    <script>
+      function temp(element)
+      {
+        window.open(element.getAttribute("data-value"), '_blank');
+      }
+    </script>
       <div class='content'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
@@ -126,7 +132,7 @@
             PrintMovieTable($result,$stmp);
           }
         ?>
-      </div>
+        </div>
         <!----------DISPLAY TABLE SECTION END---------->
         
         <!----------INSERT NEW MOVIE FORM START---------->
@@ -173,6 +179,160 @@
             </form>
         </div>
         <!----------INSERT NEW MOVIE FORM END---------->
+
+        <!----------GENRE GRID BEGIN---------->
+        <div id="gridBackgroundDiv">
+          <h1> Genre Links </h1>
+          <div class = "genreSection">
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-action" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=action&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> ACTION </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-adventure" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=adventure&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> ADVENTURE </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-animation" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=animation&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> ANIMATION </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-biography" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=biography&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> BIOGRAPHY </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-comedy" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=comedy&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> COMEDY </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-crime" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=crime&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> CRIME </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-drama" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=drama&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> DRAMA </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-family" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=family&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> FAMILY </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-fantasy" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=fantasy&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> FANTASY </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-history" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=history&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> HISTORY </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-horror" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=horror&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> HORROR </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-musical" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=musical&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> MUSICAL </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-mystery" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=mystery&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> MYSTERY </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-romance" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=romance&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> ROMANCE </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-sciencefiction" data-value="https://www.imdb.com/search/title/?genres=sci-fi&sort=num_votes,desc&explore=title_type,genres">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> SCIENCE-FICTION </p>
+                </div>
+              </div>
+            </div>
+          <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-sport" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=sport&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> SPORT </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-superhero" data-value="https://www.imdb.com/search/keyword/?keywords=superhero&sort=num_votes,desc&mode=detail&page=1&title_type=movie&ref_=kw_ref_typ">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> SUPERHERO </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-thriller" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=thriller&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> THRILLER </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-war" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=war&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> WAR </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-western" data-value="https://www.imdb.com/search/title/?title_type=feature&genres=western&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> WESTERN </p>
+                </div>
+              </div>
+            </div>
+            <div onclick="temp(this)" class = "genreDiv" id = "genreDiv-wildcard" data-value="https://www.imdb.com/search/title/?title_type=feature&sort=num_votes,desc&explore=genresgi">
+              <div class = "imageFilter">
+                <div class = "genreBubbleTextDiv">
+                  <p class="genreHeader"> WILDCARD </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <?php include_once "includers/footer.php"; 
       ?>

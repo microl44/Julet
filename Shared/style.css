@@ -1,16 +1,15 @@
 html, body{
 	width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth; 
 }
 
 body{
-	background: radial-gradient(circle at 100% 100%, #5397EE 0%, #9CC5E0 0%, #BAC3E8 50%);
+	background: linear-gradient(#5397EE 0%, #9CC5E0 0%, #BAC3E8 28%, rgba(0,0,0,0.2) 31%, rgba(0,0,0,0.4) 33%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.7) 38%);
+	background-repeat: no-repeat;
 	min-width: 680px;
 	width: 100%;
-	height: 100%;
 	font-family: Arial;
 }
 
@@ -573,4 +572,214 @@ footer{
 	font-size: 20px; 
 	margin-top: -20px;
 	transform: rotate(20deg);
+}
+
+@keyframes fadeInBackground{
+	to{
+		background-color: var(--bg);
+	}
+}
+
+@keyframes slideInContent{
+	to{
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}
+
+#gridBackgroundDiv{
+	font-size: 	60px;
+	padding-top: 200px;
+	width: 	100%;
+	text-align: center;
+	align-content: center;
+}
+#gridBackgroundDiv h1{
+
+}
+
+.genreSection{
+	padding-left: 13%;
+	padding-top: 0px;
+	display: grid;
+	width: 80%;
+	grid-template-columns: 500px 500px 500px;
+	grid-auto-rows: 500px;
+	color: black;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+
+#genreDiv-action{
+	background: url('../Shared/Backgrounds/action.jpg');
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: absolute;
+}
+
+#genreDiv-adventure{
+	background: url('../Shared/Backgrounds/adventure.jpg');
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#genreDiv-animation{
+	background: url('../Shared/Backgrounds/animation.jpg');
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#genreDiv-biography{
+	background: url('../Shared/Backgrounds/biography.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-comedy{
+	background: url('../Shared/Backgrounds/comedy.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-crime{
+	background: url('../Shared/Backgrounds/crime.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-drama{
+	background: url('../Shared/Backgrounds/drama.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-family{
+	background: url('../Shared/Backgrounds/family.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-fantasy{
+	background: url('../Shared/Backgrounds/fantasy.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-history{
+	background: url('../Shared/Backgrounds/history.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-horror{
+	background: url('../Shared/Backgrounds/horror.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-musical{
+	background: url('../Shared/Backgrounds/musical.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+#genreDiv-mystery{
+	background: url('../Shared/Backgrounds/mystery.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-romance{
+	background: url('../Shared/Backgrounds/romance.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-sciencefiction{
+	background: url('../Shared/Backgrounds/sciencefiction.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-sport{
+	background: url('../Shared/Backgrounds/sport.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-superhero{
+	background: url('../Shared/Backgrounds/superhero.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-thriller{
+	background: url('../Shared/Backgrounds/thriller.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-war{
+	background: url('../Shared/Backgrounds/war.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-western{
+	background: url('../Shared/Backgrounds/western.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+#genreDiv-wildcard{
+	background: url('../Shared/Backgrounds/wildcard.jpg');
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.genreDiv{s
+	box-shadow:inset 0px 0px 20px 10px black;
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.imageFilter{
+	box-shadow: 2px 2px 0px 2px black;
+	border-radius: 50%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(0deg, #00000088 10%, #fffff444 90%);
+}
+
+.genreBubbleTextDiv{
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.genreHeader{
+	font-size: 50px;
+	font-family: sans-serif;
+	font-weight: bolder;
+	padding:0;
+	margin: 0;
+	padding-top: 45%;
 }
