@@ -16,6 +16,7 @@ else if(exists($_POST['deleteId']))
 {
 	DeleteMovie();
 }
+
 header('Location: index.php');
 
 function InsertMovie()
@@ -119,7 +120,7 @@ function InsertMovie()
 		}
 	}
 	catch (Exception $e){
-		catchStatent();
+		print_r($e);
 	}
 }
 
@@ -180,6 +181,6 @@ function DeleteMovie()
 	}
 	catch(Exception $e)
 	{
-		catchStatent();
+		print_r($e);
 	}
 }

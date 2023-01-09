@@ -33,7 +33,7 @@
         window.open(element.getAttribute("data-value"), '_blank');
       }
     </script>
-      <div class='content'>
+      <div class='content indexContent'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
           <h3> FILTER TABLE </h3>
