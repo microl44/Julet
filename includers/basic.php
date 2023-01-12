@@ -110,9 +110,8 @@ function getClientIP()
 function addLog($activity = 'pageview')
 {
 	$conn = GetConn();
-	if(exists($_SESSION['username']) && exists($conn))
+	if(isset($_SESSION) && isset($_SESSION['username']) && isset($conn))
 	{
-
 		$ip = getClientIP();
 		$page_url = parse_url($_SERVER['REQUEST_URI']);
 		$path = $page_url['path'];

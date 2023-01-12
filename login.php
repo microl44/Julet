@@ -6,7 +6,7 @@ if(!isset($_SESSION))
 require_once "includers/basic.php";
 require_once "loginFunctions.php";
 
-if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
+if(isset($_COOKIE['username']) && isset($_COOKIE['password']) && isset($_COOKIE['ShouldBeLoggedIn']) && $_COOKIE['ShouldBeLoggedIn'])
 {
     LoginAttempt($_COOKIE['username'], $_COOKIE['password']);
 }

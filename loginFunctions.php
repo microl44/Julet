@@ -18,11 +18,16 @@ else
 if(isset($_POST['username']))
 {
     LoginAttempt($_POST['username'],$_POST['password']);
+
     unset($_POST['username']);
     unset($_POST['password']);
+
+    addLog("Logged In");
+    
     header('location: ' . $previousPage);
     die();
 }
+
 else if (isset($_POST['user']) && isset($_POST['pass']))
 {
     $previousPage = $_POST['URL'];
@@ -46,11 +51,18 @@ function LoginAttempt($username, $password)
     try
     {
         $conn = new PDO(getConnectionString(),$username,$password);
+
         setcookie('username', $username, time() + 2592000);
         setcookie('password', $password, time() + 2592000);
+        setcookie('ShouldBeLoggedIn', true, time() + 2592000);
+
+        if(!isset($_SESSION['SessionStarted']))
+        {
+            addLog("Started Session");
+            $_SESSION['SessionStarted'] = true;
+        }
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
-        addLog("Logged In");
         return true;
     }
     catch(Exception $e){

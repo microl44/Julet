@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   if(!isset($_SESSION))
   {
@@ -37,7 +36,7 @@
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
           <h3> FILTER TABLE </h3>
-          <img src='Shared/Icons/ChristmasSpirit.png' style='position: absolute;transform: scaleX(-1); z-index: 999; margin-left: -59%;px;margin-top: 150px;width: 50px; height: 50px'>
+          <!-- <img src='Shared/Icons/ChristmasSpirit.png' style='position: absolute;transform: scaleX(-1); z-index: 999; margin-left: -59%;px;margin-top: 150px;width: 50px; height: 50px'> -->
           <form action='index.php' method='POST'>
             <label for='input'>Search by winner: </label>
               <select class='filterLabel' name='searchByWinner'> 
