@@ -433,9 +433,10 @@ footer{
     background-color: #BAC3E8;
     border-radius: 5px;
 	box-shadow: 5px 5px 5px #3B7DD5;
+	overflow-y: auto;
+	display:flex;
 }
 .movieCoverHolder img{
-	float: left;
 	margin-right: 4%;
 	box-shadow: 3px 3px 2px #3B7DD5;
 	border-radius: 10px;
@@ -443,16 +444,14 @@ footer{
 }
 
 .movieTitleHolder{
+	font-family: Arial;
 	display: inline;
-	vertical-align: top;
-	padding-top: 20px;
 	font-size: 16px;
-	line-height: 28px;
+	line-height: 22px;
 }
 
 .movieTitleHolder p{
 	width: 100%;
-	margin-right: 400px;
 }
 
 .moviePageWrapper{

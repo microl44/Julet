@@ -1,9 +1,10 @@
 function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK"])
 {
-  var height = 500;
-  var width = 500;
+  var height = 1000;
+  var width = 1000;
   var centerX = width / 2;
   var centerY = height / 2;
+  var radius = height / 2;
   var duration = 8;
   var sections = initSections;
   var angle = 0;
@@ -63,12 +64,12 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     console.log("Angle " + counter + ": " + Math.floor(i));
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
-    ctx.lineTo(centerX + 250 * Math.cos(i / 180 * Math.PI), centerY + 250 * Math.sin(i / 180 * Math.PI));
+    ctx.lineTo(centerX + radius * Math.cos(i / 180 * Math.PI), centerY + radius * Math.sin(i / 180 * Math.PI));
     ctx.moveTo(centerX, centerY);
     radiostuffStart = i * (Math.PI / 180);
     radiostuffEnd = (2 * Math.PI) / sections;
-    ctx.arc(250, 250, 250, radiostuffStart, radiostuffStart + radiostuffEnd, false);
-    ctx.lineTo(250, 250);
+    ctx.arc(radius, radius, radius, radiostuffStart, radiostuffStart + radiostuffEnd, false);
+    ctx.lineTo(centerX, centerY);
     ctx.fill();
     ctx.stroke();
     counter += 1;
@@ -94,16 +95,16 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     if(labels[i].length > 10)
     {
       //console.log(labels[i].length);
-      ctx.font = '20 Arial';
+      ctx.font = 'bold 25 Arial';
       if(labels[i].length > 15)
       {
-        ctx.font = '18px Arial';
+        ctx.font = 'bold 23px Arial';
         if(labels[i].length > 20)
         {
-          ctx.font = '16px Arial';
+          ctx.font = 'bold 21px Arial';
           if(labels[i].length > 30)
           {
-            ctx.font = '12px Arial';
+            ctx.font = 'bold 17px Arial';
           }
         }
       }
@@ -217,18 +218,18 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   }
 }
 
-function AddWinnerMark()
+function AddWinnerMark(radius, padding)
 {
   const content = document.querySelector('.content');
   const winnerMark = document.createElement('div');
   winnerMark.style.position = "absolute";
-  winnerMark.style.marginTop = "-30px";
-  winnerMark.style.marginLeft = "285px";
+  winnerMark.style.marginTop = "-10px";
+  winnerMark.style.marginLeft = `${radius + padding}px`;
   winnerMark.style.zIndex = "800";
   winnerMark.style.border = "1px black solid";
   winnerMark.style.borderLeft = "5px solid transparent";
   winnerMark.style.borderRight = "5px solid transparent";
-  winnerMark.style.borderTop = "40px solid red";
+  winnerMark.style.borderTop = "20px solid red";
 
   content.appendChild(winnerMark);
 }
@@ -402,7 +403,7 @@ function PrintDescription()
 if (window.location.pathname.includes("jul.php")) 
 { 
   CreateWheel(8);
-  AddWinnerMark();
+  AddWinnerMark(500, 40);
   AddInputDiv();
   PrintDescription();
 }
