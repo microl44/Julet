@@ -9,7 +9,7 @@ $conn;
 
 function GetConn()
 {
-	if(exists($_SESSION['username'] && exists($_SESSION['password'])))
+	if(isset($_SESSION['username']) && isset($_SESSION['password']))
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=Jul", $_SESSION['username'], $_SESSION['password']);
 	}

@@ -94,7 +94,6 @@ h3{
   	box-shadow: 5px 5px 5px #3B7DD5;
 	border-collapse: collapse;
 	width: 100%;
-	overflow: auto;
 	font-family: sans-serif;
 	border: 2px solid;
 }
@@ -103,27 +102,25 @@ h3{
 	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
+.TableHeader td{
+	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
+}
+
+.TableItem{
+	text-align: center;
+	vertical-align: middle;
+	border-left: 1px solid;
+	padding: 10px;
+}
+
 .TableHeader{
 	border-left: 1px solid;
 	border-bottom: 1px solid;
 	font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 20px 15px 15px 15px;
 	border-top-left-radius: 10px;
-}
-
-.TableHeader td{
-	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
-}
-
-.TableItem{
-	padding: 5px;
-	height: 30px;
-	text-align: center;
-	vertical-align: middle;
-	border-left: 1px solid;
 }
 
 .TableRow{
@@ -156,13 +153,14 @@ h3{
 .deleteBtn form{
 	height: 100%;
 	width: 100%;
+	margin: 0px;
 }
 
 .deleteBtn input[type='submit']{
 	height: 100%;
 	width: 100%;
-	padding: 5px;
 	font-weight: bold;
+	font-family: sans-serif;
 }
 
 .deleteBtn input:hover{
@@ -601,12 +599,12 @@ footer{
 	align-content: center;
 }
 #gridBackgroundDiv h1{
-
+	margin-left: -2%;
 }
 
 .genreSection{
 	border-radius: 50%;
-	padding-left: 13%;
+	padding-left: 4%;
 	padding-top: 0px;
 	display: grid;
 	width: 80%;

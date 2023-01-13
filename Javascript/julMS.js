@@ -1,7 +1,7 @@
 function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK"])
 {
-  var height = 1000;
-  var width = 1000;
+  var height = 800;
+  var width = 800;
   var centerX = width / 2;
   var centerY = height / 2;
   var radius = height / 2;
@@ -403,7 +403,7 @@ function PrintDescription()
 if (window.location.pathname.includes("jul.php")) 
 { 
   CreateWheel(8);
-  AddWinnerMark(500, 40);
+  AddWinnerMark(400, 40);
   AddInputDiv();
   PrintDescription();
 }
