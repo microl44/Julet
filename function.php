@@ -114,7 +114,7 @@ function PrintParticipantInfo($participant)
 
 function PrintMovies()
 {
-    $imageDir = 'C:/xampp/htdocs/Julet/Shared/Images/';
+    $imageDir = 'Shared/Images/';
     $images = SortArray(scandir($imageDir), "NATURAL");
     $conn = GetConn();
 
