@@ -66,7 +66,7 @@ function LoginAttempt($username, $password)
         return true;
     }
     catch(Exception $e){
-        notLoggedIn();
+        print_r($e);
     }
 }
 

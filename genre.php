@@ -3,9 +3,9 @@ if(!isset($_SESSION))
 {
     session_start();
 }
-require_once "includers/basic.php";
-require_once "loginFunctions.php";
-require_once "function.php";
+require_once "../includers/basic.php";
+require_once "../loginFunctions.php";
+require_once "../function.php";
 
     $conn = GetConn();
 
@@ -31,6 +31,7 @@ if(isset($_SESSION['username']) || isset($_SESSION['password'])){
         }
     }
     $stmt->closeCursor();
+    
     $stmt = $conn->prepare("SELECT name FROM genre WHERE NextGenre = 0;");
     
     if($stmt->execute()){

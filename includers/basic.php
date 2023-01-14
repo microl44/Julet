@@ -117,7 +117,7 @@ function addLog($activity = 'pageview')
 		$path = $page_url['path'];
 		if($path === "julet")
 		{
-			$path = "index.php";
+			$path = "../index.php";
 		}
 		$page = basename($path);
 

@@ -2,17 +2,16 @@
 if(!isset($_SESSION))
 { session_start();}
 
-require_once "includers/basic.php";
-require_once "function.php";
+require_once "../includers/basic.php";
+require_once "../function.php";
 
 $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2 is garbage", "Any similarities to holidays, living or dead, is purely coincidental!",
 "En ännu mer spännande undertitel!", "Wheel 2, Electric Bogaloo");
 
 $colorScheme = "light";
 
-$quote=giveRandomQuote();
-?>
-<script src='Javascript/functions.js'></script>
+$quote=giveRandomQuote();?>
+<script src='../Javascript/functions.js'></script>
 <?php
 	if(isset($_COOKIE['darkMode']))
 	{
@@ -23,13 +22,13 @@ $quote=giveRandomQuote();
 		//echo "<link type=\"text/css\" href=\"Shared/style.css\" rel=\"stylesheet\">";
 	}
 ?>
-<link type="text/css" href="Shared/style.css" rel="stylesheet">
+<link type="text/css" href="../Shared/style.css" rel="stylesheet">
 <head>
-	<link rel="shortcut icon" href="Shared/icons/tree2.png">
+	<link rel="shortcut icon" href="../Shared/icons/tree2.png">
 	<?php 
 		echo "<title>".$titles[rand(0,count($titles)-1)]."</title>";
 	?>
-	<div class='navbar'>
+	<div class='navbar' style="z-index: 90000">
 		<!-- MAIN PAGE REDIRECTION LINKS START-->
 		<a class='navbarLink' href="index.php"> HOME </a>
 		<a class='navbarLink' href="stats.php"> STATS </a>
@@ -40,7 +39,8 @@ $quote=giveRandomQuote();
 
 		<!-- LOGIN FORM START -->
 		<div id='loginDiv'>
-			<?php include_once('login.php'); ?>
+			<?php include_once('../login.php'); ?>
+			<?php echo "hejsan"; ?>
 		</div>
 		<!-- LOGIN FORM END -->
 	</div>

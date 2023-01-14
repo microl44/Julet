@@ -3,8 +3,9 @@ if(!isset($_SESSION))
 {
 	session_start();
 }
-require_once "includers/basic.php";
-require_once "loginFunctions.php";
+require_once "../includers/basic.php";
+require_once "../loginFunctions.php";
+
 
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']) && isset($_COOKIE['ShouldBeLoggedIn']) && $_COOKIE['ShouldBeLoggedIn'])
 {
@@ -13,14 +14,14 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password']) && isset($_COOKIE[
 
 if(isset($_SESSION['username']))
 {
-    echo "<form style='height: 100%;' action='logout.php' method='POST'>";
+    echo "<form style='height: 100%;' action='../logout.php' method='POST'>";
         echo "<input class='navbarLink logoutBtn' type='submit' value='LOGOUT'/>";
         echo "<input type='hidden' value='".$_SERVER['REQUEST_URI']."' name='url'> </input>";
     echo "</form>";
 }
 else
 {?>
-    <form action='loginFunctions.php' method='POST'>
+    <form action='../loginFunctions.php' method='POST'>
         <label for='username'>Username :</lable>
         <input type='text' name='username'/>
         <label for='password'>Password :</lable>

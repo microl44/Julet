@@ -19,7 +19,7 @@ function PrintMovieTable($result,$stmp){
       echo "<td class='TableItem TableHeader'>Delete Record</td>";
     echo "</tr>";
     
-    while ($row = $stmp->fetch()) 
+    while ($row = $stmp->fetch())
     {
       echo "<tr class='TableRow'>";
         echo "<td class='TableItem'>" . $row['id'] . "</td>";
@@ -49,8 +49,7 @@ function PrintMovieTable($result,$stmp){
   }
 }
 
-//I'm so sorry for this, idk what I'm doing and it's 5 in the morning oh god
-function PrintParticipantInfo($participant)
+function PrintParticipantInfo()
 {
   $conn = GetConn();
 
@@ -73,7 +72,6 @@ function PrintParticipantInfo($participant)
   echo "<div class='gridItem'>";
   echo "<h2 class='gridItemTitle'>" . $participant['name'] . "</h3>";
   echo "<div class='gridItemContent'>";
-    //                  WTF is this????
     echo "Attendance rate: " . $participationRate['0']['Participation rate'] . "%";
     if(exists($winrate['0']['Winrate']))
     {
@@ -114,7 +112,7 @@ function PrintParticipantInfo($participant)
 
 function PrintMovies()
 {
-    $imageDir = 'Shared/Images/';
+    $imageDir = "../Shared/Images/";
     $images = SortArray(scandir($imageDir), "NATURAL");
     $conn = GetConn();
 
@@ -129,7 +127,7 @@ function PrintMovies()
         $title = $titles->fetch(PDO::FETCH_ASSOC);
         echo "<div class='movieDisplayDiv'>";
           echo "<div class='movieCoverHolder'>";
-            echo "<img src='Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
+            echo "<img src='../Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
             echo "<div class='movieTitleHolder'>";
               echo "<p class='movieTitle'><b>".$title['name']."</b></p>";
               echo "<p>".$description['description']."</p>";
