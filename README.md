@@ -1,4 +1,4 @@
-# Currently Work in Progress. Current main priority: Implementing REST API and refactoring.
+# Currently ~~work~~ mess in Progress. Current main priority: Implementing REST API and refactoring.
 
 Now has biblically accurate angels.  
 ![image](https://user-images.githubusercontent.com/71311176/210680435-0c2739ec-6a2b-4bb7-8113-8ecadfca4d10.png)
