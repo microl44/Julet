@@ -12,7 +12,7 @@
 	{
 		addLog(); ?>
 		<div class="content">
-			<script type="text/javascript" src="../Javascript/julMS.js"></script>
+			<script type="text/javascript" src="jul.js"></script>
 		</div>
 	<?php
 		include_once("../includers/footer.php");

@@ -419,14 +419,27 @@ if (window.location.pathname.includes("jul.php"))
   var results;
   var movies = new Array();
 
+
   const params = new URLSearchParams();
-  params.append('picker', 'Micke');
+  params.append('test', 'Hejsan');
+
+  fetch(`http://localhost/julet/api/movies.php`, 
+  {
+    method: 'POST',
+    body: params,
+  })
+  .then(response => response.json())
+  .then(data => 
+  {
+    console.log(data);
+  })
+  /*params.append('picker', 'Micke');
   params.append('order', 'decending');
   params.append('jayornay', 'Jay');
   params.append('participant', 'Gabbe');
 
   console.log(`http://localhost/julet/api/movies.php?${params}`);
-
+  
   fetch(`http://localhost/julet/api/movies.php?${params}`)
   .then(response => response.json())
   .then(data => 
@@ -441,7 +454,7 @@ if (window.location.pathname.includes("jul.php"))
         tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
     }
     console.log(movies);
-  });
+  });*/
 
 
 

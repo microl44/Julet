@@ -4,7 +4,6 @@ if(!isset($_SESSION))
 
 require_once "includers/basic.php";
 require_once "Database.php";    
-require_once "includers/header.php";
 
 if(isset($_POST['url']))
 {

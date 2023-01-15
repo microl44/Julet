@@ -137,7 +137,7 @@
         <!----------INSERT NEW MOVIE FORM START---------->
         <h3>Add new movie </h3>
         <div class='addMovieDiv'>
-            <form action='query.php' method='POST'>
+            <form action='../query.php' method='POST'>
               <div class='addMovieDivFirst'>
                 <label for='addName'>IMDB Link: </label>
                 <input id='addName' type='text' name='addName' required/><br/>

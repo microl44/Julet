@@ -5,7 +5,6 @@ if(!isset($_SESSION))
 }
 
 require_once "includers/basic.php";
-require_once "includers/header.php";
 require_once "function.php";
 
 if(exists($_POST['addName']) && exists($_POST['addGenre']))
