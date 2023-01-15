@@ -16,10 +16,6 @@ function hideOnScroll()
       {
         quoteDiv.style.opacity = 1;
       }
-      console.log("Total Height: " + getTotalHeight());
-      console.log("ScrollY: " + window.scrollY);
-      console.log("Total Height / ScrollY: " + (window.scrollY + document.body.offsetHeight) / getTotalHeight());
-      console.log("Window height: " + window.innerHeight);
     });
     };
 }
@@ -56,8 +52,6 @@ function addScroll(){
         scroll = scroll + divWidth;
         parentDiv.scroll(scroll, 0);
       }
-      console.log("Next Btn, Scroll: " + scroll);
-      console.log("Next Btn, divWidth: " + divWidth);
     });
   });
   prevBtns.forEach(prevBtn =>
@@ -70,8 +64,6 @@ function addScroll(){
         scroll = scroll - divWidth;
         parentDiv.scroll(scroll, 0);
       }
-      console.log("Prev Btn, Scroll: " + scroll);
-      console.log("Prev Btn, divWidth: " + divWidth);
     });
   });
 };
@@ -114,26 +106,11 @@ function showCards() {
         showCard(currentCard);
     });
 }
-function getMovieData() 
-{
-    let imdbLink = document.getElementById('imdb-link-input').value;
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            parser = new DOMParser();
-            htmlDoc = parser.parseFromString(this.responseText, "text/html");
-            let title = htmlDoc.querySelector('[data-testid="hero-title-block__title"]');
-            let grade = htmlDoc.querySelector('[class="sc-7ab21ed2-1 jGRxWM"]');
-            console.log("The movie has a name of "+title.innerText+" and a grade of "+grade.innerText);
-        }
-    };
-    xhttp.open("GET", imdbLink, true);
-    xhttp.send();
-}
 
 var sortOrder = 'ascending';
 
-function sortTable(column) {
+function sortTable(column) 
+{
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementsByClassName("Table")[0];
   switching = true;
@@ -190,26 +167,20 @@ function sortTable(column) {
   }
   // Reverse the sort order
   sortOrder = (sortOrder === 'ascending') ? 'descending' : 'ascending';
-}
+}/*
+        var items = document.getElementsByClassName("tableHeader")
 
-var items = document.getElementsByClassName("TableHeader")
-
-if(items.length > 0)
-{
-    document.getElementsByClassName("TableHeader")[0].addEventListener("click", function() {
-      sortTable(0);});
-    document.getElementsByClassName("TableHeader")[1].addEventListener("click", function() {
-      sortTable(1);});
-    document.getElementsByClassName("TableHeader")[2].addEventListener("click", function() {
-      sortTable(2);});
-    document.getElementsByClassName("TableHeader")[3].addEventListener("click", function() {
-      sortTable(3);});
-    document.getElementsByClassName("TableHeader")[4].addEventListener("click", function() {
-      sortTable(4);});
-    document.getElementsByClassName("TableHeader")[5].addEventListener("click", function() {
-      sortTable(5);});
-    document.getElementsByClassName("TableHeader")[6].addEventListener("click", function() {
-      sortTable(6);});
-    document.getElementsByClassName("TableHeader")[7].addEventListener("click", function() {
-      sortTable(7);});
-}
+      document.getElementsByClassName("tableHeader")[0].addEventListener("click", function() {
+        sortTable(0);});
+      document.getElementsByClassName("tableHeader")[1].addEventListener("click", function() {
+        sortTable(1);});
+      document.getElementsByClassName("tableHeader")[2].addEventListener("click", function() {
+        sortTable(2);});
+      document.getElementsByClassName("tableHeader")[3].addEventListener("click", function() {
+        sortTable(3);});
+      document.getElementsByClassName("tableHeader")[4].addEventListener("click", function() {
+        sortTable(4);});
+      document.getElementsByClassName("tableHeader")[5].addEventListener("click", function() {
+        sortTable(5);});
+      document.getElementsByClassName("tableHeader")[6].addEventListener("click", function() {
+        sortTable(6);});*/

@@ -42,6 +42,11 @@ function QueryBuilder()
 
 	$sql = $sql . "ORDER BY id ";
 
+	if(!isset($_GET['picker']) && !isset($_GET['name']) && !isset($_GET['jayornay']) && !isset($_GET['participant']))
+	{
+		$sql = "SELECT * FROM movie ORDER BY id ";
+	}
+
 	if(isset($_GET['order']) == 'decending')
 	{
 		$sql = $sql . "DESC";
@@ -107,13 +112,9 @@ if(isset($_POST['link']) && isset($_POST['jayornay']) && isset($_POST['picker'])
 		die();
 	}
 }
-else
-{
-
-}
 
 
-if(isset($_GET['name']))
+if(isset($_GET))
 {
 	$conn = GetConn();
 	$results = array();
@@ -144,6 +145,7 @@ if(isset($_GET['name']))
 		}
 	}
 	unset($_GET);
+
 
 	$jsonString = json_encode($results);
 	echo $jsonString;

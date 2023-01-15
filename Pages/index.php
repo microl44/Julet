@@ -35,147 +35,66 @@
       <div class='content indexContent'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
-          <h3> FILTER TABLE </h3>
-          <!-- <img src='Shared/Icons/ChristmasSpirit.png' style='position: absolute;transform: scaleX(-1); z-index: 999; margin-left: -59%;px;margin-top: 150px;width: 50px; height: 50px'> -->
-          <form action='index.php' method='POST'>
-            <label for='input'>Search by winner: </label>
-              <select class='filterLabel' name='searchByWinner'> 
-                <option class='filterLabelOption'> SELECT </option>
-                <?php 
-                foreach($participants as $participant)
-                {
-                  echo "<option class='filterLabelOption'>" . $participant[0] . "</option>";
-                }?>
-              </select>
-            <input class='filterSubmit' type='submit' value='Search'/>
-          </form>
-
-          <form action='index.php' method='POST'>
-            <label for='searchParticipants'>Search by Participant: </label>
-            <select class='filterLabel' name='searchParticipants'> 
-              <option class='filterLabelOption'> SELECT </option>
-              <?php 
-              foreach($participants as $participant)
-              {
-                echo "<option class='filterLabelOption'>" . $participant[0] . "</option>";
-              }?>
-            </select>
-            <input class='filterSubmit' type='submit' value='Search'/>
-          </form>
-
-          <form action='index.php' method='POST'>
-            <label for='searchGenre'>Search by Genre: </label>
-            <select style="text-align: left;" class='filterLabel' name='searchGenre'> 
-              <option class='filterLabelOption'> SELECT </option>
-              <?php 
-              foreach($genres as $genre)
-              {
-                echo "<option class='filterLabelOption'>" . $genre[0] . "</option>";
-              }?>
-            </select>
-            <input class='filterSubmit' type='submit' value='Search'/>
-          </form>
-            
-          <form action='index.php' method='POST'>
-            <label for='searchMovie'>Search by Movie Name: </label>
-            <input class='jesusChrist' type='string' name='searchMovie'/>
-            <input class='filterSubmit' type='submit' value='Search'/>
-          </form>
         </div>
         <!----------FILTER TABLE SECTION END---------->
 
         <!----------DISPLAY TABLE SECTION START---------->
         <div id='tableContainer'>
-        <?php
-          if(isset($_POST['searchByWinner']))
-          {
-            $sql = "SELECT * FROM movie WHERE picked_by LIKE :input";
-            $stmp = $conn->prepare($sql);
-            $temp = "%" . $_POST['searchByWinner'] ."%";
-            $stmp->bindvalue(":input",$temp);
-            $result = $stmp->execute();
-            PrintMovieTable($result,$stmp);
-          }
-          else if(isset($_POST['searchParticipants']))
-          {
-            $sql = "SELECT * FROM movie WHERE participants LIKE :input";
-            $stmp = $conn->prepare($sql);
-            $temp = "%" . $_POST['searchParticipants'] ."%";
-            $stmp->bindvalue(":input",$temp);
-            $result = $stmp->execute();
-            PrintMovieTable($result,$stmp);
-          }
-          else if(isset($_POST['searchMovie']))
-          {
-            $sql = "SELECT * FROM movie WHERE name LIKE :input";
-            $stmp = $conn->prepare($sql);
-            $temp = "%" . $_POST['searchMovie'] ."%";
-            $stmp->bindvalue(":input",$temp);
-            $result = $stmp->execute();
-            PrintMovieTable($result,$stmp);
-          }
-          else if(isset($_POST['searchGenre']))
-          {
-            $sql = "SELECT * FROM movie WHERE genre_name LIKE :input";
-            $stmp = $conn->prepare($sql);
-            $temp = "%" . $_POST['searchGenre'] ."%";
-            $stmp->bindvalue(":input",$temp);
-            $result = $stmp->execute();
-            PrintMovieTable($result,$stmp);
-          }
-          else
-          {
-            $sql = "SELECT * FROM movie ORDER BY id";
-            $stmp = $conn->prepare($sql);
-            $result = $stmp-> execute();
-            PrintMovieTable($result,$stmp);
-          }
-        ?>
+          <table id='movieTable' cellspacing="0">
+            <tr class='tableHeader'>
+              <td class='tableHeaderTD' id='sortID'>ID</td>
+              <td class='tableHeaderTD' id='sortName'>NAME</td>
+              <td class='tableHeaderTD' id='sortGenre'>GENRE</td>
+              <td class='tableHeaderTD' id='sortRating'>RATING</td>
+              <td class='tableHeaderTD' id='sortJayornay'>JAY OR NAY</td>
+              <td class='tableHeaderTD' id='sortPicker'>PICKER</td>
+              <td class='tableHeaderTD' id='sortParticipants'>PARTICIPANTS</td>
+              <td class='tableHeaderTD' id='sortType'>TYPE</td>
+            </tr>
+          </table>
         </div>
         <!----------DISPLAY TABLE SECTION END---------->
         
         <!----------INSERT NEW MOVIE FORM START---------->
         <h3>Add new movie </h3>
         <div class='addMovieDiv'>
-            <form action='../query.php' method='POST'>
               <div class='addMovieDivFirst'>
-                <label for='addName'>IMDB Link: </label>
-                <input id='addName' type='text' name='addName' required/><br/>
+                <label for='linkInput'>IMDB Link: </label>
+                <input id='linkInput' type='text' name='addName' required/><br/>
 
-                <label for='addParticipants'> Participants: </label>
-                <input type='text' name='addParticipants' required /> <br/>
+                <label for='participantsInput'> Participants: </label>
+                <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
 
-                <label for='addjayornay'> Jay or Nay: </label>
-                <input type='text' name='addjayornay' required /> <br/>
+                <label for='jayornayInput'> Jay or Nay: </label>
+                <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
                 </label>
               </div>
 
               <div class='addMovieDivSecond'>
-                <label for='addPickedBy'> Picked By: </label>
-                <select name='addPickedBy'> <?php 
+                <label for='pickerInput'> Picked By: </label>
+                <select id='pickerInput' name='addPickedBy'> <?php 
                   foreach($participants as $participant)
                   {
                     echo "<option>" . $participant[0] . "</option>";
                   }?>
                 </select> <br/>
                 
-                <label for='addGenre'> Genre: </label>
-                <select name='addGenre'> <?php
+                <label for='genreInput'> Genre: </label>
+                <select id='genreInput' name='addGenre'> <?php
                   foreach($genres as $genre)
                   {
                     echo "<option>" . $genre[0] . "</option>";
                   }?>
                 </select> <br/>
 
-                <label for='addIs_major'>WheelType </label>
-                <select name='addIs_major' type='number'> <br/>
+                <label for='typeInput'>WheelType </label>
+                <select id='typeInput' name='addIs_major' type='number'> <br/>
                   <option value='1'> Big Wheel </option>
                   <option value='0'> Small Wheel </option>
                 </select> </br>
 
-                <input id='addMovieBtn' type='submit' value='add movie'/>
+                <input id='addMovieBtn' type="submit" onclick="InsertMovie()" value='add movie'/>
               </div>
-            </form>
         </div>
         <!----------INSERT NEW MOVIE FORM END---------->
 
@@ -341,4 +260,4 @@
     notLoggedIn();
   }
 ?>
-<script type="text/javascript" src="../Javascript/functions.js"></script>
+<script type="text/javascript" src="index.js"></script>

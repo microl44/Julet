@@ -1,21 +1,7 @@
-class Movie{
-  constructor(id, name, genre, rating, jayornay, picker, participants, type)
-  {
-    this.id = id;
-    this.name = name;
-    this.genre = genre;
-    this.rating = rating
-    this.jayornay = jayornay;
-    this.picker = picker;
-    this.participants = participants;
-    this.type = type;
-  }
-}
-
 function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK","UNK"])
 {
-  var height = 800;
-  var width = 800;
+  var height = 600;
+  var width = 600;
   var centerX = width / 2;
   var centerY = height / 2;
   var radius = height / 2;
@@ -416,60 +402,10 @@ function PrintDescription()
 //lmao if the full path URL contains "jul.php" run this code. Lmaooo this is shit but fuck it, it works.
 if (window.location.pathname.includes("jul.php")) 
 { 
-  var results;
-  var movies = new Array();
-  const params = new URLSearchParams();
-
-  params.append('link', 'https://www.imdb.com/title/tt11126994/?ref_=nv_sr_srsg_0');
-  params.append('jayornay', 'Jay');
-  params.append('genre', 'action');
-  params.append('picker', 'Gabbe');
-  params.append('participants', 'Micke, Gabbe, Behrad');
-  params.append('type', 0);
-
-  fetch(`http://localhost/julet/api/movies.php`,
-  {
-    method: 'POST',
-    body: params,
-  })
-  .then(response => response.json())
-  .then(data => 
-  {
-    results = data;
-    console.log(results);
-  })
-  .catch(error => {
-    console.log(error);
-  })
-/*
-  params.append('picker', 'Micke');
-  params.append('order', 'decending');
-  params.append('jayornay', 'Jay');
-  params.append('participant', 'Gabbe');
-
-  console.log(`http://localhost/julet/api/movies.php?${params}`);
-  
-  fetch(`http://localhost/julet/api/movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    results = data;
-    for (var i = 0; i < results['data'].length; i++) 
-    {
-      var tempObject = JSON.parse(results['data'][i]);
-
-      movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
-        tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
-    }
-    console.log(movies);
-  });
-
-
-
   CreateWheel(8);
-  AddWinnerMark(400, 40);
+  AddWinnerMark(300, 40);
   AddInputDiv();
-  PrintDescription();*/
+  PrintDescription();
 }
 
 console.log("IHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPTIHATEJAVASCRIPT");

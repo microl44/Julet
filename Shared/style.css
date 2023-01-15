@@ -88,84 +88,87 @@ h3{
   }
 }
 
-.Table{
+.movieTable{
 	animation: pop 3s infinite;
-	border: 2px solid #3B7DD5; /* Yellow border */
   	box-shadow: 5px 5px 5px #3B7DD5;
-	border-collapse: collapse;
 	width: 100%;
 	font-family: sans-serif;
-	border: 2px solid;
-}
-
-.Table td:hover{
-	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
 }
 
 .TableHeader td{
-	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
+	padding-left: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 10px;
+	border-bottom: 2px solid black;
+	border-top: 1px solid;
+
+	padding-right: 40px;
+	width: auto;
+	min-width: 30px;
+	font-weight: bold;
+	font-size: 22px;
+
 }
 
-.TableItem{
-	text-align: center;
-	vertical-align: middle;
+.tableHeader td:hover{
+	background-color: #3B7DD5;
+	cursor: pointer;
+}
+
+.TableHeader td:first-child{
 	border-left: 1px solid;
+	border-top-left-radius: 5px;
+}
+
+.tableHeader td:last-child{
+	border-right: 1px solid;
+	border-top-right-radius: 5px;
+}
+
+.tableCell{
+	text-align: left;
+	vertical-align: middle;
 	padding: 10px;
 }
 
+.tableCell:hover{
+
+}
+
 .TableHeader{
-	border-left: 1px solid;
-	border-bottom: 1px solid;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
-	padding: 20px 15px 15px 15px;
-	border-top-left-radius: 10px;
+
 }
 
-.TableRow{
-	border: 1px solid;
-	font-size: 16px;
-	font-weight: bolder;
+.tableRow{
+	font-size: 20px;
 }
 
-.TableRow:nth-child(even){
-	background-color: #d9d9d9;
+.tableRow:nth-child(even){
+	background-color: #5397EE;
 }
 
-.TableRow:nth-child(odd){
-	background-color: #BAC3E8;
+.tableRow:nth-child(10n) td
+{
+	border-bottom: 2px solid;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .TableRow:nth-child(even) > .deleteBtn input[type='submit']{
 	background-color: #d9d9d9;
-	border:1px;
 	font-weight: bolder;
 	font-family: sans-serif;
 }
 
 .TableRow:nth-child(odd) > .deleteBtn  input[type='submit']{
 	background-color: #BAC3E8;
-	border:1px;
 	font-weight: bolder;
 }
 
-.deleteBtn form{
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-}
-
-.deleteBtn input[type='submit']{
-	height: 100%;
-	width: 100%;
-	font-weight: bold;
-	font-family: sans-serif;
-}
-
-.deleteBtn input:hover{
-	background: linear-gradient(rgba(0, 0, 0, 0.00), rgba(0,0,0,0.60));
-	font-size: 13px;
+.tableRow:hover
+{
+	color: red;
 }
 
 .addMovieDiv{
@@ -254,10 +257,6 @@ footer{
     box-shadow: 5px 5px 5px #3b7dd5;
 }
 
-.gridItemContent{
-
-}
-
 #loginDiv {
 	padding-right: 50px;
 	height:100%;
@@ -317,7 +316,8 @@ footer{
 #filterDiv{
 	margin-bottom: 20px;
 	margin-left: 30%;
-	min-width: 30%;
+	min-width: 40%;
+	min-height: 30%;
 	text-align: right;
 	padding-left: 3%;
 	float: left;
@@ -378,10 +378,17 @@ footer{
 }
 
 #tableContainer{
-	align-self: center;
+	display: flex;
+	margin: 0px;
+	padding: 0px;
 	justify-content: center;
-	width:90%;
-	margin: auto;
+	text-align: center;
+	width:100%;
+
+}
+
+#movieTable{
+
 }
 
 .login-form {
