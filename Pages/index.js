@@ -1,7 +1,10 @@
 var movies = Array();
+var participants = Array();
+var genres = Array();
 var sortOrder = 'ascending';
 
-class Movie{
+class Movie
+{
   constructor(id, name, genre, rating, jayornay, picker, participants, type)
   {
     this.id = id;
@@ -15,12 +18,32 @@ class Movie{
   }
 }
 
+class Participant
+{
+  constructor(id, name)
+  {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+class Genre
+{
+  constructor(name)
+  {
+    this.name = name;
+  }
+}
+
 function CreateTable()
 {
-  var tableDiv = document.getElementById('tableContainer');
-  tableDiv.style.textAlign = "center";
-  var table = document.getElementById('movieTable');
+  const table = document.getElementById('movieTable');
+  for(var i = table.rows.length - 1; i >= 1; i--)
+  {
+       table.deleteRow(i);
+  }
 
+  //for each movie fetched, add new row with said movie info.
   for (var i = 0; i < movies.length; i++)
   {
     var row = table.insertRow(1);
@@ -59,6 +82,7 @@ function CreateTable()
     cellParticipants.classList.add('tableCell');
     cellType.classList.add('tableCell');
   }
+  //get DOM elements
   AddSortingListeners();
 }
 
@@ -88,12 +112,15 @@ function AddSortingListeners()
   {
     SortTable(5);
   });
-  document.getElementById("sortParticipants").addEventListener("click", function() {
+  document.getElementById("sortParticipants").addEventListener("click", function() 
+  {
     SortTable(6);
   });
-  document.getElementById("sortType").addEventListener("click", function() {
+  document.getElementById("sortType").addEventListener("click", function() 
+  {
     SortTable(7);
   });
+  console.log("eventlisteners added again");
 }
 
 function SortTable(n) {
@@ -101,7 +128,7 @@ function SortTable(n) {
   table = document.getElementById("movieTable");
   switching = true;
   // Set the sorting direction to ascending
-  dir = "asc"; 
+  sortOrder = "ascending";
   /* Make a loop that will continue until
   no switching has been done: */
   while (switching) {
@@ -119,7 +146,7 @@ function SortTable(n) {
       y = rows[i + 1].getElementsByTagName("TD")[n];
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
-      if (dir == "asc") {
+      if (sortOrder == "ascending") {
         if (n === 0) {
           if (Number(x.innerHTML) > Number(y.innerHTML)) {
             // If so, mark as a switch and break the loop:
@@ -133,7 +160,7 @@ function SortTable(n) {
             break;
           }
         }
-      } else if (dir == "desc") {
+      } else if (sortOrder == "descending") {
         if (n === 0 || n === 3) {
           if (Number(x.innerHTML) < Number(y.innerHTML)) {
             // If so, mark as a switch and break the loop:
@@ -159,25 +186,149 @@ function SortTable(n) {
     } else {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
+      if (switchcount == 0 && sortOrder == "ascending") {
+        sortOrder = "descending";
         switching = true;
       }
     }
   }
 }
 
-function GetMovies()
-{
-  const params = new URLSearchParams();
-  params.append('order', 'decending');
+function CreateSortPanel()
+{   
+  const panel = document.getElementById('filterDiv');
+  const filterName = document.getElementById('filterName');
 
-  console.log(`http://localhost/julet/api/movies.php?${params}`);
+  const filterPicker = document.getElementById('filterPicker');
+    const filterPickerTop = document.createElement("option");
+    filterPickerTop.text = "SELECT";
+    filterPicker.append(filterPickerTop);
+
+  const filterParticipant = document.getElementById('filterParticipant');
+    const filterParticipantTop = document.createElement("option");
+    filterParticipantTop.text = "SELECT";
+    filterParticipant.append(filterParticipantTop)
+
+  for(var i = 0; i < participants.length; i++)
+  {
+    const filterPickerOption = document.createElement("option");
+    const filterParticipantOption = document.createElement("option");
+
+    filterParticipantOption.value = participants[i].name;
+    filterParticipantOption.text = participants[i].name;
+
+    filterPickerOption.value = participants[i].name;
+    filterPickerOption.text = participants[i].name;
+
+    filterParticipant.append(filterParticipantOption);      
+    filterPicker.append(filterPickerOption);
+  }
+
+  const applyBtn = document.getElementById('filterApply');
+  applyBtn.addEventListener("click", function()
+  {
+    var name;
+    var genre;
+    var rating;
+    var jayornay;
+    var picker;
+    var participant;
+    var type;
+
+    if(filterName.value != "")
+    {name = filterName.value;}
+    if(filterPicker.options[filterPicker.selectedIndex].value !== "SELECT")
+    {picker = filterPicker.options[filterPicker.selectedIndex].value;}
+    if(filterParticipant.options[filterParticipant.selectedIndex].value !== "SELECT")
+    {participant = filterParticipant.options[filterParticipant.selectedIndex].value;}
+
+    console.log(picker);
+    console.log(participant);
+
+    GetMovies(name, genre, rating, jayornay, picker, participant, type);
+  });
+  const resetBtn = document.getElementById('filterReset');
+  resetBtn.addEventListener("click", function()
+  {
+    filterPicker.selectedIndex = 0;
+    filterParticipant.selectedIndex = 0;
+    filterName.value = "";
+    GetMovies();
+  });
+  filterName.addEventListener("keypress", function(e)
+  {
+    if(e.key === 'Enter')
+    {
+      applyBtn.click();
+    }
+  })
+}
+
+function GetParticipants()
+{
+  participants = [];
+
+  fetch(`http://localhost/julet/api/participants.php`)
+  .then(response => response.json())
+  .then(data =>
+  {
+    results = data;
+
+    for (var i = 0; i < results['data'].length; i++) 
+    {
+      var tempObject = JSON.parse(results['data'][i]);
+
+      participants.push(new Participant(tempObject.id, tempObject.name));
+    }
+  })
+}
+
+function GetGenres()
+{
+  genres = [];
+
+  fetch(`http://localhost/julet/api/genres.php`)
+  .then(response => response.json())
+  .then(data =>
+  {
+    results = data;
+
+    for (var i = 0; i < results['data'].length; i++)
+    {
+      var tempObject = JSON.parse(results['data'][i]);
+
+      genres.push(new Genre(tempObject.name));
+    }
+  })
+}
+
+function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
+{
+  movies = [];
+  const params = new URLSearchParams();
+  if(name != null)
+    {params.append('name', name);}
+  if(genre != null)
+    {params.append('genre', genre);}
+  if(rating != null)
+    {params.append('rating', rating);}
+  if(jayornay != null)
+    {params.append('jayornay', jayornay);}
+  if(picker != null)
+    {params.append('picker', picker);}
+  if(participant != null)
+    {params.append('participant', participant);}
+  if(type != null)
+    {params.append('type', type);}
+
+  params.append('order', 'decending');
   
   fetch(`http://localhost/julet/api/movies.php?${params}`)
   .then(response => response.json())
   .then(data => 
   {
+    console.log(genres);
+    console.log(participants);
     results = data;
     for (var i = 0; i < results['data'].length; i++) 
     {
@@ -187,6 +338,8 @@ function GetMovies()
         tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
     }
     CreateTable();
+    CreateSortPanel();
+    console.log("table created again");
   });
 }
 
@@ -232,4 +385,6 @@ function InsertMovie()
   }
 }
 
+GetParticipants()
+GetGenres();
 GetMovies();

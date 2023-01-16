@@ -10,7 +10,7 @@ function AppendAnd($counter, $sql)
 		return $sql . "AND ";
 	}
 	else{
-		return "";
+		return $sql;
 	}
 }
 
@@ -27,7 +27,17 @@ function QueryBuilder()
 	if(isset($_GET['name']))
 	{
 		$sql = AppendAnd($counter, $sql);
-		$sql = $sql . "WHERE name LIKE '%".$_GET['name']."%'' ";
+		$sql = $sql . "name LIKE '%".$_GET['name']."%' ";
+	}
+	if(isset($_GET['genre']))
+	{
+		$sql = AppendAnd($counter, $sql);
+		$sql = $sql . "genre_name = '". $_GET['genre'] . "' ";
+	}
+	if(isset($_GET['rating']))
+	{
+		$sql = AppendAnd($counter, $sql);
+		$sql = $sql . "imdb_rating > ". $_GET['rating'] . " ";
 	}
 	if(isset($_GET['jayornay']))
 	{

@@ -148,13 +148,6 @@ h3{
 	background-color: #5397EE;
 }
 
-.tableRow:nth-child(10n) td
-{
-	border-bottom: 2px solid;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
 .TableRow:nth-child(even) > .deleteBtn input[type='submit']{
 	background-color: #d9d9d9;
 	font-weight: bolder;
@@ -169,6 +162,13 @@ h3{
 .tableRow:hover
 {
 	color: red;
+}
+
+.tableRow:nth-child(10n) td
+{
+	border-bottom: 2px solid black;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .addMovieDiv{
@@ -314,6 +314,8 @@ footer{
 }
 
 #filterDiv{
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
 	margin-bottom: 20px;
 	margin-left: 30%;
 	min-width: 40%;
@@ -367,6 +369,33 @@ footer{
 }
 
 .filterLabel option:hover{
+}
+
+#filterName
+{
+	font-weight: bold;
+	font-size: 20px;
+	padding: 10px;
+}
+
+#filterPicker
+{
+	text-align: left;
+	cursor:pointer;
+	display: block;
+	margin: 0;
+	color:red;
+	padding: 10px;
+}
+
+#filterPicker:hover
+{
+	cursor: pointer;
+}
+
+#filterParticipant
+{
+
 }
 
 .jesusChrist{

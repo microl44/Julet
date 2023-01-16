@@ -35,6 +35,49 @@
       <div class='content indexContent'>
         <!----------FILTER TABLE SECTION START---------->
         <div id=filterDiv>
+          <div>
+            <label for='filterName'>Filter by movie name:</label>
+            <input id='filterName'> </input>
+          </div>
+          
+          <div>
+            <label for='filterPicker'>Filter by winner:</label>
+            <select id='filterPicker'>
+            </select>
+          </div>
+
+          <div>
+            <label for='filterParticipant'>Filter by participant:</label>
+            <select id='filterParticipant'>
+            </select>
+          </div>
+
+          <div>
+            <label for='filterGenre'>Filter by Genre:</label>
+            <select id='filterGenre'>
+            </select>
+          </div>
+
+          <div>
+            <label for='filterRating'>Filter by rating:</label>
+            <select id='filterRating'>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          
+          <div>
+            <button id='filterApply'>Apply Filter</button>
+            <button id='filterReset'>Reset Filter</button>
+          </div>
         </div>
         <!----------FILTER TABLE SECTION END---------->
 
