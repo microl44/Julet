@@ -5,6 +5,8 @@ if(!isset($_SESSION))
 require_once "includers/basic.php";
 require_once "Database.php";    
 
+echo $_SESSION['username'];
+echo $_COOKIE['username'];
 if(isset($_POST['url']))
 {
     $previousPage = $_POST['url'];

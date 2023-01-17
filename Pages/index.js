@@ -1,7 +1,4 @@
-var movies = Array();
-var participants = Array();
-var genres = Array();
-var sortOrder = 'ascending';
+
 
 class Movie
 {
@@ -35,8 +32,14 @@ class Genre
   }
 }
 
+var movies = Array();
+var participants = Array();
+var genres = Array();
+var sortOrder = 'ascending';
+
 function CreateTable()
 {
+  console.log("CreateTable called");
   const table = document.getElementById('movieTable');
   for(var i = table.rows.length - 1; i >= 1; i--)
   {
@@ -82,48 +85,55 @@ function CreateTable()
     cellParticipants.classList.add('tableCell');
     cellType.classList.add('tableCell');
   }
-  //get DOM elements
-  AddSortingListeners();
 }
 
 function AddSortingListeners()
 {
-  document.getElementById("sortID").addEventListener("click", function() 
+  document.getElementById("sortID").addEventListener("click", function(e)
   {
+    e.preventDefault();
     SortTable(0);
   });
-  document.getElementById("sortName").addEventListener("click", function() 
+  document.getElementById("sortName").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(1);
   });
-  document.getElementById("sortGenre").addEventListener("click", function() 
+  document.getElementById("sortGenre").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(2);
   });
-  document.getElementById("sortRating").addEventListener("click", function() 
+  document.getElementById("sortRating").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(3);
   });
-  document.getElementById("sortJayornay").addEventListener("click", function() 
+  document.getElementById("sortJayornay").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(4);
   });
-  document.getElementById("sortPicker").addEventListener("click", function() 
+  document.getElementById("sortPicker").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(5);
   });
-  document.getElementById("sortParticipants").addEventListener("click", function() 
+  document.getElementById("sortParticipants").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(6);
   });
-  document.getElementById("sortType").addEventListener("click", function() 
+  document.getElementById("sortType").addEventListener("click", function(e) 
   {
+    e.preventDefault();
     SortTable(7);
   });
   console.log("eventlisteners added again");
 }
 
-function SortTable(n) {
+function SortTable(n)
+{
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("movieTable");
   switching = true;
@@ -131,13 +141,15 @@ function SortTable(n) {
   sortOrder = "ascending";
   /* Make a loop that will continue until
   no switching has been done: */
-  while (switching) {
+  while (switching) 
+  {
     // Start by saying: no switching is done:
     switching = false;
     rows = table.rows;
     /* Loop through all table rows (except the
     first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) {
+    for (i = 1; i < (rows.length - 1); i++) 
+    {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
@@ -146,29 +158,42 @@ function SortTable(n) {
       y = rows[i + 1].getElementsByTagName("TD")[n];
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
-      if (sortOrder == "ascending") {
-        if (n === 0) {
-          if (Number(x.innerHTML) > Number(y.innerHTML)) {
+      if (sortOrder == "ascending") 
+      {
+        if (n === 0) 
+        {
+          if (Number(x.innerHTML) > Number(y.innerHTML)) 
+          {
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
           }
-        } else {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        } 
+        else 
+        {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+          {
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
           }
         }
-      } else if (sortOrder == "descending") {
-        if (n === 0 || n === 3) {
-          if (Number(x.innerHTML) < Number(y.innerHTML)) {
+      } 
+      else if (sortOrder == "descending") 
+      {
+        if (n === 0 || n === 3) 
+        {
+          if (Number(x.innerHTML) < Number(y.innerHTML)) 
+          {
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
           }
-        } else {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        } 
+        else 
+        {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+          {
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
@@ -176,17 +201,21 @@ function SortTable(n) {
         }
       }
     }
-    if (shouldSwitch) {
+    if (shouldSwitch) 
+    {
       /* If a switch has been marked, make the switch
       and mark that a switch has been done: */
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       // Each time a switch is done, increase this count by 1:
       switchcount ++; 
-    } else {
+    } 
+    else 
+    {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && sortOrder == "ascending") {
+      if (switchcount == 0 && sortOrder == "ascending") 
+      {
         sortOrder = "descending";
         switching = true;
       }
@@ -225,8 +254,9 @@ function CreateSortPanel()
   }
 
   const applyBtn = document.getElementById('filterApply');
-  applyBtn.addEventListener("click", function()
+  applyBtn.addEventListener("click", function(e)
   {
+    e.preventDefault();
     var name;
     var genre;
     var rating;
@@ -248,8 +278,9 @@ function CreateSortPanel()
     GetMovies(name, genre, rating, jayornay, picker, participant, type);
   });
   const resetBtn = document.getElementById('filterReset');
-  resetBtn.addEventListener("click", function()
+  resetBtn.addEventListener("click", function(e)
   {
+    e.preventDefault();
     filterPicker.selectedIndex = 0;
     filterParticipant.selectedIndex = 0;
     filterName.value = "";
@@ -268,7 +299,7 @@ function GetParticipants()
 {
   participants = [];
 
-  fetch(`http://localhost/julet/api/participants.php`)
+  fetch(`http://193.11.160.69/api/participants.php`)
   .then(response => response.json())
   .then(data =>
   {
@@ -287,7 +318,7 @@ function GetGenres()
 {
   genres = [];
 
-  fetch(`http://localhost/julet/api/genres.php`)
+  fetch(`http://193.11.160.69/api/genres.php`)
   .then(response => response.json())
   .then(data =>
   {
@@ -304,6 +335,8 @@ function GetGenres()
 
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
+  var isSubmitting = false;
+  console.log("hello");
   movies = [];
   const params = new URLSearchParams();
   if(name != null)
@@ -322,8 +355,13 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
     {params.append('type', type);}
 
   params.append('order', 'decending');
-  
-  fetch(`http://localhost/julet/api/movies.php?${params}`)
+
+  if(isSubmitting)
+  {
+    return;
+  }
+  isSubmitting = true;
+  fetch(`http://193.11.160.69/api/movies.php?${params}`)
   .then(response => response.json())
   .then(data => 
   {
@@ -338,8 +376,8 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
         tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
     }
     CreateTable();
-    CreateSortPanel();
     console.log("table created again");
+    isSubmitting = false;
   });
 }
 
@@ -365,7 +403,7 @@ function InsertMovie()
     params.append('participants', participantsInput);
     params.append('type', typeInput);
 
-    fetch(`http://localhost/julet/api/movies.php`,
+    fetch(`${window.location.hostname}/api/movies.php`,
     {
       method: 'POST',
       body: params,
@@ -384,7 +422,5 @@ function InsertMovie()
     alert("Please fill in every field.");
   }
 }
-
-GetParticipants()
-GetGenres();
-GetMovies();
+AddSortingListeners();
+CreateSortPanel();

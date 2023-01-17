@@ -4,6 +4,8 @@ if(!isset($_SESSION))
     session_start();
 }
 
+echo $_SESSION['username'];
+echo $_SESSION['password'];
 if(!file_exists('./Database.php')){
 
     $myfile = fopen('Database.php','w');
@@ -35,7 +37,7 @@ function actualInstall(){
         $stmp->closeCursor();
         addLog("Reinstalled Database");
         
-        header('Location: index.php');
+        header('Location: pages/index.php');
     }
     catch(Exception $e){
         echo "<h1> ooh fuck ooh shit ooh fuck </h1>";
@@ -45,14 +47,14 @@ function actualInstall(){
 
 if(isset($_SESSION['username']) || isset($_SESSION['password']))
 {
-    $conn = new PDO('mysql:host=localhost;',$_SESSION['username'],$_SESSION['password']);
+    $conn = new PDO(getConnectionString(),$_SESSION['username'],$_SESSION['password']);
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();
 }
 else if(isset($_POST['username']) AND isset($_POST['password']))
 {
     global $conn;   
-    $conn = new PDO('mysql:host=localhost;',$_POST['username'], $_POST['password']);  
+    $conn = new PDO(getConnectionString(),$_POST['username'], $_POST['password']);  
     $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
 
     LoginAttempt($_POST['username'], $_POST['password']);

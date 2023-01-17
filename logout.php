@@ -5,7 +5,6 @@ if(!isset($_SESSION))
 }
 require_once "includers/basic.php";
 require_once "loginFunctions.php";
-require_once "includers/header.php";
 
 if(isset($_SESSION['user']) && isset($_SESSION['loggedIn']))
 {
