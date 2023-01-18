@@ -1,5 +1,3 @@
-
-
 class Movie
 {
   constructor(id, name, genre, rating, jayornay, picker, participants, type)
@@ -36,6 +34,8 @@ var movies = Array();
 var participants = Array();
 var genres = Array();
 var sortOrder = 'ascending';
+var isFetching = false;
+
 
 function CreateTable()
 {
@@ -335,8 +335,6 @@ function GetGenres()
 
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
-  var isSubmitting = false;
-  console.log("hello");
   movies = [];
   const params = new URLSearchParams();
   if(name != null)
@@ -356,11 +354,11 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   params.append('order', 'decending');
 
-  if(isSubmitting)
+  if(isFetching)
   {
     return;
   }
-  isSubmitting = true;
+  isFetching = true;
   fetch(`http://193.11.160.69/api/movies.php?${params}`)
   .then(response => response.json())
   .then(data => 
@@ -377,7 +375,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
     }
     CreateTable();
     console.log("table created again");
-    isSubmitting = false;
+    isFetching = false;
   });
 }
 
@@ -422,5 +420,6 @@ function InsertMovie()
     alert("Please fill in every field.");
   }
 }
+GetMovies();
 AddSortingListeners();
 CreateSortPanel();

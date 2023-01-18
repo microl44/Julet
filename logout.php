@@ -21,9 +21,9 @@ if(isset($_SESSION['username']) || isset($_SESSION['password']))
     unset($_SESSION['password']);
     unset($_SESSION['SessionStarted']);
 
-    setcookie('username', NULL, time()-3600);
-    setcookie('password', NULL, time()-3600);
-    setcookie('ShouldBeLoggedIn', NULL, time()-3600);
+    setcookie('username', '', time()-3600, '/');
+    setcookie('password', '', time()-3600, '/');
+    setcookie('ShouldBeLoggedIn', '', -(time()+3600));
 
     header('location: ' . $_POST['url']);
     die();   

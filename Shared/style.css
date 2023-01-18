@@ -306,16 +306,14 @@ footer{
 }
 
 #filterDiv{
-	display: grid;
-	grid-template-columns: 33% 33% 33%;
+	display: flex;
+	text-align: center;
+	justify-content: center;
 	margin-bottom: 20px;
-	margin-left: 30%;
 	min-width: 40%;
 	min-height: 30%;
 	text-align: right;
-	padding-left: 3%;
 	float: left;
-	width: auto;
 	padding-bottom: 10px;
 	background-color: #BAC3E8;
 	border-radius: 5px;

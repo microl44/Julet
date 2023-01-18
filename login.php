@@ -1,8 +1,7 @@
 <?php
 if(!isset($_SESSION))
-{
-	session_start();
-}
+{session_start();}
+
 require_once "../includers/basic.php";
 require_once "../loginFunctions.php";
 

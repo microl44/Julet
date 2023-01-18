@@ -5,8 +5,6 @@ if(!isset($_SESSION))
 require_once "includers/basic.php";
 require_once "Database.php";    
 
-echo $_SESSION['username'];
-echo $_COOKIE['username'];
 if(isset($_POST['url']))
 {
     $previousPage = $_POST['url'];
@@ -53,9 +51,9 @@ function LoginAttempt($username, $password)
     {
         $conn = new PDO(getConnectionString(),$username,$password);
 
-        setcookie('username', $username, time() + 2592000);
-        setcookie('password', $password, time() + 2592000);
-        setcookie('ShouldBeLoggedIn', true, time() + 2592000);
+        setcookie('username', $username, time() + 2592000, '/');
+        setcookie('password', $password, time() + 2592000, '/');
+        setcookie('ShouldBeLoggedIn', true, time() + 2592000, '/');
 
         if(!isset($_SESSION['SessionStarted']))
         {
