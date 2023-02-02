@@ -1,3 +1,6 @@
+Username: user
+Password: password
+
 # Currently ~~work~~ mess in Progress. Current main priority: Implementing REST API and refactoring.
 
 Now has biblically accurate angels.  
