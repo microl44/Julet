@@ -1,3 +1,4 @@
+IP: http://193.11.160.69/pages/index.php
 Username: user
 Password: password
 
