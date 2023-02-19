@@ -16,12 +16,13 @@ else
 
 if(isset($_POST['username']))
 {
-    LoginAttempt($_POST['username'],$_POST['password']);
-
-    unset($_POST['username']);
-    unset($_POST['password']);
-
-    addLog("Logged In");
+    if(LoginAttempt($_POST['username'],$_POST['password']))
+    {
+        unset($_POST['username']);
+        unset($_POST['password']);
+        $_SESSION['logged-in'] = true;
+        addLog("Logged In");
+    }
     
     header('location: ' . $previousPage);
     die();
@@ -49,23 +50,32 @@ function LoginAttempt($username, $password)
 {
     try
     {
-        $conn = new PDO(getConnectionString(),$username,$password);
+        $conn = GetConn();
 
-        setcookie('username', $username, time() + 2592000, '/');
-        setcookie('password', $password, time() + 2592000, '/');
-        setcookie('ShouldBeLoggedIn', true, time() + 2592000, '/');
+        $stmt = $conn->prepare("SELECT * FROM users WHERE password = :password AND username = :username LIMIT 1;");
+        $stmt->bindvalue(':username', $username);
+        $stmt->bindvalue(':password', $password);
 
-        if(!isset($_SESSION['SessionStarted']))
+        $stmt->execute();
+        if($stmt->rowCount() > 0)
         {
-            addLog("Started Session");
-            $_SESSION['SessionStarted'] = true;
+            if(!isset($_SESSION['logged-in']))
+            {
+                addLog("Started Session");
+            }
+            
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+
+            return true;
         }
-        $_SESSION['username'] = $username;
-        $_SESSION['password'] = $password;
-        return true;
+        else
+        {
+            return false;
+        }
     }
     catch(Exception $e){
-        print_r($e);
+        return false;
     }
 }
 

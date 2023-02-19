@@ -129,38 +129,46 @@ if(isset($_POST['link']) && isset($_POST['jayornay']) && isset($_POST['picker'])
 
 if(isset($_GET))
 {
-	$conn = GetConn();
-	$results = array();
-	$results['data'] = array();
+	try
+	{
+		$conn = GetConn();
+		$results = array();
+		$results['data'] = array();
 
-	$sql = QueryBuilder();
+		$sql = QueryBuilder();
 
-	$stmt = $conn->prepare($sql);
-	$result = $stmt->execute();
+		$stmt = $conn->prepare($sql);
+		$result = $stmt->execute();
 
-	if($result)
-	{	
-		foreach($stmt->fetchAll() as $row)
-		{
-			$conn = GetConn();
-			$movie = new Movie($conn);
+		if($result)
+		{	
+			foreach($stmt->fetchAll() as $row)
+			{
+				$conn = GetConn();
+				$movie = new Movie($conn);
 
-			$movie->id = $row['id'];
-			$movie->name = $row['name'];
-			$movie->genre = $row['genre_name'];
-			$movie->rating = $row['imdb_rating'];
-			$movie->jayornay =$row['jayornay'];
-			$movie->picker = $row['picked_by'];
-			$movie->participants = $row['participants'];
-			$movie->type = $row['is_major'];
+				$movie->id = $row['id'];
+				$movie->name = $row['name'];
+				$movie->genre = $row['genre_name'];
+				$movie->rating = $row['imdb_rating'];
+				$movie->jayornay =$row['jayornay'];
+				$movie->picker = $row['picked_by'];
+				$movie->participants = $row['participants'];
+				$movie->type = $row['is_major'];
 
-			array_push($results['data'], json_encode($movie));
+				array_push($results['data'], json_encode($movie));
+			}
 		}
+		unset($_GET);
+
+		$jsonString = json_encode($results);
 	}
-	unset($_GET);
+	catch(PDOException $e)
+	{
+		$jsonString = json_encode($e);
+	}
 
-
-	$jsonString = json_encode($results);
 	echo $jsonString;
 	die();
 }
+?>

@@ -4,7 +4,7 @@ header('Access-Control-Allow-Credentials: true');
 header("Content-Type:application/json");
 
 require_once "../includers/basic.php";
-require_once "models/participants.php";
+require_once "models/stats.php";
 
 if(isset($_GET))
 {

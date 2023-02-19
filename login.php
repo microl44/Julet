@@ -7,16 +7,17 @@ require_once "../loginFunctions.php";
 
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']) && isset($_COOKIE['ShouldBeLoggedIn']) && $_COOKIE['ShouldBeLoggedIn'] != false)
 {
-    LoginAttempt($_COOKIE['username'], $_COOKIE['password']);
+    #LoginAttempt($_COOKIE['username'], $_COOKIE['password']);
 }
 
-if(isset($_SESSION['username']))
+if(isset($_SESSION['logged-in']) && $_SESSION['logged-in'] == true)
 {
     echo "<form style='height: 100%;' action='../logout.php' method='POST'>";
         echo "<input class='navbarLink logoutBtn' type='submit' value='LOGOUT'/>";
         echo "<input type='hidden' value='".$_SERVER['REQUEST_URI']."' name='url'> </input>";
     echo "</form>";
 }
+
 else
 {?>
     <form action='../loginFunctions.php' method='POST'>

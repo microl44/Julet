@@ -35,3 +35,4 @@ if(isset($_GET))
 	echo $jsonString;
 	die();
 }
+?>

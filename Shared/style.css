@@ -305,11 +305,20 @@ footer{
 	float:right;
 }
 
-#filterDiv{
+#filterDivHolder{
 	display: flex;
+	width: auto;
+	text-align: left;
+	justify-content: left;
+}
+
+#filterDiv{
+	display: inline-flex;
 	text-align: center;
 	justify-content: center;
 	margin-bottom: 20px;
+	width: 40%;
+	height: auto;
 	min-width: 40%;
 	min-height: 30%;
 	text-align: right;

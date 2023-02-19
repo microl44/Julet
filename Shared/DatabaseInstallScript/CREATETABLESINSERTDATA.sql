@@ -19,7 +19,7 @@ PRIMARY KEY (id)
 CREATE INDEX hejsan ON participant(name);
 
 CREATE TABLE movie(
-id int auto_increment,
+id int auto_increment,  
 name varchar(255) NOT NULL,
 genre_name varchar(255),
 imdb_rating float,
@@ -107,7 +107,7 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("Alita: Battle Angel", "CUSTOM RULES", 7.3, "Jay", "Micke", "Micke, Crippe, Behrad", 0), ("Baby Driver","Crime", 7.6, "Jay" , "Micke", "Micke, Crippe, Linus", 0), 
 ("Lilo & Stitch", "Fantasy", 7.3, "Jay", "Momme", "Micke, Crippe, Behrad, Momme", 0), ("Hot Fuzz", "Mystery", 7.8, "Jay", "Crippe", "Micke, Gabbe, Crippe, Behrad, Linus, Momme", 1),
 ("Braveheart", "Biography", 8.4, "Nay", "Crippe", "Micke, Crippe, Behrad", 0), ("Dodgeball: A True Underdog Story", "Sport", 6.7, "Jay", "Micke", "Micke, Crippe, Behrad, Linus", 0),
-("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0);
+("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0), ("Edward Scissorhands", "Fantasy", 7.9, "Jay", "Micke", "Micke, Crippe, Momme, Viktor", 0);
 
 INSERT INTO marvel(name)
 VALUES("Captain America"), ("Captain Marvel"), ("Iron Man"), ("Iron Man 2"), ("The Incredible Hulk"),
@@ -154,7 +154,8 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (8,1), (8,2), (8,3), (8,5), (9,1), (9,2), (9,3), (9,5), (10,1), (10,5), (10,8), (11,1), (11,2), (11,3), (11,5), (12,1), (12,3), (12,4), (12,5), (12,6), (12,7), (13,1), (13,6), (14,1), (14,3), 
 (14,5), (15,1), (15,2), (15,3), (15,4), (15,6), (15,7), (16,1), (16,3), (16,4), (16,5), (16,6), (17,1), (17,4), (17,5), (18,1), (18,3), (18,4), (18,5), (19,1), (19,3), (19,5), (20,1), (20,3), 
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
-(27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6);
+(27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
+(31, 7);
 
 INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
 VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
@@ -171,7 +172,7 @@ VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3
 (28,6,9), (29,2,7), (29,1,6), (29,3,4), (29,4,4), (29,5,5),  (29,6,6);
 
 INSERT INTO users(username, email, password)
-VALUES ('user', 'a20micro@student.his.se', 'password');
+VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', '');
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1"}');

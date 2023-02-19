@@ -1,10 +1,6 @@
 <?php
-class Genre
+class Participant
 {
-	private $conn;
-
-	public $name;
-
 	function __construct($db)
 	{
 		$conn = $db;

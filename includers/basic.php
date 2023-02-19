@@ -7,11 +7,7 @@ $conn;
 
 function GetConn()
 {
-	if(isset($_SESSION['username']) && isset($_SESSION['password']))
-	{
-		$conn = new PDO(getConnectionString(), $_SESSION['username'], $_SESSION['password']);
-	}
-	return isset($conn) ? $conn : null;
+	return DBConn();
 }
 //returns true if it exists and is not empty. Saves a bit of space I guess.
 function exists($var)

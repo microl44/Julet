@@ -36,10 +36,9 @@ var genres = Array();
 var sortOrder = 'ascending';
 var isFetching = false;
 
-
 function CreateTable()
 {
-  console.log("CreateTable called");
+  console.log("CreateTable() Called.");
   const table = document.getElementById('movieTable');
   for(var i = table.rows.length - 1; i >= 1; i--)
   {
@@ -85,55 +84,12 @@ function CreateTable()
     cellParticipants.classList.add('tableCell');
     cellType.classList.add('tableCell');
   }
-}
-
-function AddSortingListeners()
-{
-  document.getElementById("sortID").addEventListener("click", function(e)
-  {
-    e.preventDefault();
-    SortTable(0);
-  });
-  document.getElementById("sortName").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(1);
-  });
-  document.getElementById("sortGenre").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(2);
-  });
-  document.getElementById("sortRating").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(3);
-  });
-  document.getElementById("sortJayornay").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(4);
-  });
-  document.getElementById("sortPicker").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(5);
-  });
-  document.getElementById("sortParticipants").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(6);
-  });
-  document.getElementById("sortType").addEventListener("click", function(e) 
-  {
-    e.preventDefault();
-    SortTable(7);
-  });
-  console.log("eventlisteners added again");
+  AddSortingListeners();
 }
 
 function SortTable(n)
 {
+  console.log("SortTable() Called.");
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("movieTable");
   switching = true;
@@ -225,6 +181,7 @@ function SortTable(n)
 
 function CreateSortPanel()
 {   
+  console.log("CreateSortPanel() Called.");
   const panel = document.getElementById('filterDiv');
   const filterName = document.getElementById('filterName');
 
@@ -237,6 +194,8 @@ function CreateSortPanel()
     const filterParticipantTop = document.createElement("option");
     filterParticipantTop.text = "SELECT";
     filterParticipant.append(filterParticipantTop)
+
+  const filterRating = document.getElementById('filterRating');
 
   for(var i = 0; i < participants.length; i++)
   {
@@ -254,71 +213,69 @@ function CreateSortPanel()
   }
 
   const applyBtn = document.getElementById('filterApply');
-  applyBtn.addEventListener("click", function(e)
-  {
-    e.preventDefault();
-    var name;
-    var genre;
-    var rating;
-    var jayornay;
-    var picker;
-    var participant;
-    var type;
+  applyBtn.removeEventListener("click", ApplyEvent);
+  applyBtn.addEventListener("click", function(){ApplyEvent(filterName, filterPicker, filterParticipant)}, {once: true});
 
-    if(filterName.value != "")
-    {name = filterName.value;}
-    if(filterPicker.options[filterPicker.selectedIndex].value !== "SELECT")
-    {picker = filterPicker.options[filterPicker.selectedIndex].value;}
-    if(filterParticipant.options[filterParticipant.selectedIndex].value !== "SELECT")
-    {participant = filterParticipant.options[filterParticipant.selectedIndex].value;}
-
-    console.log(picker);
-    console.log(participant);
-
-    GetMovies(name, genre, rating, jayornay, picker, participant, type);
-  });
   const resetBtn = document.getElementById('filterReset');
-  resetBtn.addEventListener("click", function(e)
-  {
-    e.preventDefault();
-    filterPicker.selectedIndex = 0;
-    filterParticipant.selectedIndex = 0;
-    filterName.value = "";
-    GetMovies();
-  });
+  resetBtn.removeEventListener("click", ResetEvent);
+  resetBtn.addEventListener("click", function(){ResetEvent(filterName, filterPicker, filterParticipant)}, {once: true});
+
   filterName.addEventListener("keypress", function(e)
   {
     if(e.key === 'Enter')
     {
       applyBtn.click();
     }
-  })
+  });
+
+  AddSortingListeners();
 }
 
-function GetParticipants()
+function ApplyEvent()
 {
+  console.log("button clicked");
+  var name;
+  var genre;
+  var rating;
+  var jayornay;
+  var picker;
+  var participant;
+  var type;
+
+  //if X field doesn't contain the default value, send it as an argument to the fetch api.
+  if(filterName.value != "")
+    {name = filterName.value;}
+  if(filterPicker.options[filterPicker.selectedIndex].value !== "SELECT")
+    {picker = filterPicker.options[filterPicker.selectedIndex].value;}
+  if(filterParticipant.options[filterParticipant.selectedIndex].value !== "SELECT")
+    {participant = filterParticipant.options[filterParticipant.selectedIndex].value;}
+  if(filterRating.options[filterRating.selectedIndex].value !== "SELECT")
+    {rating = filterRating.options[filterRating.selectedIndex].value;}
+
+  GetMovies(name, genre, rating, jayornay, picker, participant, type);
+}
+
+function ResetEvent()
+{
+  console.log("resetBtn clicked");
+  filterPicker.selectedIndex = 0;
+  filterParticipant.selectedIndex = 0;
+  filterRating.selectedIndex = 0;
+  filterName.value = "";
+
+  GetMovies();
+}
+
+function GetParticipants(name = null)
+{
+  console.log("GetParticipants() Called.");
   participants = [];
+  params = new URLSearchParams();
 
-  fetch(`http://193.11.160.69/api/participants.php`)
-  .then(response => response.json())
-  .then(data =>
-  {
-    results = data;
+  if(name != null)
+    {params.append('name', name);}
 
-    for (var i = 0; i < results['data'].length; i++) 
-    {
-      var tempObject = JSON.parse(results['data'][i]);
-
-      participants.push(new Participant(tempObject.id, tempObject.name));
-    }
-  })
-}
-
-function GetGenres()
-{
-  genres = [];
-
-  fetch(`http://193.11.160.69/api/genres.php`)
+  fetch(`http://193.11.160.69/api/participants.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -327,14 +284,39 @@ function GetGenres()
     for (var i = 0; i < results['data'].length; i++)
     {
       var tempObject = JSON.parse(results['data'][i]);
+      participants.push(new Participant(tempObject.id, tempObject.name));
+    }
+  })
+}
 
+
+function GetGenres(name = null)
+{
+  console.log("GetGenres() Called.");
+  genres = [];
+  params = new URLSearchParams();
+
+  if(name != null)
+    {params.append('name', name);}
+
+  fetch(`http://193.11.160.69/api/genres.php?${params}`)
+  .then(response => response.json())
+  .then(data =>
+  {
+    results = data;
+
+    for (var i = 0; i < results['data'].length; i++)
+    {
+      var tempObject = JSON.parse(results['data'][i]);
       genres.push(new Genre(tempObject.name));
     }
   })
 }
 
+
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
+  console.log("GetMovies() Called.");
   movies = [];
   const params = new URLSearchParams();
   if(name != null)
@@ -363,20 +345,49 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   .then(response => response.json())
   .then(data => 
   {
-    console.log(genres);
-    console.log(participants);
     results = data;
-    for (var i = 0; i < results['data'].length; i++) 
+    for (var i = 0; i < results['data'].length; i++)
     {
       var tempObject = JSON.parse(results['data'][i]);
 
       movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
         tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
     }
+    GetGenres();
+    GetParticipants();
     CreateTable();
-    console.log("table created again");
+    CreateSortPanel();
     isFetching = false;
   });
+}
+
+
+function AddSortingListeners()
+{
+  console.log("AddSortingListeners() Called.");
+  //document.getElementById("sortID").removeEventListener("click", SortTable(0));
+  document.getElementById("sortID").addEventListener("click", function(){SortTable(0);}, {once: true});
+
+  //document.getElementById("sortName").removeEventListener("click", SortTable(1));
+  document.getElementById("sortName").addEventListener("click", function(){SortTable(1);}, {once: true});
+
+  //document.getElementById("sortGenre").removeEventListener("click", SortTable(2));
+  document.getElementById("sortGenre").addEventListener("click", function(){SortTable(2);}, {once: true});
+
+  //document.getElementById("sortRating").removeEventListener("click", SortTable(4));
+  document.getElementById("sortRating").addEventListener("click", function(){SortTable(3);}, {once: true});
+
+  //document.getElementById("sortJayornay").removeEventListener("click", SortTable(4));
+  document.getElementById("sortJayornay").addEventListener("click", function() {SortTable(4);}, {once: true});
+
+  //document.getElementById("sortPicker").removeEventListener("click", SortTable(5));
+  document.getElementById("sortPicker").addEventListener("click", function() {SortTable(5);}, {once: true});
+
+  //document.getElementById("sortParticipants").removeEventListener("click", SortTable(6));
+  document.getElementById("sortParticipants").addEventListener("click", function(){SortTable(6);}, {once: true});
+
+  //document.getElementById("sortType").removeEventListener("click", SortTable(7));
+  document.getElementById("sortType").addEventListener("click", function(){SortTable(7);}, {once: true});
 }
 
 function InsertMovie()
@@ -421,5 +432,4 @@ function InsertMovie()
   }
 }
 GetMovies();
-AddSortingListeners();
-CreateSortPanel();
+//CreateSortPanel();

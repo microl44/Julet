@@ -7,20 +7,6 @@
   require_once "../function.php";
   require_once "../includers/header.php";
 
-
-  if(isset($_SESSION['username']) || isset($_SESSION['password']))
-  {
-    addLog();
-    $conn = GetConn();
-    
-    $stmt = $conn->query("SELECT name FROM participant ORDER BY name");
-    $participants = $stmt->fetchAll();
-    $stmt->closeCursor();
-
-    $stmt = $conn->query("SELECT name FROM genre ORDER BY name");
-    $genres = $stmt->fetchAll();
-    $stmt->closeCursor();
-
     echo "<div class='quoteDiv' onload='hideOnScroll()'>";
       echo "<p class='quotequote'>".$quote['Quote']."</p>";
       echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";
@@ -33,50 +19,53 @@
       }
     </script>
       <div class='content indexContent'>
+        <div id=filterDivHolder>
         <!----------FILTER TABLE SECTION START---------->
-        <div id=filterDiv>
-          <div>
-            <label for='filterName'>Filter by movie name:</label>
-            <input id='filterName'> </input>
-          </div>
-          
-          <div>
-            <label for='filterPicker'>Filter by winner:</label>
-            <select id='filterPicker'>
-            </select>
-          </div>
+          <div id=filterDiv>
+            <div class='filterDivDiv'>
+              <label for='filterName'>Filter by movie name:</label>
+              <input id='filterName'> </input>
+            </div>
+            
+            <div class='filterDivDiv'>
+              <label for='filterPicker'>Filter by winner:</label>
+              <select id='filterPicker'>
+              </select>
+            </div>
 
-          <div>
-            <label for='filterParticipant'>Filter by participant:</label>
-            <select id='filterParticipant'>
-            </select>
-          </div>
+            <div class='filterDivDiv'>
+              <label for='filterParticipant'>Filter by participant:</label>
+              <select id='filterParticipant'>
+              </select>
+            </div>
 
-          <div>
-            <label for='filterGenre'>Filter by Genre:</label>
-            <select id='filterGenre'>
-            </select>
-          </div>
+            <div class='filterDivDiv'>
+              <label for='filterGenre'>Filter by Genre:</label>
+              <select id='filterGenre'>
+              </select>
+            </div>
 
-          <div>
-            <label for='filterRating'>Filter by rating:</label>
-            <select id='filterRating'>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-          
-          <div>
-            <button id='filterApply'>Apply Filter</button>
-            <button id='filterReset'>Reset Filter</button>
+            <div class='filterDivDiv'>
+              <label for='filterRating'>Filter by rating:</label>
+              <select id='filterRating'>
+                <option value="SELECT">SELECT</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            
+            <div class='filterDivDiv'>
+              <button id='filterApply'>Apply Filter</button>
+              <button id='filterReset'>Reset Filter</button>
+            </div>
           </div>
         </div>
         <!----------FILTER TABLE SECTION END---------->
@@ -294,13 +283,10 @@
             </div>
           </div>
         </div>
+        <!--------GENRE SECTION ENDS--------->
       </div>
       <?php include_once "../includers/footer.php"; 
       ?>
   <?php
-  }
-  else{
-    notLoggedIn();
-  }
 ?>
 <script type="text/javascript" src="index.js"></script>

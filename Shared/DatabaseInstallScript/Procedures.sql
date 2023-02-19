@@ -108,3 +108,9 @@ call add_User("admin", "password");
 call add_User("M", "123");
 call add_User("B", "123");
 call add_User("L", "123");
+
+CREATE VIEW participant_results AS 
+SELECT p.name, ROUND(((SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT("%", p.name, "%")) / (SELECT COUNT(*) FROM movie)) * 100) AS "participation_rate", ROUND(((SELECT COUNT(*) FROM movie WHERE movie.picked_by = p.name) / (SELECT COUNT(*) FROM movie WHERE movie.participants LIKE CONCAT('%', p.name, '%'))) * 100) AS "winrate", 
+GROUP_CONCAT(m.name) as "picked_movies"
+FROM participant p JOIN movie m ON m.picked_by = p.name
+GROUP BY p.name;
