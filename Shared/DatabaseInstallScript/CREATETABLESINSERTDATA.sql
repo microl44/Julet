@@ -182,7 +182,10 @@ VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3
 (31, 1, 1), (31, 2, 1), (31, 3, 1), (31, 5, 2), (31, 9, 3), (31, 11, 1);
 
 INSERT INTO users(username, email, password)
-VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', '');
+VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', ''),
+('micke', 'a20micro@student.his.se', 'password'), ('gabbe', 'gabbemail@gmail.com', 'password'),
+('crippe', 'crippemail@gmail.com', 'password'), ('behrad', 'behradmail@gmail.com', 'password'),
+('linus', 'linusmail@gmail.com', 'password'), ('momme', 'mommemail@gmail.com', 'password');
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1"}');
