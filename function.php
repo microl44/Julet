@@ -224,7 +224,7 @@ function giveRandomQuote(){
   "Don't mind your PC lifting, it's just the bitcoin-miner doing what it's supposed to.", "The wheel giveth, the wheel taketh. However, for some it seems it's mostly taketh",
   "Please donate to my patreon. Together we can fund enough money and buy the right to Ant Man 2 so no one has to see it again", 
   "Lord of the rings is dumb, they could've just taken the eagles to mordor", "There's always another after-credits scene", 
-  "Looking for front-end develops capable of center a div. Please send an email if this applies to you", "The syntax is more what you'd call guidelines than actual rules",
+  "Looking for front-end develops capable of centering a div. Please send an email if this applies to you", "The syntax is more what you'd call guidelines than actual rules",
   "I got a <s>jar</s> repo of dirt, I got a <s>jar</s> repo of dirt!", "Did you know that evehaup916adskasyjk BELLA NER FRÅN TANGENTBORDET! HDSFJJ",
   "So long, and thanks for all the fish!", "Hörru, du har inte tid att kolla på film, du har skolarbete att göra.", "We didn't invent the wheel, we just perfected it",
   "That Dicaprio guy is pretty good but I don't know if he's good enough for an oscar", "A list of a thousand movies begins with a single spin",
@@ -239,7 +239,7 @@ function giveRandomQuote(){
   "Guess you could call Tarantino movies a 'cult-classic' around here", "I'd rather shit myself than join the army", "Brooks was here", "Arcane is NOT an anime", 
   "Mr Behrad, I don't feel so good", "Hey, did the toys in that kids movie just embrace death?", "You have your mothers <s>eyes</s> shit taste in movies", "Now with working hash function!",
   "Please keep any tears away from the wheel", "Say 'Hello' to my little wheel!", "I love the smell of napalm in the morning", "We're gonna need a bigger wheel",
-  "Any desired feature suggestions should be translated into monkey-speak and sent to CodeMonkeyBehrad@gmail.com", "The needs of the wheel outweighs the needs of the many", 
+  "Any desired feature suggestions should be translated into monkey-speak and sent tobeviseta@gmail.com", "The needs of the wheel outweighs the needs of the many", 
   "Seek Wheel, the rest will follow", "Watching movies with friends is a sign of a good time. Creating a website about movies you watch is a sign of a wasted life",
   "Bohemian Rhapsody is the greatest guns n roses song ever", "I'm tired boss, dog tired...", "Stop using memes, it's pissing me off!", "Here's to the new us!",
   "Any storing of IP, username, pages viewed, bank pin and name of first born is purely for security reasons");

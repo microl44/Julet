@@ -33,7 +33,6 @@ class Genre
 var movies = Array();
 var participants = Array();
 var genres = Array();
-var sortOrder = 'ascending';
 var isFetching = false;
 
 function CreateTable()
@@ -84,17 +83,39 @@ function CreateTable()
     cellParticipants.classList.add('tableCell');
     cellType.classList.add('tableCell');
   }
-  AddSortingListeners();
+  //AddSortingListeners();
+}
+
+function AddSortingListeners()
+{/*
+  console.log("AddSortingListeners() Called.");
+  document.getElementById("sortID").addEventListener("click", function(){SortTable(0);}, {once: true});
+  document.getElementById("sortName").addEventListener("click", function(){SortTable(1);}, {once: true});
+  document.getElementById("sortGenre").addEventListener("click", function(){SortTable(2);}, {once: true});
+  document.getElementById("sortRating").addEventListener("click", function(){SortTable(3);}, {once: true});
+  document.getElementById("sortJayornay").addEventListener("click", function() {SortTable(4);}, {once: true});
+  document.getElementById("sortPicker").addEventListener("click", function() {SortTable(5);}, {once: true});
+  document.getElementById("sortParticipants").addEventListener("click", function(){SortTable(6);}, {once: true});
+  document.getElementById("sortType").addEventListener("click", function(){SortTable(7);}, {once: true});*/
 }
 
 function SortTable(n)
 {
   console.log("SortTable() Called.");
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  var table;
+  var rows;
+  var switching;
+  var i;
+  var x;
+  var y;
+  var shouldSwitch;
+  var dir;
+  var switchCount = 0;
+
   table = document.getElementById("movieTable");
   switching = true;
-  // Set the sorting direction to ascending
-  sortOrder = "ascending";
+  dir = "asc";
+
   /* Make a loop that will continue until
   no switching has been done: */
   while (switching) 
@@ -114,9 +135,9 @@ function SortTable(n)
       y = rows[i + 1].getElementsByTagName("TD")[n];
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
-      if (sortOrder == "ascending") 
+      if (dir == "asc") 
       {
-        if (n === 0) 
+        if (n === 0 || n === 3)
         {
           if (Number(x.innerHTML) > Number(y.innerHTML)) 
           {
@@ -135,7 +156,7 @@ function SortTable(n)
           }
         }
       } 
-      else if (sortOrder == "descending") 
+      else if (dir == "desc") 
       {
         if (n === 0 || n === 3) 
         {
@@ -163,26 +184,94 @@ function SortTable(n)
       and mark that a switch has been done: */
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
-      // Each time a switch is done, increase this count by 1:
-      switchcount ++; 
+      switchCount ++;
     } 
-    else 
+    else
     {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && sortOrder == "ascending") 
+      if(switchCount == 0 && dir == "asc")
       {
-        sortOrder = "descending";
+        dir = "desc";
         switching = true;
       }
     }
   }
 }
 
+function PopulateAddNewMovieWinner()
+{
+  console.log("PopulateAddNewMovieWinner() Called."); 
+  const winnerDropdown = document.getElementById('pickerInput');
+  const SELECT = document.createElement("option");
+  SELECT.text = "SELECT";
+  winnerDropdown.append(SELECT);
+
+  for(var i = 0; i < participants.length; i++)
+  {
+    const pickerDropdownOption = document.createElement("option");
+    pickerDropdownOption.text = participants[i].name;
+    winnerDropdown.append(pickerDropdownOption);
+  }
+}
+
+function PopulateAddNewMovieGenre()
+{
+  console.log("PopulateAddNewMovieGenre() Called.");
+  const genreDropdown = document.getElementById('genreInput');
+  const SELECT = document.createElement("option");
+  SELECT.text = "SELECT";
+  genreDropdown.append(SELECT);
+
+  for(var i = 0; i < genres.length; i++)
+  {
+    const dropdownEntry = document.createElement("option");
+    dropdownEntry.text = genres[i].name;
+    genreDropdown.append(dropdownEntry);
+  }
+}
+
+function PopulateGenreFilter()
+{
+  console.log("PopulateGenreFilter() Called."); 
+  const genreDropdown = document.getElementById('filterGenre');
+  const SELECT = document.createElement("option");
+  SELECT.text = "SELECT";
+  genreDropdown.append(SELECT);
+
+  for(var i = 0; i < genres.length; i++)
+  {
+    const dropdownEntry = document.createElement("option");
+    dropdownEntry.text = genres[i].name;
+    genreDropdown.append(dropdownEntry);
+  }
+}
+
+function PopulateParticipantFilter()
+{
+  console.log("PopulateParticipantFilter() Called."); 
+  const participantsDropdown = document.getElementById('filterParticipant');
+  const winnerDropdown = document.getElementById('filterPicker');
+  const SELECT = document.createElement("option");
+  const SELECT2 = document.createElement("option");
+  SELECT.text = "SELECT";
+  SELECT2.text = "SELECT";
+  participantsDropdown.append(SELECT);
+  winnerDropdown.append(SELECT2);
+
+  for(var i = 0; i < participants.length; i++)
+  {
+    const dropdownEntry = document.createElement("option");
+    const dropdownEntry2 = document.createElement("option");
+    dropdownEntry.text = participants[i].name;
+    dropdownEntry2.text = participants[i].name;
+    participantsDropdown.append(dropdownEntry);
+    winnerDropdown.append(dropdownEntry2);
+  }
+}
+
 function CreateSortPanel()
 {   
   console.log("CreateSortPanel() Called.");
-  const panel = document.getElementById('filterDiv');
+ 
   const filterName = document.getElementById('filterName');
 
   const filterPicker = document.getElementById('filterPicker');
@@ -228,7 +317,7 @@ function CreateSortPanel()
     }
   });
 
-  AddSortingListeners();
+  //AddSortingListeners();
 }
 
 function ApplyEvent()
@@ -242,7 +331,7 @@ function ApplyEvent()
   var participant;
   var type;
 
-  //if X field doesn't contain the default value, send it as an argument to the fetch api.
+  //if X field doesn't contain the default value (empty), send it as an argument to the fetch api.
   if(filterName.value != "")
     {name = filterName.value;}
   if(filterPicker.options[filterPicker.selectedIndex].value !== "SELECT")
@@ -285,7 +374,16 @@ function GetParticipants(name = null)
     {
       var tempObject = JSON.parse(results['data'][i]);
       participants.push(new Participant(tempObject.id, tempObject.name));
+
+      //CreateSortPanel();
+
+      //const addMoviePicker = document.getElementById('pickerInput');
+      //const addMoviePickerOption = document.createElement("option");
+      //addMoviePickerOption.text = tempObject.name;
+      //addMoviePicker.append(addMoviePickerOption);
     }
+    PopulateParticipantFilter();
+    PopulateAddNewMovieWinner();
   })
 }
 
@@ -309,7 +407,14 @@ function GetGenres(name = null)
     {
       var tempObject = JSON.parse(results['data'][i]);
       genres.push(new Genre(tempObject.name));
+
+      //const addMovieGenre = document.getElementById('genreInput');
+      //const addMovieGenreOption = document.createElement("option");
+      //addMovieGenreOption.text = tempObject.name;
+      //addMovieGenre.append(addMovieGenreOption);
     }
+    PopulateGenreFilter();
+    PopulateAddNewMovieGenre();
   })
 }
 
@@ -353,41 +458,9 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
       movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
         tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
     }
-    GetGenres();
-    GetParticipants();
     CreateTable();
-    CreateSortPanel();
     isFetching = false;
   });
-}
-
-
-function AddSortingListeners()
-{
-  console.log("AddSortingListeners() Called.");
-  //document.getElementById("sortID").removeEventListener("click", SortTable(0));
-  document.getElementById("sortID").addEventListener("click", function(){SortTable(0);}, {once: true});
-
-  //document.getElementById("sortName").removeEventListener("click", SortTable(1));
-  document.getElementById("sortName").addEventListener("click", function(){SortTable(1);}, {once: true});
-
-  //document.getElementById("sortGenre").removeEventListener("click", SortTable(2));
-  document.getElementById("sortGenre").addEventListener("click", function(){SortTable(2);}, {once: true});
-
-  //document.getElementById("sortRating").removeEventListener("click", SortTable(4));
-  document.getElementById("sortRating").addEventListener("click", function(){SortTable(3);}, {once: true});
-
-  //document.getElementById("sortJayornay").removeEventListener("click", SortTable(4));
-  document.getElementById("sortJayornay").addEventListener("click", function() {SortTable(4);}, {once: true});
-
-  //document.getElementById("sortPicker").removeEventListener("click", SortTable(5));
-  document.getElementById("sortPicker").addEventListener("click", function() {SortTable(5);}, {once: true});
-
-  //document.getElementById("sortParticipants").removeEventListener("click", SortTable(6));
-  document.getElementById("sortParticipants").addEventListener("click", function(){SortTable(6);}, {once: true});
-
-  //document.getElementById("sortType").removeEventListener("click", SortTable(7));
-  document.getElementById("sortType").addEventListener("click", function(){SortTable(7);}, {once: true});
 }
 
 function InsertMovie()
@@ -398,6 +471,13 @@ function InsertMovie()
   const pickerInput = document.getElementById("pickerInput").value;
   const genreInput = document.getElementById("genreInput").value;
   const typeInput = document.getElementById("typeInput").value;
+
+  console.log(linkInput);
+  console.log(participantsInput);
+  console.log(jayornayInput);
+  console.log(pickerInput);
+  console.log(genreInput);
+  console.log(typeInput);
 
   if(linkInput !== "" && participantsInput !== "" && jayornayInput !== "" && pickerInput)
   {
@@ -412,7 +492,7 @@ function InsertMovie()
     params.append('participants', participantsInput);
     params.append('type', typeInput);
 
-    fetch(`${window.location.hostname}/api/movies.php`,
+    fetch(`http://193.11.160.69/api/movies.php`,
     {
       method: 'POST',
       body: params,
@@ -422,9 +502,10 @@ function InsertMovie()
     {
       results = data;
       console.log(results);})
-    .catch(error => {
+    .catch(error => 
+    {
       console.log(error);
-    })
+    });
   }
   else
   {
@@ -432,4 +513,6 @@ function InsertMovie()
   }
 }
 GetMovies();
+GetParticipants();
+GetGenres();
 //CreateSortPanel();

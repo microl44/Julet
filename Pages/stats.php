@@ -11,14 +11,14 @@
 	
 	if(isset($_SESSION['username']) || isset($_SESSION['password']))
 	{
-		addLog();
-		echo "<div class='content'>";
-			PrintParticipantInfo();
-		echo "</div>";
-		include_once "includers/footer.php";
+		addLog(); ?>
+		<div class='content'>
+			<p> WORK IN POGRESS HERE </p>
+		</div>
+		<?php include_once "../includers/footer.php";
 	}
 	else
 	{
-		notLoggedIn();
+		//notLoggedIn();
 	}
 ?>

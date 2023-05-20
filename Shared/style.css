@@ -61,7 +61,6 @@ h3{
 .content{
 	padding-top: 100px;
 	width: 100%;
-    max-width: 100%;
     text-align: center;
     padding-bottom: 70px;
     align-self: center;
@@ -306,37 +305,54 @@ footer{
 }
 
 #filterDivHolder{
-	display: flex;
-	width: auto;
-	text-align: left;
-	justify-content: left;
-}
-
-#filterDiv{
 	display: inline-flex;
 	text-align: center;
 	justify-content: center;
+	width: auto;
+}
+
+#filterDiv{
+	width: 70%;
+	min-width: 850px;
+	padding: 10px;
 	margin-bottom: 20px;
-	width: 40%;
-	height: auto;
-	min-width: 40%;
-	min-height: 30%;
-	text-align: right;
-	float: left;
-	padding-bottom: 10px;
 	background-color: #BAC3E8;
 	border-radius: 5px;
 	box-shadow: 5px 5px 5px #3B7DD5;
 	border: 2px solid;
+	display: inline-block;
 }
 
-#filterDiv form{
-	padding: 3px;
+.filterInputDiv{
+	text-align: center;
+	justify-content: center;
 }
 
-#filterDiv label{
-	font-weight: bold;
-	float: left;
+#filterLabels{
+	height: 49%;
+	width: 90%;
+	display: inline;
+	float:left;
+	text-align: left;
+}
+
+#filterLabels label{
+	font-size: 20px;
+	min-width: 150px;
+}
+
+#filterinputs{
+	height: 49%;
+	width: 90%;
+	display: inline;
+	float:left;
+	text-align: left;
+}
+
+#filterButtons{
+	height: 100%;
+	width: 10%;
+	float:left;
 }
 
 .filterSubmit{
@@ -370,33 +386,6 @@ footer{
 .filterLabel option:hover{
 }
 
-#filterName
-{
-	font-weight: bold;
-	font-size: 20px;
-	padding: 10px;
-}
-
-#filterPicker
-{
-	text-align: left;
-	cursor:pointer;
-	display: block;
-	margin: 0;
-	color:red;
-	padding: 10px;
-}
-
-#filterPicker:hover
-{
-	cursor: pointer;
-}
-
-#filterParticipant
-{
-
-}
-
 .jesusChrist{
 	width: 192px;
 	height: 20px;
@@ -412,10 +401,6 @@ footer{
 	justify-content: center;
 	text-align: center;
 	width:100%;
-
-}
-
-#movieTable{
 
 }
 
@@ -596,9 +581,10 @@ footer{
 	float:right; 
 	position: fixed; 
 	font-size: 40px; 
-	margin-left: 75%; 
-	margin-top: 5%;
+	margin-left: 85%; 
+	margin-top: 4%;
 	z-index: 1000000000;
+	pointer-events: none;
 }
 
 .quotequote{

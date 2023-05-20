@@ -22,30 +22,28 @@
         <div id=filterDivHolder>
         <!----------FILTER TABLE SECTION START---------->
           <div id=filterDiv>
-            <div class='filterDivDiv'>
+
+            <div class='filterInputDiv'>
               <label for='filterName'>Filter by movie name:</label>
               <input id='filterName'> </input>
             </div>
-            
-            <div class='filterDivDiv'>
+
+            <div class='filterInputDiv'>
               <label for='filterPicker'>Filter by winner:</label>
-              <select id='filterPicker'>
-              </select>
+              <select id='filterPicker'></select>
             </div>
 
-            <div class='filterDivDiv'>
+            <div class='filterInputDiv'>
               <label for='filterParticipant'>Filter by participant:</label>
-              <select id='filterParticipant'>
-              </select>
+              <select id='filterParticipant'></select>
             </div>
 
-            <div class='filterDivDiv'>
+            <div class='filterInputDiv'>
               <label for='filterGenre'>Filter by Genre:</label>
-              <select id='filterGenre'>
-              </select>
+              <select id='filterGenre'></select>
             </div>
 
-            <div class='filterDivDiv'>
+            <div class='filterInputDiv'>
               <label for='filterRating'>Filter by rating:</label>
               <select id='filterRating'>
                 <option value="SELECT">SELECT</option>
@@ -61,10 +59,10 @@
                 <option value="10">10</option>
               </select>
             </div>
-            
-            <div class='filterDivDiv'>
-              <button id='filterApply'>Apply Filter</button>
-              <button id='filterReset'>Reset Filter</button>
+
+            <div id='filterButtons'>
+              <button>Apply</button>
+              <button>Reset</button>
             </div>
           </div>
         </div>
@@ -74,61 +72,57 @@
         <div id='tableContainer'>
           <table id='movieTable' cellspacing="0">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='sortID'>ID</td>
-              <td class='tableHeaderTD' id='sortName'>NAME</td>
-              <td class='tableHeaderTD' id='sortGenre'>GENRE</td>
-              <td class='tableHeaderTD' id='sortRating'>RATING</td>
-              <td class='tableHeaderTD' id='sortJayornay'>JAY OR NAY</td>
-              <td class='tableHeaderTD' id='sortPicker'>PICKER</td>
-              <td class='tableHeaderTD' id='sortParticipants'>PARTICIPANTS</td>
-              <td class='tableHeaderTD' id='sortType'>TYPE</td>
+              <td class='tableHeaderTD' id='sortID', onclick='SortTable(0)'>ID</td>
+              <td class='tableHeaderTD' id='sortName', onclick='SortTable(1)'>NAME</td>
+              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(2)'>GENRE</td>
+              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(3)'>RATING</td>
+              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(4)'>JAY OR NAY</td>
+              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(5)'>PICKER</td>
+              <td class='tableHeaderTD' id='sortParticipants', onclick='SortTable(6)'>PARTICIPANTS</td>
+              <td class='tableHeaderTD' id='sortType', onclick='SortTable(7)'>TYPE</td>
             </tr>
           </table>
         </div>
         <!----------DISPLAY TABLE SECTION END---------->
         
-        <!----------INSERT NEW MOVIE FORM START---------->
-        <h3>Add new movie </h3>
-        <div class='addMovieDiv'>
-              <div class='addMovieDivFirst'>
-                <label for='linkInput'>IMDB Link: </label>
-                <input id='linkInput' type='text' name='addName' required/><br/>
+        <?php
+        if(isset($_SESSION['username']) || isset($_SESSION['password']))
+        {
+          echo "<!----------INSERT NEW MOVIE FORM START---------->
+          <h3>Add new movie </h3>
+          <div class='addMovieDiv'>
+                <div class='addMovieDivFirst'>
+                  <label for='linkInput'>IMDB Link: </label>
+                  <input id='linkInput' type='text' name='addName' required/><br/>
 
-                <label for='participantsInput'> Participants: </label>
-                <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
+                  <label for='participantsInput'> Participants: </label>
+                  <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
 
-                <label for='jayornayInput'> Jay or Nay: </label>
-                <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
-                </label>
-              </div>
+                  <label for='jayornayInput'> Jay or Nay: </label>
+                  <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
+                  </label>
+                </div>
 
-              <div class='addMovieDivSecond'>
-                <label for='pickerInput'> Picked By: </label>
-                <select id='pickerInput' name='addPickedBy'> <?php 
-                  foreach($participants as $participant)
-                  {
-                    echo "<option>" . $participant[0] . "</option>";
-                  }?>
-                </select> <br/>
-                
-                <label for='genreInput'> Genre: </label>
-                <select id='genreInput' name='addGenre'> <?php
-                  foreach($genres as $genre)
-                  {
-                    echo "<option>" . $genre[0] . "</option>";
-                  }?>
-                </select> <br/>
+                <div class='addMovieDivSecond'>
+                  <label for='pickerInput'> Picked By: </label>
+                  <select id='pickerInput' name='addPickedBy'>
+                  </select> <br/>
+                  
+                  <label for='genreInput'> Genre: </label>
+                  <select id='genreInput' name='addGenre'>
+                  </select> <br/>
 
-                <label for='typeInput'>WheelType </label>
-                <select id='typeInput' name='addIs_major' type='number'> <br/>
-                  <option value='1'> Big Wheel </option>
-                  <option value='0'> Small Wheel </option>
-                </select> </br>
+                  <label for='typeInput'>WheelType </label>
+                  <select id='typeInput' name='addIs_major' type='number'> <br/>
+                    <option value='1'> Big Wheel </option>
+                    <option value='0'> Small Wheel </option>
+                  </select> </br>
 
-                <input id='addMovieBtn' type="submit" onclick="InsertMovie()" value='add movie'/>
-              </div>
-        </div>
-        <!----------INSERT NEW MOVIE FORM END---------->
+                  <input id='addMovieBtn' type='submit' onclick='InsertMovie()'' value='add movie'/>
+                </div>
+          </div>
+          <!----------INSERT NEW MOVIE FORM END---------->";
+        }?>
 
         <!----------GENRE GRID BEGIN---------->
         <div id="gridBackgroundDiv">

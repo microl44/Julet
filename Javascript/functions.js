@@ -7,7 +7,7 @@ function hideOnScroll()
     window.addEventListener('scroll', () => 
     {
       const scrollPercentage = window.scrollY / document.body.offsetHeight
-      if (scrollPercentage >= 0.1)
+      if (scrollPercentage >= 0.01)
       {
         quoteDiv.style.transition = 'opacity 0.3s';
         quoteDiv.style.opacity = 0;

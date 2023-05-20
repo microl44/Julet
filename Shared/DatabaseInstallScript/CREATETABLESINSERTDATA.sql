@@ -89,7 +89,7 @@ VALUES ("Action"),("Adventure"),("Animation"),("Biography"),("Comedy"),("Crime")
 ("Romance"),("Science-Fiction"),("Sport"),("Superhero"),("Thriller"),("War"),("Western"),("Wildcard");
 
 INSERT INTO participant(name)
-VALUES ("Micke"), ("Gabbe"), ("Crippe"), ("Behrad"), ("Linus"), ("Momme"), ("Victor"), ("Sebbe"), ("Doffer"), ("UNK");
+VALUES ("Micke"), ("Gabbe"), ("Crippe"), ("Behrad"), ("Linus"), ("Momme"), ("Victor"), ("Sebbe"), ("Doffer"), ("UNK"), ("Sondre");
 
 INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)
 VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Micke, Gabbe, Crippe", 1), 
@@ -107,7 +107,10 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("Alita: Battle Angel", "CUSTOM RULES", 7.3, "Jay", "Micke", "Micke, Crippe, Behrad", 0), ("Baby Driver","Crime", 7.6, "Jay" , "Micke", "Micke, Crippe, Linus", 0), 
 ("Lilo & Stitch", "Fantasy", 7.3, "Jay", "Momme", "Micke, Crippe, Behrad, Momme", 0), ("Hot Fuzz", "Mystery", 7.8, "Jay", "Crippe", "Micke, Gabbe, Crippe, Behrad, Linus, Momme", 1),
 ("Braveheart", "Biography", 8.4, "Nay", "Crippe", "Micke, Crippe, Behrad", 0), ("Dodgeball: A True Underdog Story", "Sport", 6.7, "Jay", "Micke", "Micke, Crippe, Behrad, Linus", 0),
-("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0), ("Edward Scissorhands", "Fantasy", 7.9, "Jay", "Micke", "Micke, Crippe, Momme, Viktor", 0);
+("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0), ("Edward Scissorhands", "Fantasy", 7.9, "Jay", "Micke", "Micke, Crippe, Momme, Viktor", 0),
+("John Wick", "Wildcard", 7.4, "Jay", "Micke", "Micke, Crippe, Linus", 0), ("The Batman", "Superhero", 7.8, "Jay", "Behrad", "Micke, Gabbe, Crippe, Behrad", 1),
+("Bee Movie", "Drama", 6.1, "Jay", "Micke", "Micke, Behrad, Momme", 0), ("The Hunchback of Notre Dame", "Animation", "7.0", "Jay", "Micke", "Micke, Crippe, Behrad, Linus, Momme", 0),
+("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0);
 
 INSERT INTO marvel(name)
 VALUES("Captain America"), ("Captain Marvel"), ("Iron Man"), ("Iron Man 2"), ("The Incredible Hulk"),
@@ -115,7 +118,8 @@ VALUES("Captain America"), ("Captain Marvel"), ("Iron Man"), ("Iron Man 2"), ("T
 ("Guardians of the Galaxy"), ("Guardians of the Galaxy 2"), ("Avengers - Age of Ultron"), ("Ant Man"), ("Captain America - Civil War"), 
 ("Spider Man - Homecoming"), ("Black Panther"), ("Black Widow"), ("Doctor Strange"), ("Thor - Ragnarök"),
 ("Ant Man and the Wasp"), ("Avengers: Infinity War"), ("Avengers: End Game"), ("Spider Man - Far From Home"), ("Spider Man - No Way Home"), 
-("Shang-Chi and The Legend of the Ten Rings"), ("Eternals"), ("Dr Strange - In the Multiverse of Madness"), ("Thor - Love and Thunder");   
+("Shang-Chi and The Legend of the Ten Rings"), ("Eternals"), ("Dr Strange - In the Multiverse of Madness"), ("Thor - Love and Thunder"), ("Black Panther: Wakanda Forever"),
+("Ant-Man and the Wasp: Quantumania");   
 
 INSERT INTO movieDescription(movieID, cover_path, description)
 VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is cursed to become a monster for the rest of his life, unless he learns to fall in love with a beautiful young woman he keeps prisoner."), 
@@ -147,7 +151,13 @@ VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is
 (27, "C:/xampp/htdocs/Julet/Shared/Images/cover26.png", "A skilled London police officer, after irritating superiors with his embarrassing effectiveness, is transferred to a village where the easygoing officers object to his fervor for regulations, as a string of grisly murders strikes the town."), 
 (28, "C:/xampp/htdocs/Julet/Shared/Images/cover27.png", "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England."), 
 (29, "C:/xampp/htdocs/Julet/Shared/Images/cover28.png", "A group of misfits enter a Las Vegas dodgeball tournament in order to save their cherished local gym from the onslaught of a corporate health fitness chain."),
-(30, "C:/xampp/htdocs/Julet/Shared/Images/cover29.png", "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II."); 
+(30, "C:/xampp/htdocs/Julet/Shared/Images/cover29.png", "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II."),
+(31, "C:/xampp/htdocs/Julet/Shared/Images/cover30.png", "The solitary life of an artificial man - who was incompletely constructed and has scissors for hands - is upended when he is taken in by a suburban family."),
+(32, "C:/xampp/htdocs/Julet/Shared/Images/cover31.png", "An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took his car."),
+(33, "C:/xampp/htdocs/Julet/Shared/Images/cover32.png", "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement."),
+(34, "C:/xampp/htdocs/Julet/Shared/Images/cover33.png", "Barry B. Benson, a bee just graduated from college, is disillusioned at his lone career choice: making honey. On a special trip outside the hive, Barry's life is saved by Vanessa, a florist."),
+(35, "C:/xampp/htdocs/Julet/Shared/Images/cover34.png", "A deformed bell-ringer must assert his independence from a vicious government minister in order to help his friend, a gypsy dancer."),
+(36, "C:/xampp/htdocs/Julet/Shared/Images/cover35.png", "A mountain climber becomes trapped under a boulder while canyoneering alone near Moab, Utah and resorts to desperate measures in order to survive.");
 
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
@@ -155,8 +165,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (14,5), (15,1), (15,2), (15,3), (15,4), (15,6), (15,7), (16,1), (16,3), (16,4), (16,5), (16,6), (17,1), (17,4), (17,5), (18,1), (18,3), (18,4), (18,5), (19,1), (19,3), (19,5), (20,1), (20,3), 
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
-(31, 7);
-
+(31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9);
 INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
 VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
 (3,6,6), (4,2,5), (4,1,1), (4,3,6), (4,6,7), (5,2,5), (5,1,3), (5,3,4), (6,2,6), (6,1,4), 
@@ -169,7 +178,8 @@ VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3
 (23,1,9), (23,3,7), (23,4,9), (23,6,7), (24,2,8), (24,1,7), (24,3,8), (24,4,9), (24,6,6), (24,7,7),
 (25,2,9), (25,1,10), (25,3,9), (25,4,8), (25,6,9), (26,2,5), (26,1,2), (26,3,3), (26,4,4), (26,6,4), 
 (27,2,3), (27,1,1), (27,3,2), (27,4,5), (27,6,5), (28,2,7), (28,1,9), (28,3,9), (28,4,7), (28,5,9), 
-(28,6,9), (29,2,7), (29,1,6), (29,3,4), (29,4,4), (29,5,5),  (29,6,6);
+(28,6,9), (29,2,7), (29,1,6), (29,3,4), (29,4,4), (29,5,5),  (29,6,6), (30, 1, 4), (30, 2, 7), (30, 3, 3), (30, 4, 7), (30, 5, 6),
+(31, 1, 1), (31, 2, 1), (31, 3, 1), (31, 5, 2), (31, 9, 3), (31, 11, 1);
 
 INSERT INTO users(username, email, password)
 VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', '');
@@ -178,8 +188,9 @@ INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1"}');
 
 CREATE VIEW marvel_movies AS
-	SELECT marvelID, ROUND(AVG(marvel_grade),2) AS average_rating
-	FROM marvel_participated
+	SELECT marvelID, name,  ROUND(AVG(marvel_grade),2) AS average_rating
+	FROM marvel_participated m 
+    JOIN marvel varMar ON m.marvelID = varMar.id
 GROUP BY marvelID;
 
 CREATE VIEW movie_participants AS
@@ -189,3 +200,6 @@ CREATE VIEW movie_participants AS
 	JOIN participated part ON part.movieID = m.id
 	JOIN participant p ON p.id = part.participantID
 GROUP BY m.id;
+
+
+SELECT * from marvel_movies;

@@ -96,7 +96,6 @@ if(isset($_POST['link']) && isset($_POST['jayornay']) && isset($_POST['picker'])
 		$movie->type = $_POST['type'];
 
 		$movie->Insert($_POST['link'], $conn);
-
 		unset($_POST['link']);
 		unset($_POST['jayornay']);
 		unset($_POST['picker']);

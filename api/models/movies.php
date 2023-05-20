@@ -25,49 +25,59 @@ class Movie
 
 	function Insert($url, $conn)
 	{
-		$count = 0;
-		$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';
+		try
+		{
+			$count = 0;
+			$savePath = 'C:/xampp/htdocs/Julet/Shared/Images/cover.png';
 
-		$count = $this->ScrapeCoverArt($url, $savePath);
-	    $html = file_get_contents($url);
+			$count = $this->ScrapeCoverArt($url, $savePath);
+		    $html = file_get_contents($url);
+		    $dom = new DOMDocument();
+		    @$dom->loadHTML($html);
+		    $xpath = new DOMXPath($dom);
+		    $this->description = $xpath->query('//span[contains(@class, "sc-2eb29e65-0")]')->item(0)->nodeValue;
+		    $this->name = $xpath->query('//span[contains(@class, "sc-afe43def-1")]')->item(0)->nodeValue;
+		    $this->rating = $xpath->query('//span[contains(@class, "sc-bde20123-1")]')->item(0)->nodeValue;
 
-	    $dom = new DOMDocument();
-	    @$dom->loadHTML($html);
-	    $xpath = new DOMXPath($dom);
-	    $this->description = $xpath->query('//span[@data-testid="plot-xs_to_m"]')->item(0)->nodeValue;
-	    $this->name = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0)->nodeValue;
-	    $this->rating = $xpath->query('//div[@data-testid="hero-rating-bar__aggregate-rating__score"]')->item(1)->nodeValue;
 
-	    if(isset(($xpath->query('//*[@data-testid="hero-title-block__original-title"]')->item(0)->nodeValue)))
-	    {
-	   		$this->name = substr($xpath->query('//*[@data-testid="hero-title-block__original-title"]')->item(0)->nodeValue, 16);
-	    }
-	    else
-	    {
-	    	$this->name = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0)->nodeValue;
-	    }
 
-		$sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
-		$sql = $sql . "VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
+		    if(isset(($xpath->query('//div[contains(@class, "sc-afe43def-3")]')->item(0)->nodeValue)))
+		    {
+		   		$this->name = substr($xpath->query('//div[contains(@class, "sc-afe43def-3")]')->item(0)->nodeValue, 16);
+		    }
+		    //else
+		    //{
+		    //	$this->name = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0)->nodeValue;
+		    //}
 
-		$stmt = $conn->prepare($sql);
-		$stmt->bindvalue(':addName',$this->name);
-		$stmt->bindvalue(':addGenre',$this->genre);
-		$stmt->bindvalue(':addIMDB',$this->rating);
-		$stmt->bindvalue(':addjayornay',$this->jayornay);
-		$stmt->bindvalue(':addPickedBy',$this->picker);
-		$stmt->bindvalue(':addParticipants',$this->participants);
-		$stmt->bindvalue(':addIs_major',$this->type);
-	    $stmt->execute();
-	    $stmt->closeCursor();
+			$sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
+			$sql = $sql . "VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
 
-	    if(isset($this->description) && $this->description != "")
-	    {
-			$this->description = addcslashes($this->description, '"\'');
-			$sql = "INSERT INTO movieDescription(movieID, cover_path, description)
-			VALUES(".$count.", 'C:/xampp/htdocs/Julet/Shared/Images/cover".($count-1).".png', '".$this->description."' )";
-			$conn->query($sql);
-	    }
+			$stmt = $conn->prepare($sql);
+			$stmt->bindvalue(':addName',$this->name);
+			$stmt->bindvalue(':addGenre',$this->genre);
+			$stmt->bindvalue(':addIMDB',$this->rating);
+			$stmt->bindvalue(':addjayornay',$this->jayornay);
+			$stmt->bindvalue(':addPickedBy',$this->picker);
+			$stmt->bindvalue(':addParticipants',$this->participants);
+			$stmt->bindvalue(':addIs_major',$this->type);
+		    $stmt->execute();
+		    $stmt->closeCursor();
+
+		    if(isset($this->description) && $this->description != "")
+		    {
+				$this->description = addcslashes($this->description, '"\'');
+				$sql = "INSERT INTO movieDescription(movieID, cover_path, description)
+				VALUES(".$count.", 'C:/xampp/htdocs/Julet/Shared/Images/cover".($count-1).".png', '".$this->description."' )";
+				$conn->query($sql);
+		    }
+		}
+		catch(PDOException $e)
+		{
+			echo json_encode($e->getMessage());
+			die();
+			return;
+		}
 	}
 
 	function ScrapeCoverArt($url, $savePath) 
@@ -90,7 +100,7 @@ class Movie
 		curl_close($ch);
 
 		if ($error) {
-		    echo "Error: " . $error;
+		    echo json_encode("Error: " . $error);
 		    return;
 		}
 
