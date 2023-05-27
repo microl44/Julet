@@ -19,45 +19,50 @@ function AppendAnd($counter, $sql)
 
 function QueryBuilder()
 {
-	$sql = "SELECT * FROM movie WHERE ";
+	$sql = "SELECT * FROM movie_participants WHERE ";
 	$counter = 0;
 
 	if(isset($_GET['picker']))
 	{
-		$sql = $sql . "picked_by = '". $_GET['picker'] . "' ";
+		$sql = $sql . "picker = '". $_GET['picker'] . "' ";
+		$counter = $counter + 1;
+	}
+	if(isset($_GET['genre']))
+	{
+		$sql = AppendAnd($counter, $sql);
+		$sql = $sql . "genre = '". $_GET['genre'] . "' ";
+		$counter = $counter + 1;
+	}
+	if(isset($_GET['rating']))
+	{
+		$sql = AppendAnd($counter, $sql);
+		$sql = $sql . "rating > ". $_GET['rating'] . " ";
+		$counter = $counter + 1;
+	}
+	if(isset($_GET['jayornay']))
+	{
+		$sql = AppendAnd($counter, $sql);
+		$sql = $sql . "grade = '". $_GET['jayornay'] . "' ";
+		$counter = $counter + 1;
+	}
+	if(isset($_GET['participant']))
+	{
+		$sql = AppendAnd($counter, $sql);
+		$sql = $sql . "participants LIKE '%".$_GET['participant']."%' ";
 		$counter = $counter + 1;
 	}
 	if(isset($_GET['name']))
 	{
 		$sql = AppendAnd($counter, $sql);
 		$sql = $sql . "name LIKE '%".$_GET['name']."%' ";
-	}
-	if(isset($_GET['genre']))
-	{
-		$sql = AppendAnd($counter, $sql);
-		$sql = $sql . "genre_name = '". $_GET['genre'] . "' ";
-	}
-	if(isset($_GET['rating']))
-	{
-		$sql = AppendAnd($counter, $sql);
-		$sql = $sql . "imdb_rating > ". $_GET['rating'] . " ";
-	}
-	if(isset($_GET['jayornay']))
-	{
-		$sql = AppendAnd($counter, $sql);
-		$sql = $sql . "jayornay = '". $_GET['jayornay'] . "' ";
-	}
-	if(isset($_GET['participant']))
-	{
-		$sql = AppendAnd($counter, $sql);
-		$sql = $sql . "participants LIKE '%".$_GET['participant']."%' ";
+		$counter = $counter + 1;
 	}
 
 	$sql = $sql . "ORDER BY id ";
 
-	if(!isset($_GET['picker']) && !isset($_GET['name']) && !isset($_GET['jayornay']) && !isset($_GET['participant']))
+	if(!isset($_GET['picker']) && !isset($_GET['name']) && !isset($_GET['jayornay']) && !isset($_GET['participant']) && !isset($_GET['genre']) && !isset($_GET['rating']))
 	{
-		$sql = "SELECT * FROM movie ORDER BY id ";
+		$sql = "SELECT * FROM movie_participants ORDER BY id ";
 	}
 
 	if(isset($_GET['order']) == 'decending')
@@ -148,12 +153,14 @@ if(isset($_GET))
 
 				$movie->id = $row['id'];
 				$movie->name = $row['name'];
-				$movie->genre = $row['genre_name'];
-				$movie->rating = $row['imdb_rating'];
-				$movie->jayornay =$row['jayornay'];
-				$movie->picker = $row['picked_by'];
+				$movie->genre = $row['genre'];
+				$movie->rating = $row['rating'];
+				$movie->jayornay =$row['grade'];
+				$movie->picker = $row['picker'];
 				$movie->participants = $row['participants'];
 				$movie->type = $row['is_major'];
+				$movie->description = $row['description'];
+				$movie->cover_path = $row['cover_path'];
 
 				array_push($results['data'], json_encode($movie));
 			}

@@ -24,28 +24,28 @@
           <div id=filterDiv>
 
             <div class='filterInputDiv'>
-              <label for='filterName'>Filter by movie name:</label>
-              <input id='filterName'> </input>
+              <label class='filterInputDivLabel' for='filterName'>Filter by movie name:</label>
+              <input class='filterInputDivInput' id='filterName'> </input>
             </div>
 
             <div class='filterInputDiv'>
-              <label for='filterPicker'>Filter by winner:</label>
-              <select id='filterPicker'></select>
+              <label class='filterInputDivLabel' for='filterPicker'>Filter by winner:</label>
+              <select class='filterInputDivInput' id='filterPicker'></select>
             </div>
 
             <div class='filterInputDiv'>
-              <label for='filterParticipant'>Filter by participant:</label>
-              <select id='filterParticipant'></select>
+              <label class='filterInputDivLabel' for='filterParticipant'>Filter by participant:</label>
+              <select class='filterInputDivInput' id='filterParticipant'></select>
             </div>
 
             <div class='filterInputDiv'>
-              <label for='filterGenre'>Filter by Genre:</label>
-              <select id='filterGenre'></select>
+              <label class='filterInputDivLabel' for='filterGenre'>Filter by Genre:</label>
+              <select class='filterInputDivInput' id='filterGenre'></select>
             </div>
 
             <div class='filterInputDiv'>
-              <label for='filterRating'>Filter by rating:</label>
-              <select id='filterRating'>
+              <label class='filterInputDivLabel' for='filterRating'>Filter by rating:</label>
+              <select class='filterInputDivInput' id='filterRating'>
                 <option value="SELECT">SELECT</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,8 +61,8 @@
             </div>
 
             <div id='filterButtons'>
-              <button>Apply</button>
-              <button>Reset</button>
+              <button id='filterApply' onclick='ApplyEvent()'>Apply</button>
+              <button id='filterReset' onclick='ResetEvent()'>Reset</button>
             </div>
           </div>
         </div>

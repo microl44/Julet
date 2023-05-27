@@ -1,6 +1,6 @@
 class Movie
 {
-  constructor(id, name, genre, rating, jayornay, picker, participants, type)
+  constructor(id, name, genre, rating, jayornay, picker, participants, type, description, cover_path)
   {
     this.id = id;
     this.name = name;
@@ -10,6 +10,8 @@ class Movie
     this.picker = picker;
     this.participants = participants;
     this.type = type;
+    this.description = description;
+    this.cover_path = cover_path;
   }
 }
 
@@ -35,9 +37,21 @@ var participants = Array();
 var genres = Array();
 var isFetching = false;
 
+function ExpandRow(element)
+{
+  if(element.style.display == 'none')
+  {
+    element.style.display = 'block';
+  }
+  else
+  {
+    element.style.display = 'block';
+  }
+}
+
 function CreateTable()
 {
-  console.log("CreateTable() Called.");
+  //console.log("CreateTable() Called.");
   const table = document.getElementById('movieTable');
   for(var i = table.rows.length - 1; i >= 1; i--)
   {
@@ -49,6 +63,23 @@ function CreateTable()
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
+
+    //var hidenCover = document.createElement('td');
+    //hidenCover.setAttribute('colspan', '2');
+    //hidenRow.classList.add()
+
+    //var hidenDescription = document.createElement('td');
+    //hidenRow.setAttribute('colspan', '4');
+    //hidenRow.classList.add('hidenTableRow');
+
+    //cellCover.innerHTML = movies[i].cover_path;
+    //cellDescription.innerHTML = movies[i].description;
+
+    //row.setAttribute('onclick', 'ExpandRow("hidenRow");')
+
+    //row.append(hidenRow);
+
+
 
     cellID = row.insertCell(0);
     cellName = row.insertCell(1);
@@ -83,25 +114,11 @@ function CreateTable()
     cellParticipants.classList.add('tableCell');
     cellType.classList.add('tableCell');
   }
-  //AddSortingListeners();
-}
-
-function AddSortingListeners()
-{/*
-  console.log("AddSortingListeners() Called.");
-  document.getElementById("sortID").addEventListener("click", function(){SortTable(0);}, {once: true});
-  document.getElementById("sortName").addEventListener("click", function(){SortTable(1);}, {once: true});
-  document.getElementById("sortGenre").addEventListener("click", function(){SortTable(2);}, {once: true});
-  document.getElementById("sortRating").addEventListener("click", function(){SortTable(3);}, {once: true});
-  document.getElementById("sortJayornay").addEventListener("click", function() {SortTable(4);}, {once: true});
-  document.getElementById("sortPicker").addEventListener("click", function() {SortTable(5);}, {once: true});
-  document.getElementById("sortParticipants").addEventListener("click", function(){SortTable(6);}, {once: true});
-  document.getElementById("sortType").addEventListener("click", function(){SortTable(7);}, {once: true});*/
 }
 
 function SortTable(n)
 {
-  console.log("SortTable() Called.");
+  //console.log("SortTable() Called.");
   var table;
   var rows;
   var switching;
@@ -146,6 +163,14 @@ function SortTable(n)
             break;
           }
         } 
+        else if (n === 6)
+        {
+          if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
+          {
+            shouldSwitch = true;
+            break;
+          }
+        }
         else 
         {
           if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
@@ -167,6 +192,14 @@ function SortTable(n)
             break;
           }
         } 
+        else if (n === 6)
+        {
+          if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
+          {
+            shouldSwitch = true;
+            break;
+          }
+        }
         else 
         {
           if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
@@ -199,7 +232,7 @@ function SortTable(n)
 
 function PopulateAddNewMovieWinner()
 {
-  console.log("PopulateAddNewMovieWinner() Called."); 
+  //console.log("PopulateAddNewMovieWinner() Called."); 
   const winnerDropdown = document.getElementById('pickerInput');
   const SELECT = document.createElement("option");
   SELECT.text = "SELECT";
@@ -215,7 +248,7 @@ function PopulateAddNewMovieWinner()
 
 function PopulateAddNewMovieGenre()
 {
-  console.log("PopulateAddNewMovieGenre() Called.");
+  //console.log("PopulateAddNewMovieGenre() Called.");
   const genreDropdown = document.getElementById('genreInput');
   const SELECT = document.createElement("option");
   SELECT.text = "SELECT";
@@ -231,23 +264,23 @@ function PopulateAddNewMovieGenre()
 
 function PopulateGenreFilter()
 {
-  console.log("PopulateGenreFilter() Called."); 
-  const genreDropdown = document.getElementById('filterGenre');
+  //console.log("PopulateGenreFilter() Called."); 
+  const filterGenre = document.getElementById('filterGenre');
   const SELECT = document.createElement("option");
   SELECT.text = "SELECT";
-  genreDropdown.append(SELECT);
+  filterGenre.append(SELECT);
 
   for(var i = 0; i < genres.length; i++)
   {
     const dropdownEntry = document.createElement("option");
     dropdownEntry.text = genres[i].name;
-    genreDropdown.append(dropdownEntry);
+    filterGenre.append(dropdownEntry);
   }
 }
 
 function PopulateParticipantFilter()
 {
-  console.log("PopulateParticipantFilter() Called."); 
+  //console.log("PopulateParticipantFilter() Called."); 
   const participantsDropdown = document.getElementById('filterParticipant');
   const winnerDropdown = document.getElementById('filterPicker');
   const SELECT = document.createElement("option");
@@ -270,7 +303,7 @@ function PopulateParticipantFilter()
 
 function CreateSortPanel()
 {   
-  console.log("CreateSortPanel() Called.");
+  //console.log("CreateSortPanel() Called.");
  
   const filterName = document.getElementById('filterName');
 
@@ -303,7 +336,10 @@ function CreateSortPanel()
 
   const applyBtn = document.getElementById('filterApply');
   applyBtn.removeEventListener("click", ApplyEvent);
-  applyBtn.addEventListener("click", function(){ApplyEvent(filterName, filterPicker, filterParticipant)}, {once: true});
+  applyBtn.addEventListener("click", function()
+  {
+    ApplyEvent(filterName, filterPicker, filterParticipant)
+  });
 
   const resetBtn = document.getElementById('filterReset');
   resetBtn.removeEventListener("click", ResetEvent);
@@ -313,16 +349,15 @@ function CreateSortPanel()
   {
     if(e.key === 'Enter')
     {
+      console.log("Apply button clicked");
       applyBtn.click();
     }
   });
-
-  //AddSortingListeners();
 }
 
 function ApplyEvent()
 {
-  console.log("button clicked");
+  //console.log("button clicked");
   var name;
   var genre;
   var rating;
@@ -338,6 +373,8 @@ function ApplyEvent()
     {picker = filterPicker.options[filterPicker.selectedIndex].value;}
   if(filterParticipant.options[filterParticipant.selectedIndex].value !== "SELECT")
     {participant = filterParticipant.options[filterParticipant.selectedIndex].value;}
+  if(filterGenre.options[filterGenre.selectedIndex].value !== "SELECT")
+    {genre = filterGenre.options[filterGenre.selectedIndex].value;}
   if(filterRating.options[filterRating.selectedIndex].value !== "SELECT")
     {rating = filterRating.options[filterRating.selectedIndex].value;}
 
@@ -346,9 +383,10 @@ function ApplyEvent()
 
 function ResetEvent()
 {
-  console.log("resetBtn clicked");
+  //console.log("resetBtn clicked");
   filterPicker.selectedIndex = 0;
   filterParticipant.selectedIndex = 0;
+  filterGenre.selectedIndex = 0;
   filterRating.selectedIndex = 0;
   filterName.value = "";
 
@@ -357,7 +395,7 @@ function ResetEvent()
 
 function GetParticipants(name = null)
 {
-  console.log("GetParticipants() Called.");
+  //console.log("GetParticipants() Called.");
   participants = [];
   params = new URLSearchParams();
 
@@ -390,7 +428,7 @@ function GetParticipants(name = null)
 
 function GetGenres(name = null)
 {
-  console.log("GetGenres() Called.");
+  //console.log("GetGenres() Called.");
   genres = [];
   params = new URLSearchParams();
 
@@ -421,7 +459,7 @@ function GetGenres(name = null)
 
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
-  console.log("GetMovies() Called.");
+  //console.log("GetMovies() Called.");
   movies = [];
   const params = new URLSearchParams();
   if(name != null)
@@ -441,6 +479,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   params.append('order', 'decending');
 
+  //console.log(params.toString());
   if(isFetching)
   {
     return;
@@ -451,12 +490,13 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   .then(data => 
   {
     results = data;
+    console.log(results);
     for (var i = 0; i < results['data'].length; i++)
     {
       var tempObject = JSON.parse(results['data'][i]);
 
       movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
-        tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type));
+        tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
     }
     CreateTable();
     isFetching = false;

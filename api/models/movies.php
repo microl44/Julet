@@ -12,6 +12,7 @@ class Movie
 	public $participants;
 	public $type;
 	public $description;
+	public $cover_path;
 
 	function __construct($db)
 	{

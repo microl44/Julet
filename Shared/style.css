@@ -135,6 +135,10 @@ h3{
 	font-size: 20px;
 }
 
+.hidenTableRow{
+	display: none;
+}
+
 .tableRow:nth-child(even){
 	background-color: #5397EE;
 }
@@ -312,7 +316,6 @@ footer{
 }
 
 #filterDiv{
-	width: 70%;
 	min-width: 850px;
 	padding: 10px;
 	margin-bottom: 20px;
@@ -320,12 +323,27 @@ footer{
 	border-radius: 5px;
 	box-shadow: 5px 5px 5px #3B7DD5;
 	border: 2px solid;
-	display: inline-block;
+	display: grid;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(2, auto);
+	grid-gap: 5px;
+	text-align: center;
 }
 
 .filterInputDiv{
-	text-align: center;
+	text-align: left;
 	justify-content: center;
+	width: 80%;
+}
+
+.filterInputDivInput{
+	float:right;
+	min-width: 200px;
+	text-align: center;
+}
+
+.filterInputDivLabel{
+	float:left;
 }
 
 #filterLabels{
@@ -344,23 +362,39 @@ footer{
 #filterinputs{
 	height: 49%;
 	width: 90%;
-	display: inline;
-	float:left;
-	text-align: left;
+	display: inline-block;
 }
 
 #filterButtons{
 	height: 100%;
-	width: 10%;
-	float:left;
+	width: 100%;
+	display: inline-block;
+}
+
+#filterApply{
+	text-align: center;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-left: 4vh;
+	border-radius: 5px;
+}
+
+#filterReset{
+	text-align: center;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 30px;
+	padding-right: 30px;
+	border-radius: 5px;
 }
 
 .filterSubmit{
-	margin-left: 10px;
+	padding: 10px 10px 0px 0px;
 	background-color: #9CC5E0;
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px #3B7DD5;
-	padding: 5px 12px;
 	font-weight: bold;
 }
 
