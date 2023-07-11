@@ -1,4 +1,4 @@
-IP: http://193.11.160.69/pages/index.php  
+IP: http://85.24.245.135/pages/index.php  
 Username: user  
 Password: password  
 

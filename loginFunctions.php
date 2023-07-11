@@ -66,6 +66,7 @@ function LoginAttempt($username, $password)
             
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
+            setcookie ("username", $username, time()+3600, '/', NULL, 0 );
 
             return true;
         }

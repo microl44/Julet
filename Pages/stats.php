@@ -13,7 +13,15 @@
 	{
 		addLog(); ?>
 		<div class='content'>
-			<p> WORK IN POGRESS HERE </p>
+			<div id='chatDiv'>
+				<div id='chatDivResponse'>
+
+				</div>
+				<div id='chatDivInput'>
+					<button id='btnChatInput' onclick="SendMessage()"> SEND </button>
+					<input id='chatInput'/>
+				</div>
+			</div>
 		</div>
 		<?php include_once "../includers/footer.php";
 	}
@@ -22,3 +30,5 @@
 		//notLoggedIn();
 	}
 ?>
+
+<script type="text/javascript" src="stats.js"></script>

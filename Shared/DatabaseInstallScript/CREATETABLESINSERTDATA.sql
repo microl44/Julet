@@ -89,7 +89,7 @@ VALUES ("Action"),("Adventure"),("Animation"),("Biography"),("Comedy"),("Crime")
 ("Romance"),("Science-Fiction"),("Sport"),("Superhero"),("Thriller"),("War"),("Western"),("Wildcard");
 
 INSERT INTO participant(name)
-VALUES ("Micke"), ("Gabbe"), ("Crippe"), ("Behrad"), ("Linus"), ("Momme"), ("Victor"), ("Sebbe"), ("Doffer"), ("UNK"), ("Sondre");
+VALUES ("Micke"), ("Gabbe"), ("Crippe"), ("Behrad"), ("Linus"), ("Momme"), ("Victor"), ("Sebbe"), ("Doffer"), ("UNK"), ("Sondre"), ("Adam");
 
 INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)
 VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Micke, Gabbe, Crippe", 1), 
@@ -109,8 +109,9 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("Braveheart", "Biography", 8.4, "Nay", "Crippe", "Micke, Crippe, Behrad", 0), ("Dodgeball: A True Underdog Story", "Sport", 6.7, "Jay", "Micke", "Micke, Crippe, Behrad, Linus", 0),
 ("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0), ("Edward Scissorhands", "Fantasy", 7.9, "Jay", "Micke", "Micke, Crippe, Momme, Viktor", 0),
 ("John Wick", "Wildcard", 7.4, "Jay", "Micke", "Micke, Crippe, Linus", 0), ("The Batman", "Superhero", 7.8, "Jay", "Behrad", "Micke, Gabbe, Crippe, Behrad", 1),
-("Bee Movie", "Drama", 6.1, "Jay", "Micke", "Micke, Behrad, Momme", 0), ("The Hunchback of Notre Dame", "Animation", "7.0", "Jay", "Micke", "Micke, Crippe, Behrad, Linus, Momme", 0),
-("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0);
+("Bee Movie", "Drama", 6.1, "Jay", "Micke", "Micke, Behrad, Momme", 0), ("The Hunchback of Notre Dame", "Animation", 7.0, "Jay", "Micke", "Micke, Crippe, Behrad, Linus, Momme", 0),
+("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0), ("Cars 2", "Mystery", 6.2, "Nay", "Micke", "Micke, Crippe, Adam", 0),
+("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0);
 
 INSERT INTO marvel(name)
 VALUES("Captain America"), ("Captain Marvel"), ("Iron Man"), ("Iron Man 2"), ("The Incredible Hulk"),
@@ -157,7 +158,10 @@ VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is
 (33, "C:/xampp/htdocs/Julet/Shared/Images/cover32.png", "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement."),
 (34, "C:/xampp/htdocs/Julet/Shared/Images/cover33.png", "Barry B. Benson, a bee just graduated from college, is disillusioned at his lone career choice: making honey. On a special trip outside the hive, Barry's life is saved by Vanessa, a florist."),
 (35, "C:/xampp/htdocs/Julet/Shared/Images/cover34.png", "A deformed bell-ringer must assert his independence from a vicious government minister in order to help his friend, a gypsy dancer."),
-(36, "C:/xampp/htdocs/Julet/Shared/Images/cover35.png", "A mountain climber becomes trapped under a boulder while canyoneering alone near Moab, Utah and resorts to desperate measures in order to survive.");
+(36, "C:/xampp/htdocs/Julet/Shared/Images/cover35.png", "A mountain climber becomes trapped under a boulder while canyoneering alone near Moab, Utah and resorts to desperate measures in order to survive."),
+(37, "C:/xampp/htdocs/Julet/Shared/Images/cover36.png", "Star race car Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in an intriguing adventure of his own: international espionage."),
+(38, "C:/xampp/htdocs/Julet/Shared/Images/cover37.png","A middle-aged Chinese immigrant is swept up into an insane adventure in which she alone can save existence by exploring other universes and connecting with the lives she could have led."),
+(39, "C:/xampp/htdocs/Julet/Shared/Images/cover38.png", "Violence ensues after an extraterrestrial race forced to live in slum-like conditions on Earth finds a kindred spirit in a government agent exposed to their biotechnology.");
 
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
@@ -165,7 +169,8 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (14,5), (15,1), (15,2), (15,3), (15,4), (15,6), (15,7), (16,1), (16,3), (16,4), (16,5), (16,6), (17,1), (17,4), (17,5), (18,1), (18,3), (18,4), (18,5), (19,1), (19,3), (19,5), (20,1), (20,3), 
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
-(31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9);
+(31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
+(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3);
 INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
 VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
 (3,6,6), (4,2,5), (4,1,1), (4,3,6), (4,6,7), (5,2,5), (5,1,3), (5,3,4), (6,2,6), (6,1,4), 
@@ -198,7 +203,7 @@ GROUP BY marvelID;
 
 CREATE VIEW movie_participants AS
 	SELECT m.id as 'id', m.name as 'name', m.genre_name as 'genre', m.imdb_rating as 'rating', m.jayornay as 'grade', m.picked_by as 'picker',
-	GROUP_CONCAT(p.name) AS 'participants', m.is_major, moviedescription.description, moviedescription.cover_path
+	GROUP_CONCAT(p.name SEPARATOR ' ') AS 'participants', m.is_major, moviedescription.description, moviedescription.cover_path
 	FROM movie m
 	JOIN participated part ON part.movieID = m.id
 	JOIN participant p ON p.id = part.participantID

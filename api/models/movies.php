@@ -40,8 +40,6 @@ class Movie
 		    $this->name = $xpath->query('//span[contains(@class, "sc-afe43def-1")]')->item(0)->nodeValue;
 		    $this->rating = $xpath->query('//span[contains(@class, "sc-bde20123-1")]')->item(0)->nodeValue;
 
-
-
 		    if(isset(($xpath->query('//div[contains(@class, "sc-afe43def-3")]')->item(0)->nodeValue)))
 		    {
 		   		$this->name = substr($xpath->query('//div[contains(@class, "sc-afe43def-3")]')->item(0)->nodeValue, 16);

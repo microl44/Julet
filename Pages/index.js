@@ -402,7 +402,7 @@ function GetParticipants(name = null)
   if(name != null)
     {params.append('name', name);}
 
-  fetch(`http://193.11.160.69/api/participants.php?${params}`)
+  fetch(`http://85.24.245.135/api/participants.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -435,7 +435,7 @@ function GetGenres(name = null)
   if(name != null)
     {params.append('name', name);}
 
-  fetch(`http://193.11.160.69/api/genres.php?${params}`)
+  fetch(`http://85.24.245.135/api/genres.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -456,10 +456,19 @@ function GetGenres(name = null)
   })
 }
 
+function CreateLoadingRow()
+{
+  //const table = document.getElementById('movieTable');
+  //loadingDiv = document.createElement('TR');
+  //loadingDiv.classList.add("APIcallLoadingRow");
+  //loadingDiv.innerHTML = "LOADING";
+  //table.append(loadingDiv);
+}
 
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
-  //console.log("GetMovies() Called.");
+  //CreateLoadingRow();
+
   movies = [];
   const params = new URLSearchParams();
   if(name != null)
@@ -479,28 +488,52 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   params.append('order', 'decending');
 
-  //console.log(params.toString());
+  console.log(params.toString());
   if(isFetching)
   {
     return;
   }
-  isFetching = true;
-  fetch(`http://193.11.160.69/api/movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    results = data;
-    console.log(results);
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var tempObject = JSON.parse(results['data'][i]);
 
-      movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
-        tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
-    }
-    CreateTable();
-    isFetching = false;
-  });
+  isFetching = true;
+
+  try
+  {
+    fetch(`http://85.24.245.135/api/movies.php?${params}`)
+    .then(response => response.json())
+    .then(data => 
+    {
+      results = data;
+      console.log(results);
+      for (var i = 0; i < results['data'].length; i++)
+      {
+        var tempObject = JSON.parse(results['data'][i]);
+
+        movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
+          tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
+      }
+      CreateTable();
+      isFetching = false;
+    })
+  }
+  catch(error) 
+  {
+    fetch(`http://127.0.0.1/api/movies.php?${params}`)
+    .then(response => response.json())
+    .then(data =>
+    {
+      results = data;
+      console.log(results);
+      for (var i = 0; i < results['data'].length; i++)
+      {
+        var tempObject = JSON.parse(results['data'][i]);
+
+        movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
+          tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
+      }   
+      CreateTable();
+      isFetching = false;   
+    })
+  }
 }
 
 function InsertMovie()
@@ -512,18 +545,19 @@ function InsertMovie()
   const genreInput = document.getElementById("genreInput").value;
   const typeInput = document.getElementById("typeInput").value;
 
-  console.log(linkInput);
-  console.log(participantsInput);
-  console.log(jayornayInput);
-  console.log(pickerInput);
-  console.log(genreInput);
-  console.log(typeInput);
-
   if(linkInput !== "" && participantsInput !== "" && jayornayInput !== "" && pickerInput)
   {
     var results;
     var movies = new Array();
     const params = new URLSearchParams();
+
+    console.log("sending movie:");
+    console.log(linkInput);
+    console.log(participantsInput);
+    console.log(jayornayInput);
+    console.log(pickerInput);
+    console.log(genreInput);
+    console.log(typeInput);
 
     params.append('link', linkInput);
     params.append('jayornay', jayornayInput);
@@ -532,7 +566,7 @@ function InsertMovie()
     params.append('participants', participantsInput);
     params.append('type', typeInput);
 
-    fetch(`http://193.11.160.69/api/movies.php`,
+    fetch(`http://85.24.245.135/api/movies.php`,
     {
       method: 'POST',
       body: params,

@@ -848,3 +848,65 @@ footer{
 	margin:0;
 	padding-top: 45%;
 }
+
+/*-------STATS PAGE STARTS HERE-------*/
+
+#chatDiv{
+	width: 100%;
+	height: 50%;
+
+	display: flex;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
+}
+
+#chatDivResponse{
+	min-width: 80%;
+	height: 80%;
+	background-color: white;
+	border: 1px solid;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	box-shadow: 5px 5px 5px #3B7DD5;
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	align-items: center;
+	flex-direction: center;
+	text-align: center;
+}
+
+#chatDivInput{
+	min-width: 80%;
+	height: 18%;
+	background-color: rgb(208,208,208);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border: 1px solid;
+	border-top: 2px solid;
+	box-shadow: 5px 5px 5px #3B7DD5;
+}
+
+#btnChatInput{
+	float: left;
+	margin-top: 20px;
+	width: 100px;
+	height: 50px;
+	margin-left: 20px;
+}
+
+#chatInput{
+	float: left;
+	margin-top: 20px;
+	width: 60%;
+	margin-left: 50px;
+	height: 50px;
+	font-size: 30px;
+}
+
+.APIcallLoadingRow{
+	min-width: 100%;
+	background-color: red;
+	height: 10vh;
+}
