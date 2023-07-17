@@ -82,6 +82,7 @@ if(isset($_POST['link']) && isset($_POST['jayornay']) && isset($_POST['picker'])
 	{
 		$results = array();
 		$results['data'] = array();
+
 		$results['data']['operation'] = "";
 		$results['data']['name'] = "";
 		$results['data']['genre'] = "";
@@ -138,6 +139,9 @@ if(isset($_GET))
 		$conn = GetConn();
 		$results = array();
 		$results['data'] = array();
+		$results['data']['group'] = array();
+		$results['data']['solo'] = array();
+		$results['data']['marvel'] = array();
 
 		$sql = QueryBuilder();
 
@@ -162,16 +166,72 @@ if(isset($_GET))
 				$movie->description = $row['description'];
 				$movie->cover_path = $row['cover_path'];
 
-				array_push($results['data'], json_encode($movie));
+				array_push($results['data']['group'], json_encode($movie));
+			}
+		}
+
+		$sql = "SELECT * FROM marvel_movies";
+		$stmt = $conn->prepare($sql);
+		$result2 = $stmt->execute();
+
+		if($result2)
+		{
+			foreach($stmt->fetchAll() as $row)
+			{
+				$conn = GetConn();
+				$movie = new Movie($conn);
+
+				$movie->id = $row['id'];
+				$movie->name = $row['name'];
+				$movie->rating = $row['rating'];
+				$movie->participants = $row['participants'];
+
+				array_push($results['data']['marvel'], json_encode($movie));
+			}
+		}
+
+		if(isset($_GET['username']))
+		{
+			$sql = "SELECT * FROM solo_movies WHERE username = ".$_GET['username'];
+			$stmt = $conn->prepare($sql);
+			$result3 = $stmt->execute();
+
+			if($result3)
+			{
+				foreach($stmt->fetchAll() as $row)
+				{
+					$conn = GetConn();
+					$movie = new Movie($conn);
+
+					$movie->id = $row['id'];
+					$movie->name = $row['name'];
+					$movie->rating = $row['rating'];
+					$movie->grade = $row['grade'];
+
+					array_push($results['data']['solo'], json_encode($movie));
+				}
 			}
 		}
 		unset($_GET);
 
 		$jsonString = json_encode($results);
+
+		echo $jsonString;
+		die();
+		if(json_last_error() === JSON_ERROR_NONE)
+		{
+			echo $jsonString;
+			die();
+		}
+		else
+		{
+			throw new Exception('Fucky Wucky');
+		}
 	}
-	catch(PDOException $e)
+	catch(Exception $e)
 	{
-		$jsonString = json_encode($e);
+		echo json_encode($e);
+		die();
 	}
 
 	echo $jsonString;

@@ -73,6 +73,17 @@ CREATE TABLE users (
   PRIMARY KEY (user_id)
 ) Engine = InnoDB;
 
+# name + user is unique
+CREATE TABLE solo_movie(
+id int auto_increment,
+name varchar(255) NOT NULL,
+user_id int NOT NULL,
+imdb_rating float,
+grade int,
+PRIMARY KEY (id),
+FOREIGN KEY (user_id) REFERENCES users(user_id)
+) Engine = InnoDB;
+
 CREATE TABLE activity_log (
 id int AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(255) NOT NULL,
@@ -171,6 +182,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
 (37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3);
+
 INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
 VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
 (3,6,6), (4,2,5), (4,1,1), (4,3,6), (4,6,7), (5,2,5), (5,1,3), (5,3,4), (6,2,6), (6,1,4), 
@@ -192,14 +204,20 @@ VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.
 ('crippe', 'crippemail@gmail.com', 'password'), ('behrad', 'behradmail@gmail.com', 'password'),
 ('linus', 'linusmail@gmail.com', 'password'), ('momme', 'mommemail@gmail.com', 'password');
 
+INSERT INTO solo_movie(name, user_id, imdb_rating, grade)
+VALUES ('Les Misérables', 3, 7.5, 8), ('Les Misérables', 5, 7.5, 0), ('The Prestige', 3, 8.5, 10), ('The Prestige', 5, 8.5, 0), ('Encanto', 3, 7.2, 9),
+('Spider-Man: Into the Spider-Verse', 3, 8.4, 9), ('Spider-Man: Across the Spider-Verse', 3, 8.9, 8), ('The Iron Giant', 3, 8.1, 7), ('Moana', 3, 7.6, 6),
+('Frozen', 3, 7.4, 9), ('Inside Out', 3, 8.1, 9);
+
 INSERT INTO activity_log(username, action, timestamp, data)
-VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1"}');
+VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
 
 CREATE VIEW marvel_movies AS
-	SELECT marvelID, name,  ROUND(AVG(marvel_grade),2) AS average_rating
-	FROM marvel_participated m 
+	SELECT m.marvelID as 'id', varMar.name as 'name',  ROUND(AVG(marvel_grade),2) AS 'rating', GROUP_CONCAT(p.name SEPARATOR ' ') AS 'participants'
+	FROM marvel_participated m
     JOIN marvel varMar ON m.marvelID = varMar.id
-GROUP BY marvelID;
+    JOIN participant p ON p.id = m.marvelparticipantID
+GROUP BY m.marvelID;
 
 CREATE VIEW movie_participants AS
 	SELECT m.id as 'id', m.name as 'name', m.genre_name as 'genre', m.imdb_rating as 'rating', m.jayornay as 'grade', m.picked_by as 'picker',
@@ -210,5 +228,9 @@ CREATE VIEW movie_participants AS
     JOIN movieDescription ON moviedescription.movieID = m.id
 GROUP BY m.id;
 
-
-SELECT * from movie_participants;
+CREATE VIEW solo_movies AS
+	SELECT m.id as 'id', m.name as 'name', m.imdb_rating as 'grade', m.grade as 'rating', u.username as 'username'
+    FROM solo_movie m
+    JOIN users u ON m.user_id = u.user_id;
+    
+SELECT * FROM marvel_movies;

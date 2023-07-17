@@ -38,7 +38,6 @@ END ;
 
 
 
-
 CREATE PROCEDURE GetPickedMovies(participantName varchar(255))
 BEGIN
 	SELECT movie.name FROM movie WHERE movie.picked_by = participantName ORDER BY movie.name;
@@ -114,3 +113,4 @@ SELECT p.name, ROUND(((SELECT COUNT(*) FROM movie WHERE movie.participants LIKE 
 GROUP_CONCAT(m.name) as "picked_movies"
 FROM participant p JOIN movie m ON m.picked_by = p.name
 GROUP BY p.name;
+

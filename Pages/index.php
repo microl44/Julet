@@ -69,8 +69,30 @@
         <!----------FILTER TABLE SECTION END---------->
 
         <!----------DISPLAY TABLE SECTION START---------->
+        <div>
+          <button class='tableTab' onclick="openTable(event, 'groupMovie')">GROUP</button>
+          <button class='tableTab' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
+          <button class='tableTab' onclick="openTable(event, 'soloMovie')">SOLO</button>
+        </div>
         <div id='tableContainer'>
-          <table id='movieTable' cellspacing="0">
+          <!-- Solo Movie Container -->
+          <table class='movieTable' id='soloMovie' cellspacing="0" style="display:none;">
+            <tr class='tableHeader'>
+              <td class='tableHeaderTD' id='soloTableName'>NAME</td>
+              <td class='tableHeaderTD' id='soloTableRating'>RATING</td>
+            </tr>
+          </table>
+
+          <table class='movieTable' id='marvelMovie' cellspacing="0" style="display:none;">
+            <tr class='tableHeader'>
+              <td class='tableHeaderTD' id='marvelTableName'>NAME</td>
+              <td class='tableHeaderTD' id='marvelTableRating'>RATING</td>
+              <td class='tableHeaderTD' id='marvelTableParticipants'>PARTICIPANTS</td>
+            </tr>
+          </table>
+
+          <!-- Wheel Table -->
+          <table class='movieTable' id='groupMovie' cellspacing="0">
             <tr class='tableHeader'>
               <td class='tableHeaderTD' id='sortID', onclick='SortTable(0)'>ID</td>
               <td class='tableHeaderTD' id='sortName', onclick='SortTable(1)'>NAME</td>

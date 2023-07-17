@@ -87,11 +87,46 @@ h3{
   }
 }
 
+@keyframes tableFade
+{
+	from
+	{
+		opacity: 0;
+	}
+	to
+	{
+		opacity: 1;
+	}
+}
+
+.tableTab{
+	min-width: 350px;
+	min-height: 50px;
+	background-color: #3B7DD5;
+	border-top: 2px solid;
+	margin-bottom: -1px;
+	border-bottom: 0px;
+	margin-left: -5px;
+}
+
+.tableTab:first-child{
+	border-right: none;
+}
+
+.tableTab:last-child{
+	border-left: none;
+}
+
+.tableTab:2nd-child{
+	border:none;
+}
+
 .movieTable{
-	animation: pop 3s infinite;
+	animation: tableFade 1s;
   	box-shadow: 5px 5px 5px #3B7DD5;
 	width: 100%;
 	font-family: sans-serif;
+	display: table;
 }
 
 .TableHeader td{
@@ -121,7 +156,7 @@ h3{
 }
 
 .tableHeader td:last-child{
-	border-right: 1px solid;
+	border-right: 0px solid;
 	border-top-right-radius: 5px;
 }
 
@@ -647,6 +682,7 @@ footer{
 }
 
 #gridBackgroundDiv{
+	animation: tableFade 7s;
 	font-size: 	60px;
 	padding-top: 200px;
 	width: 	100%;

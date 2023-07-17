@@ -32,10 +32,21 @@ class Genre
   }
 }
 
-var movies = Array();
+var cookies = document.cookie;
+
+var moviesGroup = Array();
+var moviesMarvel = Array();
+var moviesSolo = Array();
 var participants = Array();
 var genres = Array();
 var isFetching = false;
+
+function GetCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 
 function ExpandRow(element)
 {
@@ -49,37 +60,20 @@ function ExpandRow(element)
   }
 }
 
-function CreateTable()
+function CreateGroupTable()
 {
   //console.log("CreateTable() Called.");
-  const table = document.getElementById('movieTable');
+  const table = document.getElementById('groupMovie');
   for(var i = table.rows.length - 1; i >= 1; i--)
   {
-       table.deleteRow(i);
+    table.deleteRow(i);
   }
 
   //for each movie fetched, add new row with said movie info.
-  for (var i = 0; i < movies.length; i++)
+  for (var i = 0; i < moviesGroup.length; i++)
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
-
-    //var hidenCover = document.createElement('td');
-    //hidenCover.setAttribute('colspan', '2');
-    //hidenRow.classList.add()
-
-    //var hidenDescription = document.createElement('td');
-    //hidenRow.setAttribute('colspan', '4');
-    //hidenRow.classList.add('hidenTableRow');
-
-    //cellCover.innerHTML = movies[i].cover_path;
-    //cellDescription.innerHTML = movies[i].description;
-
-    //row.setAttribute('onclick', 'ExpandRow("hidenRow");')
-
-    //row.append(hidenRow);
-
-
 
     cellID = row.insertCell(0);
     cellName = row.insertCell(1);
@@ -90,14 +84,14 @@ function CreateTable()
     cellParticipants = row.insertCell(6);
     cellType = row.insertCell(7);
 
-    cellID.innerHTML = movies[i].id;
-    cellName.innerHTML = movies[i].name;
-    cellGenre.innerHTML = movies[i].genre;
-    cellRating.innerHTML = movies[i].rating;
-    cellJayornay.innerHTML = movies[i].jayornay;
-    cellPicker.innerHTML = movies[i].picker;
-    cellParticipants.innerHTML = movies[i].participants;
-    if(movies[i].type == 0)
+    cellID.innerHTML = moviesGroup[i].id;
+    cellName.innerHTML = moviesGroup[i].name;
+    cellGenre.innerHTML = moviesGroup[i].genre;
+    cellRating.innerHTML = moviesGroup[i].rating;
+    cellJayornay.innerHTML = moviesGroup[i].jayornay;
+    cellPicker.innerHTML = moviesGroup[i].picker;
+    cellParticipants.innerHTML = moviesGroup[i].participants;
+    if(moviesGroup[i].type == 0)
     {
       cellType.innerHTML = "Minor";  
     }
@@ -116,6 +110,35 @@ function CreateTable()
   }
 }
 
+function CreateMarvelTable()
+{
+  //console.log("CreateTable() Called.");
+  const table = document.getElementById('marvelMovie');
+  for(var i = table.rows.length - 1; i >= 1; i--)
+  {
+    table.deleteRow(i);
+  }
+
+  //for each movie fetched, add new row with said movie info.
+  for (var i = 0; i < moviesMarvel.length; i++)
+  {
+    var row = table.insertRow(1);
+    row.classList.add('tableRow');
+
+    cellName = row.insertCell(0);
+    cellRating = row.insertCell(1);
+    cellParticipants = row.insertCell(2);
+
+    cellName.innerHTML = moviesMarvel[i]['name'];
+    cellRating.innerHTML = moviesMarvel[i].rating;
+    cellParticipants.innerHTML = moviesMarvel[i].participants;
+
+    cellName.classList.add('tableCell');
+    cellRating.classList.add('tableCell');
+    cellParticipants.classList.add('tableCell');
+  }
+}
+
 function SortTable(n)
 {
   //console.log("SortTable() Called.");
@@ -129,7 +152,7 @@ function SortTable(n)
   var dir;
   var switchCount = 0;
 
-  table = document.getElementById("movieTable");
+  table = document.getElementById("groupMovie");
   switching = true;
   dir = "asc";
 
@@ -393,6 +416,21 @@ function ResetEvent()
   GetMovies();
 }
 
+function openTable(evt, tableName)
+{
+  var jesus, tableList;
+
+  tableList = document.getElementsByClassName("movieTable");
+  for (jesus = 0; jesus < tableList.length; jesus++)
+  {
+    tableList[jesus].style.display = "none";
+  }
+
+  visibleTable = document.getElementById(tableName);
+  visibleTable.style.display = "table";
+  visibleTable.style.textAlign = "left";
+}
+
 function GetParticipants(name = null)
 {
   //console.log("GetParticipants() Called.");
@@ -402,7 +440,7 @@ function GetParticipants(name = null)
   if(name != null)
     {params.append('name', name);}
 
-  fetch(`http://85.24.245.135/api/participants.php?${params}`)
+  fetch(`http://94.254.3.216/api/participants.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -435,7 +473,7 @@ function GetGenres(name = null)
   if(name != null)
     {params.append('name', name);}
 
-  fetch(`http://85.24.245.135/api/genres.php?${params}`)
+  fetch(`http://94.254.3.216/api/genres.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -469,7 +507,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 {
   //CreateLoadingRow();
 
-  movies = [];
+  moviesGroup = [];
   const params = new URLSearchParams();
   if(name != null)
     {params.append('name', name);}
@@ -488,6 +526,9 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   params.append('order', 'decending');
 
+  if(GetCookie('username'))
+  {params.append('username', GetCookie('username'));}
+
   console.log(params.toString());
   if(isFetching)
   {
@@ -498,36 +539,42 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   try
   {
-    fetch(`http://85.24.245.135/api/movies.php?${params}`)
+    fetch(`http://94.254.3.216/api/movies.php?${params}`)
     .then(response => response.json())
     .then(data => 
     {
       results = data;
-      console.log(results);
-      for (var i = 0; i < results['data'].length; i++)
+      for (var i = 0; i < results['data']['group'].length; i++)
       {
-        var tempObject = JSON.parse(results['data'][i]);
+        var tempObject = JSON.parse(results['data']['group'][i]);
 
-        movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
+        moviesGroup.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
           tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
       }
-      CreateTable();
+
+      for (var i = 0; i < results['data']['marvel'].length; i++)
+      {
+        var tempObject = JSON.parse(results['data']['marvel'][i]);
+
+        moviesMarvel.push(new Movie(null ,tempObject.name, null, tempObject.rating, null, null, tempObject.participants));
+      }
+      CreateGroupTable();
+      CreateMarvelTable();
       isFetching = false;
     })
   }
-  catch(error) 
+  catch(error)
   {
     fetch(`http://127.0.0.1/api/movies.php?${params}`)
     .then(response => response.json())
     .then(data =>
     {
       results = data;
-      console.log(results);
-      for (var i = 0; i < results['data'].length; i++)
+      for (var i = 0; i < results['data']['group'].length; i++)
       {
         var tempObject = JSON.parse(results['data'][i]);
 
-        movies.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
+        moviesGroup.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
           tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
       }   
       CreateTable();
@@ -566,7 +613,7 @@ function InsertMovie()
     params.append('participants', participantsInput);
     params.append('type', typeInput);
 
-    fetch(`http://85.24.245.135/api/movies.php`,
+    fetch(`http://94.254.3.216/api/movies.php`,
     {
       method: 'POST',
       body: params,
