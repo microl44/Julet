@@ -32,6 +32,7 @@ class Genre
   }
 }
 
+var host = `85.24.246.189`;
 var cookies = document.cookie;
 
 var moviesGroup = Array();
@@ -50,6 +51,7 @@ function GetCookie(name) {
 
 function ExpandRow(element)
 {
+  console.log("hello");
   if(element.style.display == 'none')
   {
     element.style.display = 'block';
@@ -126,20 +128,54 @@ function CreateMarvelTable()
     row.classList.add('tableRow');
 
     cellName = row.insertCell(0);
-    cellRating = row.insertCell(1);
-    cellParticipants = row.insertCell(2);
+    cellIMDBRating = row.insertCell(1);
+    cellRating = row.insertCell(2);
+    cellParticipants = row.insertCell(3);
 
-    cellName.innerHTML = moviesMarvel[i]['name'];
+    cellName.innerHTML = moviesMarvel[i].name;
+    cellIMDBRating.innerHTML = moviesMarvel[i].jayornay;
     cellRating.innerHTML = moviesMarvel[i].rating;
     cellParticipants.innerHTML = moviesMarvel[i].participants;
 
     cellName.classList.add('tableCell');
+    cellIMDBRating.classList.add('tableCell');
     cellRating.classList.add('tableCell');
     cellParticipants.classList.add('tableCell');
   }
 }
 
-function SortTable(n)
+function CreateSoloTable()
+{
+  //console.log("CreateTable() Called.");
+  const table = document.getElementById('soloMovie');
+  for(var i = table.rows.length - 1; i >= 1; i--)
+  {
+    table.deleteRow(i);
+  }
+
+  //for each movie fetched, add new row with said movie info.
+  for (var i = 0; i < moviesSolo.length; i++)
+  {
+    var row = table.insertRow(1);
+    row.classList.add('tableRow');
+
+    cellName = row.insertCell(0);
+    cellGrade = row.insertCell(1);
+    cellRating = row.insertCell(2);
+
+    cellName.innerHTML = moviesSolo[i].name;
+    cellGrade.innerHTML = moviesSolo[i].jayornay;
+    cellRating.innerHTML = moviesSolo[i].rating;
+
+    cellName.classList.add('tableCell');
+    cellGrade.classList.add('tableCell');
+    cellRating.classList.add('tableCell');
+
+    console.log(moviesSolo[i]);
+  }
+}
+
+function SortTable(n, tableID)
 {
   //console.log("SortTable() Called.");
   var table;
@@ -151,8 +187,22 @@ function SortTable(n)
   var shouldSwitch;
   var dir;
   var switchCount = 0;
+  var table;
 
-  table = document.getElementById("groupMovie");
+  switch(tableID)
+  {
+    case 'group':
+      table = document.getElementById("groupMovie");
+    break;
+    case 'marvel':
+      table = document.getElementById("marvelMovie");
+    break;
+    case 'solo':
+      table = document.getElementById("soloMovie");
+    break;
+    default: console.log("Error occurred.");
+  }
+
   switching = true;
   dir = "asc";
 
@@ -177,59 +227,165 @@ function SortTable(n)
       based on the direction, asc or desc: */
       if (dir == "asc") 
       {
-        if (n === 0 || n === 3)
+        if(tableID == 'marvel')
         {
-          if (Number(x.innerHTML) > Number(y.innerHTML)) 
+          if (n === 1 || n === 2)
           {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
+            if (Number(x.innerHTML) > Number(y.innerHTML)) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } 
+          else if (n === 3)
+          {
+            if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
+            {
+              shouldSwitch = true;
+              break;
+            }
           }
-        } 
-        else if (n === 6)
-        {
-          if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
+          else 
           {
-            shouldSwitch = true;
-            break;
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
           }
         }
-        else 
+        else if (tableID == 'group')
         {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+          if (n === 0 || n === 3)
           {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
+            if (Number(x.innerHTML) > Number(y.innerHTML)) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } 
+          else if (n === 6)
+          {
+            if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
+            {
+              shouldSwitch = true;
+              break;
+            }
+          }
+          else 
+          {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        else if (tableID == 'solo')
+        {
+          if (n === 1 || n === 2)
+          {
+            if (Number(x.innerHTML) > Number(y.innerHTML)) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } 
+          else 
+          {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
           }
         }
       } 
       else if (dir == "desc") 
       {
-        if (n === 0 || n === 3) 
+        if(tableID == 'marvel')
         {
-          if (Number(x.innerHTML) < Number(y.innerHTML)) 
+          if (n === 1 || n === 2) 
           {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
+            if (Number(x.innerHTML) < Number(y.innerHTML)) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } 
+          else if (n === 6)
+          {
+            if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
+            {
+              shouldSwitch = true;
+              break;
+            }
           }
-        } 
-        else if (n === 6)
-        {
-          if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
+          else 
           {
-            shouldSwitch = true;
-            break;
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
           }
         }
-        else 
+        else if (tableID == 'group')
         {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+          if (n === 0 || n === 3) 
           {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
+            if (Number(x.innerHTML) < Number(y.innerHTML)) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } 
+          else if (n === 6)
+          {
+            if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
+            {
+              shouldSwitch = true;
+              break;
+            }
+          }
+          else 
+          {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        else if (tableID == 'solo')
+        {
+          if (n === 1 || n === 2) 
+          {
+            if (Number(x.innerHTML) < Number(y.innerHTML)) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } 
+          else 
+          {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
           }
         }
       }
@@ -440,7 +596,7 @@ function GetParticipants(name = null)
   if(name != null)
     {params.append('name', name);}
 
-  fetch(`http://94.254.3.216/api/participants.php?${params}`)
+  fetch(`http://${host}/api/participants.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -473,7 +629,7 @@ function GetGenres(name = null)
   if(name != null)
     {params.append('name', name);}
 
-  fetch(`http://94.254.3.216/api/genres.php?${params}`)
+  fetch(`http://${host}/api/genres.php?${params}`)
   .then(response => response.json())
   .then(data =>
   {
@@ -527,7 +683,10 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   params.append('order', 'decending');
 
   if(GetCookie('username'))
-  {params.append('username', GetCookie('username'));}
+  {
+    console.log(GetCookie('username'));
+    params.append('username', GetCookie('username'));}
+  
 
   console.log(params.toString());
   if(isFetching)
@@ -539,7 +698,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   try
   {
-    fetch(`http://94.254.3.216/api/movies.php?${params}`)
+    fetch(`http://${host}/api/movies.php?${params}`)
     .then(response => response.json())
     .then(data => 
     {
@@ -556,16 +715,25 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
       {
         var tempObject = JSON.parse(results['data']['marvel'][i]);
 
-        moviesMarvel.push(new Movie(null ,tempObject.name, null, tempObject.rating, null, null, tempObject.participants));
+        moviesMarvel.push(new Movie(null ,tempObject.name, null, tempObject.rating, tempObject.grade, null, tempObject.participants));
+      }
+
+      console.log(results['data']['solo']);
+      for (var i = 0; i < results['data']['solo'].length; i++)
+      {
+        var tempObject = JSON.parse(results['data']['solo'][i]);
+
+        moviesSolo.push(new Movie(tempObject.id, tempObject.name, null, tempObject.rating, tempObject.grade));
       }
       CreateGroupTable();
       CreateMarvelTable();
+      CreateSoloTable();
       isFetching = false;
     })
   }
   catch(error)
   {
-    fetch(`http://127.0.0.1/api/movies.php?${params}`)
+    fetch(`http://${host}/api/movies.php?${params}`)
     .then(response => response.json())
     .then(data =>
     {
@@ -578,7 +746,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
           tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
       }   
       CreateTable();
-      isFetching = false;   
+      isFetching = false;
     })
   }
 }
@@ -613,7 +781,7 @@ function InsertMovie()
     params.append('participants', participantsInput);
     params.append('type', typeInput);
 
-    fetch(`http://94.254.3.216/api/movies.php`,
+    fetch(`http://${host}/api/movies.php`,
     {
       method: 'POST',
       body: params,

@@ -124,14 +124,14 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0), ("Cars 2", "Mystery", 6.2, "Nay", "Micke", "Micke, Crippe, Adam", 0),
 ("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0);
 
-INSERT INTO marvel(name)
-VALUES("Captain America"), ("Captain Marvel"), ("Iron Man"), ("Iron Man 2"), ("The Incredible Hulk"),
-("Thor"), ("Avengers"), ("Thor - The Dark World"), ("Iron Man 3"), ("Captain America - The Winter Soldier"), 
-("Guardians of the Galaxy"), ("Guardians of the Galaxy 2"), ("Avengers - Age of Ultron"), ("Ant Man"), ("Captain America - Civil War"), 
-("Spider Man - Homecoming"), ("Black Panther"), ("Black Widow"), ("Doctor Strange"), ("Thor - Ragnarök"),
-("Ant Man and the Wasp"), ("Avengers: Infinity War"), ("Avengers: End Game"), ("Spider Man - Far From Home"), ("Spider Man - No Way Home"), 
-("Shang-Chi and The Legend of the Ten Rings"), ("Eternals"), ("Dr Strange - In the Multiverse of Madness"), ("Thor - Love and Thunder"), ("Black Panther: Wakanda Forever"),
-("Ant-Man and the Wasp: Quantumania");   
+INSERT INTO marvel(name, imdb_rating)
+VALUES("Captain America", 6.9), ("Captain Marvel", 6.8), ("Iron Man", 7.9), ("Iron Man 2", 6.9), ("The Incredible Hulk", 6.6),
+("Thor", 7.0), ("The Avengers", 8.0), ("Thor - The Dark World", 6.8), ("Iron Man 3", 7.1), ("Captain America - The Winter Soldier", 7.8), 
+("Guardians of the Galaxy", 8.0), ("Guardians of the Galaxy 2", 7.6), ("Avengers - Age of Ultron", 7.3), ("Ant Man", 7.3), ("Captain America - Civil War", 7.8), 
+("Spider Man - Homecoming", 7.4), ("Black Panther", 7.3), ("Black Widow", 6.7), ("Doctor Strange", 7.5), ("Thor - Ragnarök", 7.9),
+("Ant Man and the Wasp", 7.0), ("Avengers: Infinity War", 8.4), ("Avengers: End Game", 8.4), ("Spider Man - Far From Home", 7.4), ("Spider Man - No Way Home", 8.2), 
+("Shang-Chi and The Legend of the Ten Rings", 7.4), ("Eternals", 6.3), ("Dr Strange in the Multiverse of Madness", 6.9), ("Thor - Love and Thunder", 6.2), ("Black Panther: Wakanda Forever", 6.7),
+("Ant-Man and the Wasp: Quantumania", 6.1);   
 
 INSERT INTO movieDescription(movieID, cover_path, description)
 VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is cursed to become a monster for the rest of his life, unless he learns to fall in love with a beautiful young woman he keeps prisoner."), 
@@ -206,14 +206,14 @@ VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.
 
 INSERT INTO solo_movie(name, user_id, imdb_rating, grade)
 VALUES ('Les Misérables', 3, 7.5, 8), ('Les Misérables', 5, 7.5, 0), ('The Prestige', 3, 8.5, 10), ('The Prestige', 5, 8.5, 0), ('Encanto', 3, 7.2, 9),
-('Spider-Man: Into the Spider-Verse', 3, 8.4, 9), ('Spider-Man: Across the Spider-Verse', 3, 8.9, 8), ('The Iron Giant', 3, 8.1, 7), ('Moana', 3, 7.6, 6),
+('Spider-Man: Into the Spider-Verse', 3, 8.4, 9), ('Spider-Man: Across the Spider-Verse', 3, 8.9, 9), ('The Iron Giant', 3, 8.1, 7), ('Moana', 3, 7.6, 6),
 ('Frozen', 3, 7.4, 9), ('Inside Out', 3, 8.1, 9);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
 
 CREATE VIEW marvel_movies AS
-	SELECT m.marvelID as 'id', varMar.name as 'name',  ROUND(AVG(marvel_grade),2) AS 'rating', GROUP_CONCAT(p.name SEPARATOR ' ') AS 'participants'
+	SELECT m.marvelID as 'id', varMar.name as 'name',  varMar.imdb_rating ,ROUND(AVG(marvel_grade),2) AS 'rating', GROUP_CONCAT(p.name SEPARATOR ' ') AS 'participants'
 	FROM marvel_participated m
     JOIN marvel varMar ON m.marvelID = varMar.id
     JOIN participant p ON p.id = m.marvelparticipantID

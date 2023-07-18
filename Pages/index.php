@@ -68,40 +68,50 @@
         </div>
         <!----------FILTER TABLE SECTION END---------->
 
-        <!----------DISPLAY TABLE SECTION START---------->
+        <!----------MOVIE TABLE SECTION START---------->
+        <!-- TABLE TABS SECTION START -->
         <div>
           <button class='tableTab' onclick="openTable(event, 'groupMovie')">GROUP</button>
           <button class='tableTab' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
-          <button class='tableTab' onclick="openTable(event, 'soloMovie')">SOLO</button>
-        </div>
+          <?php if(isset($_SESSION['username']))
+            {
+              echo "<button class='tableTab' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
+            }?>
+          </div>
+        <!-- TABLE TABS SECTION END -->
+
         <div id='tableContainer'>
-          <!-- Solo Movie Container -->
-          <table class='movieTable' id='soloMovie' cellspacing="0" style="display:none;">
+          <!-- Solo Movie Table -->
+          <table class='movieTable' id='soloMovie' cellspacing='0' style='display:none;'>
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='soloTableName'>NAME</td>
-              <td class='tableHeaderTD' id='soloTableRating'>RATING</td>
+              <td class='tableHeaderTD' id='soloTableName' onclick='SortTable(0, `solo`)'>NAME</td>
+              <td class='tableHeaderTD' id='soloTableRating' onclick='SortTable(1, `solo`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='soloTableGrade' onclick='SortTable(2, `solo`)'>USER RATING</td>
             </tr>
           </table>
+          
 
+          <!-- Marvel Movie Table -->
           <table class='movieTable' id='marvelMovie' cellspacing="0" style="display:none;">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='marvelTableName'>NAME</td>
-              <td class='tableHeaderTD' id='marvelTableRating'>RATING</td>
-              <td class='tableHeaderTD' id='marvelTableParticipants'>PARTICIPANTS</td>
+              <td class='tableHeaderTD' id='marvelTableName' onclick='SortTable(0, `marvel`)'>NAME</td>
+              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(1, `marvel`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='marvelTableRating' onclick='SortTable(2, `marvel`)'>AVERAGE USER RATING</td>
+              <td class='tableHeaderTD' id='marvelTableParticipants' onclick='SortTable(3, `marvel`)'>PARTICIPANTS</td>
             </tr>
           </table>
 
-          <!-- Wheel Table -->
+          <!-- Group Movie Table -->
           <table class='movieTable' id='groupMovie' cellspacing="0">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='sortID', onclick='SortTable(0)'>ID</td>
-              <td class='tableHeaderTD' id='sortName', onclick='SortTable(1)'>NAME</td>
-              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(2)'>GENRE</td>
-              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(3)'>RATING</td>
-              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(4)'>JAY OR NAY</td>
-              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(5)'>PICKER</td>
-              <td class='tableHeaderTD' id='sortParticipants', onclick='SortTable(6)'>PARTICIPANTS</td>
-              <td class='tableHeaderTD' id='sortType', onclick='SortTable(7)'>TYPE</td>
+              <td class='tableHeaderTD' id='sortID', onclick='SortTable(0, "group")'>ID</td>
+              <td class='tableHeaderTD' id='sortName', onclick='SortTable(1, `group`)'>NAME</td>
+              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(2, `group`)'>GENRE</td>
+              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(3, `group`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(4, `group`)'>JAY OR NAY</td>
+              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(5, `group`)'>PICKER</td>
+              <td class='tableHeaderTD' id='sortParticipants', onclick='SortTable(6, `group`)'>PARTICIPANTS</td>
+              <td class='tableHeaderTD' id='sortType', onclick='SortTable(7, `group`)'>TYPE</td>
             </tr>
           </table>
         </div>

@@ -6,14 +6,12 @@ html, body{
 }
 
 body{
-	background: linear-gradient(#5397EE 0%, #9CC5E0 0%, #BAC3E8 28%);
+	background: linear-gradient(#5397EE 0%, #9CC5E0 6%, #BAC3E8 100%);
 	background-repeat: no-repeat;
 	min-width: 680px;
 	width: 100%;
 	font-family: Arial;
 }
-
-
 
 .navbar{
 	display: inline-block;
@@ -68,7 +66,7 @@ h3{
 }
 
 .indexContent{
-	background: linear-gradient(#5397EE 0%, #9CC5E0 0%, #BAC3E8 28%, rgba(0,0,0,0.2) 31%, rgba(0,0,0,0.4) 33%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.7) 38%);
+	
 }
 
 @keyframes pop 
@@ -110,21 +108,19 @@ h3{
 }
 
 .tableTab:first-child{
-	border-right: none;
+	border-right: 2px solid;
+	border-top-left-radius: 5px;
 }
 
 .tableTab:last-child{
 	border-left: none;
-}
-
-.tableTab:2nd-child{
-	border:none;
+	border-top-right-radius: 5px;
 }
 
 .movieTable{
 	animation: tableFade 1s;
   	box-shadow: 5px 5px 5px #3B7DD5;
-	width: 100%;
+	width: 80%;
 	font-family: sans-serif;
 	display: table;
 }
@@ -142,6 +138,11 @@ h3{
 	min-width: 30px;
 	font-weight: bold;
 	font-size: 22px;
+
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 
 }
 
@@ -191,7 +192,7 @@ h3{
 
 .tableRow:hover
 {
-	color: red;
+	color: #ad0000;
 }
 
 .tableRow:nth-child(10n) td
@@ -688,6 +689,7 @@ footer{
 	width: 	100%;
 	text-align: center;
 	align-content: center;
+	background: linear-gradient(#a9c4e3 0%, rgba(0,0,0,0.3) 2%, rgba(0,0,0,0.4) 4%, rgba(0,0,0,0.5) 7%, rgba(0,0,0,0.6) 9%, rgba(0, 0, 0, 0.8) 11%, rgba(0, 0, 0, 0.8) 12%);
 }
 #gridBackgroundDiv h1{
 	margin-left: -2%;

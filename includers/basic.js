@@ -3,17 +3,6 @@ function createThemeSwitch()
 	
 }
 
-function SetCookie(cookie, TTL = 0)
-{
-	SetCookie
-}
-
-function GetCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
 function DeleteAllCookies() 
 {
     const cookies = document.cookie.split(";");

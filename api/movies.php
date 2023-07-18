@@ -170,7 +170,7 @@ if(isset($_GET))
 			}
 		}
 
-		$sql = "SELECT * FROM marvel_movies";
+		$sql = "SELECT * FROM marvel_movies ORDER BY id DESC";
 		$stmt = $conn->prepare($sql);
 		$result2 = $stmt->execute();
 
@@ -184,6 +184,7 @@ if(isset($_GET))
 				$movie->id = $row['id'];
 				$movie->name = $row['name'];
 				$movie->rating = $row['rating'];
+				$movie->grade = $row['imdb_rating'];
 				$movie->participants = $row['participants'];
 
 				array_push($results['data']['marvel'], json_encode($movie));
@@ -192,7 +193,7 @@ if(isset($_GET))
 
 		if(isset($_GET['username']))
 		{
-			$sql = "SELECT * FROM solo_movies WHERE username = ".$_GET['username'];
+			$sql = "SELECT * FROM solo_movies WHERE username = '".$_GET['username']."' ORDER BY id DESC";
 			$stmt = $conn->prepare($sql);
 			$result3 = $stmt->execute();
 

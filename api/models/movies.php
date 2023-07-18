@@ -21,7 +21,7 @@ class Movie
 
 	function __destruct()
 	{
-
+		
 	}
 
 	function Insert($url, $conn)
