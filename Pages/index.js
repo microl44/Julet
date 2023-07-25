@@ -32,7 +32,7 @@ class Genre
   }
 }
 
-var host = `85.24.246.189`;
+var host = `localhost`;
 var cookies = document.cookie;
 
 var moviesGroup = Array();

@@ -1,7 +1,7 @@
 CREATE PROCEDURE GetParticipationRate(participantName varchar(255))
 BEGIN
 	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.participants like CONCAT("%", participantName, "%")) / (SELECT COUNT(*) FROM movie)) * 100) AS "Participation rate";
-END ;
+END;
 
 CREATE PROCEDURE GetLeastCommonGenre()
 BEGIN
@@ -33,10 +33,6 @@ BEGIN
 	-- Calculate the winrate, taking into account the number of participants in each movie
 	SELECT ROUND((@num_movies / @total_participants) * 100) AS "Winrate";
 END ;
-
-
-
-
 
 CREATE PROCEDURE GetPickedMovies(participantName varchar(255))
 BEGIN

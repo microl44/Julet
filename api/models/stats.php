@@ -1,9 +1,13 @@
 <?php
-class Participant
+class Stat
 {
-	function __construct($db)
+	private $conn;
+
+	public $title;
+	public $content;
+	function __construct()
 	{
-		$conn = $db;
+		
 	}
 
 	function __destruct()

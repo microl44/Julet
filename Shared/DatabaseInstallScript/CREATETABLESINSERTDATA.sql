@@ -223,14 +223,18 @@ CREATE VIEW movie_participants AS
 	SELECT m.id as 'id', m.name as 'name', m.genre_name as 'genre', m.imdb_rating as 'rating', m.jayornay as 'grade', m.picked_by as 'picker',
 	GROUP_CONCAT(p.name SEPARATOR ' ') AS 'participants', m.is_major, moviedescription.description, moviedescription.cover_path
 	FROM movie m
-	JOIN participated part ON part.movieID = m.id
-	JOIN participant p ON p.id = part.participantID
-    JOIN movieDescription ON moviedescription.movieID = m.id
+	JOIN participated part
+    ON part.movieID = m.id
+	JOIN participant p 
+    ON p.id = part.participantID
+  JOIN movieDescription 
+    ON moviedescription.movieID = m.id
 GROUP BY m.id;
 
 CREATE VIEW solo_movies AS
 	SELECT m.id as 'id', m.name as 'name', m.imdb_rating as 'grade', m.grade as 'rating', u.username as 'username'
     FROM solo_movie m
-    JOIN users u ON m.user_id = u.user_id;
+    JOIN users u 
+    ON m.user_id = u.user_id;
     
 SELECT * FROM marvel_movies;
