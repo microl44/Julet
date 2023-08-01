@@ -61,8 +61,8 @@
             </div>
 
             <div id='filterButtons'>
-              <button id='filterApply' onclick='ApplyEvent()'>Apply</button>
-              <button id='filterReset' onclick='ResetEvent()'>Reset</button>
+              <button class='Fancy-Btn' id='filterApply' onclick='ApplyEvent()'><h4>APPLY</h4></button>
+              <button class='Fancy-Btn' id='filterReset' onclick='ResetEvent()'><h4>RESET</h4></button>
             </div>
           </div>
         </div>
@@ -315,4 +315,5 @@
       ?>
   <?php
 ?>
+<script type="text/javascript" src="../includers/basic.js"></script>
 <script type="text/javascript" src="index.js"></script>

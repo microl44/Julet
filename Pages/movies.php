@@ -35,4 +35,5 @@ if(isset($_SESSION['username']) || isset($_SESSION['password']))
 else
 {
 	notLoggedIn();
-}
+}?>
+<script type="text/javascript" src="../includers/basic.js"></script>

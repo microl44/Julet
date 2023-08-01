@@ -1,73 +1,6 @@
-html, body{
-	width: 100%;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth; 
-}
-
-body{
-	background: linear-gradient(#5397EE 0%, #9CC5E0 6%, #BAC3E8 100%);
-	background-repeat: no-repeat;
-	min-width: 680px;
-	width: 100%;
-	font-family: Arial;
-}
-
-.navbar{
-	display: inline-block;
-	min-width: 100%;
-	width: 100%;
-	height: 70px;
-	position: fixed;
-	top: 0;
-	z-index: 1030;
-	background: linear-gradient(#5397EE, #BAC3E8);
-	overflow: hidden;
-	box-shadow: 0px 3px 5px #5397EE;
-}
-
-.navbarLink{
-	background-color: Transparent;
-	border: none;
-	border-radius: 2px;
-	float: left;
-	display: block;
-	text-align: center;
-	padding: 20px;
-	text-decoration: none;
-	font-size: 30px;
-	overflow: hidden;
-	margin-bottom: 0;
-	height: 100%;
-}
-
-.navbarLink:hover{
-	background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0,0,0,0.8));
-	color: black;
-}
-
-.logoutBtn{
-	cursor:pointer;
-	color: #551A8B;
-}
-
-h3{
-	text-align: center;
-	margin-right: 10%;
-}
-
-.content{
-	padding-top: 100px;
-	width: 100%;
-    text-align: center;
-    padding-bottom: 70px;
-    align-self: center;
-    justify-content: center;
-}
-
-.indexContent{
-	
-}
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------KEYFRAMES--------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 
 @keyframes pop 
 {
@@ -97,8 +30,172 @@ h3{
 	}
 }
 
+@keyframes expandHeader
+{
+	from
+	{
+		height: 70px;
+	}
+	to
+	{
+		height: 250px;
+	}
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------HTML & BODY------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
+html, body{
+	width: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+	background: linear-gradient(#5397EE 0%, #9CC5E0 6%, #BAC3E8 100%);
+	background-repeat: no-repeat;
+	min-width: 680px;
+	width: 100%;
+	font-family: Arial;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------HEADER-----------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
+.navbar{
+	display: inline-block;
+	min-width: 100%;
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	top: 0;
+	z-index: 1030;
+	background: linear-gradient(#5397EE, #BAC3E8);
+	overflow: hidden;
+	box-shadow: 0px 3px 5px #69158a;
+}
+
+.navbarLink{
+	background-color: Transparent;
+	border: none;
+	border-radius: 2px;
+	float: left;
+	display: block;
+	text-align: center;
+	padding: 20px;
+	text-decoration: none;
+	font-size: 30px;
+	overflow: hidden;
+	margin-bottom: 0;
+	min-height: 40px;
+}
+
+.navbarLink:hover{
+	background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0,0,0,0.8));
+	color: black;
+}
+
+#navbarImage{
+	margin-top: -10px;
+}
+
+#navbarBurger{
+	margin-top: -0px;
+}
+
+.logoutBtn{
+	cursor:pointer;
+	color: #551A8B;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------GENERICS--FANCY BUTTON-------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+.Fancy-Btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.8s ease;
+	position: relative;
+
+	padding: 0px 60px 0px 60px;
+	text-align: center;
+	float: left;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 2px solid;
+	box-shadow: 2px 2px 5px #000;
+
+	overflow: hidden;
+	transition: all 500ms ease;
+}
+
+.Fancy-Btn::before,
+.Fancy-Btn::after{
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+
+.Fancy-Btn h4{
+	color: #111;
+	user-select: disabled;
+}
+
+.Fancy-Btn:after{
+	width: 300%;
+	height: 300%;
+	left: -300%;
+	transform: rotate(30deg);
+	background-color: #3b7dd5;
+	transition: all 500ms ease;
+}
+
+.Fancy-Btn:hover h4{
+	color: #fff;
+	z-index: 10;
+	font-weight: 600;
+}
+
+.Fancy-Btn:hover::after{
+	left: -100%;
+}
+
+.Fancy-Btn:hover{
+	border: 2px solid #69158a;
+	cursor: pointer;
+}
+
+
+h3{
+	text-align: center;
+	margin-right: 10%;
+}
+
+.fancyBtn-Div{
+
+}
+
+.content{
+	padding-top: 100px;
+	width: 100%;
+    text-align: center;
+    padding-bottom: 70px;
+    align-self: center;
+    justify-content: center;
+}
+
+.indexContent{
+	
+}
+
 .tableTab{
-	min-width: 350px;
+	min-width: 250px;
 	min-height: 50px;
 	background-color: #3B7DD5;
 	border-top: 2px solid;
@@ -119,7 +216,7 @@ h3{
 
 .movieTable{
 	animation: tableFade 1s;
-  	box-shadow: 5px 5px 5px #3B7DD5;
+  	box-shadow: 5px 5px 5px #69158a;
 	width: 80%;
 	font-family: sans-serif;
 	display: table;
@@ -205,13 +302,12 @@ h3{
 .addMovieDiv{
 	width: 100%;
 	display: inline-block;
-	min-width: 800px;
-	min-width: 1600px;
+	min-width: 500px;
 }
 
 .addMovieDiv input{
 	height: 20px;
-	width: 60%;
+	width: 100%;
 	float:right;
 	margin-right: 20%;
 }
@@ -223,7 +319,7 @@ h3{
 }
 
 .addMovieDiv select{
-	width: 61%;
+	width: 100%;
 	height: 25px;
 	background-color: #d9d9d9;
 	text-align: center;
@@ -232,17 +328,16 @@ h3{
 }
 
 .addMovieDivFirst{
-	width:50%;
-	float:left;
-	min-width: 800px;
-	height:100%;
+	width: 45%;
+	float: left;
+	min-width: 250px;
+	padding-left: 8%;
 }
 
 .addMovieDivSecond{
-	width:50%;
-	float:right;
-	min-width: 800px;
-	height:100%;
+	width: 45%;
+	float: right;
+	min-width: 250px;
 }
 
 footer{
@@ -254,7 +349,7 @@ footer{
 	background: linear-gradient(#BAC3E8, #5397EE);
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0px -3px 5px #5397EE;
+    box-shadow: 0px -3px 5px #69158a;
 }
 
 .footerLink {
@@ -354,6 +449,7 @@ footer{
 #filterDiv{
 	min-width: 850px;
 	padding: 10px;
+	padding-bottom: 0px;
 	margin-bottom: 20px;
 	background-color: #BAC3E8;
 	border-radius: 5px;
@@ -374,7 +470,7 @@ footer{
 
 .filterInputDivInput{
 	float:right;
-	min-width: 200px;
+	min-width: 180px;
 	text-align: center;
 }
 
@@ -402,28 +498,23 @@ footer{
 }
 
 #filterButtons{
-	height: 100%;
-	width: 100%;
+	height: 80%;
+	width: 80%;
 	display: inline-block;
 }
 
 #filterApply{
-	text-align: center;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	padding-left: 30px;
-	padding-right: 30px;
-	margin-left: 4vh;
+	width: 40%;
+	height: 80%;
 	border-radius: 5px;
+	float: left;
 }
 
 #filterReset{
-	text-align: center;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	padding-left: 30px;
-	padding-right: 30px;
+	width: 40%;
+	height: 80%;
 	border-radius: 5px;
+	float: right;
 }
 
 .filterSubmit{
@@ -520,7 +611,7 @@ footer{
 	padding-top: 10px;
     background-color: #BAC3E8;
     border-radius: 5px;
-	box-shadow: 5px 5px 5px #3B7DD5;
+	box-shadow: 3px 3px 5px #8935aa;
 	overflow-y: auto;
 	display:flex;
 }
@@ -528,7 +619,7 @@ footer{
 	margin-right: 4%;
 	box-shadow: 3px 3px 2px #3B7DD5;
 	border-radius: 10px;
-	border: 2px outset #3b7dd5;
+	border: 2px outset #69158a;
 }
 
 .movieTitleHolder{
@@ -700,9 +791,9 @@ footer{
 	padding-left: 10%;
 	padding-top: 0px;
 	display: grid;
-	width: 80%;
-	grid-template-columns: 400px 400px 400px;
-	grid-auto-rows: 400px;
+	width: auto;
+	grid-template-columns: 300px 300px 300px;
+	grid-auto-rows: 300px;
 	color: black;
 	grid-column-gap: 60px;
 	grid-row-gap: 40px;
@@ -947,4 +1038,90 @@ footer{
 	min-width: 100%;
 	background-color: red;
 	height: 10vh;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------JUL SECTION------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
+.wheelHolder{
+  display: grid;
+  width: 50%;
+  height: auto;
+  float: left; 
+  margin-left: 40px;
+  justify-content: center;
+  text-align: center;
+  max-width: 40%;
+}
+
+.wheel500{
+  border-radius: 50%;
+  border-color: purple;
+  background-color: red;
+}
+
+.JulInputDiv{
+  background-color: #BAC3E8;
+  height: auto;
+  float: left;
+  border: 3px solid;
+  padding: 20px;
+  border-radius: 20px;
+  margin-left: 40px;
+  min-width: 500px;
+  max-width: 500px;
+  box-shadow: 5px 5px 5px #69158a;
+}
+
+.addInputRowBtn{
+	float: right;
+	background-color: #bbcadb;
+}
+
+.JulApplyBtn{
+	float: left;
+	background-color: #bbcadb;
+}
+
+.inputField{
+	width:500px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.inputBox{
+	width: 80%;
+	height: 40px;
+	font-size: 20px;
+	float: left;
+	margin-top: 5px;
+}
+
+.deleteRowBtn{
+	height: 40px;
+	padding: 0px 20px 0px 20px;
+	float: right;
+	margin-top: 5px;
+	overflow: hidden;
+	transition: all 100ms ease;
+}
+
+.deleteRowBtn:hover{
+	border: 2px solid #69158a;
+}
+
+.deleteRowBtn:hover::after{
+	left: -100%;
+}
+
+.winnerMark{
+	margin-top: -10px;
+	margin-left: 19.65%;
+	z-index: 800;
+	position: absolute;
+	border: 0px black solid;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 30px solid red;
 }

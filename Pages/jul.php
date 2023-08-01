@@ -22,4 +22,5 @@
 		notLoggedIn();
 	}
 ?>
+<script type="text/javascript" src="../includers/basic.js"></script>
 </body>

@@ -12,7 +12,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password']) && isset($_COOKIE[
 
 if(isset($_SESSION['logged-in']) && $_SESSION['logged-in'] == true)
 {
-    echo "<form style='height: 100%;' action='../logout.php' method='POST'>";
+    echo "<form action='../logout.php' method='POST'>";
         echo "<input class='navbarLink logoutBtn' type='submit' value='LOGOUT'/>";
         echo "<input type='hidden' value='".$_SERVER['REQUEST_URI']."' name='url'> </input>";
     echo "</form>";

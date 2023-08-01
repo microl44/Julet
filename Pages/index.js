@@ -32,23 +32,30 @@ class Genre
   }
 }
 
-var host = `localhost`;
+//get host from basic.js
+var host = GetHost();
+
 var cookies = document.cookie;
 
+//arrays for fetched data
 var moviesGroup = Array();
 var moviesMarvel = Array();
 var moviesSolo = Array();
 var participants = Array();
 var genres = Array();
+
+//used to prevent multipe fetch requests at same time
 var isFetching = false;
 
+
+//extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
 function GetCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-
+//
 function ExpandRow(element)
 {
   console.log("hello");
@@ -58,7 +65,7 @@ function ExpandRow(element)
   }
   else
   {
-    element.style.display = 'block';
+    element.style.display = 'none';
   }
 }
 
@@ -170,8 +177,6 @@ function CreateSoloTable()
     cellName.classList.add('tableCell');
     cellGrade.classList.add('tableCell');
     cellRating.classList.add('tableCell');
-
-    console.log(moviesSolo[i]);
   }
 }
 
@@ -664,6 +669,9 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   //CreateLoadingRow();
 
   moviesGroup = [];
+  moviesMarvel = [];
+  moviesSolo = [];
+
   const params = new URLSearchParams();
   if(name != null)
     {params.append('name', name);}
@@ -696,59 +704,38 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
   isFetching = true;
 
-  try
+  fetch(`http://${host}/api/movies.php?${params}`)
+  .then(response => response.json())
+  .then(data => 
   {
-    fetch(`http://${host}/api/movies.php?${params}`)
-    .then(response => response.json())
-    .then(data => 
+    results = data;
+    for (var i = 0; i < results['data']['group'].length; i++)
     {
-      results = data;
-      for (var i = 0; i < results['data']['group'].length; i++)
-      {
-        var tempObject = JSON.parse(results['data']['group'][i]);
+      var testParticipants = Array();
+      var tempObject = JSON.parse(results['data']['group'][i]);
 
-        moviesGroup.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
-          tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
-      }
+      moviesGroup.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
+        tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
+    }
 
-      for (var i = 0; i < results['data']['marvel'].length; i++)
-      {
-        var tempObject = JSON.parse(results['data']['marvel'][i]);
-
-        moviesMarvel.push(new Movie(null ,tempObject.name, null, tempObject.rating, tempObject.grade, null, tempObject.participants));
-      }
-
-      console.log(results['data']['solo']);
-      for (var i = 0; i < results['data']['solo'].length; i++)
-      {
-        var tempObject = JSON.parse(results['data']['solo'][i]);
-
-        moviesSolo.push(new Movie(tempObject.id, tempObject.name, null, tempObject.rating, tempObject.grade));
-      }
-      CreateGroupTable();
-      CreateMarvelTable();
-      CreateSoloTable();
-      isFetching = false;
-    })
-  }
-  catch(error)
-  {
-    fetch(`http://${host}/api/movies.php?${params}`)
-    .then(response => response.json())
-    .then(data =>
+    for (var i = 0; i < results['data']['marvel'].length; i++)
     {
-      results = data;
-      for (var i = 0; i < results['data']['group'].length; i++)
-      {
-        var tempObject = JSON.parse(results['data'][i]);
+      var tempObject = JSON.parse(results['data']['marvel'][i]);
 
-        moviesGroup.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
-          tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
-      }   
-      CreateTable();
-      isFetching = false;
-    })
-  }
+      moviesMarvel.push(new Movie(null ,tempObject.name, null, tempObject.rating, tempObject.grade, null, tempObject.participants));
+    }
+
+    for (var i = 0; i < results['data']['solo'].length; i++)
+    {
+      var tempObject = JSON.parse(results['data']['solo'][i]);
+
+      moviesSolo.push(new Movie(tempObject.id, tempObject.name, null, tempObject.rating, tempObject.grade));
+    }
+    CreateGroupTable();
+    CreateMarvelTable();
+    CreateSoloTable();
+    isFetching = false;
+  })
 }
 
 function InsertMovie()
@@ -804,4 +791,3 @@ function InsertMovie()
 GetMovies();
 GetParticipants();
 GetGenres();
-//CreateSortPanel();

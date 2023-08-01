@@ -28,4 +28,5 @@ else
 {
 	notLoggedIn();
 }?>
+<script type="text/javascript" src="../includers/basic.js"></script>
 <script type="text/javascript" src="stats.js"></script>

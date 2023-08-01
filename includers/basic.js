@@ -1,7 +1,9 @@
-function createThemeSwitch()
+function GetHost()
 {
-	
+	return `localhost`;
 }
+
+var headerStatus = 'inactive';
 
 function DeleteAllCookies() 
 {
@@ -15,3 +17,23 @@ function DeleteAllCookies()
     }
 }
 
+function ExpandHeader()
+{
+	console.log("hello");
+	const header = document.getElementById("navbar");
+	if(headerStatus == 'inactive')
+	{
+		for (var i = 70; i < 500; i++)
+		{
+			header.style.height = i + "px";
+		}
+		headerStatus = 'active';
+	}
+	else
+	{
+		header.style.height = "80px";
+		headerStatus = 'inactive';
+	}
+}
+
+console.log("basic.js loaded.");
