@@ -21,11 +21,15 @@ if(isset($_SESSION['logged-in']) && $_SESSION['logged-in'] == true)
 else
 {?>
     <form action='../loginFunctions.php' method='POST'>
-        <label for='username'>Username :</lable>
-        <input type='text' name='username'/>
-        <label for='password'>Password :</lable>
-        <input type='password' name='password'/>
-        <input type='submit' value='login'/> 
+        <div class='loginFormFirst'>
+            <label for='username'>Username:</label>
+            <input type='text' name='username'/>
+        </div>
+        <div class='loginFormSecond'>
+            <label for='password'>Password:</label>
+            <input type='password' name='password'/>
+        </div>
+        <input class='loginBtn' type='submit' value='login'/> 
 
         <?php echo "<input type='hidden' value='" . $_SERVER['REQUEST_URI'] . "' name='url'> </input>"; ?>
     </form>

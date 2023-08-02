@@ -43,76 +43,7 @@
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*------------------------------HTML & BODY------------------------------------------*/
-/*-----------------------------------------------------------------------------------*/
-
-html, body{
-	width: 100%;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-}
-
-body{
-	background: linear-gradient(#5397EE 0%, #9CC5E0 6%, #BAC3E8 100%);
-	background-repeat: no-repeat;
-	min-width: 680px;
-	width: 100%;
-	font-family: Arial;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/*------------------------------HEADER-----------------------------------------------*/
-/*-----------------------------------------------------------------------------------*/
-
-.navbar{
-	display: inline-block;
-	min-width: 100%;
-	width: 100%;
-	height: 80px;
-	position: fixed;
-	top: 0;
-	z-index: 1030;
-	background: linear-gradient(#5397EE, #BAC3E8);
-	overflow: hidden;
-	box-shadow: 0px 3px 5px #69158a;
-}
-
-.navbarLink{
-	background-color: Transparent;
-	border: none;
-	border-radius: 2px;
-	float: left;
-	display: block;
-	text-align: center;
-	padding: 20px;
-	text-decoration: none;
-	font-size: 30px;
-	overflow: hidden;
-	margin-bottom: 0;
-	min-height: 40px;
-}
-
-.navbarLink:hover{
-	background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0,0,0,0.8));
-	color: black;
-}
-
-#navbarImage{
-	margin-top: -10px;
-}
-
-#navbarBurger{
-	margin-top: -0px;
-}
-
-.logoutBtn{
-	cursor:pointer;
-	color: #551A8B;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/*------------------------------GENERICS--FANCY BUTTON-------------------------------*/
+/*------------------------------GENERICS--FANCY-BUTTON-TEMPLATE----------------------*/
 /*-----------------------------------------------------------------------------------*/
 .Fancy-Btn{
 	display: flex;
@@ -171,15 +102,9 @@ body{
 	cursor: pointer;
 }
 
-
-h3{
-	text-align: center;
-	margin-right: 10%;
-}
-
-.fancyBtn-Div{
-
-}
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------GENERICS-CONTENT-TEMPLATE-------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 
 .content{
 	padding-top: 100px;
@@ -190,9 +115,176 @@ h3{
     justify-content: center;
 }
 
-.indexContent{
-	
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------GENERICS-HTML-&-BODY---------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
+html, body{
+	width: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
 }
+
+body{
+	background: linear-gradient(#5397EE 0%, #9CC5E0 6%, #BAC3E8 100%);
+	background-repeat: no-repeat;
+	min-width: 680px;
+	width: 100%;
+	font-family: Arial;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------GENERICS-HEADER--------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
+.navbar{
+	display: inline-block;
+	min-width: 100%;
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	top: 0;
+	z-index: 1030;
+	background: linear-gradient(#5397EE, #BAC3E8);
+	overflow: hidden;
+	box-shadow: 0px 3px 5px #69158a;
+}
+
+.navbarLink{
+	background-color: Transparent;
+	border: none;
+	border-radius: 2px;
+	float: left;
+	display: block;
+	text-align: center;
+	padding: 20px;
+	text-decoration: none;
+	font-size: 30px;
+	overflow: hidden;
+	margin-bottom: 0;
+	min-height: 40px;
+}
+
+.navbarLink:hover{
+	background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0,0,0,0.8));
+	color: black;
+}
+
+#navbarImage{
+	margin-top: -10px;
+}
+
+#navbarBurger{
+	margin-top: -0px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------GENERICS-LOGIN-FORM----------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
+#loginDiv {
+	width: 23%;
+	height: 100%;
+	float: right; /* change to right */
+	text-align: center;
+	justify-content: center;
+}
+
+.loginFormFirst label{
+	float: left;
+}
+
+
+.loginFormFirst input{
+	float: right;
+}
+
+.loginFormFirst{
+	padding-top: 15px;
+	height: 49%;
+	width: auto;
+	max-width: 40vh;
+	min-width: 30vh;
+	margin-bottom: 0px;
+	float: left;
+}
+
+.loginFormSecond label{
+	float: left;
+}
+
+.loginFormSecond input{
+	float: right;
+}
+
+.loginFormSecond{
+	float: left;
+	height: 40%;
+	min-width: 30vh;
+	width: auto;
+	max-width: 40vh;
+	min-width: 30vh;
+	margin-top: -10px;
+}
+
+.loginBtn{
+	width: 18%;
+	height: 63%;
+	margin-top: 15px;
+	float: top;
+
+	cursor: pointer;
+}
+
+#loginForm label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#loginForm input[type='text'], #loginForm input[type='password'] {
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#loginForm input[type='password']{
+	margin-left: 8px;
+}
+
+.logoutBtn{
+	cursor:pointer;
+	color: #551A8B;
+	float: right;
+	padding-right: 60px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------GENERICS--FOOTER-------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+footer{
+	bottom: 0;
+    min-width: 100%;
+    width: 100%;
+    height: 45px;
+    position: fixed;
+	background: linear-gradient(#BAC3E8, #5397EE);
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px -3px 5px #69158a;
+}
+
+.footerLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 40px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------MOVIE-TABLE------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 
 .tableTab{
 	min-width: 250px;
@@ -299,6 +391,10 @@ h3{
 	padding-bottom: 15px;
 }
 
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------INSERT-MOVIE-SECTION---------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+
 .addMovieDiv{
 	width: 100%;
 	display: inline-block;
@@ -340,104 +436,9 @@ h3{
 	min-width: 250px;
 }
 
-footer{
-	bottom: 0;
-    min-width: 100%;
-    width: 100%;
-    height: 45px;
-    position: fixed;
-	background: linear-gradient(#BAC3E8, #5397EE);
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0px -3px 5px #69158a;
-}
-
-.footerLink {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    font-size: 40px;
-}
-
-.gridContainer{
-	display: inline-grid;
-	grid-template-columns: auto auto auto;
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
-	padding-bottom: 150px;
-}
-
-.gridItem{
-	background: #BAC3E8;
-	margin: 35px;
-	height: 100%;
-	border: 2px solid;
-	height: 281px;
-	padding-bottom: 10px;
-	padding-right: 10px;
-	padding-top: 10px;
-    background-color: #BAC3E8;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px #3b7dd5;
-}
-
-#loginDiv {
-	padding-right: 50px;
-	height:100%;
-	float: right;
-}
-
-#loginForm {
-	margin-top: 1%;
-	display: inline-block;
-	float: right;
-	margin-right: 60px;
-}
-
-#loginForm label {
-    font-weight: bold;
-    margin-right: 10px;
-    padding-top: 5px;
-}
-
-#loginForm input[type='text'], #loginForm input[type='password'] {
-    width: 150px;
-    padding: 4px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin: 5px;
-}
-
-#loginForm input[type='password']{
-	margin-left: 8px;
-}
-
-#loginForm input[type='submit'] {
-    margin-left: 10px;
-    background-color: #2196F3;
-    color: #000;
-    border-radius: 5px;
-    padding: 5px;
-    font-weight: bold;
-    border: 1px solid;
-    cursor: pointer;
-}
-
-#LoginLogoutDiv{
-	margin: 0%;
-	padding: 0px;
-	display: inline;
-	height: 100px;
-	width: 100px;
-	min-height: 100%;
-	background-color: #bbcadb;
-}
-
-#logoutBtn{
-	float:right;
-}
+/*-----------------------------------------------------------------------------------*/
+/*------------------------------ ----------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 
 #filterDivHolder{
 	display: inline-flex;
@@ -781,15 +782,16 @@ footer{
 	text-align: center;
 	align-content: center;
 	background: linear-gradient(#a9c4e3 0%, rgba(0,0,0,0.3) 2%, rgba(0,0,0,0.4) 4%, rgba(0,0,0,0.5) 7%, rgba(0,0,0,0.6) 9%, rgba(0, 0, 0, 0.8) 11%, rgba(0, 0, 0, 0.8) 12%);
+	padding-bottom: 20px;
+	margin-bottom: -20px;
 }
+
 #gridBackgroundDiv h1{
-	margin-left: -2%;
+	
 }
 
 .genreSection{
 	border-radius: 50%;
-	padding-left: 10%;
-	padding-top: 0px;
 	display: grid;
 	width: auto;
 	grid-template-columns: 300px 300px 300px;
@@ -797,6 +799,8 @@ footer{
 	color: black;
 	grid-column-gap: 60px;
 	grid-row-gap: 40px;
+	text-align: center;
+	justify-content: center;
 }
 
 
@@ -971,7 +975,7 @@ footer{
 }
 
 .genreHeader{
-	font-size: 50px;
+	font-size: 45px;
 	font-family: sans-serif;
 	font-weight: bolder;
 	margin:0;
