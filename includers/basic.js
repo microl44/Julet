@@ -1,4 +1,4 @@
-	return `62.63.230.53`;
+function GetHost()
 {
 	return `62.63.230.53`;
 }
