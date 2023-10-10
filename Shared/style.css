@@ -396,9 +396,19 @@ footer{
 /*-----------------------------------------------------------------------------------*/
 
 .addMovieDiv{
-	width: 100%;
-	display: inline-block;
-	min-width: 500px;
+	min-width: 850px;
+	padding: 10px;
+	padding-bottom: 0px;
+	margin-bottom: 20px;
+	background-color: #BAC3E8;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #3B7DD5;
+	border: 2px solid;
+	display: grid;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(2, auto);
+	grid-gap: 5px;
+	text-align: center;
 }
 
 .addMovieDiv input{
@@ -440,11 +450,15 @@ footer{
 /*------------------------------ ----------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 
-#filterDivHolder{
+.indexDivHolder{
 	display: inline-flex;
 	text-align: center;
 	justify-content: center;
 	width: auto;
+}
+
+#filterDivHolder{
+
 }
 
 #filterDiv{

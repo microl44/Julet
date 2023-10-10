@@ -32,6 +32,11 @@ FOREIGN KEY (genre_name) REFERENCES genre(name),
 FOREIGN KEY (picked_by) REFERENCES participant(name)
 ) Engine = InnoDB;
 
+CREATE TABLE IMDBMovie(
+id varchar(2048),
+name varchar(2048)
+) Engine = InnoDB;
+
 CREATE TABLE marvel(
 id int auto_increment,
 name varchar(255) NOT NULL,
@@ -122,7 +127,8 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("John Wick", "Wildcard", 7.4, "Jay", "Micke", "Micke, Crippe, Linus", 0), ("The Batman", "Superhero", 7.8, "Jay", "Behrad", "Micke, Gabbe, Crippe, Behrad", 1),
 ("Bee Movie", "Drama", 6.1, "Jay", "Micke", "Micke, Behrad, Momme", 0), ("The Hunchback of Notre Dame", "Animation", 7.0, "Jay", "Micke", "Micke, Crippe, Behrad, Linus, Momme", 0),
 ("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0), ("Cars 2", "Mystery", 6.2, "Nay", "Micke", "Micke, Crippe, Adam", 0),
-("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0);
+("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0),
+("Indiana Jones: Raiders of the Lost Ark", "Action", 8.4, "Jay", "Doffer", "Micke, Crippe, Doffer", 0), ("Life of Brian", "CUSTOM RULES", 8.0, "Jay", "Crippe", "Micke, Gabbe, Crippe", 1);
 
 INSERT INTO marvel(name, imdb_rating)
 VALUES("Captain America", 6.9), ("Captain Marvel", 6.8), ("Iron Man", 7.9), ("Iron Man 2", 6.9), ("The Incredible Hulk", 6.6),
@@ -131,7 +137,7 @@ VALUES("Captain America", 6.9), ("Captain Marvel", 6.8), ("Iron Man", 7.9), ("Ir
 ("Spider Man - Homecoming", 7.4), ("Black Panther", 7.3), ("Black Widow", 6.7), ("Doctor Strange", 7.5), ("Thor - Ragnarök", 7.9),
 ("Ant Man and the Wasp", 7.0), ("Avengers: Infinity War", 8.4), ("Avengers: End Game", 8.4), ("Spider Man - Far From Home", 7.4), ("Spider Man - No Way Home", 8.2), 
 ("Shang-Chi and The Legend of the Ten Rings", 7.4), ("Eternals", 6.3), ("Dr Strange in the Multiverse of Madness", 6.9), ("Thor - Love and Thunder", 6.2), ("Black Panther: Wakanda Forever", 6.7),
-("Ant-Man and the Wasp: Quantumania", 6.1);   
+("Ant-Man and the Wasp: Quantumania", 6.1), ("Guardians of the Galaxy Vol. 3", 8.0), ("Morbius", 5.2), ("Spider-Man", 7.4), ("Spider-Man 2", 7.5), ("Spider-Man 3", 6.3), ("The Amazing Spider-Man", 6.9) ;   
 
 INSERT INTO movieDescription(movieID, cover_path, description)
 VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is cursed to become a monster for the rest of his life, unless he learns to fall in love with a beautiful young woman he keeps prisoner."), 
@@ -172,7 +178,9 @@ VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is
 (36, "C:/xampp/htdocs/Julet/Shared/Images/cover35.png", "A mountain climber becomes trapped under a boulder while canyoneering alone near Moab, Utah and resorts to desperate measures in order to survive."),
 (37, "C:/xampp/htdocs/Julet/Shared/Images/cover36.png", "Star race car Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in an intriguing adventure of his own: international espionage."),
 (38, "C:/xampp/htdocs/Julet/Shared/Images/cover37.png","A middle-aged Chinese immigrant is swept up into an insane adventure in which she alone can save existence by exploring other universes and connecting with the lives she could have led."),
-(39, "C:/xampp/htdocs/Julet/Shared/Images/cover38.png", "Violence ensues after an extraterrestrial race forced to live in slum-like conditions on Earth finds a kindred spirit in a government agent exposed to their biotechnology.");
+(39, "C:/xampp/htdocs/Julet/Shared/Images/cover38.png", "Violence ensues after an extraterrestrial race forced to live in slum-like conditions on Earth finds a kindred spirit in a government agent exposed to their biotechnology."),
+(40, "C:/xampp/htdocs/Julet/Shared/Images/cover39.png", "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers."),
+(41, "C:/xampp/htdocs/Julet/Shared/Images/cover40.png", "Born on the original Christmas in the stable next door to Jesus Christ, Brian of Nazareth spends his life being mistaken for a messiah.");
 
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
@@ -181,7 +189,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
-(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3);
+(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3);
 
 INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
 VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
@@ -196,7 +204,9 @@ VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3
 (25,2,9), (25,1,10), (25,3,9), (25,4,8), (25,6,9), (26,2,5), (26,1,2), (26,3,3), (26,4,4), (26,6,4), 
 (27,2,3), (27,1,1), (27,3,2), (27,4,5), (27,6,5), (28,2,7), (28,1,9), (28,3,9), (28,4,7), (28,5,9), 
 (28,6,9), (29,2,7), (29,1,6), (29,3,4), (29,4,4), (29,5,5),  (29,6,6), (30, 1, 4), (30, 2, 7), (30, 3, 3), (30, 4, 7), (30, 5, 6),
-(31, 1, 1), (31, 2, 1), (31, 3, 1), (31, 5, 2), (31, 9, 3), (31, 11, 1);
+(31, 1, 1), (31, 2, 1), (31, 3, 1), (31, 5, 2), (31, 9, 3), (31, 11, 1), (32, 1, 8), (32, 2, 7), (32, 3, 8), (33, 1, 5), (33, 2, 1), (33, 3, 1), (33, 6, 2),
+(34, 1, 9), (34, 2, 6), (34, 3, 7), (35, 1, 10), (35, 2, 8), (35, 3, 7), (35, 11, 10), (36, 1, 6), (36, 2, 4), (36, 3, 5), (36, 4, 7),
+(37, 1, 3), (37, 2, 1), (37, 3, 1);
 
 INSERT INTO users(username, email, password)
 VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', ''),
@@ -207,7 +217,7 @@ VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.
 INSERT INTO solo_movie(name, user_id, imdb_rating, grade)
 VALUES ('Les Misérables', 3, 7.5, 8), ('Les Misérables', 5, 7.5, 0), ('The Prestige', 3, 8.5, 10), ('The Prestige', 5, 8.5, 0), ('Encanto', 3, 7.2, 9),
 ('Spider-Man: Into the Spider-Verse', 3, 8.4, 9), ('Spider-Man: Across the Spider-Verse', 3, 8.9, 9), ('The Iron Giant', 3, 8.1, 7), ('Moana', 3, 7.6, 6),
-('Frozen', 3, 7.4, 9), ('Inside Out', 3, 8.1, 9);
+('Frozen', 3, 7.4, 9), ('Inside Out', 3, 8.1, 9), ('The Little Mermaid', 3, 7.2,  8), ("The Little Mermaid", 4, 7.2, 6);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
