@@ -129,7 +129,7 @@ VALUES("Beauty and the beast (live-action)", "Romance", 7.1, "Jay", "Gabbe", "Mi
 ("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0), ("Cars 2", "Mystery", 6.2, "Nay", "Micke", "Micke, Crippe, Adam", 0),
 ("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0),
 ("Indiana Jones: Raiders of the Lost Ark", "Action", 8.4, "Jay", "Doffer", "Micke, Crippe, Doffer", 0), ("Life of Brian", "CUSTOM RULES", 8.0, "Jay", "Crippe", "Micke, Gabbe, Crippe", 1),
-("Gremlins", "CUSTOM RULES", 7.3, "Nay", "Gabbe", "Micke, Gabbe, Crippe", 0);
+("Gremlins", "CUSTOM RULES", 7.3, "Nay", "Gabbe", "Micke, Gabbe, Crippe", 0), ("Cruella", "Crime", 7.3, "Jay", "Doffer", "Micke, Crippe, Doffer", 0);
 
 INSERT INTO marvel(name, imdb_rating)
 VALUES("Captain America", 6.9), ("Captain Marvel", 6.8), ("Iron Man", 7.9), ("Iron Man 2", 6.9), ("The Incredible Hulk", 6.6),
@@ -182,7 +182,8 @@ VALUES (1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is
 (39, "C:/xampp/htdocs/Julet/Shared/Images/cover38.png", "Violence ensues after an extraterrestrial race forced to live in slum-like conditions on Earth finds a kindred spirit in a government agent exposed to their biotechnology."),
 (40, "C:/xampp/htdocs/Julet/Shared/Images/cover39.png", "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers."),
 (41, "C:/xampp/htdocs/Julet/Shared/Images/cover40.png", "Born on the original Christmas in the stable next door to Jesus Christ, Brian of Nazareth spends his life being mistaken for a messiah."),
-(42, "C:/xampp/htdocs/Julet/Shared/Images/cover41.png", "A young man inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town.");
+(42, "C:/xampp/htdocs/Julet/Shared/Images/cover41.png", "A young man inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town."),
+(43, "C:/xampp/htdocs/Julet/Shared/Images/cover41.png", "A live-action prequel feature film following a young Cruella de Vil.");
 
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
@@ -191,7 +192,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
-(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3);
+(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9);
 
 INSERT INTO marvel_participated(marvelID, marvelparticipantID, marvel_grade)
 VALUES(1,2,6), (1,1,4), (1,3,7), (1,6,7), (2,2,8), (2,1,6), (2,3,8), (3,2,7), (3,1,3), (3,3,7), 
@@ -214,13 +215,14 @@ INSERT INTO users(username, email, password)
 VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', ''),
 ('micke', 'a20micro@student.his.se', 'password'), ('gabbe', 'gabbemail@gmail.com', 'password'),
 ('crippe', 'crippemail@gmail.com', 'password'), ('behrad', 'behradmail@gmail.com', 'password'),
-('linus', 'linusmail@gmail.com', 'password'), ('momme', 'mommemail@gmail.com', 'password');
+('linus', 'linusmail@gmail.com', 'password'), ('momme', 'mommemail@gmail.com', 'password'), ('doffe', 'doffemail@gmail.com', 'password');
 
 INSERT INTO solo_movie(name, user_id, imdb_rating, grade)
 VALUES ('Les Misérables', 3, 7.5, 8), ('Les Misérables', 5, 7.5, 0), ('The Prestige', 3, 8.5, 10), ('The Prestige', 5, 8.5, 0), ('Encanto', 3, 7.2, 9),
 ('Spider-Man: Into the Spider-Verse', 3, 8.4, 9), ('Spider-Man: Across the Spider-Verse', 3, 8.9, 9), ('The Iron Giant', 3, 8.1, 7), ('Moana', 3, 7.6, 6),
 ('Frozen', 3, 7.4, 9), ('Inside Out', 3, 8.1, 9), ('The Little Mermaid', 3, 7.2,  8), ("The Little Mermaid", 4, 7.2, 6),
-("Prince of Egypt", 3, 7.2, 7), ("Prince of Egypt", 4, 7.2, 10), ("How To Train Your Dragon", 3, 8.1, 8), ("How To Train Your Dragon", 4, 8.1, "8");
+("Prince of Egypt", 3, 7.2, 7), ("Prince of Egypt", 4, 7.2, 10), ("How To Train Your Dragon", 3, 8.1, 8), ("How To Train Your Dragon", 4, 8.1, "8"), 
+("Elemental", 3, 7, 9), ("Elemental", 4, 7, 7), ("Elemental", 9, 7, 8);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
