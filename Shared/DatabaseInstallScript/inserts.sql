@@ -129,7 +129,8 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Spider-Man: Across the Spider-Verse", 8.6, "", "Miles Morales catapults across the multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero."),
 ("The Avengers", 8.0, "", "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity."),
 ("The Marvels", 8.0, "", "Carol Danvers gets her powers entangled with those of Kamala Khan and Monica Rambeau, forcing them to work together to save the universe."),
-("Dredd", 7.1, "", "In a violent, futuristic city where the police have the authority to act as judge, jury and executioner, a cop teams with a trainee to take down a gang that deals the reality-altering drug, SLO-MO.");
+("Dredd", 7.1, "", "In a violent, futuristic city where the police have the authority to act as judge, jury and executioner, a cop teams with a trainee to take down a gang that deals the reality-altering drug, SLO-MO."),
+("Donnie Brasco", 7.7, "", "An FBI undercover agent infiltrates the mob and finds himself identifying more with the Mafia life--at the expense of his regular one.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -279,7 +280,8 @@ VALUES (85, 1, 8), (85, 3, 2), (86, 1, 10), (86, 3, 9), (87, 1, 9),
 (94, 1, 7), (94, 2, 10), (95, 1, 8), (95, 2, "8"), 
 (96, 1, 9), (96, 2, 7), (96, 9, 8), (97, 1, 4), (97, 9, 4),
 (98, 1, 9), (98, 3, 8), (99, 1, 6), (100, 1, 8),
-(100, 2, 6);
+(100, 2, 6), (105, 1, 6), (105, 2, unk), (105, 3, unk),
+(105, 6, unk);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');

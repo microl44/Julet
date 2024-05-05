@@ -182,7 +182,7 @@ function AddTablePageDiv(TableType)
 function CreateGroupTable()
 {
   var temp = {};
-  var entries = []
+  var entries = [];
   var entry = [];
   var currentP = "";
   var processedID = groupMovies[groupMovies.length - 1].id;
@@ -228,7 +228,7 @@ function CreateGroupTable()
       cell2.innerHTML = groupMovies[i + 1].genre;
       cell3.innerHTML = groupMovies[i + 1].imdb_rating;
       cell4.innerHTML = groupMovies[i + 1].jayornay;
-      cell5.innerHTML = participants[parseInt(groupMovies[i + 1].picked_by) + 1].name;
+      cell5.innerHTML = participants[parseInt(groupMovies[i].picked_by)].name;
       cell6.innerHTML = concattedString;
       concattedString = "";
       //cell6.innerHTML = groupMovies[i].participants;
