@@ -76,7 +76,7 @@
             {
               echo "<button class='tableTab' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
             }?>
-          </div>
+        </div>
         <!-- TABLE TABS SECTION END -->
 
         <div id='tableContainer'>
@@ -115,7 +115,17 @@
           </table>
         </div>
         <!----------DISPLAY TABLE SECTION END---------->
-        
+
+        <!----------CHANGE TABLE PAGE SECTION START---------->
+        <div style='text-align: center; justify-content: center; width: 100%; display: flex;'>
+          <div id='changePageDiv'>
+            <button class='tableTab changePage Fancy-Btn' id='prevPageBtn' onclick="ChangePage(event, 'prev')"><b>PREV</b></button>
+            <button class='tableTab changePage Fancy-Btn' id='nextPageBtn' onclick="ChangePage(event, 'next')"><b>NEXT</b></button>
+          </div>
+        </div>
+        <!----------CHANGE TABLE PAGE SECTION END---------->
+
+
         <?php
         if(isset($_SESSION['username']) || isset($_SESSION['password']))
         {

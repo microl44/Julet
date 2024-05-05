@@ -1,9 +1,16 @@
 <?php
 if(!isset($_SESSION))
 {session_start();}
-
 require_once(dirname(__FILE__, 2)."/Database.php");
+
 $conn;
+
+enum TableType
+{
+	case Group;
+	case Solo;
+	case Marvel;
+}
 
 function GetConn()
 {

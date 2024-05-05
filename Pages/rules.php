@@ -15,7 +15,8 @@
 		"Reverse-Genre Wheel Of Reverse Madness (1+)", 
 		"Tag-Team Wheel (3+)", 
 		"Bogo-Wheel (2+)", 
-		"Streaming Site Jul (2+)", 
+		"Streaming Site Jul (2+)",
+		"Time-Wheel (1+)",
 		"Winner Wheel (2+)",
 		"Custom Wheel");
 	$descriptions = array("This is a simple Jul. Each participant brings a single movie to the Jul, the Jul is spun and whatever movie it lands on is the winner.",
@@ -27,6 +28,7 @@
 						"First a Jul is spun between the participant and whoever it lands on decides the genre. The rest of the participants bring a movie of the chosen genre and a regular Jul is spun to determine the winner.", 
 						"Regular or reverse Jul with a number of \"RESET\" entries. If the RESET entry is chosen, the previous user-brought entries are disqualified and new entries must be brought.", 
 						"Instead of movies, streaming sites are either brought to the Jul, or a complete list of streaming sites are brought to be rolled. The chosen streaming site is used to select movies for further Jul.", 
+						"Every full hour is added to a wheel (00 - 24) and a wheel is then spun. A normal wheel is then spun at the rolled hour of the next day.",
 						"The name of the participants are added to the Jul and the Jul is then spun. Whoever it lands on gets to pick a movie for a secondary Jul from any genre. The Jul is then respun until X amount of movies exists on the secondary Jul. The secondary Jul is then spun and a winning movie is chosen.", 
 						"Custom rules are prepared beforehand in terms of movie selection criterias. Too specific to handle all cases and it's represented as 'CUSTOM RULES' in the movie table.",);
 

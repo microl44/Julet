@@ -19,7 +19,8 @@ if(isset($_SESSION['logged-in']) && $_SESSION['logged-in'] == true)
 }
 
 else
-{?>
+{
+    ?>
     <form action='../loginFunctions.php' method='POST'>
         <div class='loginFormFirst'>
             <label for='username'>Username:</label>

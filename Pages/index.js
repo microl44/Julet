@@ -1,15 +1,52 @@
-class Movie
+//#################################################################
+//#################CLASSES DECLARATION BEGIN#######################
+//#################################################################
+
+class Solo_movie
 {
-  constructor(id, name, genre, rating, jayornay, picker, participants, type, description, cover_path)
+  constructor(id, participant_id, participant, user_rating, imdb_rating, movie, movie_id, description, cover_path)
   {
     this.id = id;
-    this.name = name;
+    this.participant_id = participant_id;
+    this.participant = participant;
+    this.user_rating = user_rating;
+    this.imdb_rating = imdb_rating;
+    this.movie = movie;
+    this.movie_id = movie_id;
+    this.description = description;
+    this.cover_path = cover_path;
+  }
+}
+
+class Group_movie
+{
+  constructor(id, participant_id, participant, genre, picked_by, movie, imdb_rating, description, jayornay, is_mayor, cover_path)
+  {
+    this.id = id;
+    this.participant_id = participant_id;
+    this.participant = participant;
     this.genre = genre;
-    this.rating = rating
+    this.picked_by = picked_by;
+    this.movie = movie;
+    this.imdb_rating = imdb_rating;
+    this.description = description;
     this.jayornay = jayornay;
-    this.picker = picker;
-    this.participants = participants;
-    this.type = type;
+    this.is_mayor = is_mayor;
+    this.cover_path = cover_path;
+  }
+}
+
+class Marvel_movie
+{
+  constructor(id, participant_id, participant, user_rating, imdb_rating, movie, movie_id, description, cover_path)
+  {
+    this.id = id;
+    this.participant_id = participant_id;
+    this.participant = participant;
+    this.user_rating = user_rating;
+    this.imdb_rating = imdb_rating;
+    this.movie = movie;
+    this.movie_id = movie_id;
     this.description = description;
     this.cover_path = cover_path;
   }
@@ -32,20 +69,43 @@ class Genre
   }
 }
 
+//#################################################################
+//#################CLASSES DECLARATION END#########################
+//#################################################################
+
+
+
+//#################################################################
+//#################VARIABLE DECLARATION BEGIN######################
+//#################################################################
+
+const TableType = Object.freeze(
+{
+	Group: 'Group',
+	Solo: 'Solo',
+	Marvel: 'Marvel'
+});
+
 //get host from basic.js
 var host = GetHost();
-
 var cookies = document.cookie;
 
 //arrays for fetched data
-var moviesGroup = Array();
-var moviesMarvel = Array();
-var moviesSolo = Array();
+var groupMovies = Array();
+var marvelMovies = Array();
+var soloMovies = Array();
 var participants = Array();
 var genres = Array();
 
 //used to prevent multipe fetch requests at same time
 var isFetching = false;
+
+var pageIndex = 0;
+
+
+//#################################################################
+//#################VARIABLE DECLARATION END########################
+//#################################################################
 
 
 //extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
@@ -55,7 +115,7 @@ function GetCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-//
+//Expands table entry row. Work to do: 1. Push down rest of table. 2. Display cover image. 3. Display description 
 function ExpandRow(element)
 {
   console.log("hello");
@@ -69,67 +129,153 @@ function ExpandRow(element)
   }
 }
 
+//Cleans table 
+function CleanTable(TableType)
+{
+	var table;
+	switch (TableType)
+	{
+		case 'Group':
+			table = document.getElementById('groupMovie');
+			break;
+		case 'Solo':
+			table = document.getElementById('soloMovie');
+			break;
+		case 'Marvel':
+			table = document.getElementById('marvelMovie');
+			break;
+		default:
+			console.log("Error: argtype error, wrong tabletype passed.")
+			break;
+	}
+	for(var i = table.rows.length - 1; i >= 1; i--)
+	{
+		table.deleteRow(i);
+	}
+	return table;
+}
+
+function PopulateTable(type)
+{
+  switch(type){
+  case 'Group':
+    CreateGroupTable();
+    break;
+  case 'Solo':
+    CreateSoloTable();
+    break;
+  case 'Marvel':
+    CreateMarvelTable();
+    break;
+  default:
+    break;
+  }
+}
+
+function AddTablePageDiv(TableType)
+{
+	const table = document.getElementById(TableType);
+
+	var div = document.CreateElement()
+}
+
 function CreateGroupTable()
 {
-  //console.log("CreateTable() Called.");
-  const table = document.getElementById('groupMovie');
-  for(var i = table.rows.length - 1; i >= 1; i--)
+  var temp = {};
+  var entries = []
+  var entry = [];
+  var currentP = "";
+  var processedID = groupMovies[groupMovies.length - 1].id;
+  
+  for (var i = groupMovies.length - 1; i >= 0; i--)
   {
-    table.deleteRow(i);
-  }
-
-  //for each movie fetched, add new row with said movie info.
-  for (var i = 0; i < moviesGroup.length; i++)
-  {
-    var row = table.insertRow(1);
-    row.classList.add('tableRow');
-
-    cellID = row.insertCell(0);
-    cellName = row.insertCell(1);
-    cellGenre = row.insertCell(2);
-    cellRating = row.insertCell(3);
-    cellJayornay = row.insertCell(4);
-    cellPicker = row.insertCell(5);
-    cellParticipants = row.insertCell(6);
-    cellType = row.insertCell(7);
-
-    cellID.innerHTML = moviesGroup[i].id;
-    cellName.innerHTML = moviesGroup[i].name;
-    cellGenre.innerHTML = moviesGroup[i].genre;
-    cellRating.innerHTML = moviesGroup[i].rating;
-    cellJayornay.innerHTML = moviesGroup[i].jayornay;
-    cellPicker.innerHTML = moviesGroup[i].picker;
-    cellParticipants.innerHTML = moviesGroup[i].participants;
-    if(moviesGroup[i].type == 0)
+    //if it's a new entry
+    console.log(i);
+    if(groupMovies[i].id != processedID || i == 0)
     {
-      cellType.innerHTML = "Minor";  
+      currentP = groupMovies[i].participant;
+      processedID = groupMovies[i].id;
+    }
+
+    //else keep appending participant
+    else
+    {
+      currentP = currentP.concat(' ', groupMovies[i].participant);
+    }
+  }
+  const table = CleanTable(TableType.Group);
+  var unique = false;
+  var concattedString = "";
+  //for each movie fetched, add new row with said movie info.
+  for (var i = groupMovies.length - 1; i >= 0; i--)
+  {
+    if(unique | i == 0)
+    {
+      var row = table.insertRow(1);
+      row.classList.add('tableRow');
+
+      cell0 = row.insertCell(0);
+      cell1 = row.insertCell(1);
+      cell2 = row.insertCell(2);
+      cell3 = row.insertCell(3);
+      cell4 = row.insertCell(4);
+      cell5 = row.insertCell(5);
+      cell6 = row.insertCell(6);
+      cell7 = row.insertCell(7);
+
+      cell0.innerHTML = groupMovies[i + 1].id;
+      cell1.innerHTML = groupMovies[i + 1].movie;
+      cell2.innerHTML = groupMovies[i + 1].genre;
+      cell3.innerHTML = groupMovies[i + 1].imdb_rating;
+      cell4.innerHTML = groupMovies[i + 1].jayornay;
+      cell5.innerHTML = participants[parseInt(groupMovies[i + 1].picked_by) + 1].name;
+      cell6.innerHTML = concattedString;
+      concattedString = "";
+      //cell6.innerHTML = groupMovies[i].participants;
+      if(groupMovies[i].type == 0)
+      {
+        cell7.innerHTML = "Minor";  
+      }
+      else
+      {
+        cell7.innerHTML = "Major";
+      } 
+
+      cell0.classList.add('tableCell');
+      cell1.classList.add('tableCell');
+      cell2.classList.add('tableCell');
+      cell3.classList.add('tableCell');
+      cell4.classList.add('tableCell');
+      cell5.classList.add('tableCell');
+      cell7.classList.add('tableCell');
+
+      unique = false;
     }
     else
     {
-      cellType.innerHTML = "Major";
-    } 
-
-    cellID.classList.add('tableCell');
-    cellName.classList.add('tableCell');
-    cellGenre.classList.add('tableCell');
-    cellJayornay.classList.add('tableCell');
-    cellPicker.classList.add('tableCell');
-    cellParticipants.classList.add('tableCell');
-    cellType.classList.add('tableCell');
+      concattedString = concattedString + ", " + groupMovies[i].participant;
+      console.log(groupMovies[i])
+      console.log(concattedString);
+    }
+    if(i == groupMovies.length - 1)
+    {
+      unique = true;
+      continue;
+    }
+    else if (groupMovies[i + 1].movie == groupMovies[i].movie)
+    {
+      unique = true;
+    }
   }
 }
 
 function CreateMarvelTable()
 {
   //console.log("CreateTable() Called.");
-  const table = document.getElementById('marvelMovie');
-  for(var i = table.rows.length - 1; i >= 1; i--)
-  {
-    table.deleteRow(i);
-  }
+  const table = CleanTable(TableType.Marvel);
 
   //for each movie fetched, add new row with said movie info.
-  for (var i = 0; i < moviesMarvel.length; i++)
+  for (var i = marvelMovies.length - 1; i >= marvelMovies.length - 15; i--)
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
@@ -139,10 +285,10 @@ function CreateMarvelTable()
     cellRating = row.insertCell(2);
     cellParticipants = row.insertCell(3);
 
-    cellName.innerHTML = moviesMarvel[i].name;
-    cellIMDBRating.innerHTML = moviesMarvel[i].jayornay;
-    cellRating.innerHTML = moviesMarvel[i].rating;
-    cellParticipants.innerHTML = moviesMarvel[i].participants;
+    cellName.innerHTML = marvelMovies[i].name;
+    cellIMDBRating.innerHTML = marvelMovies[i].jayornay;
+    cellRating.innerHTML = marvelMovies[i].rating;
+    cellParticipants.innerHTML = marvelMovies[i].participants;
 
     cellName.classList.add('tableCell');
     cellIMDBRating.classList.add('tableCell');
@@ -154,14 +300,10 @@ function CreateMarvelTable()
 function CreateSoloTable()
 {
   //console.log("CreateTable() Called.");
-  const table = document.getElementById('soloMovie');
-  for(var i = table.rows.length - 1; i >= 1; i--)
-  {
-    table.deleteRow(i);
-  }
+  const table = CleanTable(TableType.Solo);
 
   //for each movie fetched, add new row with said movie info.
-  for (var i = 0; i < moviesSolo.length; i++)
+  for (var i = 0; i < soloMovies.length; i++)
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
@@ -170,9 +312,9 @@ function CreateSoloTable()
     cellGrade = row.insertCell(1);
     cellRating = row.insertCell(2);
 
-    cellName.innerHTML = moviesSolo[i].name;
-    cellGrade.innerHTML = moviesSolo[i].jayornay;
-    cellRating.innerHTML = moviesSolo[i].rating;
+    cellName.innerHTML = soloMovies[i].name;
+    cellGrade.innerHTML = soloMovies[i].jayornay;
+    cellRating.innerHTML = soloMovies[i].rating;
 
     cellName.classList.add('tableCell');
     cellGrade.classList.add('tableCell');
@@ -592,9 +734,9 @@ function openTable(evt, tableName)
   visibleTable.style.textAlign = "left";
 }
 
-function GetParticipants(name = null)
+function FetchParticipants(name = null)
 {
-  //console.log("GetParticipants() Called.");
+  console.log("GetParticipants() Called.");
   participants = [];
   params = new URLSearchParams();
 
@@ -664,15 +806,82 @@ function CreateLoadingRow()
   //table.append(loadingDiv);
 }
 
+function FetchSolo()
+{
+  const params = new URLSearchParams();
+  soloMovies = [];
+
+  isFetching = true;
+
+  fetch(`http://${host}/api/solo_movies.php?${params}`)
+  .then(response => response.json())
+  .then(data => 
+  {
+    results = data
+    console.log(results);
+
+    for (var i = 0; i < results['data'].length; i++)
+    {
+      var temp = JSON.parse(results['data'][i]);
+
+      soloMovies.push(new Solo_movie(temp.id ,temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
+    }
+    PopulateTable('Solo');
+  })
+}
+
+function FetchGroup()
+{
+  const params = new URLSearchParams();
+  groupMovies = [];
+
+  isFetching = true;
+
+  fetch(`http://${host}/api/group_movies.php?${params}`)
+  .then(response => response.json())
+  .then(data => 
+  {
+    results = data;
+    console.log(results);
+
+    for (var i = 0; i < results['data'].length; i++)
+    {
+      var temp = JSON.parse(results['data'][i]);
+
+      groupMovies.push(new Group_movie(temp.id ,temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
+    }
+    PopulateTable('Group');
+  })
+}
+
+function FetchMarvel()
+{
+  const params = new URLSearchParams();
+  marvelMovies = []
+
+  isFetching = true;
+
+  fetch(`http://${host}/api/marvel_movies.php?${params}`)
+  .then(response => response.json())
+  .then(data => 
+  {
+    results = data
+    console.log(results);
+
+    for (var i = 0; i < results['data'].length; i++)
+    {
+      var t = JSON.parse(results['data'][i]);
+
+      marvelMovies.push(new Marvel_movie(t.id ,t.participant_id, t.participant, t.user_rating, t.imdb_rating, t.movie, t.description, t.cover_path));
+    }
+  })
+}
+
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
   //CreateLoadingRow();
 
-  moviesGroup = [];
-  moviesMarvel = [];
-  moviesSolo = [];
-
-  const params = new URLSearchParams();
+  /*
   if(name != null)
     {params.append('name', name);}
   if(genre != null)
@@ -701,6 +910,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   {
     return;
   }
+*/
 
   isFetching = true;
 
@@ -709,6 +919,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   .then(data => 
   {
     results = data;
+    /*
     for (var i = 0; i < results['data']['group'].length; i++)
     {
       var testParticipants = Array();
@@ -731,6 +942,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
 
       moviesSolo.push(new Movie(tempObject.id, tempObject.name, null, tempObject.rating, tempObject.grade));
     }
+    */
     CreateGroupTable();
     CreateMarvelTable();
     CreateSoloTable();
@@ -788,6 +1000,10 @@ function InsertMovie()
     alert("Please fill in every field.");
   }
 }
-GetMovies();
-GetParticipants();
-GetGenres();
+//GetMovies();
+//GetParticipants();
+//GetGenres();
+FetchParticipants();
+FetchGroup();
+FetchMarvel();
+FetchSolo();

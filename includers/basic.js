@@ -1,6 +1,6 @@
 function GetHost()
 {
-	return `85.24.247.147`;
+	return `85.24.246.165`;
 }
 
 var headerStatus = 'inactive';

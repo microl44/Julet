@@ -21,32 +21,30 @@ include_once "loginFunctions.php";
 
 function actualInstall(){
     try{
+        $files = array('Shared/DatabaseInstallScript/create_db.sql', 'Shared/DatabaseInstallScript/inserts.sql', 'Shared/DatabaseInstallScript/views.sql', 'Shared/DatabaseInstallScript/procedures.sql');
         $conn = GetConn();
         $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
-        
-        $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/CREATETABLESINSERTDATA.sql'));
-        $stmp->execute();
-        foreach($stmp->fetchall() as $row){print_r($row);}
-        $stmp->closeCursor();
-        
-        $stmp = $conn->prepare(file_get_contents('Shared/DatabaseInstallScript/Procedures.sql'));
-        $stmp->execute();
-        foreach($stmp->fetchall() as $row){print_r($row);}
-        $stmp->closeCursor();
+
+
+        foreach ($files as &$file) {
+            $stmp = $conn->prepare(file_get_contents($file));
+            $stmp->execute();
+            foreach($stmp->fetchall() as $row){print_r($row);}
+            $stmp->closeCursor();
+        }
+
         addLog("Reinstalled Database");
         
         header('Location: pages/index.php');
     }
     catch(Exception $e){
-        echo "<h1> ooh fuck ooh shit ooh fuck </h1>";
+        echo "<h1> Error! </h1>";
         echo $e->getmessage();
     }
 }
 
 if(isset($_SESSION['username']) || isset($_SESSION['password']))
 {
-    $conn = DBConn();
-    $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
     actualInstall();
 }
 else if(isset($_POST['username']) AND isset($_POST['password']))
