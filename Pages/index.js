@@ -180,6 +180,7 @@ function AddTablePageDiv(TableType)
 
 function CreateGroupTable()
 {
+  var what = false;
   var tempMovieTitle = [];
   var tempMovieParticipants = []
 
@@ -200,9 +201,6 @@ function CreateGroupTable()
     }
   }
 
-  //tempMovieTitle.reverse()
-  console.log(tempMovieTitle)
-
   const table = CleanTable(TableType.Group);
   var unique = false;
   var concattedString = "";
@@ -211,6 +209,8 @@ function CreateGroupTable()
   //for each movie fetched, add new row with said movie info.
   for (var i = groupMovies.length - 1; i >= 0; i--)
   {
+    console.log(groupMovies[i].movie)
+
     if (i == 0)
     {
       concattedString += participants[parseInt(groupMovies[j].participant_id) - 1].name + " ";
@@ -219,7 +219,6 @@ function CreateGroupTable()
 
     if (participants[parseInt(groupMovies[i].participant_id) - 1].name != "Micke")
     {
-      console.log("HI)")
       continue;
     }
 
@@ -228,12 +227,10 @@ function CreateGroupTable()
       concattedString = "";
       for (var j = i; j > 0; j--)
       {
-        console.log("HI")
         concattedString += participants[parseInt(groupMovies[j].participant_id) - 1].name + " ";
 
         if (participants[parseInt(groupMovies[j - 1].participant_id) - 1].name == "Micke")
         {
-          console.log("breaking")
           break
         }
       }
@@ -262,10 +259,8 @@ function CreateGroupTable()
     cell5.innerHTML = participants[parseInt(groupMovies[i].picked_by) - 1].name;
     cell6.innerHTML = concattedString;
 
-    //console.log(concattedString)
     concattedString = "";
 
-    //cell6.innerHTML = groupMovies[i].participants;
     if(groupMovies[i].type == 0)
     {
       cell7.innerHTML = "Minor";  
@@ -301,6 +296,7 @@ function CreateGroupTable()
     //  unique = true;
     //}
   }
+  console.log(tempMovieTitle)
 }
 
 function CreateMarvelTable()

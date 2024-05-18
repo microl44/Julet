@@ -156,7 +156,6 @@ VALUES
 (20, "Crime", 1, "Jay", 0),
 (21, "Animation", 2, "Jay", 1),
 (22, "Biography", 3, "Jay", 0),
-(22, "Biography", 3, "Jay", 0),
 (23, "Western", 3, "Meixcan Standoff", 0),
 (24, "CUSTOM RULES", 1, "Jay", 0),
 (25, "Crime", 1, "Jay", 0),
