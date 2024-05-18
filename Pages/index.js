@@ -118,7 +118,6 @@ function GetCookie(name) {
 //Expands table entry row. Work to do: 1. Push down rest of table. 2. Display cover image. 3. Display description 
 function ExpandRow(element)
 {
-  console.log("hello");
   if(element.style.display == 'none')
   {
     element.style.display = 'block';
@@ -181,91 +180,126 @@ function AddTablePageDiv(TableType)
 
 function CreateGroupTable()
 {
-  var temp = {};
+  var tempMovieTitle = [];
+  var tempMovieParticipants = []
+
   var entries = [];
   var entry = [];
   var currentP = "";
   var processedID = groupMovies[groupMovies.length - 1].id;
-  
+
   for (var i = groupMovies.length - 1; i >= 0; i--)
   {
-    //if it's a new entry
-    console.log(i);
-    if(groupMovies[i].id != processedID || i == 0)
+    if (tempMovieTitle.includes(groupMovies[i].movie))
     {
-      currentP = groupMovies[i].participant;
-      processedID = groupMovies[i].id;
+      continue;
     }
-
-    //else keep appending participant
     else
     {
-      currentP = currentP.concat(' ', groupMovies[i].participant);
+      tempMovieTitle.push(groupMovies[i].movie)
     }
   }
+
+  //tempMovieTitle.reverse()
+  console.log(tempMovieTitle)
+
   const table = CleanTable(TableType.Group);
   var unique = false;
   var concattedString = "";
+  var index_to_start_at = groupMovies.length;
+
   //for each movie fetched, add new row with said movie info.
   for (var i = groupMovies.length - 1; i >= 0; i--)
   {
-    if(unique | i == 0)
+    if (i == 0)
     {
-      var row = table.insertRow(1);
-      row.classList.add('tableRow');
+      concattedString += participants[parseInt(groupMovies[j].participant_id) - 1].name + " ";
+      continue;
+    }
 
-      cell0 = row.insertCell(0);
-      cell1 = row.insertCell(1);
-      cell2 = row.insertCell(2);
-      cell3 = row.insertCell(3);
-      cell4 = row.insertCell(4);
-      cell5 = row.insertCell(5);
-      cell6 = row.insertCell(6);
-      cell7 = row.insertCell(7);
+    if (participants[parseInt(groupMovies[i].participant_id) - 1].name != "Micke")
+    {
+      console.log("HI)")
+      continue;
+    }
 
-      cell0.innerHTML = groupMovies[i + 1].id;
-      cell1.innerHTML = groupMovies[i + 1].movie;
-      cell2.innerHTML = groupMovies[i + 1].genre;
-      cell3.innerHTML = groupMovies[i + 1].imdb_rating;
-      cell4.innerHTML = groupMovies[i + 1].jayornay;
-      cell5.innerHTML = participants[parseInt(groupMovies[i].picked_by)].name;
-      cell6.innerHTML = concattedString;
+    try
+    {
       concattedString = "";
-      //cell6.innerHTML = groupMovies[i].participants;
-      if(groupMovies[i].type == 0)
+      for (var j = i; j > 0; j--)
       {
-        cell7.innerHTML = "Minor";  
+        console.log("HI")
+        concattedString += participants[parseInt(groupMovies[j].participant_id) - 1].name + " ";
+
+        if (participants[parseInt(groupMovies[j - 1].participant_id) - 1].name == "Micke")
+        {
+          console.log("breaking")
+          break
+        }
       }
-      else
-      {
-        cell7.innerHTML = "Major";
-      } 
+    }
+    catch (e)
+    {
+      console.log(e)
+    }
+    var row = table.insertRow(1);
+    row.classList.add('tableRow');
 
-      cell0.classList.add('tableCell');
-      cell1.classList.add('tableCell');
-      cell2.classList.add('tableCell');
-      cell3.classList.add('tableCell');
-      cell4.classList.add('tableCell');
-      cell5.classList.add('tableCell');
-      cell7.classList.add('tableCell');
+    cell0 = row.insertCell(0);
+    cell1 = row.insertCell(1);
+    cell2 = row.insertCell(2);
+    cell3 = row.insertCell(3);
+    cell4 = row.insertCell(4);
+    cell5 = row.insertCell(5);
+    cell6 = row.insertCell(6);
+    cell7 = row.insertCell(7);
 
-      unique = false;
+    cell0.innerHTML = groupMovies[i].id;
+    cell1.innerHTML = groupMovies[i].movie;
+    cell2.innerHTML = groupMovies[i].genre;
+    cell3.innerHTML = groupMovies[i].imdb_rating;
+    cell4.innerHTML = groupMovies[i].jayornay;
+    cell5.innerHTML = participants[parseInt(groupMovies[i].picked_by) - 1].name;
+    cell6.innerHTML = concattedString;
+
+    //console.log(concattedString)
+    concattedString = "";
+
+    //cell6.innerHTML = groupMovies[i].participants;
+    if(groupMovies[i].type == 0)
+    {
+      cell7.innerHTML = "Minor";  
     }
     else
     {
-      concattedString = concattedString + ", " + groupMovies[i].participant;
-      console.log(groupMovies[i])
-      console.log(concattedString);
-    }
-    if(i == groupMovies.length - 1)
-    {
-      unique = true;
-      continue;
-    }
-    else if (groupMovies[i + 1].movie == groupMovies[i].movie)
-    {
-      unique = true;
-    }
+      cell7.innerHTML = "Major";
+    } 
+
+    cell0.classList.add('tableCell');
+    cell1.classList.add('tableCell');
+    cell2.classList.add('tableCell');
+    cell3.classList.add('tableCell');
+    cell4.classList.add('tableCell');
+    cell5.classList.add('tableCell');
+    cell7.classList.add('tableCell');
+
+    unique = false;
+    //}
+    //else
+    //{
+    //  concattedString = concattedString + ", " + groupMovies[i].participant;
+    //  console.log(groupMovies[i])
+    //  console.log(concattedString);
+    //}
+    //if(i == groupMovies.length - 1)
+    //{
+    //  unique = true;
+    //  //continue;
+    //}
+    //else if (groupMovies[i + 1].movie == groupMovies[i].movie)
+    //{
+    //  unique = true;
+    //}
   }
 }
 
@@ -675,7 +709,6 @@ function CreateSortPanel()
   {
     if(e.key === 'Enter')
     {
-      console.log("Apply button clicked");
       applyBtn.click();
     }
   });
@@ -736,7 +769,6 @@ function openTable(evt, tableName)
 
 function FetchParticipants(name = null)
 {
-  console.log("GetParticipants() Called.");
   participants = [];
   params = new URLSearchParams();
 
@@ -761,6 +793,8 @@ function FetchParticipants(name = null)
       //addMoviePickerOption.text = tempObject.name;
       //addMoviePicker.append(addMoviePickerOption);
     }
+    participants.sort((a, b) => a.id - b.id)
+
     PopulateParticipantFilter();
     PopulateAddNewMovieWinner();
   })
@@ -879,38 +913,6 @@ function FetchMarvel()
 
 function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
-  //CreateLoadingRow();
-
-  /*
-  if(name != null)
-    {params.append('name', name);}
-  if(genre != null)
-    {params.append('genre', genre);}
-  if(rating != null)
-    {params.append('rating', rating);}
-  if(jayornay != null)
-    {params.append('jayornay', jayornay);}
-  if(picker != null)
-    {params.append('picker', picker);}
-  if(participant != null)
-    {params.append('participant', participant);}
-  if(type != null)
-    {params.append('type', type);}
-
-  params.append('order', 'decending');
-
-  if(GetCookie('username'))
-  {
-    console.log(GetCookie('username'));
-    params.append('username', GetCookie('username'));}
-  
-
-  console.log(params.toString());
-  if(isFetching)
-  {
-    return;
-  }
-*/
 
   isFetching = true;
 
@@ -1000,9 +1002,7 @@ function InsertMovie()
     alert("Please fill in every field.");
   }
 }
-//GetMovies();
-//GetParticipants();
-//GetGenres();
+
 FetchParticipants();
 FetchGroup();
 FetchMarvel();

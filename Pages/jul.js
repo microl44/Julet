@@ -130,7 +130,6 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //Listener finds a random number of degrees between 4000 and 6360 and spins the wheel that much, over the duration variable in seconds.
   var rotation = 0;
 
-
   spinButton.addEventListener('click', () => 
   {
     console.log("button clicked");

@@ -130,9 +130,8 @@
         if(isset($_SESSION['username']) || isset($_SESSION['password']))
         {
           echo "<!----------INSERT NEW MOVIE FORM START---------->
-          <
           <div class='indexDivHolder'>
-            <h3>Add new movie </h3>
+            <h3> Add new movie </h3>
             <div class='addMovieDiv'>
                   <div class='addMovieDivFirst'>
                     <label for='linkInput'>IMDB Link: </label>
