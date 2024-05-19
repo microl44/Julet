@@ -130,7 +130,9 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("The Avengers", 8.0, "", "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity."),
 ("The Marvels", 8.0, "", "Carol Danvers gets her powers entangled with those of Kamala Khan and Monica Rambeau, forcing them to work together to save the universe."),
 ("Dredd", 7.1, "", "In a violent, futuristic city where the police have the authority to act as judge, jury and executioner, a cop teams with a trainee to take down a gang that deals the reality-altering drug, SLO-MO."),
-("Donnie Brasco", 7.7, "", "An FBI undercover agent infiltrates the mob and finds himself identifying more with the Mafia life--at the expense of his regular one.");
+("Donnie Brasco", 7.7, "", "An FBI undercover agent infiltrates the mob and finds himself identifying more with the Mafia life--at the expense of his regular one."),
+("Madame Web", 3.9, "", "Cassandra Webb is a New York metropolis paramedic who begins to demonstrate signs of clairvoyance. Forced to challenge revelations about her past, she needs to safeguard three young women from a deadly adversary who wants them destroyed."),
+("Eurovision Song Contest: The Story of Fire Saga", 6.5, "", "When aspiring musicians Lars and Sigrit are given the opportunity to represent their country at the world's biggest song competition, they finally have a chance to prove that any dream worth having is a dream worth fighting for.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -189,7 +191,8 @@ VALUES
 (47),(48),(49),(50),(51),(52),(102),(53),(54),(55),
 (56),(57),(58),(59),(60),(61),(62),(63),(64),(65),
 (66),(67),(68),(69),(70),(71),(72),(73),(74),(75),
-(76),(77),(78),(79),(80),(81),(82),(83),(84), (103);
+(76),(77),(78),(79),(80),(81),(82),(83),(84), (103),
+(106);
 
 INSERT INTO marvel_participated(marvel_movie_entry_id, user_id, user_rating)
 VALUES
@@ -224,7 +227,6 @@ VALUES
 (30, 1, 4), (30, 2, 7), (30, 3, 3), (30, 4, 7), (30, 5, 6),
 (31, 1, 1), (31, 2, 1), (31, 3, 1), (31, 5, 2), (31, 9, 3), (31, 11, 1),
 (32, 1, 8), (32, 2, 7), (32, 3, 8),
-#venom 1 & 2 & morbius ska in här
 (33, 1, 3), (33, 2, 5), (33, 3, 5), (33, 6, 3), (33, 12, 6),
 (34, 1, 9), (34, 2, 6), (34, 3, 7), (34, 6, 3), (34, 12, 3),
 (35, 1, 5), (35, 2, 1), (35, 3, 1), (35, 6, 2),
@@ -232,7 +234,8 @@ VALUES
 (37, 1, 10), (37, 2, 8), (37, 3, 7), (37, 11, 10),
 (38, 1, 6), (38, 2, 4), (38, 3, 5), (38, 4, 7),
 (39, 1, 3), (39, 2, 1), (39, 3, 1),
-(40, 1, 9), (40, 2, 5), (40, 3, 4);
+(40, 1, 9), (40, 2, 5), (40, 3, 4),
+(41, 1, 1), (41, 2, 1), (41, 3, 1);
 
 #("The Wolf of Wall Street", "Biography", 8.2, "Jay", "Crippe", "Micke, Crippe, Linus, Behrad", 0), ("The revenant", "Western", 8, "Mexican standoff", "Crippe", "Micke, Crippe", 0),
 #("Alita: Battle Angel", "CUSTOM RULES", 7.3, "Jay", "Micke", "Micke, Crippe, Behrad", 0), ("Baby Driver","Crime", 7.6, "Jay" , "Micke", "Micke, Crippe, Linus", 0), 
@@ -273,14 +276,25 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (44, 1), (44, 2), (44, 3), (45, 1), (45, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
-VALUES (85, 1, 8), (85, 3, 2), (86, 1, 10), (86, 3, 9), (87, 1, 9),
-(6, 1, 9), (101, 1, 9), (46, 1, 7), (90, 1, 6),
-(91, 1, 9), (92, 1, 9), (93, 1, 8), (93, 2, 6),
-(94, 1, 7), (94, 2, 10), (95, 1, 8), (95, 2, "8"), 
-(96, 1, 9), (96, 2, 7), (96, 9, 8), (97, 1, 4), (97, 9, 4),
-(98, 1, 9), (98, 3, 8), (99, 1, 6), (100, 1, 8),
-(100, 2, 6), (105, 1, 6), (105, 2, 5), (105, 3, 6),
-(105, 6, 0);
+VALUES (85, 1, 8), (85, 3, 2),
+(86, 1, 10), (86, 3, 9), 
+(87, 1, 9),
+(6, 1, 9), 
+(101, 1, 9), 
+(46, 1, 7), 
+(90, 1, 6),
+(91, 1, 9), 
+(92, 1, 9), 
+(93, 1, 8), (93, 2, 6),
+(94, 1, 7), (94, 2, 10), 
+(95, 1, 8), (95, 2, "8"), 
+(96, 1, 9), (96, 2, 7), (96, 9, 8), 
+(97, 1, 4), (97, 9, 4),
+(98, 1, 9), (98, 3, 8), 
+(99, 1, 6), 
+(100, 1, 8), (100, 2, 6), 
+(105, 1, 6), (105, 2, 5), (105, 3, 6),(105, 6, 0), 
+(107, 1, 6), (107, 3, 4);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
