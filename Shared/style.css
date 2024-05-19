@@ -360,8 +360,8 @@ footer{
 	width: auto;
 	min-width: 30px;
 	min-height: 40px;
-	font-weight: bold;
-	font-size: 22px;
+	font-weight: bolder;
+	font-size: 16px;
 
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
@@ -391,12 +391,17 @@ footer{
 	text-align: left;
 	vertical-align: middle;
 	padding: 10px;
-	padding-bottom: 20px;
-	padding-top: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 .tableRow{
 	font-size: 20px;
+	overflow-y: hidden;
+	white-space: nowrap;
+	margin: 20px;
 }
 
 .hidenTableRow{
