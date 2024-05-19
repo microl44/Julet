@@ -132,7 +132,7 @@ function GetActiveTable()
 function GetActiveTableName()
 {
   const array = ['groupMovie', 'soloMovie', 'marvelMovie'];
-  const names = ['Group', 'Solo', 'Marvel']
+  var retval = null;
   array.forEach(function (item, index)
   {
     if (document.getElementById(item).style.display != 'none')
@@ -140,21 +140,21 @@ function GetActiveTableName()
       switch(item)
       {
       case 'groupMovie':
-        return 'Group';
+        retval = 'Group';
         break;
       case 'soloMovie':
-        return 'Solo';
+        retval = 'Solo';
         break;
       case 'marvelMovie':
-        return 'Marvel';
+        retval = 'Marvel';
         break;
       default:
-        return "NO TABLE OF SAID TYPE IS ACTIVE.";
+        retval = "ERROR"
         break;
       }
-      return names[index]
     }
-  })
+  });
+  return retval;
 }
 
 //Expands table entry row. Work to do: 1. Push down rest of table. 2. Display cover image. 3. Display description 
@@ -222,9 +222,13 @@ function AddTablePageDiv(TableType)
 
 function ChangePage(rightleft)
 {
+  console.log("test")
+  var wtf = GetActiveTableName()
+  console.log(wtf)
   switch(GetActiveTableName())
   {
   case 'Group':
+    console.log("huh")
     if (rightleft == "right"){group_section_index = group_section_index + 1;}
     else if(group_section_index > 0){group_section_index = group_section_index - 1;}
     PopulateTable("Group")
