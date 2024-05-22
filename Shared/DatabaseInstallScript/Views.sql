@@ -19,7 +19,7 @@ CREATE VIEW marvel_participants AS
 		movie ON marvel_movie.movie_id = movie.id
 	JOIN 
 		participant ON participant.id = marvel_participated.user_id
-	ORDER BY marvel_movie.id ASC, participant.id ASC;
+	ORDER BY marvel_movie.id ASC, participant.id desc;
 
         
 DROP VIEW IF EXISTS solo_movie_participants;
