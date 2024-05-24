@@ -28,12 +28,11 @@ if(isset($_GET))
 				$marvel_movie->id = $row['id'];
 				$marvel_movie->participant_id = $row['participant id'];
 				$marvel_movie->participant = $row['participant'];
-				$marvel_movie->genre = $row['user rating'];
-				$marvel_movie->picked_by =$row['imdb rating'];
+				$marvel_movie->user_rating = $row['user rating'];
+				$marvel_movie->imdb_rating =$row['imdb rating'];
 				$marvel_movie->movie = $row['movie'];
 				$marvel_movie->description = $row['description'];
 				$marvel_movie->cover_path = $row['cover path'];
-
 				array_push($results['data'], json_encode($marvel_movie));
 			}
 		}

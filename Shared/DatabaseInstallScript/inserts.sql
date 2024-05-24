@@ -132,7 +132,8 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Dredd", 7.1, "", "In a violent, futuristic city where the police have the authority to act as judge, jury and executioner, a cop teams with a trainee to take down a gang that deals the reality-altering drug, SLO-MO."),
 ("Donnie Brasco", 7.7, "", "An FBI undercover agent infiltrates the mob and finds himself identifying more with the Mafia life--at the expense of his regular one."),
 ("Madame Web", 3.9, "", "Cassandra Webb is a New York metropolis paramedic who begins to demonstrate signs of clairvoyance. Forced to challenge revelations about her past, she needs to safeguard three young women from a deadly adversary who wants them destroyed."),
-("Eurovision Song Contest: The Story of Fire Saga", 6.5, "", "When aspiring musicians Lars and Sigrit are given the opportunity to represent their country at the world's biggest song competition, they finally have a chance to prove that any dream worth having is a dream worth fighting for.");
+("Eurovision Song Contest: The Story of Fire Saga", 6.5, "", "When aspiring musicians Lars and Sigrit are given the opportunity to represent their country at the world's biggest song competition, they finally have a chance to prove that any dream worth having is a dream worth fighting for."),
+("Van Helsing", 6.1, "", "The famed monster hunter is sent to Transylvania to stop Count Dracula, who is using Dr. Frankenstein's research and a werewolf for nefarious purposes.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -294,7 +295,8 @@ VALUES (85, 1, 8), (85, 3, 2),
 (99, 1, 6), 
 (100, 1, 8), (100, 2, 6), 
 (105, 1, 6), (105, 2, 5), (105, 3, 6),(105, 6, 0), 
-(107, 1, 6), (107, 3, 4);
+(107, 1, 6), (107, 3, 4),
+(108, 1, 6), (108, 2, 5);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
