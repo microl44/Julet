@@ -93,9 +93,10 @@
           <!-- Marvel Movie Table -->
           <table class='movieTable' id='marvelMovie' cellspacing="0" style="display:none;">
             <tr class='tableHeader'>
+              <td class='tableHeaderTD' id='marvelTableID' onclick='SortTable(0, `marvel`)'>ID</td>
               <td class='tableHeaderTD' id='marvelTableName' onclick='SortTable(0, `marvel`)'>NAME</td>
-              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(1, `marvel`)'>IMDB RATING</td>
               <td class='tableHeaderTD' id='marvelTableRating' onclick='SortTable(2, `marvel`)'>AVERAGE USER RATING</td>
+              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(1, `marvel`)'>IMDB RATING</td>
               <td class='tableHeaderTD' id='marvelTableParticipants' onclick='SortTable(3, `marvel`)'>PARTICIPANTS</td>
             </tr>
           </table>
