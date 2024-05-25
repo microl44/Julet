@@ -117,13 +117,11 @@ function PrintMovies()
     $conn = GetConn();
 
     $titles = $conn->query("SELECT `name`,`description` FROM movie ORDER BY id");
-    // $descriptions = $conn->query("SELECT  from movieDescription ORDER BY movieID;");
 
     foreach($images as $image)
     {
       if($image != '.' && $image != '..')
       {
-        // $description = $descriptions->fetch(PDO::FETCH_ASSOC);
         $title = $titles->fetch(PDO::FETCH_ASSOC);
         echo "<div class='movieDisplayDiv'>";
           echo "<div class='movieCoverHolder'>";
