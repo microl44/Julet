@@ -926,6 +926,44 @@ function ResetEvent()
   GetMovies();
 }
 
+function InsertTempRows()
+{
+  const table = CleanTable('Group');
+
+  for (var i = 10; i >= 1; i--)
+  {
+    var row = table.insertRow(1);
+    row.classList.add('tableRow');
+
+    cell0 = row.insertCell(0);
+    cell1 = row.insertCell(1);
+    cell2 = row.insertCell(2);
+    cell3 = row.insertCell(3);
+    cell4 = row.insertCell(4);
+    cell5 = row.insertCell(5);
+    cell6 = row.insertCell(6);
+    cell7 = row.insertCell(7);
+
+    cell0.innerHTML = "...";
+    cell1.innerHTML = "...";
+    cell2.innerHTML = "...";
+    cell3.innerHTML = "...";
+    cell4.innerHTML = "...";
+    cell5.innerHTML = "...";
+    cell6.innerHTML = "...";
+    cell7.innerHTML = "...";
+
+    cell0.classList.add('tableCell');
+    cell1.classList.add('tableCell');
+    cell2.classList.add('tableCell');
+    cell3.classList.add('tableCell');
+    cell4.classList.add('tableCell');
+    cell5.classList.add('tableCell');
+    cell6.classList.add('tableCell');
+    cell7.classList.add('tableCell');
+  }
+}
+
 function openTable(evt, tableName)
 {
   var jesus, tableList;
@@ -1174,6 +1212,7 @@ function InsertMovie()
   }
 }
 
+InsertTempRows();
 FetchParticipants();
 FetchMarvel();
 FetchGroup();

@@ -71,11 +71,11 @@ The guide will explain based on xampp structure on windows 10,
 - Install xampp using standard instructions. 
 - Clone the repository in the htdocs folder. 
 
-Once installed, run the install.php script. 
-- navigate to *https://localhost/Julet/install.php*
+Once installed, run the setup.bat script in the project root folder, with admin permissions. \
+Default username is set to root \
+Default password is set to tinytiger997 \
 
-Logg in using the mysql info 
-Default username is *root* empty password
+Navigate to localhost/install.php and login user site-default credentials.
 
 # GDPR
 
