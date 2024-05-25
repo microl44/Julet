@@ -71,9 +71,9 @@ The guide will explain based on xampp structure on windows 10,
 - Install xampp using standard instructions. 
 - Clone the repository in the htdocs folder. 
 
-Once installed, run the setup.bat script in the project root folder, with admin permissions. \n
-Default username is set to root \n
-Default password is set to tinytiger997 \n
+Once installed, run the setup.bat script in the project root folder, with admin permissions. \
+Default username is set to root \
+Default password is set to tinytiger997 \
 
 Navigate to localhost/install.php and login user site-default credentials.
 
