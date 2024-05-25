@@ -222,25 +222,45 @@ function AddTablePageDiv(TableType)
 
 function ChangePage(rightleft)
 {
-  console.log("test")
-  var wtf = GetActiveTableName()
-  console.log(wtf)
+  var temp_marvel = CleanMarvelArray();
   switch(GetActiveTableName())
   {
   case 'Group':
     console.log("huh")
-    if (rightleft == "right"){group_section_index = group_section_index + 1;}
-    else if(group_section_index > 0){group_section_index = group_section_index - 1;}
+    if (rightleft == "right")
+    {
+      group_section_index = group_section_index + 1;
+    }
+    else if(group_section_index > 0)
+    {
+      group_section_index = group_section_index - 1;
+    }
     PopulateTable("Group")
     break;
   case 'Solo':
-    if (rightleft == "right"){solo_section_index = solo_section_index + 1;}
-    else if(solo_section_index > 0){solo_section_index = solo_section_index - 1;}
+    if (rightleft == "right")
+    {
+      solo_section_index = solo_section_index + 1;
+    }
+    else if(solo_section_index > 0)
+    {
+      solo_section_index = solo_section_index - 1;
+    }
     PopulateTable("Solo")
     break;
   case 'Marvel':
-    if (rightleft == "right"){marvel_section_index = marvel_section_index + 1;}
-    else if(marvel_section_index > 0){marvel_section_index = marvel_section_index - 1;}
+    if (rightleft == "right")
+    {
+      marvel_section_index = marvel_section_index + 1;
+      if ((marvel_section_index * 10) + 1 >= temp_marvel.length)
+      {
+        marvel_section_index = marvel_section_index - 1;
+      }
+    }
+    else if(marvel_section_index > 0)
+    {
+      marvel_section_index = marvel_section_index - 1;
+    }
     PopulateTable("Marvel")
     break;
   }
@@ -406,7 +426,6 @@ function CleanMarvelArray()
       console.log(e)
     }
 
-    console.log(avg_rating)
     try
     {
       concattedString = "";
