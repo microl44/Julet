@@ -519,9 +519,9 @@ function CreateSoloTable()
     cellGrade = row.insertCell(1);
     cellRating = row.insertCell(2);
 
-    cellName.innerHTML = soloMovies[i].name;
-    cellGrade.innerHTML = soloMovies[i].jayornay;
-    cellRating.innerHTML = soloMovies[i].rating;
+    cellName.innerHTML = soloMovies[i].movie;
+    cellGrade.innerHTML = soloMovies[i].imdb_rating;
+    cellRating.innerHTML = soloMovies[i].user_rating;
 
     cellName.classList.add('tableCell');
     cellGrade.classList.add('tableCell');
