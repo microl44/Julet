@@ -51,7 +51,7 @@ function LoginAttempt($username, $password)
     try
     {
         $conn = GetConn();
-
+        
         $stmt = $conn->prepare("SELECT * FROM users WHERE password = :password AND username = :username LIMIT 1;");
         $stmt->bindvalue(':username', $username);
         $stmt->bindvalue(':password', $password);
