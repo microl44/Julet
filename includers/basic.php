@@ -132,7 +132,14 @@ function addLog($activity = 'pageview')
 		$username = sanitizeInput($_SESSION['username']);
 		$action = $activity;
 
+		try
+		{
 		$data = json_encode(array('page_ulr' => $page, 'ip_address' => $ip));
 		$stmt->execute();
+		}
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+		}
 	}	
 }
