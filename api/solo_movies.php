@@ -6,25 +6,60 @@ header("Content-Type:application/json");
 require_once "../includers/basic.php";
 require_once "models/solo_movies.php";
 
+function SetupStmtForSpecificUser($username)
+{
+	$conn = GetConn();
+	$results = array();
+	$results['data'] = array();
+	$sql = "SELECT solo_movie_participants.id,`participant id`,`participant`,`user rating`,`imdb rating`,`movie`,`description`,`cover path` FROM solo_movie_participants
+		inner join users on users.id = `user id`
+		WHERE username = :username; ";
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param(":username",$username);
+	return; $stmt;
+}
+
+function setupStmtForGettingAll()
+{
+	$conn = GetConn();
+	$results = array();
+	$results['data'] = array();
+	$sql = "SELECT DISTINCT 
+	solo_movie_participants.id,
+	`participant id`,
+	`participant`,
+	`user rating`,
+	`imdb rating`,
+	`movie`,
+	`description`,
+	`cover path` 
+	FROM solo_movie_participants";
+	$stmt = $conn->prepare($sql);
+	return $stmt;
+}
+
 if(isset($_GET))
 {
 	try
 	{
-		$conn = GetConn();
-		$results = array();
+		$stmt = "";
+		if(isset($_GET["username"]))
+		{ 	
+			$stmt = SetupStmtForSpecificUser($_GET["username"]); 
+		}
+		else
+		{ 	
+			$stmt = setupStmtForGettingAll(); 
+		}		
+
 		$results['data'] = array();
-
-		$sql = "SELECT * FROM solo_movie_participants";
-		$stmt = $conn->prepare($sql);
 		$result = $stmt->execute();
-
 		if($result)
 		{	
 			foreach($stmt->fetchAll() as $row)
 			{
 				$conn = GetConn();
-				$solo_movie = new solo_movie($conn);
-
+				$solo_movie = new solo_movie($stmt);
 				$solo_movie->id = $row['id'];
 				$solo_movie->participant_id = $row['participant id'];
 				$solo_movie->participant = $row['participant'];
@@ -33,10 +68,11 @@ if(isset($_GET))
 				$solo_movie->movie = $row['movie'];
 				$solo_movie->description = $row['description'];
 				$solo_movie->cover_path = $row['cover path'];
-
+				
 				array_push($results['data'], json_encode($solo_movie));
 			}
 		}
+
 		unset($_GET);
 		$jsonString = json_encode($results);
 		if(json_last_error() === JSON_ERROR_NONE)

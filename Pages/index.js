@@ -1,7 +1,7 @@
 //#################################################################
 //#################CLASSES DECLARATION BEGIN#######################
 //#################################################################
-
+;
 class Solo_movie
 {
   constructor(id, participant_id, participant, user_rating, imdb_rating, movie, movie_id, description, cover_path)
@@ -143,6 +143,7 @@ function GetActiveTableName()
         retval = 'Group';
         break;
       case 'soloMovie':
+        FetchSolo();
         retval = 'Solo';
         break;
       case 'marvelMovie':
@@ -966,10 +967,9 @@ function InsertTempRows()
 
 function openTable(evt, tableName)
 {
-  var jesus, tableList;
-
+  var tableList;
   tableList = document.getElementsByClassName("movieTable");
-  for (jesus = 0; jesus < tableList.length; jesus++)
+  for ( var jesus = 0; jesus < tableList.length; jesus++)
   {
     tableList[jesus].style.display = "none";
   }
@@ -1012,7 +1012,6 @@ function FetchParticipants(name = null)
   })
 }
 
-
 function GetGenres(name = null)
 {
   //console.log("GetGenres() Called.");
@@ -1052,15 +1051,40 @@ function CreateLoadingRow()
   //table.append(loadingDiv);
 }
 
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 function FetchSolo()
 {
   const params = new URLSearchParams();
   soloMovies = [];
-
   isFetching = true;
+  let getting = getCookie("username");
+  if(getting){
+    params.set("username",getting);  
+  }
 
   fetch(`http://${host}/api/solo_movies.php?${params}`)
-  .then(response => response.json())
+  .then(response =>{
+    if(!response.ok){
+      throw new Error(response);
+    }
+     return response.json()
+    }
+  )
   .then(data => 
   {
     results = data
@@ -1088,12 +1112,9 @@ function FetchGroup()
   .then(data => 
   {
     results = data;
-    console.log(results);
-
     for (var i = 0; i < results['data'].length; i++)
     {
       var temp = JSON.parse(results['data'][i]);
-
       groupMovies.push(new Group_movie(temp.id ,temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
     }
     PopulateTable('Group');
@@ -1111,9 +1132,7 @@ function FetchMarvel()
   .then(response => response.json())
   .then(data => 
   {
-    results = data
-    console.log(results);
-
+    results = data;
     for (var i = 0; i < results['data'].length; i++)
     {
       var t = JSON.parse(results['data'][i]);

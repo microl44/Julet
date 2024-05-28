@@ -19,7 +19,6 @@ function DeleteAllCookies()
 
 function ExpandHeader()
 {
-	console.log("hello");
 	const header = document.getElementById("navbar");
 	if(headerStatus == 'inactive')
 	{
