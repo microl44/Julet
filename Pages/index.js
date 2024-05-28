@@ -1073,6 +1073,7 @@ function FetchSolo()
   soloMovies = [];
   isFetching = true;
   let getting = getCookie("username");
+  
   if(getting){
     params.set("username",getting);  
   }
@@ -1088,12 +1089,9 @@ function FetchSolo()
   .then(data => 
   {
     results = data
-    console.log(results);
-
     for (var i = 0; i < results['data'].length; i++)
     {
       var temp = JSON.parse(results['data'][i]);
-
       soloMovies.push(new Solo_movie(temp.id ,temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
     }
     PopulateTable('Solo');

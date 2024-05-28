@@ -126,12 +126,6 @@
         </div>
         <!----------CHANGE TABLE PAGE SECTION END---------->
         <?php
-        echo "<h1>";
-          print_r($_SESSION);
-        echo "</h1>";
-        ?>
-
-        <?php
         if(isset($_SESSION['username']) || isset($_SESSION['password']))
         {
           echo "<!----------INSERT NEW MOVIE FORM START---------->

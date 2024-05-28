@@ -11,12 +11,12 @@ function SetupStmtForSpecificUser($username)
 	$conn = GetConn();
 	$results = array();
 	$results['data'] = array();
-	$sql = "SELECT solo_movie_participants.id,`participant id`,`participant`,`user rating`,`imdb rating`,`movie`,`description`,`cover path` FROM solo_movie_participants
-		inner join users on users.id = `user id`
-		WHERE username = :username; ";
+	$sql = 'SELECT solo_movie_participants.id,`participant id`,`participant`,`user rating`,`imdb rating`,`movie`,`description`,`cover path` 
+		FROM solo_movie_participants
+		HAVING Participant=:username' ;
 	$stmt = $conn->prepare($sql);
-	$stmt->bind_param(":username",$username);
-	return; $stmt;
+	$stmt->bindvalue(':username', $username,PDO::PARAM_STR);
+	return $stmt;
 }
 
 function setupStmtForGettingAll()
