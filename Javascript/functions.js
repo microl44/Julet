@@ -167,20 +167,4 @@ function sortTable(column)
   }
   // Reverse the sort order
   sortOrder = (sortOrder === 'ascending') ? 'descending' : 'ascending';
-}/*
-        var items = document.getElementsByClassName("tableHeader")
-
-      document.getElementsByClassName("tableHeader")[0].addEventListener("click", function() {
-        sortTable(0);});
-      document.getElementsByClassName("tableHeader")[1].addEventListener("click", function() {
-        sortTable(1);});
-      document.getElementsByClassName("tableHeader")[2].addEventListener("click", function() {
-        sortTable(2);});
-      document.getElementsByClassName("tableHeader")[3].addEventListener("click", function() {
-        sortTable(3);});
-      document.getElementsByClassName("tableHeader")[4].addEventListener("click", function() {
-        sortTable(4);});
-      document.getElementsByClassName("tableHeader")[5].addEventListener("click", function() {
-        sortTable(5);});
-      document.getElementsByClassName("tableHeader")[6].addEventListener("click", function() {
-        sortTable(6);});*/
+}

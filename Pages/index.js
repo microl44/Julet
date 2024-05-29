@@ -195,7 +195,6 @@ function PopulateTable(type)
     CreateGroupTable();
     break;
   case 'Solo':
-    FetchSolo();
     CreateSoloTable();
     break;
   case 'Marvel':
@@ -524,7 +523,9 @@ function CreateSoloTable()
 
 function SortTable(n, tableID)
 {
-  //console.log("SortTable() Called.");
+
+
+
   var table;
   var rows;
   var switching;
@@ -1046,7 +1047,10 @@ function CreateLoadingRow()
 function FetchSolo()
 {
   let getting = GetCookie("username");
-  if(!getting){
+
+  if(!getting)
+  {
+    console.log("is empty " + getting);  
     return;
   }
   
@@ -1054,16 +1058,10 @@ function FetchSolo()
   soloMovies = [];
   isFetching = true;
   params.set("username",getting);  
+  
   fetch(`http://${host}/api/solo_movies.php?${params}`)
-  .then(response =>{
-    if(!response.ok){
-      throw new Error(response);
-    }
-     return response.json()
-    }
-  )
-  .then(data => 
-  {
+  .then(response =>response.json()
+  ).then(data => {
     let results = data;
     console.log(results);
     for (var i = 0; i < results['data'].length; i++)

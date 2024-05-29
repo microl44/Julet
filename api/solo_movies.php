@@ -11,22 +11,32 @@ function SetupStmtForSpecificUser($username)
 	$conn = GetConn();
 	$results = array();
 	$results['data'] = array();
-	$sql = 'SELECT solo_movie_participants.id,`participant id`,`participant`,`user rating`,`imdb rating`,`movie`,`description`,`cover path` 
-		FROM solo_movie_participants
-		HAVING Participant=:username' ;
+	$sql = 'SELECT solo_movie_participants.id,
+				`participant id`,
+				`participant`,
+				`user rating`,
+				`imdb rating`,
+				`movie`,
+				`description`,
+				`cover path` 
+			FROM solo_movie_participants
+			HAVING Participant=:username' ;
 	$stmt = $conn->prepare($sql);
 	$stmt->bindvalue(':username', $username,PDO::PARAM_STR);
 	return $stmt;
 }
 
 if(!isset($_GET))
-	return;
+{
+	return json_encode("no parameters set");
+}	
 
 try
 {
-	$stmt = "";
 	if(!isset($_GET["username"]))
-		return;
+	{
+		return json_encode("No Username Found");
+	}
 
 	$stmt = SetupStmtForSpecificUser($_GET["username"]); 
 	$results['data'] = array();
