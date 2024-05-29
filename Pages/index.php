@@ -11,7 +11,7 @@
       echo "<p class='quotequote'>".$quote['Quote']."</p>";
       echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";
     echo "</div>";
-    ?>
+?>
     <script>
       function temp(element)
       {
@@ -125,8 +125,6 @@
           </div>
         </div>
         <!----------CHANGE TABLE PAGE SECTION END---------->
-
-
         <?php
         if(isset($_SESSION['username']) || isset($_SESSION['password']))
         {
