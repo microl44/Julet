@@ -1,8 +1,6 @@
 <?php
 class Solo_movie
 {
-	private $conn;
-
 	public $id;
 	public $participant_id;
 	public $participant;
@@ -13,10 +11,9 @@ class Solo_movie
 	public $description;
 	public $cover_path;
 
-	function __construct($db)
-	{
-		$conn = $db;
-	}
+	function __constructor()
+	{}
+
 	function __constructor($id,$participant,$participant_id,$user_rating,$imdb_rating,$movie_id,$description,$cover_path)
 	{
 		$this->id = $id;

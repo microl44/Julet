@@ -3,6 +3,14 @@ function GetHost()
 	return `localhost`;
 }
 
+//extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
+function GetCookie(name) {
+	const value = `; ${document.cookie}`;
+	const parts = value.split(`; ${name}=`);
+	if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  
+
 var headerStatus = 'inactive';
 
 function DeleteAllCookies() 

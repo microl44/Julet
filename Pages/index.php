@@ -11,7 +11,7 @@
       echo "<p class='quotequote'>".$quote['Quote']."</p>";
       echo "<p class='quoteauthor'>- ".$quote['Author']."</p>";
     echo "</div>";
-  ?>
+?>
     <script>
       function temp(element)
       {
