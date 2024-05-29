@@ -529,237 +529,43 @@ function CreateSoloTable()
   }
 }
 
-function SortTable(n, tableID)
-{
-  //console.log("SortTable() Called.");
-  var table;
-  var rows;
-  var switching;
-  var i;
-  var x;
-  var y;
-  var shouldSwitch;
-  var dir;
-  var switchCount = 0;
-  var table;
+function sortingFuntion(a,b,property){
+  if(a[property] > b[property])
+  {
+    return 1;
+  }
+  else
+  {
+    if(b[property] > a[property])
+    {
+      return -1
+    }
+    else
+    {
+      return 0;
+    }
+  }
+};
 
+function SortTable(property, tableID)
+{
   switch(tableID)
   {
     case 'group':
-      table = document.getElementById("groupMovie");
-    break;
+      groupMovies.sort((a,b) => sortingFuntion(a,b,property));
+      CreateGroupTable();
+      return;    
     case 'marvel':
-      table = document.getElementById("marvelMovie");
-    break;
+      marvelMovies.sort((a,b) => sortingFuntion(a,b,property));
+      CreateMarvelTable();
+      return;
     case 'solo':
-      table = document.getElementById("soloMovie");
-    break;
-    default: console.log("Error occurred.");
-  }
-
-  switching = true;
-  dir = "asc";
-
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) 
-  {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) 
-    {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
-      if (dir == "asc") 
-      {
-        if(tableID == 'marvel')
-        {
-          if (n === 1 || n === 2)
-          {
-            if (Number(x.innerHTML) > Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 3)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'group')
-        {
-          if (n === 0 || n === 3)
-          {
-            if (Number(x.innerHTML) > Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 6)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'solo')
-        {
-          if (n === 1 || n === 2)
-          {
-            if (Number(x.innerHTML) > Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else 
-          {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-      } 
-      else if (dir == "desc") 
-      {
-        if(tableID == 'marvel')
-        {
-          if (n === 1 || n === 2) 
-          {
-            if (Number(x.innerHTML) < Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 6)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'group')
-        {
-          if (n === 0 || n === 3) 
-          {
-            if (Number(x.innerHTML) < Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 6)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'solo')
-        {
-          if (n === 1 || n === 2) 
-          {
-            if (Number(x.innerHTML) < Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else 
-          {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-      }
-    }
-    if (shouldSwitch) 
-    {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchCount ++;
-    } 
-    else
-    {
-      if(switchCount == 0 && dir == "asc")
-      {
-        dir = "desc";
-        switching = true;
-      }
-    }
+      soloMovies.sort((a,b) => sortingFuntion(a,b,property));
+      CreateSoloTable();
+      return;
+    
+    default: 
+      console.log("Table specified is not supported");
   }
 }
 
@@ -1093,7 +899,6 @@ function FetchGroup()
     for (var i = 0; i < results['data'].length; i++)
     {
       var temp = JSON.parse(results['data'][i]);
-
       groupMovies.push(new Group_movie(temp.id ,temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
     }
     PopulateTable('Group');
@@ -1116,7 +921,7 @@ function FetchMarvel()
 
     for (var i = 0; i < results['data'].length; i++)
     {
-      var t = JSON.parse(results['data'][i]);
+      let t = JSON.parse(results['data'][i]);
       marvelMovies.push(new Marvel_movie(t.id ,t.participant_id, t.participant, t.user_rating, t.imdb_rating, t.movie, t.description, t.cover_path));
     }
     PopulateTable('Marvel');

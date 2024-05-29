@@ -83,9 +83,9 @@
           <!-- Solo Movie Table -->
           <table class='movieTable' id='soloMovie' cellspacing='0' style='display:none;'>
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='soloTableName' onclick='SortTable(0, `solo`)'>NAME</td>
-              <td class='tableHeaderTD' id='soloTableRating' onclick='SortTable(1, `solo`)'>IMDB RATING</td>
-              <td class='tableHeaderTD' id='soloTableGrade' onclick='SortTable(2, `solo`)'>USER RATING</td>
+              <td class='tableHeaderTD' id='soloTableName' onclick='SortTable(`participant`, `solo`)'>NAME</td>
+              <td class='tableHeaderTD' id='soloTableRating' onclick='SortTable(`imdb_rating`, `solo`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='soloTableGrade' onclick='SortTable(`user_rating`, `solo`)'>USER RATING</td>
             </tr>
           </table>
           
@@ -93,25 +93,25 @@
           <!-- Marvel Movie Table -->
           <table class='movieTable' id='marvelMovie' cellspacing="0" style="display:none;">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='marvelTableID' onclick='SortTable(0, `marvel`)'>ID</td>
-              <td class='tableHeaderTD' id='marvelTableName' onclick='SortTable(0, `marvel`)'>NAME</td>
-              <td class='tableHeaderTD' id='marvelTableRating' onclick='SortTable(2, `marvel`)'>AVERAGE USER RATING</td>
-              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(1, `marvel`)'>IMDB RATING</td>
-              <td class='tableHeaderTD' id='marvelTableParticipants' onclick='SortTable(3, `marvel`)'>PARTICIPANTS</td>
+              <td class='tableHeaderTD' id='marvelTableID' onclick='SortTable(`id`, `marvel`)'>ID</td>
+              <td class='tableHeaderTD' id='marvelTableName' onclick='SortTable(`movie`, `marvel`)'>NAME</td>
+              <td class='tableHeaderTD' id='marvelTableRating' onclick='SortTable(`user_rating`, `marvel`)'>AVERAGE USER RATING</td>
+              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(`imdb_rating`, `marvel`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='marvelTableParticipants'>PARTICIPANTS</td> <!--  Work in progress to sort -->
             </tr>
           </table>
 
           <!-- Group Movie Table -->
           <table class='movieTable' id='groupMovie' cellspacing="0">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='sortID', onclick='SortTable(0, "group")'>ID</td>
-              <td class='tableHeaderTD' id='sortName', onclick='SortTable(1, `group`)'>NAME</td>
-              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(2, `group`)'>GENRE</td>
-              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(3, `group`)'>IMDB RATING</td>
-              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(4, `group`)'>JAY OR NAY</td>
-              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(5, `group`)'>PICKER</td>
-              <td class='tableHeaderTD' id='sortParticipants', onclick='SortTable(6, `group`)'>PARTICIPANTS</td>
-              <td class='tableHeaderTD' id='sortType', onclick='SortTable(7, `group`)'>TYPE</td>
+              <td class='tableHeaderTD' id='sortID', onclick='SortTable(`id`, "group")'>ID</td>
+              <td class='tableHeaderTD' id='sortName', onclick='SortTable(`movie`, `group`)'>NAME</td>
+              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(`genre`, `group`)'>GENRE</td>
+              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(`imdb_rating`, `group`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(`jayornay`, `group`)'>JAY OR NAY</td>
+              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(`picked_by`, `group`)'>PICKER</td>
+              <td class='tableHeaderTD' id='sortParticipants'>PARTICIPANTS</td><!--  Work in progress to sort -->
+              <td class='tableHeaderTD' id='sortType', onclick='SortTable(`is_mayor`, `group`)'>TYPE</td>
             </tr>
           </table>
         </div>
