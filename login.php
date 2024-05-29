@@ -24,13 +24,13 @@ else
     <form action='../loginFunctions.php' method='POST'>
         <div class='loginFormFirst'>
             <label for='username'>Username:</label>
-            <input type='text' name='username'/>
+            <input id='login-username' type='text' name='username'/>
         </div>
         <div class='loginFormSecond'>
             <label for='password'>Password:</label>
-            <input type='password' name='password'/>
+            <input id='login-password' type='password' name='password'/>
         </div>
-        <input class='loginBtn' type='submit' value='login'/> 
+        <input id='login-submit' class='loginBtn' type='submit' value='login'/> 
 
         <?php echo "<input type='hidden' value='" . $_SERVER['REQUEST_URI'] . "' name='url'> </input>"; ?>
     </form>

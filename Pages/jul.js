@@ -32,6 +32,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   canvas.setAttribute("height", height);
 
   const durationInput = document.createElement('input');
+  durationInput.setAttribute('id', 'wheelDurationInput');
   durationInput.classList.add('wheelDuration');
   durationInput.style.textAlign = "center";
   durationInput.setAttribute("placeholder", "8");
@@ -124,6 +125,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
 
   //creates the spin button DOM element.
   const spinButton = document.createElement('button');
+  spinButton.setAttribute('id', 'JulSpinBtnID');
   spinButton.textContent = 'Spin';
 
   //WHY THE FUCK DOESN'T JAVASCRIPT NEED SEMICOLONS?????? adds eventlistener to the button.
@@ -224,11 +226,13 @@ function AddInputDiv()
   inputBox.classList.add("inputBox");
   
   const deleteRowBtn = document.createElement('button');
+  deleteRowBtn.setAttribute("id", "JulDeleteBtnID");
   deleteRowBtn.classList.add("deleteRowBtn");
   deleteRowBtn.textContent = "Delete";
   deleteRowBtn.setAttribute("tabindex", "-1");
 
   const applyBtn = document.createElement('button');
+  applyBtn.setAttribute("id", "JulApplyBtnID");
   applyBtn.classList.add('JulApplyBtn')
   applyBtn.classList.add('Fancy-Btn');
 
@@ -237,6 +241,7 @@ function AddInputDiv()
   applyBtn.appendChild(applyBtnH);
 
   const addInputRowBtn = document.createElement('button');
+  addInputRowBtn.setAttribute("id", "JulAddInputRowBtnID");
   addInputRowBtn.classList.add('addInputRowBtn');
   addInputRowBtn.classList.add('Fancy-Btn');
   
