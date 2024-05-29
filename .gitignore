@@ -1,3 +1,4 @@
 Shared/DatabaseInstallScript/login.sql
 Stuff/*
 Shared/ExternalAPI/*
+**/.pyc
