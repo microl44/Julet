@@ -1,6 +1,6 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver import EdgeOptions
-from selenium import webdriver
-from time import sleep
+from datetime import datetime
+import time
+
+def get_timestamp():
+	yr, month, day, hr, minute = map(int, time.strftime("%Y %m %d %H %M").split())
+	return "{}_{}_{}_{}_{}".format(yr, month, day, hr, minute)

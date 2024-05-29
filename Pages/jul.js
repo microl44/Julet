@@ -32,6 +32,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   canvas.setAttribute("height", height);
 
   const durationInput = document.createElement('input');
+  durationInput.setAttribute('id', 'wheelDurationInput');
   durationInput.classList.add('wheelDuration');
   durationInput.style.textAlign = "center";
   durationInput.setAttribute("placeholder", "8");

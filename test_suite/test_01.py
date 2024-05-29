@@ -1,107 +1,49 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver import EdgeOptions
-from selenium import webdriver
+#!Title:Case 001
+#!Description:Test regarding adding and deleting jul sections and spinning a jul for a custom duration.
 
-from time import sleep
+import shared.Browser as b
+import shared.tc_lib as tc
+import shared.imports as c
 
-import shared.basic
+def testcase(test):
+	#>Pre-test environment check
+	tc.check_connection(test)
 
-class Browser:
-	URL = "http://localhost/pages/index.php"
+	#open browser
+	test.load()
+	test.click_element("//a[text()=' JUL-JUL ']")
+	test.login_to_page(["micke", "password"])
+	tc.write_log(test.filename, ["PASS: LOGIN SUCCESSFULL"])
 
-	def __init__(self):
-		ops = EdgeOptions()
-		#ops.add_experimental_option("detach", True)
-		ops.add_argument("--start-maximized")
-		self.browser = webdriver.Edge(options=ops)
-		self.browser.implicitly_wait(20)
-
-	def load(self):
-		self.browser.get(self.URL)
-
-	def click_element(self, element):
-		ele = self.browser.find_element("xpath", element)
-		ele.click()
-
-	def login_to_page(self, login_details):
-		ele_u = self.browser.find_element(By.ID, 'login-username')
-		ele_p = self.browser.find_element(By.ID, 'login-password')
-
-		ele_u.click()
-		for value in ["micke"]:
-			ele_u.send_keys(value)
-		ele_p.click()
-		for value in ["password"]:
-			ele_p.send_keys(value)
-
-		login_btn = self.browser.find_element(By.ID, 'login-submit')
-		login_btn.click()
-
-	def jul_add_row(self):
-		ele = self.browser.find_element(By.ID, "JulAddInputRowBtnID")
-		ele.click()
-		sleep(1)
-
-	def jul_delete_row(self):
-		ele = self.browser.find_element(By.ID, "JulDeleteBtnID")
-		ele.click()
-		sleep(1)
-
-	def jul_apply_changes(self):
-		ele = self.browser.find_element(By.ID, "JulApplyBtnID")
-		ele.click()
-		sleep(1)
-
-	def jul_spin_wheel(self):
-		ele = self.browser.find_element(By.ID, "JulSpinBtnID")
-		ele.click()
-		sleep(1)
-
-	def get_number_of_elements(self, CLASS_NAME):
-		elements = self.browser.find_elements(By.CLASS_NAME, CLASS_NAME)
-		return(len(elements))
-
-	def jul_insert_input_boxes(self, text):
-		eles = self.browser.find_elements(By.CLASS_NAME, "inputBox")
-		itter = 1
-		for ele in eles:
-			ele.click()
-			for char in text:
-				ele.send_keys(char)
-			ele.send_keys(str(itter))
-			itter = itter + 1
-
-for x in range(10):
-	########################################
-	# TEST JUL SPINNING WITH 5 SECTIONS    #
-	########################################
-
-	#Navigate to jul page and login
-	browser = Browser()
-	browser.load()
-	browser.click_element("//a[text()=' JUL-JUL ']")
-	browser.login_to_page(["micke", "password"])
-
-	#Add 4 rows
+	#>Add 4 rows
 	for _ in range(4):
-		browser.jul_add_row()
+		test.add_row()
 
-	#Delete and apply changes. Re-add removed sections 
-	browser.jul_delete_row()
-	browser.jul_add_row()
+	if not test.get_number_of_elements("inputBox") == 5:
+		tc.write_log(test.filename, ["ERROR: Wrong number of sections."])
+	tc.write_log(test.filename, ["PASS: CORRECT NUMBER OF SECTIONS (5)"])
 
-	#Check that there's a correct number of sections.
-	if not browser.get_number_of_elements("inputBox") == 5:
-		print("TEST FAILED: Number of sections did not match expected value...")
+	#>Delete and apply changes. Re-add removed sections 
+	test.delete_row()
+	test.add_row()
 
-	#Add test strings to each element.
-	browser.jul_insert_input_boxes("TEST STRING VALUE ")
-	browser.jul_apply_changes()
+	#>Check that there's a correct number of sections.
+	if not test.get_number_of_elements("inputBox") == 5:
+		tc.write_log(test.filename, ["ERROR: Wrong number of sections."])
+	tc.write_log(test.filename, ["PASS: CORRECT NUMBER OF SECTIONS (5)"])
 
-	#Spin jul with default values.
-	browser.jul_spin_wheel()
-	sleep(10)
+	#>Add test strings to each element.
+	test.insert_input_boxes("TEST STRING VALUE ")
+	test.apply_changes()
 
-	#CONTINUE WITH 
+	#>Spin jul with default values.
+	test.spin_jul("10")
+
+try:
+	test = b.Jul('TC_001')
+	testcase(test)
+	tc.write_log(test.filename, ["TEST PASSED..."])
+
+except Exception as e:
+	import traceback
+	tc.log_error(test.filename, [traceback.format_exc()])
