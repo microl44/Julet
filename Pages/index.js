@@ -143,7 +143,6 @@ function GetActiveTableName()
         retval = 'Group';
         break;
       case 'soloMovie':
-        FetchSolo();
         retval = 'Solo';
         break;
       case 'marvelMovie':
@@ -204,6 +203,7 @@ function PopulateTable(type)
     CreateGroupTable();
     break;
   case 'Solo':
+    FetchSolo();
     CreateSoloTable();
     break;
   case 'Marvel':
