@@ -1,7 +1,6 @@
 //#################################################################
 //#################CLASSES DECLARATION BEGIN#######################
 //#################################################################
-;
 class Solo_movie
 {
   constructor(id, participant_id, participant, user_rating, imdb_rating, movie, movie_id, description, cover_path)
