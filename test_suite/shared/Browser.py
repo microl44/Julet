@@ -16,6 +16,9 @@ class Page:
 	def load(self):
 		self.browser.get(self.URL)
 
+	def close_browser(self):
+		self.browser.close()
+
 	def change_page(self, page_type):
 		tclib.write_log(self.filename, ["LOG: Page Changed to " + page_type])
 		if self.page_type == 'jul':
