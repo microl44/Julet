@@ -211,14 +211,17 @@ function AddTablePageDiv(TableType)
 	var div = document.CreateElement()
 }
 
-function ChangePage(rightleft)
+function ChangePage(direction)
 {
+  if (document.getElementsByClassName('tempRow').length > 0)
+  {
+    return
+  }
   var temp_marvel = CleanMarvelArray();
   switch(GetActiveTableName())
   {
   case 'Group':
-    console.log("huh")
-    if (rightleft == "right")
+    if (direction == "right")
     {
       group_section_index = group_section_index + 1;
     }
@@ -229,7 +232,7 @@ function ChangePage(rightleft)
     PopulateTable("Group")
     break;
   case 'Solo':
-    if (rightleft == "right")
+    if (direction == "right")
     {
       solo_section_index = solo_section_index + 1;
     }
@@ -240,7 +243,7 @@ function ChangePage(rightleft)
     PopulateTable("Solo")
     break;
   case 'Marvel':
-    if (rightleft == "right")
+    if (direction == "right")
     {
       marvel_section_index = marvel_section_index + 1;
       if ((marvel_section_index * 10) + 1 >= temp_marvel.length)
@@ -333,6 +336,10 @@ function CreateGroupTable()
   var movies = CleanGroupArray().reverse();
   const table = CleanTable(TableType.Group);
 
+  if (group_section_index < 0)
+  {
+    group_section_index = 0
+  }
   var end_index = group_section_index * section_mult + section_mult - 1;
   var start_index = group_section_index * section_mult;
   if (end_index > movies.length)
@@ -415,6 +422,7 @@ function CleanMarvelArray()
     catch (e)
     {
       console.log(e)
+      break
     }
 
     try
@@ -921,12 +929,12 @@ function ResetEvent()
 
 function InsertTempRows()
 {
-  const table = CleanTable('Group');
-
+  const table = CleanTable(TableType.Group)
   for (var i = 10; i >= 1; i--)
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
+    row.classList.add('tempRow')
 
     cell0 = row.insertCell(0);
     cell1 = row.insertCell(1);
