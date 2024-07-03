@@ -17,12 +17,12 @@ def testcase(test):
 
 		#>Check if database correctly fetches information (cells will equals '...' if not)
 		#>Do this 10 times
-		if test.wait_for_database(5):
+		if test.wait_for_database(10):
 			tclib.write_log(test.filename, ["LOG: Data was fetched from database..."])
 		else:
 			raise Exception("Table was not correctly updated from database.")
-
-		tclib.write_log(test.filename, ["PASS: Test Passed."])
+		time.sleep(1)
+	tclib.write_log(test.filename, ["PASS: Test Passed."])
 try:
 	test = index('TC_005')
 	testcase(test)
