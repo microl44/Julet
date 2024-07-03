@@ -134,7 +134,11 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Madame Web", 3.9, "", "Cassandra Webb is a New York metropolis paramedic who begins to demonstrate signs of clairvoyance. Forced to challenge revelations about her past, she needs to safeguard three young women from a deadly adversary who wants them destroyed."),
 ("Eurovision Song Contest: The Story of Fire Saga", 6.5, "", "When aspiring musicians Lars and Sigrit are given the opportunity to represent their country at the world's biggest song competition, they finally have a chance to prove that any dream worth having is a dream worth fighting for."),
 ("Van Helsing", 6.1, "", "The famed monster hunter is sent to Transylvania to stop Count Dracula, who is using Dr. Frankenstein's research and a werewolf for nefarious purposes."),
-("Idiocracy", 6.5, "Corporal Joe Bauers, a decidedly average American, is selected for a top-secret hibernation program but is forgotten and left to awaken to a future so incredibly moronic that he's easily the most intelligent person alive.");
+("Idiocracy", 6.5, "", "Corporal Joe Bauers, a decidedly average American, is selected for a top-secret hibernation program but is forgotten and left to awaken to a future so incredibly moronic that he's easily the most intelligent person alive."),
+("The Platform", 7.0, "", "A vertical prison with one cell per level. Two people per cell. Only one food platform and two minutes per day to feed. An endless nightmare trapped in The Hole."),
+# 110
+("The Grand Budapest Hotel", 8.1, "", "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge."),
+("Weird: The Al Yankovic Story", 6.9, "", "Explores every facet of Yankovic's life, from his meteoric rise to fame with early hits like 'Eat It' and 'Like a Surgeon' to his torrid celebrity love affairs and famously depraved lifestyle.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -185,7 +189,8 @@ VALUES
 (45, "CUSTOM RULES", 3, "Jay", 0),
 (46, "Family", 1, "Jay", 0),
 (104, "Science-Fiction", 3, "Nay", 1),
-(85, "CUSTOM RULES", 1, "Jay", 0);
+(85, "CUSTOM RULES", 1, "Jay", 0),
+(110, "Horror", 1, "Nay", 1);
 
 
 INSERT INTO marvel_movie(movie_id)
@@ -218,6 +223,7 @@ VALUES
 (18,1,7), (18,2,8), (18,3,8),
 (19,1,10), (19,2,7), (19,3,9), (19,4,8), 
 (20,1,1), (20,2,1), (20,3,1), (20,4,1), (20,6,3),
+(21,1,1), (21,2,1), (21,3,1), (21,4,1), (21,6,3),
 (22,2,10), (22,1,10), (22,3,7), (22,4,9), (22,6,9),
 (23,2,10), (23,1,9), (23,3,7), (23,4,9), (23,6,7),
 (24,2,8), (24,1,7), (24,3,8), (24,4,9), (24,6,6), (24,7,7),
@@ -275,7 +281,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
 (37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9),
-(44, 1), (44, 2), (44, 3), (45, 1), (45, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9);
+(44, 1), (44, 2), (44, 3), (45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
@@ -298,7 +304,9 @@ VALUES (85, 1, 8), (85, 3, 2),
 (105, 1, 6), (105, 2, 5), (105, 3, 6),(105, 6, 0), 
 (107, 1, 6), (107, 3, 4),
 (108, 1, 6), (108, 2, 5),
-(109, 1, 8), (109, 2, 5), (109, 2, 6);
+(109, 1, 8), (109, 2, 5), (109, 2, 6),
+(111, 1, 10), (111, 4, 8),
+(112, 1, 8);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');

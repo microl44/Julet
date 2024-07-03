@@ -70,11 +70,11 @@
         <!----------MOVIE TABLE SECTION START---------->
         <!-- TABLE TABS SECTION START -->
         <div>
-          <button class='tableTab' onclick="openTable(event, 'groupMovie')">GROUP</button>
-          <button class='tableTab' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
+          <button class='tableTab' id='tableTabGroup' onclick="openTable(event, 'groupMovie')">GROUP</button>
+          <button class='tableTab' id='tableTabMarvel' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
           <?php if(isset($_SESSION['username']))
             {
-              echo "<button class='tableTab' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
+              echo "<button class='tableTab' id='tableTabSolo' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
             }?>
         </div>
         <!-- TABLE TABS SECTION END -->
