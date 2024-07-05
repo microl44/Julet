@@ -14,15 +14,23 @@ if(isset($_GET))
 		$results = array();
 		$results['data'] = array();
 
+		$time_start = microtime(true);
+
 		$sql = "SELECT * FROM group_movie_participants";
 		$stmt = $conn->prepare($sql);
 		$result = $stmt->execute();
 
+		$time_end = microtime(true);
+		$execution_time = ($time_end - $time_start)/60;
+		#echo "<b>Database stuff: Total Execution Time:</b> ".$execution_time." Mins";
+		#echo "<br></br>";
+
 		if($result)
 		{	
+			$time_start = microtime(true);
+
 			foreach($stmt->fetchAll() as $row)
 			{
-				$conn = GetConn();
 				$group_movie = new group_movie($conn);
 
 				$group_movie->id = $row['id'];
@@ -39,9 +47,21 @@ if(isset($_GET))
 
 				array_push($results['data'], json_encode($group_movie));
 			}
+			$time_end = microtime(true);
+			$execution_time = ($time_end - $time_start)/60;
+			#echo "<b>Creating Data Array Stuff: Total Execution Time:</b> ".$execution_time." Mins";
+			#echo "<br></br>";
 		}
 		unset($_GET);
+
+		$time_start = microtime(true);
 		$jsonString = json_encode($results);
+
+		$time_end = microtime(true);
+		$execution_time = ($time_end - $time_start)/60;
+		#echo "<b>JSON encoding stuff: Total Execution Time:</b> ".$execution_time." Mins";
+		#echo "<br></br>";
+
 		if(json_last_error() === JSON_ERROR_NONE)
 		{
 			echo $jsonString;
