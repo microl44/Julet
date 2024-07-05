@@ -44,10 +44,6 @@ class Movie
 		    {
 		   		$this->name = substr($xpath->query('//div[contains(@class, "sc-afe43def-3")]')->item(0)->nodeValue, 16);
 		    }
-		    //else
-		    //{
-		    //	$this->name = $xpath->query('//*[@data-testid="hero-title-block__title"]')->item(0)->nodeValue;
-		    //}
 
 			$sql = "INSERT INTO movie(name, genre_name, imdb_rating, jayornay, picked_by, participants, is_major)";
 			$sql = $sql . "VALUES(:addName,:addGenre,:addIMDB,:addjayornay,:addPickedBy,:addParticipants,:addIs_major);";
