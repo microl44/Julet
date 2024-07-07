@@ -19,8 +19,7 @@ if(isset($_SESSION['username']) || isset($_SESSION['password']))
 {
 	addLog();?>
 	<div class='content'>
-		<div class='moviePageWrapper'>
-			<?php PrintMovies();?>
+		<div class='moviePageWrapper' id='moviePageWrapper'>
 		</div>
 	</div>
 <?php include_once "../includers/footer.php";
