@@ -192,7 +192,6 @@ VALUES
 (85, "CUSTOM RULES", 1, "Jay", 0),
 (110, "Horror", 1, "Nay", 1);
 
-
 INSERT INTO marvel_movie(movie_id)
 VALUES
 (47),(48),(49),(50),(51),(52),(102),(53),(54),(55),
@@ -245,34 +244,6 @@ VALUES
 (40, 1, 9), (40, 2, 5), (40, 3, 4),
 (41, 1, 1), (41, 2, 1), (41, 3, 1);
 
-#("The Wolf of Wall Street", "Biography", 8.2, "Jay", "Crippe", "Micke, Crippe, Linus, Behrad", 0), ("The revenant", "Western", 8, "Mexican standoff", "Crippe", "Micke, Crippe", 0),
-#("Alita: Battle Angel", "CUSTOM RULES", 7.3, "Jay", "Micke", "Micke, Crippe, Behrad", 0), ("Baby Driver","Crime", 7.6, "Jay" , "Micke", "Micke, Crippe, Linus", 0), 
-#("Lilo & Stitch", "Fantasy", 7.3, "Jay", "Momme", "Micke, Crippe, Behrad, Momme", 0), ("Hot Fuzz", "Mystery", 7.8, "Jay", "Crippe", "Micke, Gabbe, Crippe, Behrad, Linus, Momme", 1),
-#("Braveheart", "Biography", 8.4, "Nay", "Crippe", "Micke, Crippe, Behrad", 0), ("Dodgeball: A True Underdog Story", "Sport", 6.7, "Jay", "Micke", "Micke, Crippe, Behrad, Linus", 0),
-#("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0), 
-#
-#("Edward Scissorhands", "Fantasy", 7.9, "Jay", "Micke", "Micke, Crippe, Momme, Viktor", 0),
-#("John Wick", "Wildcard", 7.4, "Jay", "Micke", "Micke, Crippe, Linus", 0), ("The Batman", "Superhero", 7.8, "Jay", "Behrad", "Micke, Gabbe, Crippe, Behrad", 1),
-#("Bee Movie", "Drama", 6.1, "Jay", "Micke", "Micke, Behrad, Momme", 0), ("The Hunchback of Notre Dame", "Animation", 7.0, "Jay", "Micke", "Micke, Crippe, Behrad, Linus, Momme", 0),
-#("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0), ("Cars 2", "Mystery", 6.2, "Nay", "Micke", "Micke, Crippe, Adam", 0),
-#("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0),
-#("Indiana Jones: Raiders of the Lost Ark", "Action", 8.4, "Jay", "Doffer", "Micke, Crippe, Doffer", 0),
-#
-#("Life of Brian", "CUSTOM RULES", 8.0, "Jay", "Crippe", "Micke, Gabbe, Crippe", 1),
-#("Gremlins", "CUSTOM RULES", 7.3, "Nay", "Gabbe", "Micke, Gabbe, Crippe", 1), ("Cruella", "Crime", 7.3, "Jay", "Doffer", "Micke, Crippe, Doffer", 0),
-#("The Hunger Games", "Thriller", 7.2, "Nay", "Gabbe", "Micke, Gabbe, Crippe", 1), ("Cast Away", "CUSTOM RULES", 7.8, "Jay", "Crippe", "Micke, Crippe", 0),
-#("Iron Giant", "Family", 8.1, "Jay", "Micke", "Micke, Crippe", 0);
-
-#INSERT INTO marvel(name, imdb_rating)
-#VALUES("Captain America", 6.9), ("Captain Marvel", 6.8), ("Iron Man", 7.9), ("Iron Man 2", 6.9), ("The Incredible Hulk", 6.6),
-#("Thor", 7.0), ("The Avengers", 8.0), ("Thor - The Dark World", 6.8), ("Iron Man 3", 7.1), ("Captain America - The Winter Soldier", 7.8), 
-#("Guardians of the Galaxy", 8.0), ("Guardians of the Galaxy 2", 7.6), ("Avengers - Age of Ultron", 7.3), ("Ant Man", 7.3), ("Captain America - Civil War", 7.8), 
-#("Spider Man - Homecoming", 7.4), ("Black Panther", 7.3), ("Black Widow", 6.7), ("Doctor Strange", 7.5), ("Thor - Ragnarök", 7.9),
-#("Ant Man and the Wasp", 7.0), ("Avengers: Infinity War", 8.4), ("Avengers: End Game", 8.4), ("Spider Man - Far From Home", 7.4), ("Spider Man - No Way Home", 8.2), 
-#("Shang-Chi and The Legend of the Ten Rings", 7.4), ("Eternals", 6.3), ("Dr Strange in the Multiverse of Madness", 6.9), ("Thor - Love and Thunder", 6.2), ("Black Panther: Wakanda Forever", 6.7),
-#("Ant-Man and the Wasp: Quantumania", 6.1), ("Guardians of the Galaxy Vol. 3", 8.0), ("Venom", 6.6), ("Venom: Let There Be Carnage", 5.9), 
-#("Morbius", 5.2), ("Spider-Man", 7.4), ("Spider-Man 2", 7.5), ("Spider-Man 3", 6.3), ("The Amazing Spider-Man", 6.9);
-
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
 (8,1), (8,2), (8,3), (8,5), (9,1), (9,2), (9,3), (9,5), (10,1), (10,5), (10,8), (11,1), (11,2), (11,3), (11,5), (12,1), (12,3), (12,4), (12,5), (12,6), (12,7), (13,1), (13,6), (14,1), (14,3), 
@@ -307,6 +278,18 @@ VALUES (85, 1, 8), (85, 3, 2),
 (109, 1, 8), (109, 2, 5), (109, 2, 6),
 (111, 1, 10), (111, 4, 8),
 (112, 1, 8);
+
+INSERT INTO movie_club_role(role_name)
+VALUES("Owner"), ("Admin"), ("Event_Manager"), ("User");
+
+INSERT INTO movie_club(club_owner, club_name, club_description, club_creation_date)
+VALUES(3, "First Movie Club", "First club created on this website, managed by Micke.", "2024-07-12 23:19:13");
+
+INSERT INTO club_member(club_id, user_id, user_joined, club_role)
+VALUES(1, 3, "2024-07-12 23:19:13", 1), (1, 4, "2024-07-12 23:19:13", 2), (1, 5, "2024-07-12 23:19:13", 2), (1, 6, "2024-07-12 23:19:13", 2);
+
+INSERT INTO movie_club_deadline(club_id, movie_id, creator_id, deadline, deadline_comment, notification_time, change_role_req)
+VALUES(1, 37, 3, "2024-07-22 23:19:13", "This is a comment that will be shown in association with the deadline. Hopefully.", 24, 2);
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
