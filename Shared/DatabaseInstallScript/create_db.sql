@@ -145,6 +145,13 @@ FOREIGN KEY (movie_id) REFERENCES movie(id),
 PRIMARY KEY (club_member_id, club_id, movie_id)
 ) ENGINE = InnoDB;
 
+CREATE TABLE rule(
+id INT AUTO_INCREMENT,
+rule_name varchar(255) NOT NULL,
+rule_description longtext NOT NULL,
+PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
 CREATE TABLE activity_log (
 id int AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(255) NOT NULL,

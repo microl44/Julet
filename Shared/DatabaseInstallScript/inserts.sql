@@ -291,5 +291,19 @@ VALUES(1, 3, "2024-07-12 23:19:13", 1), (1, 4, "2024-07-12 23:19:13", 2), (1, 5,
 INSERT INTO movie_club_deadline(club_id, movie_id, creator_id, deadline, deadline_comment, notification_time, change_role_req)
 VALUES(1, 37, 3, "2024-07-22 23:19:13", "This is a comment that will be shown in association with the deadline. Hopefully.", 24, 2);
 
+INSERT INTO rule(rule_name, rule_description)
+VALUES("Regular Wheel (2+)", "This is a simple Jul. Each participant brings a single movie to the Jul, the Jul is spun and whatever movie it lands on is the winner."),
+("Reverse Wheel (2+)", "Reverse Jul. Every participant brings a movie to the Jul, the Jul is spun and the winning result is removed from the Jul. The Jul is then re-spun until only 1 remains which is the winner."),
+("Dealers choice (3+)", "Each user brings a movie to the Jul, but instead of spinning the movies, the users names are spun. The one it lands on gets to decide between the movies the other users brought."),
+("Multi-choice Wheel (1+)", "Each user brings more than one movie to the Jul. Can be combined with other rules to create Reverse-Multi-Wheels of madness."),
+("Reverse Multi-wheel of madness (1+)", "Each user brings multiple movies (often 3 or 5), either from the same or diffrent genres, and one movie is removed per roll. God help you if you don't have 30 minutes to spare."),
+("Reverse-Genre Wheel Of Reverse Madness (1+)", "Every user bring 3-5 genres to the Jul and a reverse Jul is spun. Then each user brings 3-5 movies from the remaining genre and a revser Jul is spun again. WARNING! WILL TAKE AT LEAST 30 MINUTES."),
+("Tag-Team Wheel (3+)", "First a Jul is spun between the participant and whoever it lands on decides the genre. The rest of the participants bring a movie of the chosen genre and a regular Jul is spun to determine the winner."),
+("Bogo-Wheel (2+)", "Regular or reverse Jul with a number of \"RESET\" entries. If the RESET entry is chosen, the previous user-brought entries are disqualified and new entries must be brought."),
+("Streaming Site Jul (2+)", "Instead of movies, streaming sites are either brought to the Jul, or a complete list of streaming sites are brought to be rolled. The chosen streaming site is used to select movies for further Jul."),
+("Time-Wheel (1+)", "Every full hour is added to a wheel (00 - 24) and a wheel is then spun. A normal wheel is then spun at the rolled hour of the next day."),
+("Winner Wheel (2+)", "The name of the participants are added to the Jul and the Jul is then spun. Whoever it lands on gets to pick a movie for a secondary Jul from any genre. The Jul is then respun until X amount of movies exists on the secondary Jul. The secondary Jul is then spun and a winning movie is chosen."),
+("Custom Wheel", "Custom rules are prepared beforehand in terms of movie selection criterias. Too specific to handle all cases and it's represented as 'CUSTOM RULES' in the movie table.");
+
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');
