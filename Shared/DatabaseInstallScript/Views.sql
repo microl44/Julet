@@ -66,3 +66,75 @@ CREATE VIEW group_movie_participants AS
 		participant ON participant.id = participated.participantID
 	ORDER BY
 		group_movie.id ASC, participant.id desc;
+
+DROP VIEW IF EXISTS club_details;
+CREATE VIEW club_details AS
+SELECT 
+    mc.id AS club_id,
+    mc.club_name,
+    mc.club_description,
+	u.username AS owner_name,
+    u.email AS owner_email,
+    mc.club_creation_date
+FROM 
+    movie_club mc
+JOIN 
+    users u ON mc.club_owner = u.id;
+    
+DROP VIEW IF EXISTS club_members_roles;
+CREATE VIEW club_members_roles AS
+SELECT 
+    cm.club_id,
+    u.id AS user_id,
+    u.username AS user_name,
+    u.email AS user_email,
+    r.role_name,
+    cm.user_joined
+FROM 
+    club_member cm
+JOIN 
+    users u ON cm.user_id = u.id
+JOIN 
+    movie_club_role r ON cm.club_role = r.id;
+    
+DROP VIEW IF EXISTS future_club_deadlines;
+CREATE VIEW future_club_deadlines AS
+SELECT 
+    mcd.club_id,
+    mc.club_name,
+    mcd.movie_id,
+    m.name AS movie_title,
+    mcd.deadline,
+    mcd.deadline_comment,
+    u.username AS creator_name
+FROM 
+    movie_club_deadline mcd
+JOIN 
+    movie_club mc ON mcd.club_id = mc.id
+JOIN 
+    movie m ON mcd.movie_id = m.id
+JOIN 
+    users u ON mcd.creator_id = u.id
+WHERE 
+    mcd.deadline > NOW();
+    
+DROP VIEW IF EXISTS club_member_movie_ratings;
+CREATE VIEW club_member_movie_ratings AS
+SELECT 
+    cms.club_member_id,
+    u.username AS member_name,
+    cms.club_id,
+    mc.club_name,
+    cms.movie_id,
+    m.name AS movie_title,
+    cms.viewdate,
+    cms.rating,
+    cms.user_comment
+FROM 
+    club_member_seen cms
+JOIN 
+    users u ON cms.club_member_id = u.id
+JOIN 
+    movie_club mc ON cms.club_id = mc.id
+JOIN 
+    movie m ON cms.movie_id = m.id;

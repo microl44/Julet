@@ -275,7 +275,7 @@ VALUES (85, 1, 8), (85, 3, 2),
 (105, 1, 6), (105, 2, 5), (105, 3, 6),(105, 6, 0), 
 (107, 1, 6), (107, 3, 4),
 (108, 1, 6), (108, 2, 5),
-(109, 1, 8), (109, 2, 5), (109, 2, 6),
+(109, 1, 8), (109, 2, 5), (109, 3, 6),
 (111, 1, 10), (111, 4, 8),
 (112, 1, 8);
 
@@ -289,7 +289,11 @@ INSERT INTO club_member(club_id, user_id, user_joined, club_role)
 VALUES(1, 3, "2024-07-12 23:19:13", 1), (1, 4, "2024-07-12 23:19:13", 2), (1, 5, "2024-07-12 23:19:13", 2), (1, 6, "2024-07-12 23:19:13", 2);
 
 INSERT INTO movie_club_deadline(club_id, movie_id, creator_id, deadline, deadline_comment, notification_time, change_role_req)
-VALUES(1, 37, 3, "2024-07-22 23:19:13", "This is a comment that will be shown in association with the deadline. Hopefully.", 24, 2);
+VALUES(1, 37, 3, "2024-07-22 23:19:13", "This is a comment that will be shown in association with the deadline. Hopefully.", 24, 2),
+(1, 67, 3, "2024-05-22 12:15:10", "This is a weird comment", 0, 4);
+
+INSERT INTO club_member_seen(club_member_id, club_id, movie_id, rating, user_comment)
+VALUES(3, 1, 85, 9, "Great songs, many joys.");
 
 INSERT INTO rule(rule_name, rule_description)
 VALUES("Regular Wheel (2+)", "This is a simple Jul. Each participant brings a single movie to the Jul, the Jul is spun and whatever movie it lands on is the winner."),
