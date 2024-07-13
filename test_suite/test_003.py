@@ -1,7 +1,7 @@
-#!Title:Case 002
+#!Title:Case 003
 #!Description:Test regarding multiple spins with low duration (1) 
 
-import shared.Browser as b
+from shared.jul import Jul as jul
 import shared.tc_lib as tc
 import shared.imports as c
 
@@ -30,7 +30,7 @@ def testcase(test):
 
 	#>Spin jul with default values.
 	test.spin_jul("10", False)
-	b.sleep(4)
+	c.sleep(4)
 
 	#!>Add three sections during jul spin
 	for _ in range(3):
@@ -40,10 +40,10 @@ def testcase(test):
 	test.spin_jul("5")
 
 try:
-	test = b.Jul('TC_003')
+	test = jul('TC_003')
 	testcase(test)
-	tc.write_log(test.filename, ["TEST PASSED..."])
+	tc.write_log(test.filename, ["TEST COMPLETED..."])
 
-except Exception as e:
+except Exception:
 	import traceback
-	tc.log_error(test.filename, [traceback.format_exc()])
+	tc.log_error(test.filename, ["ERROR: " + str(traceback.format_exc())])

@@ -6,53 +6,75 @@ header("Content-Type:application/json");
 require_once "../includers/basic.php";
 require_once "models/solo_movies.php";
 
-if(isset($_GET))
+function SetupStmtForSpecificUser($username)
 {
-	try
+	$conn = GetConn();
+	$results = array();
+	$results['data'] = array();
+	$sql = 'SELECT solo_movie_participants.id,
+				`participant id`,
+				`participant`,
+				`user rating`,
+				`imdb rating`,
+				`movie`,
+				`description`,
+				`cover path` 
+			FROM solo_movie_participants
+			HAVING Participant=:username' ;
+	$stmt = $conn->prepare($sql);
+	$stmt->bindvalue(':username', $username,PDO::PARAM_STR);
+	return $stmt;
+}
+
+if(!isset($_GET))
+{
+	return json_encode("no parameters set");
+}	
+
+try
+{
+	if(!isset($_GET["username"]))
 	{
-		$conn = GetConn();
-		$results = array();
-		$results['data'] = array();
+		return json_encode("No Username Found");
+	}
 
-		$sql = "SELECT * FROM solo_movie_participants";
-		$stmt = $conn->prepare($sql);
-		$result = $stmt->execute();
-
-		if($result)
-		{	
-			foreach($stmt->fetchAll() as $row)
-			{
-				$conn = GetConn();
-				$solo_movie = new solo_movie($conn);
-
-				$solo_movie->id = $row['id'];
-				$solo_movie->participant_id = $row['participant id'];
-				$solo_movie->participant = $row['participant'];
-				$solo_movie->user_rating = $row['user rating'];
-				$solo_movie->imdb_rating = $row['imdb rating'];
-				$solo_movie->movie = $row['movie'];
-				$solo_movie->description = $row['description'];
-				$solo_movie->cover_path = $row['cover path'];
-
-				array_push($results['data'], json_encode($solo_movie));
-			}
-		}
-		unset($_GET);
-		$jsonString = json_encode($results);
-		if(json_last_error() === JSON_ERROR_NONE)
+	$stmt = SetupStmtForSpecificUser($_GET["username"]); 
+	$results['data'] = array();
+	$result = $stmt->execute();
+	if($result)
+	{	
+		foreach($stmt->fetchAll() as $row)
 		{
-			echo $jsonString;
-			die();
-		}
-		else
-		{
-			throw new Exception('Fucky Wucky');
+			$conn = GetConn();
+			$solo_movie = new solo_movie($stmt);
+			$solo_movie->id = $row['id'];
+			$solo_movie->participant_id = $row['participant id'];
+			$solo_movie->participant = $row['participant'];
+			$solo_movie->user_rating = $row['user rating'];
+			$solo_movie->imdb_rating = $row['imdb rating'];
+			$solo_movie->movie = $row['movie'];
+			$solo_movie->description = $row['description'];
+			$solo_movie->cover_path = $row['cover path'];
+			
+			array_push($results['data'], json_encode($solo_movie));
 		}
 	}
-	catch(Exception $e)
+
+	unset($_GET);
+	$jsonString = json_encode($results);
+	if(json_last_error() === JSON_ERROR_NONE)
 	{
-		echo json_encode($e);
+		echo $jsonString;
 		die();
 	}
+	else
+	{
+		throw new Exception('Fucky Wucky');
+	}
+}
+catch(Exception $e)
+{
+	echo json_encode($e);
+	die();
 }
 ?>

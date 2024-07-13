@@ -134,7 +134,11 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Madame Web", 3.9, "", "Cassandra Webb is a New York metropolis paramedic who begins to demonstrate signs of clairvoyance. Forced to challenge revelations about her past, she needs to safeguard three young women from a deadly adversary who wants them destroyed."),
 ("Eurovision Song Contest: The Story of Fire Saga", 6.5, "", "When aspiring musicians Lars and Sigrit are given the opportunity to represent their country at the world's biggest song competition, they finally have a chance to prove that any dream worth having is a dream worth fighting for."),
 ("Van Helsing", 6.1, "", "The famed monster hunter is sent to Transylvania to stop Count Dracula, who is using Dr. Frankenstein's research and a werewolf for nefarious purposes."),
-("Idiocracy", 6.5, "Corporal Joe Bauers, a decidedly average American, is selected for a top-secret hibernation program but is forgotten and left to awaken to a future so incredibly moronic that he's easily the most intelligent person alive.");
+("Idiocracy", 6.5, "", "Corporal Joe Bauers, a decidedly average American, is selected for a top-secret hibernation program but is forgotten and left to awaken to a future so incredibly moronic that he's easily the most intelligent person alive."),
+("The Platform", 7.0, "", "A vertical prison with one cell per level. Two people per cell. Only one food platform and two minutes per day to feed. An endless nightmare trapped in The Hole."),
+# 110
+("The Grand Budapest Hotel", 8.1, "", "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge."),
+("Weird: The Al Yankovic Story", 6.9, "", "Explores every facet of Yankovic's life, from his meteoric rise to fame with early hits like 'Eat It' and 'Like a Surgeon' to his torrid celebrity love affairs and famously depraved lifestyle.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -185,8 +189,8 @@ VALUES
 (45, "CUSTOM RULES", 3, "Jay", 0),
 (46, "Family", 1, "Jay", 0),
 (104, "Science-Fiction", 3, "Nay", 1),
-(85, "CUSTOM RULES", 1, "Jay", 0);
-
+(85, "CUSTOM RULES", 1, "Jay", 0),
+(110, "Horror", 1, "Nay", 1);
 
 INSERT INTO marvel_movie(movie_id)
 VALUES
@@ -218,6 +222,7 @@ VALUES
 (18,1,7), (18,2,8), (18,3,8),
 (19,1,10), (19,2,7), (19,3,9), (19,4,8), 
 (20,1,1), (20,2,1), (20,3,1), (20,4,1), (20,6,3),
+(21,1,1), (21,2,1), (21,3,1), (21,4,1), (21,6,3),
 (22,2,10), (22,1,10), (22,3,7), (22,4,9), (22,6,9),
 (23,2,10), (23,1,9), (23,3,7), (23,4,9), (23,6,7),
 (24,2,8), (24,1,7), (24,3,8), (24,4,9), (24,6,6), (24,7,7),
@@ -239,34 +244,6 @@ VALUES
 (40, 1, 9), (40, 2, 5), (40, 3, 4),
 (41, 1, 1), (41, 2, 1), (41, 3, 1);
 
-#("The Wolf of Wall Street", "Biography", 8.2, "Jay", "Crippe", "Micke, Crippe, Linus, Behrad", 0), ("The revenant", "Western", 8, "Mexican standoff", "Crippe", "Micke, Crippe", 0),
-#("Alita: Battle Angel", "CUSTOM RULES", 7.3, "Jay", "Micke", "Micke, Crippe, Behrad", 0), ("Baby Driver","Crime", 7.6, "Jay" , "Micke", "Micke, Crippe, Linus", 0), 
-#("Lilo & Stitch", "Fantasy", 7.3, "Jay", "Momme", "Micke, Crippe, Behrad, Momme", 0), ("Hot Fuzz", "Mystery", 7.8, "Jay", "Crippe", "Micke, Gabbe, Crippe, Behrad, Linus, Momme", 1),
-#("Braveheart", "Biography", 8.4, "Nay", "Crippe", "Micke, Crippe, Behrad", 0), ("Dodgeball: A True Underdog Story", "Sport", 6.7, "Jay", "Micke", "Micke, Crippe, Behrad, Linus", 0),
-#("The Pianist", "Biography", 8.5, "Jay", "Micke", "Micke, Crippe, Behrad, Momme", 0), 
-#
-#("Edward Scissorhands", "Fantasy", 7.9, "Jay", "Micke", "Micke, Crippe, Momme, Viktor", 0),
-#("John Wick", "Wildcard", 7.4, "Jay", "Micke", "Micke, Crippe, Linus", 0), ("The Batman", "Superhero", 7.8, "Jay", "Behrad", "Micke, Gabbe, Crippe, Behrad", 1),
-#("Bee Movie", "Drama", 6.1, "Jay", "Micke", "Micke, Behrad, Momme", 0), ("The Hunchback of Notre Dame", "Animation", 7.0, "Jay", "Micke", "Micke, Crippe, Behrad, Linus, Momme", 0),
-#("127 Hours", "Biography", 7.5, "Jay", "Micke", "Micke, Crippe, Momme, Doffer", 0), ("Cars 2", "Mystery", 6.2, "Nay", "Micke", "Micke, Crippe, Adam", 0),
-#("Everything Everywhere All at Once", "CUSTOM RULES", 7.8, "Jay", "Micke", "Micke, Crippe", 0), ("District 9", "CUSTOM RULES", 7.9, "Jay", "Micke", "Micke, Crippe", 0),
-#("Indiana Jones: Raiders of the Lost Ark", "Action", 8.4, "Jay", "Doffer", "Micke, Crippe, Doffer", 0),
-#
-#("Life of Brian", "CUSTOM RULES", 8.0, "Jay", "Crippe", "Micke, Gabbe, Crippe", 1),
-#("Gremlins", "CUSTOM RULES", 7.3, "Nay", "Gabbe", "Micke, Gabbe, Crippe", 1), ("Cruella", "Crime", 7.3, "Jay", "Doffer", "Micke, Crippe, Doffer", 0),
-#("The Hunger Games", "Thriller", 7.2, "Nay", "Gabbe", "Micke, Gabbe, Crippe", 1), ("Cast Away", "CUSTOM RULES", 7.8, "Jay", "Crippe", "Micke, Crippe", 0),
-#("Iron Giant", "Family", 8.1, "Jay", "Micke", "Micke, Crippe", 0);
-
-#INSERT INTO marvel(name, imdb_rating)
-#VALUES("Captain America", 6.9), ("Captain Marvel", 6.8), ("Iron Man", 7.9), ("Iron Man 2", 6.9), ("The Incredible Hulk", 6.6),
-#("Thor", 7.0), ("The Avengers", 8.0), ("Thor - The Dark World", 6.8), ("Iron Man 3", 7.1), ("Captain America - The Winter Soldier", 7.8), 
-#("Guardians of the Galaxy", 8.0), ("Guardians of the Galaxy 2", 7.6), ("Avengers - Age of Ultron", 7.3), ("Ant Man", 7.3), ("Captain America - Civil War", 7.8), 
-#("Spider Man - Homecoming", 7.4), ("Black Panther", 7.3), ("Black Widow", 6.7), ("Doctor Strange", 7.5), ("Thor - Ragnarök", 7.9),
-#("Ant Man and the Wasp", 7.0), ("Avengers: Infinity War", 8.4), ("Avengers: End Game", 8.4), ("Spider Man - Far From Home", 7.4), ("Spider Man - No Way Home", 8.2), 
-#("Shang-Chi and The Legend of the Ten Rings", 7.4), ("Eternals", 6.3), ("Dr Strange in the Multiverse of Madness", 6.9), ("Thor - Love and Thunder", 6.2), ("Black Panther: Wakanda Forever", 6.7),
-#("Ant-Man and the Wasp: Quantumania", 6.1), ("Guardians of the Galaxy Vol. 3", 8.0), ("Venom", 6.6), ("Venom: Let There Be Carnage", 5.9), 
-#("Morbius", 5.2), ("Spider-Man", 7.4), ("Spider-Man 2", 7.5), ("Spider-Man 3", 6.3), ("The Amazing Spider-Man", 6.9);
-
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
 (8,1), (8,2), (8,3), (8,5), (9,1), (9,2), (9,3), (9,5), (10,1), (10,5), (10,8), (11,1), (11,2), (11,3), (11,5), (12,1), (12,3), (12,4), (12,5), (12,6), (12,7), (13,1), (13,6), (14,1), (14,3), 
@@ -275,7 +252,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
 (37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9),
-(44, 1), (44, 2), (44, 3), (45, 1), (45, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9);
+(44, 1), (44, 2), (44, 3), (45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
@@ -298,7 +275,39 @@ VALUES (85, 1, 8), (85, 3, 2),
 (105, 1, 6), (105, 2, 5), (105, 3, 6),(105, 6, 0), 
 (107, 1, 6), (107, 3, 4),
 (108, 1, 6), (108, 2, 5),
-(109, 1, 8), (109, 2, 5), (109, 2, 6);
+(109, 1, 8), (109, 2, 5), (109, 3, 6),
+(111, 1, 10), (111, 4, 8),
+(112, 1, 8);
+
+INSERT INTO movie_club_role(role_name)
+VALUES("Owner"), ("Admin"), ("Event_Manager"), ("User");
+
+INSERT INTO movie_club(club_owner, club_name, club_description, club_creation_date)
+VALUES(3, "First Movie Club", "First club created on this website, managed by Micke.", "2024-07-12 23:19:13");
+
+INSERT INTO club_member(club_id, user_id, user_joined, club_role)
+VALUES(1, 3, "2024-07-12 23:19:13", 1), (1, 4, "2024-07-12 23:19:13", 2), (1, 5, "2024-07-12 23:19:13", 2), (1, 6, "2024-07-12 23:19:13", 2);
+
+INSERT INTO movie_club_deadline(club_id, movie_id, creator_id, deadline, deadline_comment, notification_time, change_role_req)
+VALUES(1, 37, 3, "2024-07-22 23:19:13", "This is a comment that will be shown in association with the deadline. Hopefully.", 24, 2),
+(1, 67, 3, "2024-05-22 12:15:10", "This is a weird comment", 0, 4);
+
+INSERT INTO club_member_seen(club_member_id, club_id, movie_id, rating, user_comment)
+VALUES(3, 1, 85, 9, "Great songs, many joys.");
+
+INSERT INTO rule(rule_name, rule_description)
+VALUES("Regular Wheel (2+)", "This is a simple Jul. Each participant brings a single movie to the Jul, the Jul is spun and whatever movie it lands on is the winner."),
+("Reverse Wheel (2+)", "Reverse Jul. Every participant brings a movie to the Jul, the Jul is spun and the winning result is removed from the Jul. The Jul is then re-spun until only 1 remains which is the winner."),
+("Dealers choice (3+)", "Each user brings a movie to the Jul, but instead of spinning the movies, the users names are spun. The one it lands on gets to decide between the movies the other users brought."),
+("Multi-choice Wheel (1+)", "Each user brings more than one movie to the Jul. Can be combined with other rules to create Reverse-Multi-Wheels of madness."),
+("Reverse Multi-wheel of madness (1+)", "Each user brings multiple movies (often 3 or 5), either from the same or diffrent genres, and one movie is removed per roll. God help you if you don't have 30 minutes to spare."),
+("Reverse-Genre Wheel Of Reverse Madness (1+)", "Every user bring 3-5 genres to the Jul and a reverse Jul is spun. Then each user brings 3-5 movies from the remaining genre and a revser Jul is spun again. WARNING! WILL TAKE AT LEAST 30 MINUTES."),
+("Tag-Team Wheel (3+)", "First a Jul is spun between the participant and whoever it lands on decides the genre. The rest of the participants bring a movie of the chosen genre and a regular Jul is spun to determine the winner."),
+("Bogo-Wheel (2+)", "Regular or reverse Jul with a number of \"RESET\" entries. If the RESET entry is chosen, the previous user-brought entries are disqualified and new entries must be brought."),
+("Streaming Site Jul (2+)", "Instead of movies, streaming sites are either brought to the Jul, or a complete list of streaming sites are brought to be rolled. The chosen streaming site is used to select movies for further Jul."),
+("Time-Wheel (1+)", "Every full hour is added to a wheel (00 - 24) and a wheel is then spun. A normal wheel is then spun at the rolled hour of the next day."),
+("Winner Wheel (2+)", "The name of the participants are added to the Jul and the Jul is then spun. Whoever it lands on gets to pick a movie for a secondary Jul from any genre. The Jul is then respun until X amount of movies exists on the secondary Jul. The secondary Jul is then spun and a winning movie is chosen."),
+("Custom Wheel", "Custom rules are prepared beforehand in terms of movie selection criterias. Too specific to handle all cases and it's represented as 'CUSTOM RULES' in the movie table.");
 
 INSERT INTO activity_log(username, action, timestamp, data)
 VALUES("user", "pageview", '2019-12-19 17:07:06', '{"page_ulr":"install.php","ip_address":"127.0.0.1 (TEMP DATA)"}');

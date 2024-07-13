@@ -342,8 +342,11 @@ footer{
 
 .movieTable{
 	animation: tableFade 1s;
-  	/* box-shadow: 5px 5px 5px #69158a; */
-	width: 80%;
+  /* box-shadow: 5px 5px 5px #69158a;*/
+	width: 90%;
+	max-width: 90%;
+	overflow: auto;
+	table-layout:fixed;
 	font-family: sans-serif;
 	display: table;
 }
@@ -362,6 +365,9 @@ footer{
 	min-height: 40px;
 	font-weight: bolder;
 	font-size: 16px;
+
+	white-space: nowrap;
+	overflow: hidden;
 
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
@@ -395,6 +401,11 @@ footer{
 	padding-right: 5px;
 	padding-bottom: 10px;
 	padding-top: 10px;
+
+	border-left: 1px solid black;
+
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .tableRow{
@@ -430,8 +441,18 @@ footer{
 
 .tableRow:hover
 {
-	color: #ad0000;
+	background-color: #5397ee;
+	color: #ff0000;
+	font-weight: bold;
 	border: 50px solid;
+	-webkit-filter: brightness(70%);
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all;
+	-o-transition: all 0.1s ease;
+	-ms-transition: all 0.1s ease;
+	transition: all 0.1s ease;
+	font-weight: bolder;
+	filter: brightness(150%);
 }
 
 .tableRow:nth-child(11n) td
@@ -733,13 +754,13 @@ footer{
 	padding-top: 10px;
     background-color: #BAC3E8;
     border-radius: 5px;
-	box-shadow: 3px 3px 5px #8935aa;
+	box-shadow: 3px 3px 5px #202020;
 	overflow-y: auto;
 	display:flex;
 }
 .movieCoverHolder img{
 	margin-right: 4%;
-	box-shadow: 3px 3px 2px #3B7DD5;
+	box-shadow: 3px 3px 10px #202020;
 	border-radius: 10px;
 	border: 2px outset #69158a;
 }
@@ -749,6 +770,10 @@ footer{
 	display: inline;
 	font-size: 16px;
 	line-height: 22px;
+}
+
+.movieTitle{
+	font-weight: bold;
 }
 
 .movieTitleHolder p{
