@@ -49,7 +49,7 @@ async function RunAsync()
       var image = document.createElement('img');
         image.src = img_src;
         image.setAttribute('width', '190');
-        image.setAttribute('height', '281');
+        image.setAttribute('height', 'auto');
         image.setAttribute('onerror', "this.src='http://" + host + "/Shared/images/placeholder.png'");
       var movieTitleHolder = document.createElement('div');
         movieTitleHolder.classList.add('movieTitleHolder');
@@ -70,7 +70,6 @@ async function RunAsync()
       movieDisplayDiv.appendChild(movieCoverHolder);
 
       holder.appendChild(movieDisplayDiv);
-      //document.body.appendChild(test)
     }
     catch
     {
@@ -83,36 +82,3 @@ RunAsync().catch(error =>
 {
   console.log(error)
 });
-
-//document.body.appendChild(test);
-
-//CreateMovieView();
-
-
-/*
-function PrintMovies()
-{
-    $imageDir = "../Shared/Images/";
-    $images = SortArray(scandir($imageDir), "NATURAL");
-    $conn = GetConn();
-
-    $titles = $conn->query("SELECT `name`,`description` FROM movie ORDER BY id");
-
-    foreach($images as $image)
-    {
-      if($image != '.' && $image != '..')
-      {
-        $title = $titles->fetch(PDO::FETCH_ASSOC);
-        echo "<div class='movieDisplayDiv'>";
-          echo "<div class='movieCoverHolder'>";
-            echo "<img src='../Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
-            echo "<div class='movieTitleHolder'>";
-              echo "<p class='movieTitle'><b>".$title['name']."</b></p>";
-              echo "<p>".$title['description']."</p>";
-            echo "</div>";
-          echo "</div>"; 
-        echo "</div>";
-      }
-    }
-}
-}*/
