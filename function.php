@@ -110,32 +110,6 @@ function PrintParticipantInfo()
   echo "</div>";
 }
 
-function PrintMovies()
-{
-    $imageDir = "../Shared/Images/";
-    $images = SortArray(scandir($imageDir), "NATURAL");
-    $conn = GetConn();
-
-    $titles = $conn->query("SELECT `name`,`description` FROM movie ORDER BY id");
-
-    foreach($images as $image)
-    {
-      if($image != '.' && $image != '..')
-      {
-        $title = $titles->fetch(PDO::FETCH_ASSOC);
-        echo "<div class='movieDisplayDiv'>";
-          echo "<div class='movieCoverHolder'>";
-            echo "<img src='../Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
-            echo "<div class='movieTitleHolder'>";
-              echo "<p class='movieTitle'><b>".$title['name']."</b></p>";
-              echo "<p>".$title['description']."</p>";
-            echo "</div>";
-          echo "</div>"; 
-        echo "</div>";
-      }
-    }
-}
-
 function catchStatent(){
   echo '<h1>fuuuuuuuck</h1>';
 }

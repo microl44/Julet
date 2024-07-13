@@ -5,12 +5,7 @@ class Movie
 
 	public $id;
 	public $name;
-	public $genre;
 	public $rating;
-	public $jayornay;
-	public $picker;
-	public $participants;
-	public $type;
 	public $description;
 	public $cover_path;
 

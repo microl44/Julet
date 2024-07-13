@@ -21,7 +21,6 @@ if(isset($_GET))
 	{	
 		foreach($stmt->fetchAll() as $row)
 		{
-			$conn = GetConn();
 			$participant = new Participant($conn);
 
 			$participant->id = $row['id'];

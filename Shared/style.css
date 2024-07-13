@@ -754,13 +754,13 @@ footer{
 	padding-top: 10px;
     background-color: #BAC3E8;
     border-radius: 5px;
-	box-shadow: 3px 3px 5px #8935aa;
+	box-shadow: 3px 3px 5px #202020;
 	overflow-y: auto;
 	display:flex;
 }
 .movieCoverHolder img{
 	margin-right: 4%;
-	box-shadow: 3px 3px 2px #3B7DD5;
+	box-shadow: 3px 3px 10px #202020;
 	border-radius: 10px;
 	border: 2px outset #69158a;
 }
@@ -770,6 +770,10 @@ footer{
 	display: inline;
 	font-size: 16px;
 	line-height: 22px;
+}
+
+.movieTitle{
+	font-weight: bold;
 }
 
 .movieTitleHolder p{
