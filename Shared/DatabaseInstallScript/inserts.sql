@@ -138,7 +138,8 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("The Platform", 7.0, "", "A vertical prison with one cell per level. Two people per cell. Only one food platform and two minutes per day to feed. An endless nightmare trapped in The Hole."),
 # 110
 ("The Grand Budapest Hotel", 8.1, "", "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge."),
-("Weird: The Al Yankovic Story", 6.9, "", "Explores every facet of Yankovic's life, from his meteoric rise to fame with early hits like 'Eat It' and 'Like a Surgeon' to his torrid celebrity love affairs and famously depraved lifestyle.");
+("Weird: The Al Yankovic Story", 6.9, "", "Explores every facet of Yankovic's life, from his meteoric rise to fame with early hits like 'Eat It' and 'Like a Surgeon' to his torrid celebrity love affairs and famously depraved lifestyle."),
+("Göta kanal eller Vem drog ur proppen?", 5.8, "", "To get an order for 1,000 yachts from a middle-east sheik, two boat companies have to race 'Göta kanal', a canal through Sweden, east to west. There are no rules in this game and the winner gets the order.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -190,7 +191,8 @@ VALUES
 (46, "Family", 1, "Jay", 0),
 (104, "Science-Fiction", 3, "Nay", 1),
 (85, "CUSTOM RULES", 1, "Jay", 0),
-(110, "Horror", 1, "Nay", 1);
+(110, "Horror", 1, "Nay", 1),
+(113, "Comedy", 9, "Jay", 0);
 
 INSERT INTO marvel_movie(movie_id)
 VALUES
@@ -251,8 +253,8 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (20,4), (20,5), (20,6), (21,1), (21,2), (21,3), (21,5), (22,1), (22,3), (22,4), (22,5), (23,1), (23,3), (24,1), (24,3), (24,4), (25,1), (25,3), (25,5), (26,1), (26,3), (26,4), (26,6),
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
-(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9),
-(44, 1), (44, 2), (44, 3), (45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9);
+(37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9), (44, 1), (44, 2), (44, 3), 
+(45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9), (110, 1), (110, 2), (110, 3), (110,9 ), (113, 1), (113, 3), (113, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
