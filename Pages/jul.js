@@ -41,7 +41,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //Counter is currently not needed (debugging console prints), or could be used to run % 2 === 0 operations when setting background color on segments.
   var ctx = canvas.getContext("2d");
   ctx.lineWidth = 3;
-  var counter = 1;
+  var counter = 0;
 
   //itterates up from 0, in intervalls equalling the angle variable, until it reaches 360, meaning it completed a full lap.
   //ctx.beginPath to begin drawing, ctx.moveTo to determine the first point, then lineTo for destination. Finally ctx.stroke to draw. Multiple lineTo can be chained.
@@ -49,7 +49,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //Warning, uses math.
   ctx.save();
   for (let i = 0; i < 360; i += angle)
-  {
+  {    
     ctx.save();
     if(counter % 2 == 0)
     {
@@ -59,7 +59,13 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     {
       ctx.fillStyle = "#004Bff";
     }
-    console.log("Start angle = " + String((counter * i)) + ". Finish angle = " + String(((counter * angle) + angle)));
+
+
+    console.log("Angle: " + angle)
+    console.log("Counter: " + counter)
+    console.log("itterator: " + i)
+
+    console.log("Start angle = " + String((counter * angle)) + ". Finish angle = " + String(((counter * angle) + angle)));
     ctx.strokeStyle = "black";
     labelCoordinate.push(i - (angle / 2));
     ctx.beginPath();
@@ -132,6 +138,7 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
   //Listener finds a random number of degrees between 4000 and 6360 and spins the wheel that much, over the duration variable in seconds.
   var rotation = 0;
 
+  var final_index = 0;
   spinButton.addEventListener('click', () => 
   {
     console.log("button clicked");
@@ -166,22 +173,47 @@ function CreateWheel(initSections = 8, labels =["UNK", "UNK","UNK","UNK","UNK","
     }
     console.log(rotation);
     console.log(angle / (rotation % 360));
+                                        //remaining rotation after returning to origin
+    //90 - (360 / nr of sections) 
+    var not_constant_magic_number = -90 + (360 / sections)
+    rotation = rotation - not_constant_magic_number
+
+    var remaining_rotation = rotation % 360
+    //var holyshitmagicnumber = Math.ceil(((rotation % 360) + (-90 + (360 / sections)))/ angle)
+    final_index = Math.ceil(((remaining_rotation) + not_constant_magic_number) / angle)
+
+    //console.log("Total Rotation: " + rotation)
+    //console.log("Remaining rotation: " + remaining_rotation)
+    //console.log("not_constant_magic_number: " + (not_constant_magic_number))
+    //console.log("Angle: " + angle)
+    //console.log("Final fucky calculation for magic number: " + final_index)
+    //console.log("Calculating: (((rotation % 360 - not_constant_magic_number)) / angle) equals:" + ((remaining_rotation - not_constant_magic_number)) / angle)
+    //console.log("Calculating: ((rotation % 360) / angle) equals:" + (((rotation % 360) + (-90 + (360 / sections))) / angle))
+
+    if(final_index < 1)
+    {
+      //console.log("Setting to sections because it was below 1")
+      final_index = sections
+      if ((remaining_rotation / angle) < 0)
+      {
+        console.log("waaaaah")
+        final_index = sections - 1
+      }
+    }
+    if(final_index >= sections + 1)
+    {
+      //console.log("Setting to 1 because it was above sections + 1")
+      final_index = 1
+    }
 
     canvas.style.transition = `transform ${duration}s`;
-    canvas.style.transform = `rotate(${rotation}deg)`;
+    canvas.style.transform = `rotate(${-rotation}deg)`;
     duration = 8;
-  });
-
-  durationInput.addEventListener("keypress", function(event)
-  {
-    if(event.key === "Enter")
-    {
-      spinButton.click();
-    }
   });
   
   canvas.addEventListener('transitionend', () =>
   {
+    alert("Winner: " + labels[final_index - 1])
     var largest = labelCoordinate[0];
     for(var i = 0; i < labelCoordinate.length; i++)
     {
