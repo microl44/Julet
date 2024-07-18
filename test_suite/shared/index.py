@@ -5,7 +5,7 @@ from time import sleep
 from shared.Browser import Page
 
 class Index(Page):
-	URL = "http://localhost/pages/index.php"
+	URL = "http://localhost/Pages/index.php"
 	filename = ''
 	testcase = ''
 	page_type = 'index'

@@ -35,7 +35,7 @@ function actualInstall(){
 
         addLog("Reinstalled Database");
         
-        header('Location: pages/index.php');
+        header('Location: Pages/index.php');
     }
     catch(Exception $e){
         echo "<h1> Error! </h1>";

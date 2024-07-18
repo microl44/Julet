@@ -4,7 +4,7 @@ from shared.Browser import Page
 from time import sleep
 
 class Jul(Page):
-	URL = "http://localhost/pages/jul.php"
+	URL = "http://localhost/Pages/jul.php"
 	filename = ''
 	testcase = ''
 	page_type = 'jul'
