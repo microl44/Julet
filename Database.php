@@ -13,11 +13,11 @@ function DBConn()
 	catch (Exception $e)
 	{
 		echo $username;
-		echo '\n';
+		echo '<br/>';
 		echo $password;
-		echo '\n';
+		echo '<br/>';
 		echo $conn_string;
-		echo '\n';
+		echo '<br/>';
 		echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
 }

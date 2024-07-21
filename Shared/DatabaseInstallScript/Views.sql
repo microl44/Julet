@@ -1,4 +1,4 @@
-use jul;
+use Jul;
 
 DROP VIEW IF EXISTS marvel_participants;
 CREATE VIEW marvel_participants AS
