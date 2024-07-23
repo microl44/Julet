@@ -38,8 +38,8 @@ function actualInstall(){
         header('Location: Pages/index.php');
     }
     catch(Exception $e){
-        echo "<h1> Error! </h1>";
-        echo $e->getmessage();
+	addErrorLog($e->getmessage());
+	header('Location: Pages/index.php');
     }
 }
 

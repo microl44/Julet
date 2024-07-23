@@ -29,7 +29,7 @@ function RunOnAllPages()
 		$page_url = parse_url($_SERVER['REQUEST_URI']);
 		$path = $page_url['path'];
 		$page = basename($path);
-		
+
 		$_SESSION['previous_page'] = "hejsan";
 	}
 }
@@ -48,7 +48,7 @@ function IsAdmin()
 			}
 			catch(PDOException $e)
 			{
-				continue;
+				addErrorLog($e->getmessage());
 			}
 		}
 	}
@@ -139,7 +139,15 @@ function addLog($activity = 'pageview')
 		}
 		catch (Exception $e)
 		{
-			echo $e->getMessage();
+			addErrorLog($e->getmessage());
 		}
-	}	
+	}
+}
+
+function addErrorLog($message)
+{
+		$root_dir = getenv('JUL_ROOT');
+		$file = fopen($root_dir.'/error_log', 'a+');
+		$test = fwrite($file, date("d-m-y H:1:s").": ".$message.PHP_EOL);
+		fclose($file);
 }
