@@ -12,12 +12,6 @@ function DBConn()
 	}
 	catch (Exception $e)
 	{
-		echo $username;
-		echo '<br/>';
-		echo $password;
-		echo '<br/>';
-		echo $conn_string;
-		echo '<br/>';
-		echo 'Caught exception: ',  $e->getMessage(), "\n";
+		addErrorLog($e->getmessage());
 	}
 }
