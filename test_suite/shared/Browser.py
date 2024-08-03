@@ -43,10 +43,16 @@ class Page:
 		return elements
 
 	def init_options(self):
-		ops = c.EdgeOptions()
-		ops.add_argument("--start-maximized")
-		self.browser = c.webdriver.Edge(options=ops)
-		self.browser.implicitly_wait(10)
+		if b.is_linux():
+			ops = c.Options()
+			ops.binary_location = "/usr/lib/chromium-browser/chromium-browser"
+			ops._ignore_local_proxy = False
+			self.browser = c.webdriver.Chrome(chrome_options=ops)
+		else:
+			ops = c.EdgeOptions()
+			ops.add_argument("--start-maximized")
+			self.browser = c.webdriver.Edge(options=ops)
+			self.browser.implicitly_wait(10)
 
 	def click_element(self, element, xpath=False, timeout=1):
 		for x in range(timeout):

@@ -33,7 +33,7 @@ class Jul(Page):
 		for number in duration:
 			ele_input.send_keys(number)
 		ele_input.click()
-	
+
 		ele.click()
 		if should_sleep:
 			sleep(int(duration))
