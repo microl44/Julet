@@ -69,13 +69,15 @@
 
         <!----------MOVIE TABLE SECTION START---------->
         <!-- TABLE TABS SECTION START -->
-        <div>
-          <button class='tableTab' id='tableTabGroup' onclick="openTable(event, 'groupMovie')">GROUP</button>
-          <button class='tableTab' id='tableTabMarvel' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
-          <?php if(isset($_SESSION['username']))
-            {
-              echo "<button class='tableTab' id='tableTabSolo' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
-            }?>
+        <div id='movieTableTabHolder'>
+          <div id='movieTableTabDiv'>
+            <button class='tableTab' id='tableTabGroup' onclick="openTable(event, 'groupMovie')">GROUP</button>
+            <button class='tableTab' id='tableTabMarvel' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
+            <?php if(isset($_SESSION['username']))
+              {
+                echo "<button class='tableTab' id='tableTabSolo' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
+              }?>
+          </div>
         </div>
         <!-- TABLE TABS SECTION END -->
 
@@ -120,8 +122,8 @@
         <!----------CHANGE TABLE PAGE SECTION START---------->
         <div style='text-align: center; justify-content: center; width: 100%; display: flex;'>
           <div id='changePageDiv'>
-            <button class='tableTab changePage Fancy-Btn' id='prevPageBtn' onclick="ChangePage('left')"><b>PREV</b></button>
-            <button class='tableTab changePage Fancy-Btn' id='nextPageBtn' onclick="ChangePage('right')"><b>NEXT</b></button>
+            <button class='changePage Fancy-Btn' id='prevPageBtn' onclick="ChangePage('left')"><b>PREV</b></button>
+            <button class='changePage Fancy-Btn' id='nextPageBtn' onclick="ChangePage('right')"><b>NEXT</b></button>
           </div>
         </div>
         <!----------CHANGE TABLE PAGE SECTION END---------->
@@ -129,38 +131,40 @@
         if(isset($_SESSION['username']) || isset($_SESSION['password']))
         {
           echo "<!----------INSERT NEW MOVIE FORM START---------->
-          <div class='indexDivHolder'>
-            <h3> Add new movie </h3>
-            <div class='addMovieDiv'>
-                  <div class='addMovieDivFirst'>
-                    <label for='linkInput'>IMDB Link: </label>
-                    <input id='linkInput' type='text' name='addName' required/><br/>
+          <div class='indexDivHolderHolder'>
+            <div class='indexDivHolder'>
+              <h3> Add new movie </h3>
+              <div class='addMovieDiv'>
+                    <div class='addMovieDivFirst'>
+                      <label for='linkInput'>IMDB Link: </label>
+                      <input id='linkInput' type='text' name='addName' required/><br/>
 
-                    <label for='participantsInput'> Participants: </label>
-                    <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
+                      <label for='participantsInput'> Participants: </label>
+                      <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
 
-                    <label for='jayornayInput'> Jay or Nay: </label>
-                    <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
-                    </label>
-                  </div>
+                      <label for='jayornayInput'> Jay or Nay: </label>
+                      <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
+                      </label>
+                    </div>
 
-                  <div class='addMovieDivSecond'>
-                    <label for='pickerInput'> Picked By: </label>
-                    <select id='pickerInput' name='addPickedBy'>
-                    </select> <br/>
-                    
-                    <label for='genreInput'> Genre: </label>
-                    <select id='genreInput' name='addGenre'>
-                    </select> <br/>
+                    <div class='addMovieDivSecond'>
+                      <label for='pickerInput'> Picked By: </label>
+                      <select id='pickerInput' name='addPickedBy'>
+                      </select> <br/>
+                      
+                      <label for='genreInput'> Genre: </label>
+                      <select id='genreInput' name='addGenre'>
+                      </select> <br/>
 
-                    <label for='typeInput'>WheelType </label>
-                    <select id='typeInput' name='addIs_major' type='number'> <br/>
-                      <option value='1'> Big Wheel </option>
-                      <option value='0'> Small Wheel </option>
-                    </select> </br>
+                      <label for='typeInput'>WheelType </label>
+                      <select id='typeInput' name='addIs_major' type='number'> <br/>
+                        <option value='1'> Big Wheel </option>
+                        <option value='0'> Small Wheel </option>
+                      </select> </br>
 
-                    <input id='addMovieBtn' type='submit' onclick='InsertMovie()'' value='add movie'/>
-                  </div>
+                      <input id='addMovieBtn' type='submit' onclick='InsertMovie()'' value='add movie'/>
+                    </div>
+              </div>
             </div>
           </div>
           <!----------INSERT NEW MOVIE FORM END---------->";

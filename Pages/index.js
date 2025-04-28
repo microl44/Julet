@@ -1169,6 +1169,7 @@ async function FetchSolo()
     soloMovies.push(new Solo_movie(temp.id, temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
   }
   //await PopulateTable('Solo');
+  console.log(soloMovies);
   return soloMovies
 }
 

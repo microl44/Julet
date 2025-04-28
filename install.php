@@ -22,7 +22,6 @@ include_once "loginFunctions.php";
 function actualInstall(){
     try{
         $files = array('Shared/DatabaseInstallScript/create_db.sql', 'Shared/DatabaseInstallScript/inserts.sql', 'Shared/DatabaseInstallScript/Views.sql', 'Shared/DatabaseInstallScript/Procedures.sql');
-
         $conn = GetConn();
         $conn->query("CREATE DATABASE IF NOT EXISTS Jul;");
 
@@ -34,7 +33,6 @@ function actualInstall(){
         }
 
         addLog("Reinstalled Database");
-
         header('Location: Pages/index.php');
     }
     catch(Exception $e){

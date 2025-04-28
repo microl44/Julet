@@ -13,7 +13,7 @@ VALUES ("Action"),("Adventure"),("Animation"),("Biography"),("Comedy"),("Crime")
 ("Romance"),("Science-Fiction"),("Sport"),("Superhero"),("Thriller"),("War"),("Western"),("Wildcard");
 
 INSERT INTO participant(name)
-VALUES ("Micke"), ("Gabbe"), ("Crippe"), ("Behrad"), ("Linus"), ("Momme"), ("Victor"), ("Sebbe"), ("Doffer"), ("UNK"), ("Sondre"), ("Adam");
+VALUES ("Micke"), ("Gabbe"), ("Crippe"), ("Behrad"), ("Linus"), ("Momme"), ("Victor"), ("Sebbe"), ("Doffer"), ("UNK"), ("Sondre"), ("Adam"), ("Simon");
 
 INSERT INTO movie(name, imdb_rating, cover_path, description)
 VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/Images/cover.png", "A selfish Prince is cursed to become a monster for the rest of his life, unless he learns to fall in love with a beautiful young woman he keeps prisoner."),
@@ -26,7 +26,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Sinister", 6.8, "C:/xampp/htdocs/Julet/Shared/Images/cover7.png", "A controversial true crime writer finds a box of super 8 home movies in his new home, revealing that the murder case he is currently researching could be the work of an unknown serial killer whose legacy dates back to the 1960s."),
 ("Annihilation", 6.8, "C:/xampp/htdocs/Julet/Shared/Images/cover8.png", "A biologist signs up for a dangerous, secret expedition into a mysterious zone where the laws of nature don't apply."),
 ("Toy Story 3", 8.3, "C:/xampp/htdocs/Julet/Shared/Images/cover9.png", "The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned and to return home."),
-# 10
+# 10 ^
 ("Redline", 7.5, "C:/xampp/htdocs/Julet/Shared/Images/cover10.png", "A story about the most popular racing event in the galaxy, the Redline, and the various racers who compete in it."),
 ("se7en", 8.6, "C:/xampp/htdocs/Julet/Shared/Images/cover11.png", "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives."),
 ("Pulp Fiction", 8.5, "C:/xampp/htdocs/Julet/Shared/Images/cover12.png", "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."),
@@ -37,7 +37,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Inglorious basterds", 8.3, "C:/xampp/htdocs/Julet/Shared/Images/cover17.png", "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same."),
 ("A bug's life", 7.2, "C:/xampp/htdocs/Julet/Shared/Images/cover18.png", "A misfit ant, looking for 'warriors' to save his colony from greedy grasshoppers, recruits a group of bugs that turn out to be an inept circus troupe."),
 ("Zootopia", 8, "C:/xampp/htdocs/Julet/Shared/Images/cover19.png", "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy."),
-# 20
+# 20 ^
 ("Treasure planet", 7.2, "C:/xampp/htdocs/Julet/Shared/Images/cover20.png", "In this science fiction rendering of the classic novel 'Treasure Island', Jim Hawkins (Joseph Gordon-Levitt) is a rebellious teen seen by the world as an aimless slacker. After he receives a map from a dying pirate, he embarks on an odyssey across the universe to find the legendary Treasure Planet."),
 ("The Wolf of Wall Street", 8.2, "C:/xampp/htdocs/Julet/Shared/Images/cover21.png", "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government."),
 ("The revenant", 8, "C:/xampp/htdocs/Julet/Shared/Images/cover22.png", "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team."),
@@ -48,7 +48,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Braveheart", 8.4, "C:/xampp/htdocs/Julet/Shared/Images/cover27.png", "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England."),
 ("Dodgeball: A True Underdog Story", 6.7, "C:/xampp/htdocs/Julet/Shared/Images/cover28.png", "A group of misfits enter a Las Vegas dodgeball tournament in order to save their cherished local gym from the onslaught of a corporate health fitness chain."),
 ("The Pianist", 8.5, "C:/xampp/htdocs/Julet/Shared/Images/cover29.png", "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II."),
-# 30
+# 30 ^
 ("Edward Scissorhands", 7.9, "C:/xampp/htdocs/Julet/Shared/Images/cover30.png", "The solitary life of an artificial man - who was incompletely constructed and has scissors for hands - is upended when he is taken in by a suburban family."),
 ("John Wick", 7.4, "C:/xampp/htdocs/Julet/Shared/Images/cover31.png", "An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took his car."),
 ("The Batman", 7.8, "C:/xampp/htdocs/Julet/Shared/Images/cover32.png", "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement."),
@@ -59,7 +59,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Everything Everywhere All at Once", 7.8, "C:/xampp/htdocs/Julet/Shared/Images/cover37.png","A middle-aged Chinese immigrant is swept up into an insane adventure in which she alone can save existence by exploring other universes and connecting with the lives she could have led."),
 ("District 9", 7.9, "C:/xampp/htdocs/Julet/Shared/Images/cover38.png", "Violence ensues after an extraterrestrial race forced to live in slum-like conditions on Earth finds a kindred spirit in a government agent exposed to their biotechnology."),
 ("Indiana Jones: Raiders of the Lost Ark", 8.4, "C:/xampp/htdocs/Julet/Shared/Images/cover39.png", "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers."),
-# 40
+# 40 ^
 ("Life of Brian", 8, "C:/xampp/htdocs/Julet/Shared/Images/cover40.png", "Born on the original Christmas in the stable next door to Jesus Christ, Brian of Nazareth spends his life being mistaken for a messiah."),
 ("Gremlins", 7.3, "C:/xampp/htdocs/Julet/Shared/Images/cover41.png", "A young man inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town."),
 ("Cruella", 7.3, "C:/xampp/htdocs/Julet/Shared/Images/cover42.png", "A live-action prequel feature film following a young Cruella de Vil."),
@@ -70,7 +70,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Captain Marvel", 6.8, "C:/xampp/htdocs/Julet/Shared/Images/cover47.png", "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races."),
 ("Iron Man", 7.9, "C:/xampp/htdocs/Julet/Shared/Images/cover48.png", "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil."),
 ("Iron Man 2", 6.9, "C:/xampp/htdocs/Julet/Shared/Images/cover49.png", "With the world now aware of his identity as Iron Man, Tony Stark must contend with both his declining health and a vengeful mad man with ties to his father's legacy."),
-# 50
+# 50 ^
 ("The Incredible Hulk", 6.6, "C:/xampp/htdocs/Julet/Shared/Images/cover50.png", "Bruce Banner, a scientist on the run from the U.S. Government, must find a cure for the monster he turns into whenever he loses his temper."),
 ("Thor", 7, "C:/xampp/htdocs/Julet/Shared/Images/cover51.png", "The powerful but arrogant god Thor is cast out of Asgard to live amongst humans in Midgard (Earth), where he soon becomes one of their finest defenders."),
 ("Thor: The Dark World", 6.8, "C:/xampp/htdocs/Julet/Shared/Images/cover52.png", "When the Dark Elves attempt to plunge the universe into darkness, Thor must embark on a perilous and personal journey that will reunite him with doctor Jane Foster."),
@@ -81,7 +81,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Avengers: Age of Ultron", 7.3, "C:/xampp/htdocs/Julet/Shared/Images/cover57.png", "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan."),
 ("Ant-Man", 7.3, "C:/xampp/htdocs/Julet/Shared/Images/cover58.png", "Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help his mentor, Dr. Hank Pym, pull off a plan that will save the world."),
 ("Captain America: Civil War", 7.8, "C:/xampp/htdocs/Julet/Shared/Images/cover59.png", "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man."),
-# 60
+# 60 ^
 ("Spider-Man: Homecoming", 7.4, "C:/xampp/htdocs/Julet/Shared/Images/cover60.png", "Peter Parker balances his life as an ordinary high school student in Queens with his superhero alter-ego Spider-Man, and finds himself on the trail of a new menace prowling the skies of New York City."),
 ("Black Panther",7.3 , "C:/xampp/htdocs/Julet/Shared/Images/cover61.png", "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past."),
 ("Black Widow", 6.7, "C:/xampp/htdocs/Julet/Shared/Images/cover62.png", "Natasha Romanoff confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises."),
@@ -92,7 +92,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Avengers: Endgame", 8.4, "C:/xampp/htdocs/Julet/Shared/Images/cover67.png", "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe."),
 ("Spider-Man: Far from Home", 7.4, "C:/xampp/htdocs/Julet/Shared/Images/cover68.png", "Following the events of Avengers: Endgame (2019), Spider-Man must step up to take on new threats in a world that has changed forever."),
 ("Spider-Man: No Way Home", 8.2, "C:/xampp/htdocs/Julet/Shared/Images/cover69.png", "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man."),
-# 70
+# 70 ^
 ("Shang-Chi and The Legend of the Ten Rings", 7.4, "C:/xampp/htdocs/Julet/Shared/Images/cover70.png", "Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization."),
 ("Eternals", 6.3, "C:/xampp/htdocs/Julet/Shared/Images/cover71.png", "The saga of the Eternals, a race of immortal beings who lived on Earth and shaped its history and civilizations."),
 ("Doctor Strange in the Multiverse of Madness", 6.9, "C:/xampp/htdocs/Julet/Shared/Images/cover72.png", "Doctor Strange teams up with a mysterious teenage girl from his dreams who can travel across multiverses, to battle multiple threats, including other-universe versions of himself, which threaten to wipe out millions across the multiverse. They seek help from Wanda the Scarlet Witch, Wong and others."),
@@ -103,7 +103,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Venom", 6.6, "", "A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth. But the being takes a liking to Earth and decides to protect it."),
 ("Venom: Let There Be Carnage", 5.9, "", "Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and escapes prison after a failed execution."),
 ("Morbius", 5.2, "", "Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead."),
-# 80
+# 80 ^
 ("Spider-Man", 7.4, "", "After being bitten by a genetically-modified spider, a shy teenager gains spider-like abilities that he uses to fight injustice as a masked superhero and face a vengeful enemy."),
 ("Spider-Man 2", 7.5, "", "Peter Parker is beset with troubles in his failing personal life as he battles a former brilliant scientist named Otto Octavius."),
 ("Spider-Man 3", 6.3, "", "A strange black entity from another world bonds with Peter Parker and causes inner turmoil as he contends with new villains, temptations, and revenge."),
@@ -114,7 +114,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Spider-Man: Into the Spider-Verse", 8.4, "", "Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities."),
 ("Spider-Man: Across the Spider-Verse", 8.7, "", "Miles Morales catapults across the multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero."),
 ("Moana", 7.6, "", "In Ancient Polynesia, when a terrible curse incurred by the Demigod Maui reaches Moana's island, she answers the Ocean's call to seek out the Demigod to set things right."),
-# 90
+# 90 ^
 ("Frozen", 7.4, "", "When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition."),
 ("Inside Out", 8.1, "", "After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school."),
 ("The Little Mermaid", 7.2, "", "A young mermaid makes a deal with a sea witch to trade her beautiful voice for human legs so she can discover the world above water and impress a prince."),
@@ -125,7 +125,7 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Whiplash", 8.5, "", "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential."),
 ("Frozen 2", 6.8, "", "Anna, Elsa, Kristoff, Olaf and Sven leave Arendelle to travel to an ancient, autumn-bound forest of an enchanted land. They set out to find the origin of Elsa's powers in order to save their kingdom."),
 ("Guillermo del Toro's Pinocchio", 7.6, "", "A father's wish magically brings a wooden boy to life in Italy, giving him a chance to care for the child."),
-# 100
+# 100 ^
 ("Spider-Man: Across the Spider-Verse", 8.6, "", "Miles Morales catapults across the multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero."),
 ("The Avengers", 8.0, "", "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity."),
 ("The Marvels", 8.0, "", "Carol Danvers gets her powers entangled with those of Kamala Khan and Monica Rambeau, forcing them to work together to save the universe."),
@@ -136,10 +136,31 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Van Helsing", 6.1, "", "The famed monster hunter is sent to Transylvania to stop Count Dracula, who is using Dr. Frankenstein's research and a werewolf for nefarious purposes."),
 ("Idiocracy", 6.5, "", "Corporal Joe Bauers, a decidedly average American, is selected for a top-secret hibernation program but is forgotten and left to awaken to a future so incredibly moronic that he's easily the most intelligent person alive."),
 ("The Platform", 7.0, "", "A vertical prison with one cell per level. Two people per cell. Only one food platform and two minutes per day to feed. An endless nightmare trapped in The Hole."),
-# 110
+# 110 ^
 ("The Grand Budapest Hotel", 8.1, "", "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge."),
 ("Weird: The Al Yankovic Story", 6.9, "", "Explores every facet of Yankovic's life, from his meteoric rise to fame with early hits like 'Eat It' and 'Like a Surgeon' to his torrid celebrity love affairs and famously depraved lifestyle."),
-("Göta kanal eller Vem drog ur proppen?", 5.8, "", "To get an order for 1,000 yachts from a middle-east sheik, two boat companies have to race 'Göta kanal', a canal through Sweden, east to west. There are no rules in this game and the winner gets the order.");
+("Göta kanal eller Vem drog ur proppen?", 5.8, "", "To get an order for 1,000 yachts from a middle-east sheik, two boat companies have to race 'Göta kanal', a canal through Sweden, east to west. There are no rules in this game and the winner gets the order."),
+("The Greatest Showman", 7.5, "", "Celebrates the birth of show business and tells of a visionary who rose from nothing to create a spectacle that became a worldwide sensation."),
+("No Country for Old Men", 8.2, "", "Violence and mayhem ensue after a hunter stumbles upon the aftermath of a drug deal gone wrong and over two million dollars in cash near the Rio Grande."),
+("Wish", 5.6, "", "A young girl named Asha wishes on a star and gets a more direct answer than she bargained for when a trouble-making star comes down from the sky to join her."),
+("Shaun of the Dead", 7.9, "", "The uneventful, aimless lives of a London electronics salesman and his layabout roommate are disrupted by the zombie apocalypse."),
+("Alice in Wonderland", 6.4, "", "Nineteen-year-old Alice returns to the magical world from her childhood adventure, where she reunites with her old friends and learns of her true destiny: to end the Red Queen's reign of terror."),
+("Carved", 4.4, "", "A group of survivors finds themselves trapped in a historical reenactment village on Halloween, where they must unite to battle a sentient, vengeful pumpkin."),
+("Her", 8.0, "", "In the near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need."),
+# 120 ^
+("The Lighthouse", 7.4, "", "Two lighthouse keepers try to maintain their sanity while living on a remote and mysterious New England island in the 1890s."),
+("Of Mice And Men", 7.4, "", "A nomadic farm worker looks after his dimwitted, gentle-giant friend during the Great Depression."),
+("Deadpool & Wolverine", 7.7, "", "Deadpool is offered a place in the Marvel Cinematic Universe by the Time Variance Authority, but instead recruits a variant of Wolverine to save his universe from extinction."),
+("Alien", 8.5, "", "After investigating a mysterious transmission of unknown origin, the crew of a commercial spacecraft encounters a deadly lifeform."),
+("The Chronicles of Narnia: The Lion, the Witch and the Wardrobe", 6.9, "", "While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen."),
+("Monkey Man", 6.8, "", "An anonymous young man unleashes a campaign of vengeance against the corrupt leaders who murdered his mother and continue to systematically victimize the poor and powerless."),
+("Venom: The Last Dance", 6.0, "", "Eddie Brock and Venom must make a devastating decision as they're pursued by a mysterious military man and alien monsters from Venom's home world."),
+("The Menu", 7.2, "", "A young couple travels to a remote island to eat at an exclusive restaurant where the chef has prepared a lavish menu, with some shocking surprises."),
+("Moana 2", 6.6, "", "After receiving an unexpected call from her wayfinding ancestors, Moana must journey to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she's ever faced."),
+("Wonka", 7.0, "", "With dreams of opening a shop in a city renowned for its chocolate, a young and poor Willy Wonka discovers that the industry is run by a cartel of greedy chocolatiers.")
+# 130 ^
+;
+
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -192,7 +213,16 @@ VALUES
 (104, "Science-Fiction", 3, "Nay", 1),
 (85, "CUSTOM RULES", 1, "Jay", 0),
 (110, "Horror", 1, "Nay", 1),
-(113, "Comedy", 9, "Jay", 0);
+(113, "Comedy", 9, "Jay", 0),
+(114, "Biography", 1, "Jay", 0),
+(116, "Animation", 2, "Meixcan Standoff", 0),
+(118, "Mystery", 2, "Jay", 0),
+(119, "CUSTOM RULES", 9, "Nay", 0),
+(120, "Romance", 1, "Jay", 0),
+(122, "Western", 9, "Mexican Standoff", 0),
+(124, "Science-Fiction", 1, "Jay", 0),
+(125, "Family", 9, "Jay", 0),
+(126, "Crime", 9, "Mexican Standoff", 0);
 
 INSERT INTO marvel_movie(movie_id)
 VALUES
@@ -200,7 +230,7 @@ VALUES
 (56),(57),(58),(59),(60),(61),(62),(63),(64),(65),
 (66),(67),(68),(69),(70),(71),(72),(73),(74),(75),
 (76),(77),(78),(79),(80),(81),(82),(83),(84), (103),
-(106);
+(106), (123), (127);
 
 INSERT INTO marvel_participated(marvel_movie_entry_id, user_id, user_rating)
 VALUES
@@ -244,7 +274,9 @@ VALUES
 (38, 1, 6), (38, 2, 4), (38, 3, 5), (38, 4, 7),
 (39, 1, 3), (39, 2, 1), (39, 3, 1),
 (40, 1, 9), (40, 2, 5), (40, 3, 4),
-(41, 1, 1), (41, 2, 1), (41, 3, 1);
+(41, 1, 1), (41, 2, 1), (41, 3, 1),
+(42, 1, 10), (42, 2, 4), (42, 3, 9), (42, 9, 7),
+(43, 1, 3), (43, 2, 3), (43, 4, 5), (43, 9, 5);
 
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
@@ -254,7 +286,9 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (28, 1), (28, 3), (28, 4), (28, 5), (29, 1), (29, 3), (29, 4), (29, 5), (30, 1), (30, 3), (30, 4), (30, 6), (31, 1), (31, 3), (31, 6), 
 (31, 7), (32, 1), (32, 3), (32, 5), (33, 1), (33, 2), (33, 3), (33, 4), (34, 1), (34, 4), (34, 6), (35, 1), (35, 3), (35, 4), (35, 5), (35, 6), (36, 1), (36, 3), (36, 6), (36, 9), (37, 1),
 (37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9), (44, 1), (44, 2), (44, 3), 
-(45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9), (110, 1), (110, 2), (110, 3), (110,9 ), (113, 1), (113, 3), (113, 9);
+(45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9), (110, 1), (110, 2), (110, 3), (110,9 ), (113, 1), (113, 3), (113, 9), (114, 1),
+(114, 4), (114, 9), (116, 1), (116, 2), (118, 1), (118, 2), (118, 3), (118, 6), (118, 9), (119, 1), (119, 3), (119, 9), (120, 1), (120, 9), (120, 13), (122, 1), (122, 9),
+(124, 1), (124, 2), (124, 9), (125, 1), (125, 3), (125, 9), (126, 1), (126, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
@@ -268,7 +302,7 @@ VALUES (85, 1, 8), (85, 3, 2),
 (92, 1, 9), 
 (93, 1, 8), (93, 2, 6),
 (94, 1, 7), (94, 2, 10), 
-(95, 1, 8), (95, 2, "8"), 
+(95, 1, 8), (95, 2, 8), 
 (96, 1, 9), (96, 2, 7), (96, 9, 8), 
 (97, 1, 4), (97, 9, 4),
 (98, 1, 9), (98, 3, 8), 
@@ -279,7 +313,13 @@ VALUES (85, 1, 8), (85, 3, 2),
 (108, 1, 6), (108, 2, 5),
 (109, 1, 8), (109, 2, 5), (109, 3, 6),
 (111, 1, 10), (111, 4, 8),
-(112, 1, 8);
+(112, 1, 8),
+(115, 1, 9), (115, 2, 4),
+(117, 1, 4),
+(121, 1, 7),
+(128, 1, 7),
+(129, 1, 8),
+(130, 1, 5);
 
 INSERT INTO movie_club_role(role_name)
 VALUES("Owner"), ("Admin"), ("Event_Manager"), ("User");

@@ -42,4 +42,6 @@ LEFT JOIN
 ORDER BY 
 	marvel_movie_entry_id;
     
-SELECT * FROM marvel_movies;
+SELECT * FROM group_movie_participants;
+
+SELECT * FROM movie;
