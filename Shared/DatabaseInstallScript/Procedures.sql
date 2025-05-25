@@ -1,3 +1,4 @@
+use Jul;
 CREATE PROCEDURE GetParticipationRate(participantName varchar(255))
 BEGIN
 	SELECT ROUND(((SELECT COUNT(*) FROM movie WHERE movie.participants like CONCAT("%", participantName, "%")) / (SELECT COUNT(*) FROM movie)) * 100) AS "Participation rate";

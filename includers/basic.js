@@ -3,6 +3,14 @@ function GetHost()
 	return `localhost`;
 }
 
+//extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
+function GetCookie(name) {
+	const value = `; ${document.cookie}`;
+	const parts = value.split(`; ${name}=`);
+	if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  
+
 var headerStatus = 'inactive';
 
 function DeleteAllCookies() 
@@ -19,19 +27,15 @@ function DeleteAllCookies()
 
 function ExpandHeader()
 {
-	console.log("hello");
 	const header = document.getElementById("navbar");
 	if(headerStatus == 'inactive')
 	{
-		for (var i = 70; i < 500; i++)
-		{
-			header.style.height = i + "px";
-		}
+		header.style.height = "50vh";
 		headerStatus = 'active';
 	}
 	else
 	{
-		header.style.height = "80px";
+		header.style.height = "10vh";
 		headerStatus = 'inactive';
 	}
 }

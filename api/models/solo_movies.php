@@ -17,7 +17,6 @@ class Solo_movie
 	{
 		$conn = $db;
 	}
-
 	function __constructor($id,$participant,$participant_id,$user_rating,$imdb_rating,$movie_id,$description,$cover_path)
 	{
 		$this->id = $id;

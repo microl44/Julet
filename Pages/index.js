@@ -1,7 +1,6 @@
 //#################################################################
 //#################CLASSES DECLARATION BEGIN#######################
 //#################################################################
-
 class Solo_movie
 {
   constructor(id, participant_id, participant, user_rating, imdb_rating, movie, movie_id, description, cover_path)
@@ -88,8 +87,6 @@ const TableType = Object.freeze(
 
 //get host from basic.js
 var host = GetHost();
-var cookies = document.cookie;
-
 //arrays for fetched data
 var groupMovies = Array();
 var marvelMovies = Array();
@@ -109,12 +106,6 @@ var isFetching = false;
 //#################################################################
 
 
-//extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
-function GetCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
 
 function GetActiveTable()
 {
@@ -220,14 +211,17 @@ function AddTablePageDiv(TableType)
 	var div = document.CreateElement()
 }
 
-function ChangePage(rightleft)
+function ChangePage(direction)
 {
+  if (document.getElementsByClassName('tempRow').length > 0)
+  {
+    return
+  }
   var temp_marvel = CleanMarvelArray();
   switch(GetActiveTableName())
   {
   case 'Group':
-    console.log("huh")
-    if (rightleft == "right")
+    if (direction == "right")
     {
       group_section_index = group_section_index + 1;
     }
@@ -238,7 +232,7 @@ function ChangePage(rightleft)
     PopulateTable("Group")
     break;
   case 'Solo':
-    if (rightleft == "right")
+    if (direction == "right")
     {
       solo_section_index = solo_section_index + 1;
     }
@@ -249,7 +243,7 @@ function ChangePage(rightleft)
     PopulateTable("Solo")
     break;
   case 'Marvel':
-    if (rightleft == "right")
+    if (direction == "right")
     {
       marvel_section_index = marvel_section_index + 1;
       if ((marvel_section_index * 10) + 1 >= temp_marvel.length)
@@ -342,6 +336,10 @@ function CreateGroupTable()
   var movies = CleanGroupArray().reverse();
   const table = CleanTable(TableType.Group);
 
+  if (group_section_index < 0)
+  {
+    group_section_index = 0
+  }
   var end_index = group_section_index * section_mult + section_mult - 1;
   var start_index = group_section_index * section_mult;
   if (end_index > movies.length)
@@ -424,6 +422,7 @@ function CleanMarvelArray()
     catch (e)
     {
       console.log(e)
+      break
     }
 
     try
@@ -529,7 +528,7 @@ function CreateSoloTable()
   }
 }
 
-function sortingFuntion(a,b,property){
+function sortingFunction(a,b,property){
   if(a[property] > b[property])
   {
     return 1;
@@ -552,15 +551,15 @@ function SortTable(property, tableID)
   switch(tableID)
   {
     case 'group':
-      groupMovies.sort((a,b) => sortingFuntion(a,b,property));
+      groupMovies.sort((a,b) => sortingFunction(a,b,property));
       CreateGroupTable();
       return;    
     case 'marvel':
-      marvelMovies.sort((a,b) => sortingFuntion(a,b,property));
+      marvelMovies.sort((a,b) => sortingFunction(a,b,property));
       CreateMarvelTable();
       return;
     case 'solo':
-      soloMovies.sort((a,b) => sortingFuntion(a,b,property));
+      soloMovies.sort((a,b) => sortingFunction(a,b,property));
       CreateSoloTable();
       return;
     
@@ -734,12 +733,12 @@ function ResetEvent()
 
 function InsertTempRows()
 {
-  const table = CleanTable('Group');
-
+  const table = CleanTable(TableType.Group)
   for (var i = 10; i >= 1; i--)
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
+    row.classList.add('tempRow')
 
     cell0 = row.insertCell(0);
     cell1 = row.insertCell(1);
@@ -772,10 +771,9 @@ function InsertTempRows()
 
 function openTable(evt, tableName)
 {
-  var jesus, tableList;
-
+  var tableList;
   tableList = document.getElementsByClassName("movieTable");
-  for (jesus = 0; jesus < tableList.length; jesus++)
+  for ( var jesus = 0; jesus < tableList.length; jesus++)
   {
     tableList[jesus].style.display = "none";
   }
@@ -785,41 +783,7 @@ function openTable(evt, tableName)
   visibleTable.style.textAlign = "left";
 }
 
-function FetchParticipants(name = null)
-{
-  participants = [];
-  params = new URLSearchParams();
-
-  if(name != null)
-    {params.append('name', name);}
-
-  fetch(`http://${host}/api/participants.php?${params}`)
-  .then(response => response.json())
-  .then(data =>
-  {
-    results = data;
-
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var tempObject = JSON.parse(results['data'][i]);
-      participants.push(new Participant(tempObject.id, tempObject.name));
-
-      //CreateSortPanel();
-
-      //const addMoviePicker = document.getElementById('pickerInput');
-      //const addMoviePickerOption = document.createElement("option");
-      //addMoviePickerOption.text = tempObject.name;
-      //addMoviePicker.append(addMoviePickerOption);
-    }
-    participants.sort((a, b) => a.id - b.id)
-
-    PopulateParticipantFilter();
-    PopulateAddNewMovieWinner();
-  })
-}
-
-
-function GetGenres(name = null)
+async function GetGenres(name = null)
 {
   //console.log("GetGenres() Called.");
   genres = [];
@@ -858,77 +822,8 @@ function CreateLoadingRow()
   //table.append(loadingDiv);
 }
 
-function FetchSolo()
-{
-  const params = new URLSearchParams();
-  soloMovies = [];
-
-  isFetching = true;
-
-  fetch(`http://${host}/api/solo_movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    results = data
-    console.log(results);
-
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var temp = JSON.parse(results['data'][i]);
-
-      soloMovies.push(new Solo_movie(temp.id ,temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
-    }
-    PopulateTable('Solo');
-  })
-}
-
-function FetchGroup()
-{
-  const params = new URLSearchParams();
-  groupMovies = [];
-
-  isFetching = true;
-
-  fetch(`http://${host}/api/group_movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    results = data;
-    console.log(results);
-
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var temp = JSON.parse(results['data'][i]);
-      groupMovies.push(new Group_movie(temp.id ,temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
-    }
-    PopulateTable('Group');
-  })
-}
-
-function FetchMarvel()
-{
-  const params = new URLSearchParams();
-  marvelMovies = []
-
-  isFetching = true;
-
-  fetch(`http://${host}/api/marvel_movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    results = data
-    console.log(results);
-
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      let t = JSON.parse(results['data'][i]);
-      marvelMovies.push(new Marvel_movie(t.id ,t.participant_id, t.participant, t.user_rating, t.imdb_rating, t.movie, t.description, t.cover_path));
-    }
-    PopulateTable('Marvel');
-  })
-}
-
-function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
+//depricated function.
+async function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
 
   isFetching = true;
@@ -938,30 +833,7 @@ function GetMovies(name = null,  genre = null, rating = null, jayornay = null, p
   .then(data => 
   {
     results = data;
-    /*
-    for (var i = 0; i < results['data']['group'].length; i++)
-    {
-      var testParticipants = Array();
-      var tempObject = JSON.parse(results['data']['group'][i]);
-
-      moviesGroup.push(new Movie(tempObject.id, tempObject.name, tempObject.genre, tempObject.rating, 
-        tempObject.jayornay, tempObject.picker, tempObject.participants, tempObject.type, tempObject.description, tempObject.cover_path));
-    }
-
-    for (var i = 0; i < results['data']['marvel'].length; i++)
-    {
-      var tempObject = JSON.parse(results['data']['marvel'][i]);
-
-      moviesMarvel.push(new Movie(null ,tempObject.name, null, tempObject.rating, tempObject.grade, null, tempObject.participants));
-    }
-
-    for (var i = 0; i < results['data']['solo'].length; i++)
-    {
-      var tempObject = JSON.parse(results['data']['solo'][i]);
-
-      moviesSolo.push(new Movie(tempObject.id, tempObject.name, null, tempObject.rating, tempObject.grade));
-    }
-    */
+    console.log(results);
     isFetching = false;
   })
 }
@@ -1017,8 +889,110 @@ function InsertMovie()
   }
 }
 
+async function FetchParticipants(name = null)
+{
+  params = new URLSearchParams();
+  participants = [];
+
+  if(name != null)
+    {params.append('name', name);}
+
+  var res = await fetch(`http://${host}/api/participants.php?${params}`)
+  var data = await res.json()
+
+  for (var i = 0; i < data['data'].length; i++)
+  {
+    var tempObject = JSON.parse(data['data'][i]);
+    participants.push(new Participant(tempObject.id, tempObject.name));
+  }
+  participants.sort((a, b) => a.id - b.id)
+  return participants
+
+    //PopulateParticipantFilter();
+    //PopulateAddNewMovieWinner();
+  //})
+}
+
+async function FetchGroup()
+{
+  const params = new URLSearchParams();
+  groupMovies = [];
+
+  const res = await fetch(`http://${host}/api/group_movies.php?${params}`)
+  const data = await res.json()
+
+  for (var i = 0; i < data['data'].length; i++)
+  {
+      var temp = JSON.parse(data['data'][i]);
+      groupMovies.push(new Group_movie(temp.id, temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
+  }
+  //await PopulateTable('Group');
+  return groupMovies
+}
+
+
+async function FetchMarvel()
+{
+  const params = new URLSearchParams();
+  marvelMovies = []
+
+  const res = await fetch(`http://${host}/api/marvel_movies.php?${params}`)
+  const data = await res.json()
+
+  for (var i = 0; i < data['data'].length; i++)
+  {
+    var temp = JSON.parse(data['data'][i]);
+    marvelMovies.push(new Marvel_movie(temp.id, temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
+  }
+  //await PopulateTable('Marvel');
+  return marvelMovies
+}
+
+async function FetchSolo()
+{
+  let getting = GetCookie("username");
+
+  if(!getting)
+  {
+    console.log("is empty " + getting);  
+    return;
+  }
+  
+  const params = new URLSearchParams();
+  soloMovies = [];
+
+  params.set("username",getting);  
+
+  const res = await fetch(`http://${host}/api/solo_movies.php?${params}`)
+  const data = await res.json()
+  
+  for (var i = 0; i < data['data'].length; i++)
+  {
+    var temp = JSON.parse(data['data'][i]);
+    soloMovies.push(new Solo_movie(temp.id, temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
+  }
+  //await PopulateTable('Solo');
+  console.log(soloMovies);
+  return soloMovies
+}
+
+async function stuff()
+{
+  const why_does_this_fucking_fuck_shit_fuck_fuck_fuck_work = FetchParticipants();
+  const jesus_fucking_kill_me = Promise.all([FetchGroup(), FetchMarvel(), FetchSolo()]);
+  
+  await why_does_this_fucking_fuck_shit_fuck_fuck_fuck_work
+  const [data2, data3, data4] = await jesus_fucking_kill_me;
+
+  PopulateTable(TableType.Group)
+  PopulateTable(TableType.Marvel)
+  PopulateTable(TableType.Solo)
+  console.log("fucking get me out of this, why is javascript like {await()=>()function{#CODE FUCKING GOES HERE FOR SOME REASON=>async{=>()for x in l;}};}")
+} console.log("fucking fuck fuck fuck fuck shit fuck shit i hate javascript i hate javascript i hate javascript i hate javascript")
+
 InsertTempRows();
-FetchParticipants();
-FetchMarvel();
-FetchGroup();
-FetchSolo();
+
+stuff().catch(error =>
+{
+  console.log(error)
+});

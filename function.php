@@ -110,36 +110,6 @@ function PrintParticipantInfo()
   echo "</div>";
 }
 
-function PrintMovies()
-{
-    $imageDir = "../Shared/Images/";
-    $images = SortArray(scandir($imageDir), "NATURAL");
-    $conn = GetConn();
-
-    $titles = $conn->query("SELECT `name`,`description` FROM movie ORDER BY id");
-
-    foreach($images as $image)
-    {
-      if($image != '.' && $image != '..')
-      {
-        $title = $titles->fetch(PDO::FETCH_ASSOC);
-        echo "<div class='movieDisplayDiv'>";
-          echo "<div class='movieCoverHolder'>";
-            echo "<img src='../Shared/Images/".$image."' alt='Girl in a jacket'> </img>";
-            echo "<div class='movieTitleHolder'>";
-              echo "<p class='movieTitle'><b>".$title['name']."</b></p>";
-              echo "<p>".$title['description']."</p>";
-            echo "</div>";
-          echo "</div>"; 
-        echo "</div>";
-      }
-    }
-}
-
-function catchStatent(){
-  echo '<h1>fuuuuuuuck</h1>';
-}
-
 // function to scrape cover art from IMDB page and save it as a .png on the server
 function scrapeCoverArt($url, $savePath) {
    // create a variable to keep track of the number to append to the file name
@@ -163,7 +133,7 @@ function scrapeCoverArt($url, $savePath) {
   curl_close($ch);
 
   if ($error) {
-    echo "Error: " . $error;
+    addErrorLog($error);
     return;
   }
 
@@ -175,7 +145,7 @@ function scrapeCoverArt($url, $savePath) {
   $xpath = new DOMXPath($dom);
   $img = $xpath->query("//img[@srcset]")->item(0);
   if (!$img) {
-    echo "Error: Could not find image tag";
+    addErrorLog("Could not find img element tagged with ipc-image");
     return;
   }
 
@@ -183,11 +153,11 @@ function scrapeCoverArt($url, $savePath) {
   $imageUrl = $img->getAttribute('src');
   $imageData = file_get_contents($imageUrl);
   if (!$imageData) {
-    echo "Error: Could not retrieve image data from " . $imageUrl;
+    addErrorLog("Could not retrieve image data from " . $imageUrl);
     return;
   }
   if (!file_put_contents($modifiedSavePath, $imageData)) {
-    echo "Error: Could not save image data to " . $modifiedSavePath;
+    addErrorLog("Could not save image data to " . $modifiedSavePath);
     return;
   }
   return $count;

@@ -22,7 +22,6 @@ if(isset($_GET))
 		{	
 			foreach($stmt->fetchAll() as $row)
 			{
-				$conn = GetConn();
 				$marvel_movie = new marvel_movie($conn);
 
 				$marvel_movie->id = $row['id'];

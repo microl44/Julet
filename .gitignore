@@ -2,3 +2,7 @@ Shared/DatabaseInstallScript/login.sql
 Stuff/*
 Shared/ExternalAPI/*
 **/.pyc
+**/thingstoaddtosetup.txt
+**/__pycache__/*
+test_suite/test_res/*
+test_suite/test_res

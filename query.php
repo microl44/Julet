@@ -1,6 +1,7 @@
 <?php
 require_once "loginFunctions.php";
 require_once "function.php";
+require_once "includers/basic.php";
 if(exists($_POST['addName']) && exists($_POST['addGenre']))
 {
 	InsertMovie();
@@ -45,6 +46,6 @@ function DeleteMovie()
 		$stmp->execute();
 	}
 	catch(Exception $e){
-		catchStatent();
+		addErrorLog($e->getmessage());
 	}
 }

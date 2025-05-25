@@ -1,4 +1,9 @@
 @ECHO OFF
+if not "%1"=="am_admin" (
+    powershell -Command "Start-Process -Verb RunAs -FilePath '%0' -ArgumentList 'am_admin'"
+    exit /b
+)
+
 set "DB_CONN=mysql:dbname=Jul;host=localhost;port=3306;"
 set "DB_USERNAME=root"
 set "DB_PASSWORD=tinytiger997"
@@ -10,5 +15,6 @@ Powershell.exe -executionpolicy remotesigned -File C:\xampp\htdocs\Julet\setup.p
 setx "DB_CONN" "mysql:dbname=Jul;host=localhost;port=3306;" /m
 setx "DB_USERNAME" "root" /m
 setx "DB_PASSWORD" "tinytiger997" /m
+setx "PATH" "%PATH%;C:\xampp\htdocs\Julet" /m
 
 pause
