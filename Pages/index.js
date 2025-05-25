@@ -101,6 +101,9 @@ var section_mult = 10;
 //used to prevent multipe fetch requests at same time
 var isFetching = false;
 
+//keep track of sort order in tables
+var reverse_sort = true;
+
 //#################################################################
 //#################VARIABLE DECLARATION END########################
 //#################################################################
@@ -528,16 +531,18 @@ function CreateSoloTable()
   }
 }
 
-function sortingFunction(a,b,property){
+function sortingFunction(a, b, property, reverse)
+{
+  console.log(reverse ? 1 : -1)
   if(a[property] > b[property])
   {
-    return 1;
+    return reverse ? 1 : -1;
   }
   else
   {
     if(b[property] > a[property])
     {
-      return -1
+      return reverse ? -1 : 1
     }
     else
     {
@@ -551,16 +556,19 @@ function SortTable(property, tableID)
   switch(tableID)
   {
     case 'group':
-      groupMovies.sort((a,b) => sortingFunction(a,b,property));
+      groupMovies.sort((a,b) => sortingFunction(a,b,property, reverse_sort));
       CreateGroupTable();
-      return;    
+      reverse_sort = !reverse_sort
+      return;
     case 'marvel':
-      marvelMovies.sort((a,b) => sortingFunction(a,b,property));
+      marvelMovies.sort((a,b) => sortingFunction(a,b,property, reverse_sort));
       CreateMarvelTable();
+      reverse_sort = !reverse_sort
       return;
     case 'solo':
-      soloMovies.sort((a,b) => sortingFunction(a,b,property));
+      soloMovies.sort((a,b) => sortingFunction(a,b,property, reverse_sort));
       CreateSoloTable();
+      reverse_sort = !reverse_sort
       return;
     
     default: 
