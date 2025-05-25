@@ -218,7 +218,8 @@ body{
 	font-size: 30px;
 	overflow: hidden;
 	margin-bottom: 0;
-	min-height: 40px;
+	min-height: 10vh;
+	max-height: 10vh;
 }
 
 .navbarLink:first-child{
