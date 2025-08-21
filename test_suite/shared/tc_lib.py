@@ -19,7 +19,7 @@ def get_timestamp():
 	yr, month, day, hr, minute, second = map(int, time.strftime("%Y %m %d %H %M %S").split())
 	return "{}:{}:{} ".format(hr, minute, second)
 
-def	folder_exists(folder):
+def folder_exists(folder):
 	if not os.path.exists(folder):
 		return False
 
@@ -28,9 +28,9 @@ def folder_create(folder):
 		os.mkdir(folder)
 
 def get_log_folder():
-	mypath ="test_res"
-	last_directory= max([dir for dir in glob.glob \
-		(mypath + r'\*', recursive=False) if os.path.isdir(dir)], key=os.path.getmtime)
+	root_dir = os.getenv('JUL_ROOT')
+	mypath = root_dir + "/test_suite/test_res"
+	last_directory= max([dir for dir in glob.glob(mypath + r'/*', recursive=False) if os.path.isdir(dir)], key=os.path.getmtime)
 	return last_directory
 
 def write_log(filename, msg):

@@ -11,6 +11,7 @@ $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2
 $colorScheme = "light";
 
 $quote=giveRandomQuote();?>
+<link type="text/css" href="../Shared/style_reset.css" rel="stylesheet">
 <link type="text/css" href="../Shared/style.css" rel="stylesheet">
 <script src='../Javascript/functions.js'></script>
 <?php
@@ -24,18 +25,18 @@ $quote=giveRandomQuote();?>
 	}
 ?>
 <head>
-	<link rel="shortcut icon" href="../Shared/icons/tree2.png">
+	<link rel="shortcut icon" href="../Shared/Icons/tree2.png">
 	<?php 
 		echo "<title>".$titles[rand(0,count($titles)-1)]."</title>";
 	?>
 	<div class='navbar' id='navbar' style="z-index: 9000">
 		<!-- MAIN PAGE REDIRECTION LINKS START-->
 		<a class='navbarLink' id='navbarImage' href="index.php">
-			<img src='../Shared/icons/tree2.png' width="50" height="50"/>
+			<img src='../Shared/icons/tree2.png'/>
 		</a>
 		<button class='navbarLink' id='navbarBurger' onclick='ExpandHeader()'>
-			<img style='float:left; margin-top: -5px;' src='../Shared/icons/burger.png' width="45" height="45"/>
-			<p style='float:right; padding:0px; margin:0px; margin-left: 5px;'>Menu</p>
+			<p>Menu</p>
+			<img src='../Shared/icons/burger.png' width="35" height="35"/>
 		</button>
 		<a class='navbarLink' href="index.php"> HOME </a>
 		<a class='navbarLink' href="stats.php"> STATS </a>

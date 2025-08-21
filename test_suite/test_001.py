@@ -16,7 +16,7 @@ def testcase(test):
 	#>Login using username "micke" and password "password"
 	test.login_to_page(["micke", "password"])
 
-	if not self.is_logged_in():
+	if not test.is_logged_in():
 		txlib.write_log(test.filename, ["ERROR: Was not correctly logged in..."])
 
 	#>Add 4 rows

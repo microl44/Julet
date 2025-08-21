@@ -69,13 +69,15 @@
 
         <!----------MOVIE TABLE SECTION START---------->
         <!-- TABLE TABS SECTION START -->
-        <div>
-          <button class='tableTab' id='tableTabGroup' onclick="openTable(event, 'groupMovie')">GROUP</button>
-          <button class='tableTab' id='tableTabMarvel' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
-          <?php if(isset($_SESSION['username']))
-            {
-              echo "<button class='tableTab' id='tableTabSolo' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
-            }?>
+        <div id='movieTableTabHolder'>
+          <div id='movieTableTabDiv'>
+            <button class='tableTab' id='tableTabGroup' onclick="openTable(event, 'groupMovie')">GROUP</button>
+            <button class='tableTab' id='tableTabMarvel' onclick="openTable(event, 'marvelMovie')">MARVEL</button>
+            <?php if(isset($_SESSION['username']))
+              {
+                echo "<button class='tableTab' id='tableTabSolo' onclick='openTable(event, `soloMovie`)'>SOLO</button>";
+              }?>
+          </div>
         </div>
         <!-- TABLE TABS SECTION END -->
 
@@ -83,9 +85,9 @@
           <!-- Solo Movie Table -->
           <table class='movieTable' id='soloMovie' cellspacing='0' style='display:none;'>
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='soloTableName' onclick='SortTable(0, `solo`)'>NAME</td>
-              <td class='tableHeaderTD' id='soloTableRating' onclick='SortTable(1, `solo`)'>IMDB RATING</td>
-              <td class='tableHeaderTD' id='soloTableGrade' onclick='SortTable(2, `solo`)'>USER RATING</td>
+              <td class='tableHeaderTD' id='soloTableName' onclick='SortTable(`participant`, `solo`)'>NAME</td>
+              <td class='tableHeaderTD' id='soloTableRating' onclick='SortTable(`imdb_rating`, `solo`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='soloTableGrade' onclick='SortTable(`user_rating`, `solo`)'>USER RATING</td>
             </tr>
           </table>
           
@@ -93,25 +95,25 @@
           <!-- Marvel Movie Table -->
           <table class='movieTable' id='marvelMovie' cellspacing="0" style="display:none;">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='marvelTableID' onclick='SortTable(0, `marvel`)'>ID</td>
-              <td class='tableHeaderTD' id='marvelTableName' onclick='SortTable(0, `marvel`)'>NAME</td>
-              <td class='tableHeaderTD' id='marvelTableRating' onclick='SortTable(2, `marvel`)'>AVERAGE USER RATING</td>
-              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(1, `marvel`)'>IMDB RATING</td>
-              <td class='tableHeaderTD' id='marvelTableParticipants' onclick='SortTable(3, `marvel`)'>PARTICIPANTS</td>
+              <td class='tableHeaderTD' id='marvelTableID' onclick='SortTable(`id`, `marvel`)'>ID</td>
+              <td class='tableHeaderTD' id='marvelTableName' onclick='SortTable(`movie`, `marvel`)'>NAME</td>
+              <td class='tableHeaderTD' id='marvelTableRating' onclick='SortTable(`user_rating`, `marvel`)'>AVERAGE USER RATING</td>
+              <td class='tableHeaderTD' id='marvelTableUserRating' onclick='SortTable(`imdb_rating`, `marvel`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='marvelTableParticipants'>PARTICIPANTS</td> <!--  Work in progress to sort -->
             </tr>
           </table>
 
           <!-- Group Movie Table -->
           <table class='movieTable' id='groupMovie' cellspacing="0">
             <tr class='tableHeader'>
-              <td class='tableHeaderTD' id='sortID', onclick='SortTable(0, "group")'>ID</td>
-              <td class='tableHeaderTD' id='sortName', onclick='SortTable(1, `group`)'>NAME</td>
-              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(2, `group`)'>GENRE</td>
-              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(3, `group`)'>IMDB RATING</td>
-              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(4, `group`)'>JAY OR NAY</td>
-              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(5, `group`)'>PICKER</td>
-              <td class='tableHeaderTD' id='sortParticipants', onclick='SortTable(6, `group`)'>PARTICIPANTS</td>
-              <td class='tableHeaderTD' id='sortType', onclick='SortTable(7, `group`)'>TYPE</td>
+              <td class='tableHeaderTD' id='sortID', onclick='SortTable(`id`, "group")'>ID</td>
+              <td class='tableHeaderTD' id='sortName', onclick='SortTable(`movie`, `group`)'>NAME</td>
+              <td class='tableHeaderTD' id='sortGenre', onclick='SortTable(`genre`, `group`)'>GENRE</td>
+              <td class='tableHeaderTD' id='sortRating', onclick='SortTable(`imdb_rating`, `group`)'>IMDB RATING</td>
+              <td class='tableHeaderTD' id='sortJayornay', onclick='SortTable(`jayornay`, `group`)'>JAY OR NAY</td>
+              <td class='tableHeaderTD' id='sortPicker', onclick='SortTable(`picked_by`, `group`)'>PICKER</td>
+              <td class='tableHeaderTD' id='sortParticipants'>PARTICIPANTS</td><!--  Work in progress to sort -->
+              <td class='tableHeaderTD' id='sortType', onclick='SortTable(`is_mayor`, `group`)'>TYPE</td>
             </tr>
           </table>
         </div>
@@ -120,8 +122,8 @@
         <!----------CHANGE TABLE PAGE SECTION START---------->
         <div style='text-align: center; justify-content: center; width: 100%; display: flex;'>
           <div id='changePageDiv'>
-            <button class='tableTab changePage Fancy-Btn' id='prevPageBtn' onclick="ChangePage('left')"><b>PREV</b></button>
-            <button class='tableTab changePage Fancy-Btn' id='nextPageBtn' onclick="ChangePage('right')"><b>NEXT</b></button>
+            <button class='changePage Fancy-Btn' id='prevPageBtn' onclick="ChangePage('left')"><b>PREV</b></button>
+            <button class='changePage Fancy-Btn' id='nextPageBtn' onclick="ChangePage('right')"><b>NEXT</b></button>
           </div>
         </div>
         <!----------CHANGE TABLE PAGE SECTION END---------->
@@ -129,38 +131,40 @@
         if(isset($_SESSION['username']) || isset($_SESSION['password']))
         {
           echo "<!----------INSERT NEW MOVIE FORM START---------->
-          <div class='indexDivHolder'>
-            <h3> Add new movie </h3>
-            <div class='addMovieDiv'>
-                  <div class='addMovieDivFirst'>
-                    <label for='linkInput'>IMDB Link: </label>
-                    <input id='linkInput' type='text' name='addName' required/><br/>
+          <div class='indexDivHolderHolder'>
+            <div class='indexDivHolder'>
+              <h3> Add new movie </h3>
+              <div class='addMovieDiv'>
+                    <div class='addMovieDivFirst'>
+                      <label for='linkInput'>IMDB Link: </label>
+                      <input id='linkInput' type='text' name='addName' required/><br/>
 
-                    <label for='participantsInput'> Participants: </label>
-                    <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
+                      <label for='participantsInput'> Participants: </label>
+                      <input id='participantsInput' type='text' name='addParticipants' required /> <br/>
 
-                    <label for='jayornayInput'> Jay or Nay: </label>
-                    <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
-                    </label>
-                  </div>
+                      <label for='jayornayInput'> Jay or Nay: </label>
+                      <input id='jayornayInput' type='text' name='addjayornay' required /> <br/>
+                      </label>
+                    </div>
 
-                  <div class='addMovieDivSecond'>
-                    <label for='pickerInput'> Picked By: </label>
-                    <select id='pickerInput' name='addPickedBy'>
-                    </select> <br/>
-                    
-                    <label for='genreInput'> Genre: </label>
-                    <select id='genreInput' name='addGenre'>
-                    </select> <br/>
+                    <div class='addMovieDivSecond'>
+                      <label for='pickerInput'> Picked By: </label>
+                      <select id='pickerInput' name='addPickedBy'>
+                      </select> <br/>
+                      
+                      <label for='genreInput'> Genre: </label>
+                      <select id='genreInput' name='addGenre'>
+                      </select> <br/>
 
-                    <label for='typeInput'>WheelType </label>
-                    <select id='typeInput' name='addIs_major' type='number'> <br/>
-                      <option value='1'> Big Wheel </option>
-                      <option value='0'> Small Wheel </option>
-                    </select> </br>
+                      <label for='typeInput'>WheelType </label>
+                      <select id='typeInput' name='addIs_major' type='number'> <br/>
+                        <option value='1'> Big Wheel </option>
+                        <option value='0'> Small Wheel </option>
+                      </select> </br>
 
-                    <input id='addMovieBtn' type='submit' onclick='InsertMovie()'' value='add movie'/>
-                  </div>
+                      <input id='addMovieBtn' type='submit' onclick='InsertMovie()'' value='add movie'/>
+                    </div>
+              </div>
             </div>
           </div>
           <!----------INSERT NEW MOVIE FORM END---------->";

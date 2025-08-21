@@ -5,7 +5,7 @@ from time import sleep
 from shared.Browser import Page
 
 class Index(Page):
-	URL = "http://localhost/pages/index.php"
+	URL = "http://localhost/Pages/index.php"
 	filename = ''
 	testcase = ''
 	page_type = 'index'
@@ -37,7 +37,6 @@ class Index(Page):
 	def get_table(self, timeout=0):
 		rows = self.get_elements("movieTable")
 		table = []
-		#table.append(rows[2].text)
 		for row in rows[2].text.split('\n')[1:]:
 			table.append(row)
 		if timeout != 0:

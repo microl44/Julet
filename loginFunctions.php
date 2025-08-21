@@ -23,7 +23,7 @@ if(isset($_POST['username']))
         $_SESSION['logged-in'] = true;
         addLog("Logged In");
     }
-    
+
     header('location: ' . $previousPage);
     die();
 }
@@ -76,6 +76,7 @@ function LoginAttempt($username, $password)
         }
     }
     catch(Exception $e){
+	addErrorLog($e->getmessage());
         return false;
     }
 }

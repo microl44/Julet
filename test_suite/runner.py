@@ -6,9 +6,17 @@ import glob
 import re
 import time
 
+try:
+	root_dir = os.getenv('JUL_ROOT')
+	browser = os.getenv('JUL_BROWSER')
+except Exception as e:
+	print(e)
+
 cases = []
 
-test_suite = "C:/xampp/htdocs/Julet/test_suite"
+print(root_dir)
+test_suite = root_dir + "/test_suite"
+
 if not os.path.exists(test_suite):
     os.mkdir(test_suite)
 
@@ -28,7 +36,7 @@ print(*cases)
 
 yr, month, day, hr, minute = map(int, time.strftime("%Y %m %d %H %M").split())
 timestamp = "{}_{}_{}_{}_{}".format(yr, month, day, hr, minute)
-test_res = os.path.join(os.getcwd(), "test_res", timestamp)
+test_res = os.path.join(test_suite, "test_res", timestamp)
 
 if not os.path.exists(test_res):
 	os.makedirs(test_res)

@@ -1,6 +1,6 @@
 function GetHost()
 {
-	return `localhost`;
+	return `94.254.40.45`;
 }
 
 //extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
@@ -30,15 +30,12 @@ function ExpandHeader()
 	const header = document.getElementById("navbar");
 	if(headerStatus == 'inactive')
 	{
-		for (var i = 70; i < 500; i++)
-		{
-			header.style.height = i + "px";
-		}
+		header.style.height = "50vh";
 		headerStatus = 'active';
 	}
 	else
 	{
-		header.style.height = "80px";
+		header.style.height = "10vh";
 		headerStatus = 'inactive';
 	}
 }

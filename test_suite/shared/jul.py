@@ -4,7 +4,7 @@ from shared.Browser import Page
 from time import sleep
 
 class Jul(Page):
-	URL = "http://localhost/pages/jul.php"
+	URL = "http://localhost/Pages/jul.php"
 	filename = ''
 	testcase = ''
 	page_type = 'jul'
@@ -33,7 +33,7 @@ class Jul(Page):
 		for number in duration:
 			ele_input.send_keys(number)
 		ele_input.click()
-	
+
 		ele.click()
 		if should_sleep:
 			sleep(int(duration))

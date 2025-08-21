@@ -101,6 +101,9 @@ var section_mult = 10;
 //used to prevent multipe fetch requests at same time
 var isFetching = false;
 
+//keep track of sort order in tables
+var reverse_sort = true;
+
 //#################################################################
 //#################VARIABLE DECLARATION END########################
 //#################################################################
@@ -211,14 +214,17 @@ function AddTablePageDiv(TableType)
 	var div = document.CreateElement()
 }
 
-function ChangePage(rightleft)
+function ChangePage(direction)
 {
+  if (document.getElementsByClassName('tempRow').length > 0)
+  {
+    return
+  }
   var temp_marvel = CleanMarvelArray();
   switch(GetActiveTableName())
   {
   case 'Group':
-    console.log("huh")
-    if (rightleft == "right")
+    if (direction == "right")
     {
       group_section_index = group_section_index + 1;
     }
@@ -229,7 +235,7 @@ function ChangePage(rightleft)
     PopulateTable("Group")
     break;
   case 'Solo':
-    if (rightleft == "right")
+    if (direction == "right")
     {
       solo_section_index = solo_section_index + 1;
     }
@@ -240,7 +246,7 @@ function ChangePage(rightleft)
     PopulateTable("Solo")
     break;
   case 'Marvel':
-    if (rightleft == "right")
+    if (direction == "right")
     {
       marvel_section_index = marvel_section_index + 1;
       if ((marvel_section_index * 10) + 1 >= temp_marvel.length)
@@ -333,6 +339,10 @@ function CreateGroupTable()
   var movies = CleanGroupArray().reverse();
   const table = CleanTable(TableType.Group);
 
+  if (group_section_index < 0)
+  {
+    group_section_index = 0
+  }
   var end_index = group_section_index * section_mult + section_mult - 1;
   var start_index = group_section_index * section_mult;
   if (end_index > movies.length)
@@ -415,6 +425,7 @@ function CleanMarvelArray()
     catch (e)
     {
       console.log(e)
+      break
     }
 
     try
@@ -520,239 +531,48 @@ function CreateSoloTable()
   }
 }
 
-function SortTable(n, tableID)
+function sortingFunction(a, b, property, reverse)
 {
+  console.log(reverse ? 1 : -1)
+  if(a[property] > b[property])
+  {
+    return reverse ? 1 : -1;
+  }
+  else
+  {
+    if(b[property] > a[property])
+    {
+      return reverse ? -1 : 1
+    }
+    else
+    {
+      return 0;
+    }
+  }
+};
 
-
-
-  var table;
-  var rows;
-  var switching;
-  var i;
-  var x;
-  var y;
-  var shouldSwitch;
-  var dir;
-  var switchCount = 0;
-  var table;
-
+function SortTable(property, tableID)
+{
   switch(tableID)
   {
     case 'group':
-      table = document.getElementById("groupMovie");
-    break;
+      groupMovies.sort((a,b) => sortingFunction(a,b,property, reverse_sort));
+      CreateGroupTable();
+      reverse_sort = !reverse_sort
+      return;
     case 'marvel':
-      table = document.getElementById("marvelMovie");
-    break;
+      marvelMovies.sort((a,b) => sortingFunction(a,b,property, reverse_sort));
+      CreateMarvelTable();
+      reverse_sort = !reverse_sort
+      return;
     case 'solo':
-      table = document.getElementById("soloMovie");
-    break;
-    default: console.log("Error occurred.");
-  }
-
-  switching = true;
-  dir = "asc";
-
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) 
-  {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) 
-    {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
-      if (dir == "asc") 
-      {
-        if(tableID == 'marvel')
-        {
-          if (n === 1 || n === 2)
-          {
-            if (Number(x.innerHTML) > Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 3)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'group')
-        {
-          if (n === 0 || n === 3)
-          {
-            if (Number(x.innerHTML) > Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 6)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length > y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'solo')
-        {
-          if (n === 1 || n === 2)
-          {
-            if (Number(x.innerHTML) > Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else 
-          {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-      } 
-      else if (dir == "desc") 
-      {
-        if(tableID == 'marvel')
-        {
-          if (n === 1 || n === 2) 
-          {
-            if (Number(x.innerHTML) < Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 6)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'group')
-        {
-          if (n === 0 || n === 3) 
-          {
-            if (Number(x.innerHTML) < Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else if (n === 6)
-          {
-            if(x.innerHTML.toLowerCase().match(/,/g).length < y.innerHTML.toLowerCase().match(/,/g).length)
-            {
-              shouldSwitch = true;
-              break;
-            }
-          }
-          else 
-          {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        else if (tableID == 'solo')
-        {
-          if (n === 1 || n === 2) 
-          {
-            if (Number(x.innerHTML) < Number(y.innerHTML)) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } 
-          else 
-          {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-            {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-      }
-    }
-    if (shouldSwitch) 
-    {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchCount ++;
-    } 
-    else
-    {
-      if(switchCount == 0 && dir == "asc")
-      {
-        dir = "desc";
-        switching = true;
-      }
-    }
+      soloMovies.sort((a,b) => sortingFunction(a,b,property, reverse_sort));
+      CreateSoloTable();
+      reverse_sort = !reverse_sort
+      return;
+    
+    default: 
+      console.log("Table specified is not supported");
   }
 }
 
@@ -921,12 +741,12 @@ function ResetEvent()
 
 function InsertTempRows()
 {
-  const table = CleanTable('Group');
-
+  const table = CleanTable(TableType.Group)
   for (var i = 10; i >= 1; i--)
   {
     var row = table.insertRow(1);
     row.classList.add('tableRow');
+    row.classList.add('tempRow')
 
     cell0 = row.insertCell(0);
     cell1 = row.insertCell(1);
@@ -971,40 +791,7 @@ function openTable(evt, tableName)
   visibleTable.style.textAlign = "left";
 }
 
-function FetchParticipants(name = null)
-{
-  participants = [];
-  params = new URLSearchParams();
-
-  if(name != null)
-    {params.append('name', name);}
-
-  fetch(`http://${host}/api/participants.php?${params}`)
-  .then(response => response.json())
-  .then(data =>
-  {
-    results = data;
-
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var tempObject = JSON.parse(results['data'][i]);
-      participants.push(new Participant(tempObject.id, tempObject.name));
-
-      //CreateSortPanel();
-
-      //const addMoviePicker = document.getElementById('pickerInput');
-      //const addMoviePickerOption = document.createElement("option");
-      //addMoviePickerOption.text = tempObject.name;
-      //addMoviePicker.append(addMoviePickerOption);
-    }
-    participants.sort((a, b) => a.id - b.id)
-
-    PopulateParticipantFilter();
-    PopulateAddNewMovieWinner();
-  })
-}
-
-function GetGenres(name = null)
+async function GetGenres(name = null)
 {
   //console.log("GetGenres() Called.");
   genres = [];
@@ -1043,80 +830,8 @@ function CreateLoadingRow()
   //table.append(loadingDiv);
 }
 
-function FetchSolo()
-{
-  let getting = GetCookie("username");
-
-  if(!getting)
-  {
-    console.log("is empty " + getting);  
-    return;
-  }
-  
-  const params = new URLSearchParams();
-  soloMovies = [];
-  isFetching = true;
-  params.set("username",getting);  
-  
-  fetch(`http://${host}/api/solo_movies.php?${params}`)
-  .then(response =>response.json()
-  ).then(data => {
-    let results = data;
-    console.log(results);
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var temp = JSON.parse(results['data'][i]);
-      soloMovies.push(new Solo_movie(temp.id ,temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
-    }
-    PopulateTable('Solo');
-
-  })
-}
-
-function FetchGroup()
-{
-  const params = new URLSearchParams();
-  groupMovies = [];
-
-  isFetching = true;
-
-  fetch(`http://${host}/api/group_movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    let results = data;
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var temp = JSON.parse(results['data'][i]);
-      groupMovies.push(new Group_movie(temp.id ,temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
-    }
-    PopulateTable('Group');
-  })
-}
-
-function FetchMarvel()
-{
-  const params = new URLSearchParams();
-  marvelMovies = []
-
-  isFetching = true;
-
-  fetch(`http://${host}/api/marvel_movies.php?${params}`)
-  .then(response => response.json())
-  .then(data => 
-  {
-    let results = data;
-    console.log(results);
-    for (var i = 0; i < results['data'].length; i++)
-    {
-      var t = JSON.parse(results['data'][i]);
-      marvelMovies.push(new Marvel_movie(t.id ,t.participant_id, t.participant, t.user_rating, t.imdb_rating, t.movie, t.description, t.cover_path));
-    }
-    PopulateTable('Marvel');
-  }).then(data => console.log(data))
-}
-
-function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
+//depricated function.
+async function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
 
   isFetching = true;
@@ -1182,8 +897,110 @@ function InsertMovie()
   }
 }
 
+async function FetchParticipants(name = null)
+{
+  params = new URLSearchParams();
+  participants = [];
+
+  if(name != null)
+    {params.append('name', name);}
+
+  var res = await fetch(`http://${host}/api/participants.php?${params}`)
+  var data = await res.json()
+
+  for (var i = 0; i < data['data'].length; i++)
+  {
+    var tempObject = JSON.parse(data['data'][i]);
+    participants.push(new Participant(tempObject.id, tempObject.name));
+  }
+  participants.sort((a, b) => a.id - b.id)
+  return participants
+
+    //PopulateParticipantFilter();
+    //PopulateAddNewMovieWinner();
+  //})
+}
+
+async function FetchGroup()
+{
+  const params = new URLSearchParams();
+  groupMovies = [];
+
+  const res = await fetch(`http://${host}/api/group_movies.php?${params}`)
+  const data = await res.json()
+
+  for (var i = 0; i < data['data'].length; i++)
+  {
+      var temp = JSON.parse(data['data'][i]);
+      groupMovies.push(new Group_movie(temp.id, temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
+  }
+  //await PopulateTable('Group');
+  return groupMovies
+}
+
+
+async function FetchMarvel()
+{
+  const params = new URLSearchParams();
+  marvelMovies = []
+
+  const res = await fetch(`http://${host}/api/marvel_movies.php?${params}`)
+  const data = await res.json()
+
+  for (var i = 0; i < data['data'].length; i++)
+  {
+    var temp = JSON.parse(data['data'][i]);
+    marvelMovies.push(new Marvel_movie(temp.id, temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
+  }
+  //await PopulateTable('Marvel');
+  return marvelMovies
+}
+
+async function FetchSolo()
+{
+  let getting = GetCookie("username");
+
+  if(!getting)
+  {
+    console.log("is empty " + getting);  
+    return;
+  }
+  
+  const params = new URLSearchParams();
+  soloMovies = [];
+
+  params.set("username",getting);  
+
+  const res = await fetch(`http://${host}/api/solo_movies.php?${params}`)
+  const data = await res.json()
+  
+  for (var i = 0; i < data['data'].length; i++)
+  {
+    var temp = JSON.parse(data['data'][i]);
+    soloMovies.push(new Solo_movie(temp.id, temp.participant_id, temp.participant, temp.user_rating, temp.imdb_rating, temp.movie, temp.description, temp.cover_path));
+  }
+  //await PopulateTable('Solo');
+  console.log(soloMovies);
+  return soloMovies
+}
+
+async function stuff()
+{
+  const why_does_this_fucking_fuck_shit_fuck_fuck_fuck_work = FetchParticipants();
+  const jesus_fucking_kill_me = Promise.all([FetchGroup(), FetchMarvel(), FetchSolo()]);
+  
+  await why_does_this_fucking_fuck_shit_fuck_fuck_fuck_work
+  const [data2, data3, data4] = await jesus_fucking_kill_me;
+
+  PopulateTable(TableType.Group)
+  PopulateTable(TableType.Marvel)
+  PopulateTable(TableType.Solo)
+  console.log("fucking get me out of this, why is javascript like {await()=>()function{#CODE FUCKING GOES HERE FOR SOME REASON=>async{=>()for x in l;}};}")
+} console.log("fucking fuck fuck fuck fuck shit fuck shit i hate javascript i hate javascript i hate javascript i hate javascript")
+
 InsertTempRows();
-FetchParticipants();
-FetchMarvel();
-FetchGroup();
-FetchSolo();
+
+stuff().catch(error =>
+{
+  console.log(error)
+});
