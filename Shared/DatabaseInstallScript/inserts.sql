@@ -163,7 +163,8 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("American History X", 8.5, "", "Living a life marked by violence, neo-Nazi Derek finally goes to prison after killing two black youths. Upon his release, Derek vows to change; he hopes to prevent his brother, Danny, who idolizes Derek, from following in his footsteps."),
 ("Nonnas", 6.9, "", "After losing his beloved mother, a man risks everything to honor her by opening an Italian restaurant with actual grandmothers as the chefs."),
 ("Mickey 17", 6.8, "", "During a human expedition to colonize space, Mickey 17, a so-called 'expendable' employee, is sent to explore an ice planet."),
-("Captain America: Brave New World", 5.6, "", "Sam Wilson, the new Captain America, finds himself in the middle of an international incident and must discover the motive behind a nefarious global plan.")
+("Captain America: Brave New World", 5.6, "", "Sam Wilson, the new Captain America, finds himself in the middle of an international incident and must discover the motive behind a nefarious global plan."),
+("Full Metal Jacket", 8.2, "", "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.")
 ;
 
 
