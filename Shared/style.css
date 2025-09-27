@@ -295,6 +295,19 @@ body{
 	background-color: none;
 	align-items: center;
 	justify-content: center;
+	display: flex;
+}
+
+#loginDiv form {
+	height: 100%;
+	width: 100%;
+	float: right;
+}
+
+#loginDiv .logoutBtn{
+	background-color: none;
+	align-items: center;
+	justify-content: center;
 }
 
 .loginFormFirst label{
