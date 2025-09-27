@@ -147,7 +147,18 @@ function addLog($activity = 'pageview')
 function addErrorLog($message)
 {
 		$root_dir = getenv('JUL_ROOT');
+		create_file_if_needed($root_dir.'/error_log');
+
 		$file = fopen($root_dir.'/error_log', 'a+');
 		$test = fwrite($file, date("d-m-y H:1:s").": ".$message.PHP_EOL);
 		fclose($file);
+}
+
+function create_file_if_needed($filename)
+{
+
+		if (!file_exists($filename)) 
+		{
+		 $handle = fopen($filename, "w");
+		}
 }
