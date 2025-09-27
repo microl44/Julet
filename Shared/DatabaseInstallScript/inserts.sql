@@ -161,6 +161,12 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Moana 2", 6.6, "", "After receiving an unexpected call from her wayfinding ancestors, Moana must journey to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she's ever faced."),
 ("Wonka", 7.0, "", "With dreams of opening a shop in a city renowned for its chocolate, a young and poor Willy Wonka discovers that the industry is run by a cartel of greedy chocolatiers.")
 # 130 ^
+("Wreck-It Ralph", 7.7, "", "Ralph is tired of playing the role of a bad guy and embarks on a journey to become a video game hero. But he accidentally lets loose a deadly enemy that threatens the entire arcade."),
+("American History X", 8.5, "", "Living a life marked by violence, neo-Nazi Derek finally goes to prison after killing two black youths. Upon his release, Derek vows to change; he hopes to prevent his brother, Danny, who idolizes Derek, from following in his footsteps."),
+("Nonnas", 6.9, "", "After losing his beloved mother, a man risks everything to honor her by opening an Italian restaurant with actual grandmothers as the chefs."),
+("Mickey 17", 6.8, "", "During a human expedition to colonize space, Mickey 17, a so-called 'expendable' employee, is sent to explore an ice planet."),
+("Captain America: Brave New World", 5.6, "", "Sam Wilson, the new Captain America, finds himself in the middle of an international incident and must discover the motive behind a nefarious global plan."),
+("Full Metal Jacket", 8.2, "", "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.")
 ;
 
 
@@ -224,7 +230,10 @@ VALUES
 (122, "Western", 9, "Mexican Standoff", 0),
 (124, "Science-Fiction", 1, "Jay", 0),
 (125, "Family", 9, "Jay", 0),
-(126, "Crime", 9, "Mexican Standoff", 0);
+(126, "Crime", 9, "Mexican Standoff", 0),
+(132, "Crime", 3, "Jay", 0),
+(133, "Comedy", 9, "Jay", 0),
+(134, "Adventure", 3, "Jay", 0);
 
 INSERT INTO marvel_movie(movie_id)
 VALUES
@@ -232,7 +241,7 @@ VALUES
 (56),(57),(58),(59),(60),(61),(62),(63),(64),(65),
 (66),(67),(68),(69),(70),(71),(72),(73),(74),(75),
 (76),(77),(78),(79),(80),(81),(82),(83),(84), (103),
-(106), (123), (127);
+(106), (123), (127), (135);
 
 INSERT INTO marvel_participated(marvel_movie_entry_id, user_id, user_rating)
 VALUES
@@ -278,7 +287,8 @@ VALUES
 (40, 1, 9), (40, 2, 5), (40, 3, 4),
 (41, 1, 1), (41, 2, 1), (41, 3, 1),
 (42, 1, 10), (42, 2, 4), (42, 3, 9), (42, 9, 7),
-(43, 1, 3), (43, 2, 3), (43, 4, 5), (43, 9, 5);
+(43, 1, 3), (43, 2, 3), (43, 4, 5), (43, 9, 5),
+(44, 1, 1), (44, 2, 2), (44, 3, 1), (44, 4, 2), (44, 6, 1);
 
 INSERT INTO participated(movieID, participantID)
 VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,2), (4,3), (4,6), (5,1), (5,2), (5,3), (5,5), (6,1), (6,2), (6,3), (6,4), (6,5), (7,1), (7,2), (7,3), (7,5),
@@ -290,7 +300,8 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (37, 3), (37, 12), (38, 1), (38, 3), (39, 1), (39, 3), (40, 1), (40, 2), (40, 9), (41, 1), (41, 2), (41, 3), (42, 1), (42, 2), (42, 3), (43, 1), (43, 3), (43, 9), (44, 1), (44, 2), (44, 3), 
 (45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9), (110, 1), (110, 2), (110, 3), (110,9 ), (113, 1), (113, 3), (113, 9), (114, 1),
 (114, 4), (114, 9), (116, 1), (116, 2), (118, 1), (118, 2), (118, 3), (118, 6), (118, 9), (119, 1), (119, 3), (119, 9), (120, 1), (120, 9), (120, 13), (122, 1), (122, 9),
-(124, 1), (124, 2), (124, 9), (125, 1), (125, 3), (125, 9), (126, 1), (126, 9);
+(124, 1), (124, 2), (124, 9), (125, 1), (125, 3), (125, 9), (126, 1), (126, 9), (132, 1), (132, 3), (132, 4), (132, 6), (132, 9), (133, 1), (133, 6), (133, 9),
+(134, 1), (134, 3), (134, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
@@ -321,7 +332,8 @@ VALUES (85, 1, 8), (85, 3, 2),
 (121, 1, 7),
 (128, 1, 7),
 (129, 1, 8),
-(130, 1, 5);
+(130, 1, 5),
+(131, 1, 3);
 
 INSERT INTO movie_club_role(role_name)
 VALUES("Owner"), ("Admin"), ("Event_Manager"), ("User");

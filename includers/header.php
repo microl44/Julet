@@ -11,6 +11,7 @@ $titles = array("Nu är det hjul igen!", "Wheel giveth, Wheel taketh", "Antman 2
 $colorScheme = "light";
 
 $quote=giveRandomQuote();?>
+<link type="text/css" href="../Shared/style_reset.css" rel="stylesheet">
 <link type="text/css" href="../Shared/style.css" rel="stylesheet">
 <script src='../Javascript/functions.js'></script>
 <?php

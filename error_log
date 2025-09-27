@@ -1,0 +1,2 @@
+21-06-25 22:1:07: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`jul`.`participated`, CONSTRAINT `participated_ibfk_2` FOREIGN KEY (`movieID`) REFERENCES `movie` (`id`))
+21-06-25 22:1:21: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`jul`.`participated`, CONSTRAINT `participated_ibfk_2` FOREIGN KEY (`movieID`) REFERENCES `movie` (`id`))

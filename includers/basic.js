@@ -1,6 +1,6 @@
 function GetHost()
 {
-	return `localhost`;
+	return `94.254.40.45`;
 }
 
 //extract from cookie. Weird bug causes information to be forgotten after a while of not reloading page.
