@@ -6,3 +6,4 @@ Shared/ExternalAPI/*
 **/__pycache__/*
 test_suite/test_res/*
 test_suite/test_res
+error_log
