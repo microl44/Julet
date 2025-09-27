@@ -1,5 +1,7 @@
 use Jul;
 
+SET NAMES 'utf8mb4';
+
 # --------INSERTS----------#
 INSERT INTO users(username, email, password)
 VALUES ('user', 'a20micro@student.his.se', 'password'), ('admin', 'miro96@gmail.com', ''),
