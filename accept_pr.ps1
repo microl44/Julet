@@ -1,7 +1,7 @@
-$token=<PAT TOKEN>
-$owner=<GITHUB USERNAME>
-$repo=<REPO NAME>
-$mergeMethod="rebase"
+$token=$env:CPR_TOKEN
+$owner=$env:CPR_OWNER
+$repo=$env:CPR_REPO
+$mergeMethod=rebase
 
 $response = Invoke-RestMethod `
     -Uri "https://api.github.com/repos/$owner/$repo/pulls?state=open&sort=updated&direction=desc&per_page=1" `
