@@ -166,8 +166,8 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("Nonnas", 6.9, "", "After losing his beloved mother, a man risks everything to honor her by opening an Italian restaurant with actual grandmothers as the chefs."),
 ("Mickey 17", 6.8, "", "During a human expedition to colonize space, Mickey 17, a so-called 'expendable' employee, is sent to explore an ice planet."),
 ("Captain America: Brave New World", 5.6, "", "Sam Wilson, the new Captain America, finds himself in the middle of an international incident and must discover the motive behind a nefarious global plan."),
-("Full Metal Jacket", 8.2, "", "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.")
-;
+("Full Metal Jacket", 8.2, "", "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue."),
+("News of the World", 6.8, "", "A Civil War veteran agrees to deliver a girl taken by the Kiowa people years ago to her aunt and uncle against her will. They travel hundreds of miles and face grave dangers as they search for a place that either can call home.");
 
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
@@ -233,7 +233,9 @@ VALUES
 (126, "Crime", 9, "Mexican Standoff", 0),
 (132, "Crime", 3, "Jay", 0),
 (133, "Comedy", 9, "Jay", 0),
-(134, "Adventure", 3, "Jay", 0);
+(134, "Adventure", 3, "Jay", 0),
+(136, "Wildcard", 3, "Jay", 0),
+(137, "Western", 9, "Jay", 0);
 
 INSERT INTO marvel_movie(movie_id)
 VALUES
@@ -301,7 +303,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9), (110, 1), (110, 2), (110, 3), (110,9 ), (113, 1), (113, 3), (113, 9), (114, 1),
 (114, 4), (114, 9), (116, 1), (116, 2), (118, 1), (118, 2), (118, 3), (118, 6), (118, 9), (119, 1), (119, 3), (119, 9), (120, 1), (120, 9), (120, 13), (122, 1), (122, 9),
 (124, 1), (124, 2), (124, 9), (125, 1), (125, 3), (125, 9), (126, 1), (126, 9), (132, 1), (132, 3), (132, 4), (132, 6), (132, 9), (133, 1), (133, 6), (133, 9),
-(134, 1), (134, 3), (134, 9);
+(134, 1), (134, 3), (134, 9), (137, 1), (137, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
