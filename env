@@ -1,0 +1,8 @@
+[create_pr.cmd]
+CPR_TOKEN = GITHUB PAT TOKEN
+CPR_REPO = Repository to create the pull request in (Julet)
+CPR_TITLE = Pull request title
+CPR_BASE = Branch name to create pull request towards (main)
+CPR_OWNER = Owner of repo (microl44)
+CPR_BODY = Message that will be sent into the pull request (keep message generic to avoid having to change between tasks)
+
