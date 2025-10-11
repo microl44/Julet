@@ -935,6 +935,7 @@ async function FetchGroup()
       groupMovies.push(new Group_movie(temp.id, temp.participant_id, temp.participant, temp.genre, temp.picked_by, temp.movie, temp.imdb_rating, temp.description, temp.jayornay , temp.is_mayor, temp.cover_path));
   }
   //await PopulateTable('Group');
+  console.log(groupMovies);
   return groupMovies
 }
 
