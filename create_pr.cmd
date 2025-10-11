@@ -6,8 +6,8 @@ set TOKEN=%CPR_TOKEN%
 set OWNER=%CPR_OWNER%
 set REPO=%CPR_REPO%
 set TITLE=%CPR_TITLE%
-for /f %%b in ('git rev-parse --abbrev-ref HEAD') do set BRANCH_NAME=%%b
-set BASE=%CPR_MAIN%
+for /f %%b in ('git rev-parse --abbrev-ref HEAD') do set HEAD=%%b
+set BASE=%CPR_BASE%
 set "BODY=%CPR_BODY% -- Created by %USERNAME%"
 
 curl -X POST https://api.github.com/repos/%OWNER%/%REPO%/pulls ^
