@@ -73,7 +73,6 @@ class Genre
 //#################################################################
 
 
-
 //#################################################################
 //#################VARIABLE DECLARATION BEGIN######################
 //#################################################################
@@ -261,6 +260,7 @@ function ChangePage(direction)
     PopulateTable("Marvel")
     break;
   }
+    console.log(group_section_index)
 }
 
 function CleanGroupArray()
@@ -339,17 +339,15 @@ function CreateGroupTable()
   var movies = CleanGroupArray().reverse();
   const table = CleanTable(TableType.Group);
 
-  if (group_section_index < 0)
-  {
-    group_section_index = 0
-  }
-  var end_index = group_section_index * section_mult + section_mult - 1;
-  var start_index = group_section_index * section_mult;
+  var end_index = (group_section_index * section_mult) + 9;
+
   if (end_index > movies.length)
   {
-    group_section_index = group_section_index - 1;
+    group_section_index = (Math.floor(movies.length / 10) * 10) / 10;
     end_index = movies.length - 1;
   }
+  var start_index = group_section_index * section_mult;
+
   if (start_index < 0)
   {
     start_index = 0;
