@@ -608,7 +608,7 @@ function PopulateAddNewMovieGenre()
 
 function PopulateGenreFilter()
 {
-  //console.log("PopulateGenreFilter() Called."); 
+  console.log("PopulateGenreFilter() Called."); 
   const filterGenre = document.getElementById('filterGenre');
   const SELECT = document.createElement("option");
   SELECT.text = "SELECT";
@@ -624,7 +624,7 @@ function PopulateGenreFilter()
 
 function PopulateParticipantFilter()
 {
-  //console.log("PopulateParticipantFilter() Called."); 
+  console.log("PopulateParticipantFilter() Called."); 
   const participantsDropdown = document.getElementById('filterParticipant');
   const winnerDropdown = document.getElementById('filterPicker');
   const SELECT = document.createElement("option");
@@ -647,8 +647,7 @@ function PopulateParticipantFilter()
 
 function CreateSortPanel()
 {   
-
-  //console.log("CreateSortPanel() Called.");
+  console.log("CreateSortPanel() Called.");
  
   const filterName = document.getElementById('filterName');
 
@@ -912,10 +911,9 @@ async function FetchParticipants(name = null)
     participants.push(new Participant(tempObject.id, tempObject.name));
   }
   participants.sort((a, b) => a.id - b.id)
+  PopulateParticipantFilter();
+  PopulateAddNewMovieWinner();
   return participants
-
-    //PopulateParticipantFilter();
-    //PopulateAddNewMovieWinner();
   //})
 }
 
@@ -986,7 +984,7 @@ async function FetchSolo()
 async function stuff()
 {
   const why_does_this_fucking_fuck_shit_fuck_fuck_fuck_work = FetchParticipants();
-  const jesus_fucking_kill_me = Promise.all([FetchGroup(), FetchMarvel(), FetchSolo()]);
+  const jesus_fucking_kill_me = Promise.all([FetchGroup(), FetchMarvel(), FetchSolo(), GetGenres()]);
   
   await why_does_this_fucking_fuck_shit_fuck_fuck_fuck_work
   const [data2, data3, data4] = await jesus_fucking_kill_me;
