@@ -14,6 +14,16 @@ CREATE TABLE users (
 ) Engine = InnoDB;
 CREATE INDEX username ON users(username);
 
+CREATE TABLE session_token (
+  id int AUTO_INCREMENT
+  user_id INT,
+  selector CHAR(12) UNIQUE,
+  token_hash CHAR(64),
+  expires_at DATETIME,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  PRIMARY KEY (id)
+) Engine = InnoDB;
+
 CREATE TABLE participant(
 id int auto_increment,
 name varchar(255),

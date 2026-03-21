@@ -5,12 +5,10 @@ import ctypes
 import glob
 import re
 import time
+import os
 
-try:
-	root_dir = os.getenv('JUL_ROOT')
-	browser = os.getenv('JUL_BROWSER')
-except Exception as e:
-	print(e)
+root_dir = os.getenv('JUL_ROOT') if os.getenv('JUL_ROOT') != None else os.path.abspath(__file__)
+browser = os.getenv('JUL_BROWSER') if os.getenv('JUL_BROWSER') != None else 'Edge'
 
 cases = []
 

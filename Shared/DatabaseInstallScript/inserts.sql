@@ -170,8 +170,9 @@ VALUES("Beauty and the beast (live-action)", 7.1, "C:/xampp/htdocs/Julet/Shared/
 ("News of the World", 6.8, "", "A Civil War veteran agrees to deliver a girl taken by the Kiowa people years ago to her aunt and uncle against her will. They travel hundreds of miles and face grave dangers as they search for a place that either can call home."),
 ("No Country for Old Men", 8.2, "", "Violence and mayhem ensue after a hunter stumbles upon the aftermath of a drug deal gone wrong and over two million dollars in cash near the Rio Grande."),
 ("The Fantastic Four: First Steps", 6.9, "", "Forced to balance their roles as heroes with the strength of their family bond, the Fantastic Four must defend Earth from a ravenous space god called Galactus and his enigmatic herald, the Silver Surfer."),
-("Jarhead", 7.0, "", "A psychological study of Marine's state of mind during the Gulf War. Told through the eyes of a U.S. Marine sniper who struggles to cope with boredom, a sense of isolation, and other issues back home.");
+("Jarhead", 7.0, "", "A psychological study of Marine's state of mind during the Gulf War. Told through the eyes of a U.S. Marine sniper who struggles to cope with boredom, a sense of isolation, and other issues back home."),
 # 140 ^
+("Longlegs", 6.6, "", "In pursuit of a serial killer, an FBI agent uncovers a series of occult clues that she must solve to end his terrifying killing spree.");
 
 INSERT INTO group_movie(movie_id, genre_name, picked_by, jayornay, is_major)
 VALUES
@@ -240,7 +241,8 @@ VALUES
 (136, "Wildcard", 3, "Jay", 0),
 (137, "Western", 9, "Jay", 0),
 (138, "Thriller", 1, "Jay", 0),
-(140, "War", 1, "Jay", 0);
+(140, "War", 1, "Jay", 0),
+(141, "Horror", 9, "Nay", 0);
 
 INSERT INTO marvel_movie(movie_id)
 VALUES
@@ -309,7 +311,7 @@ VALUES (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (2,4), (3,1), (3,2), (4,1), (4,
 (45, 1), (45, 3), (46, 1), (46, 3), (104, 1), (104, 2), (104, 3), (85, 1), (85, 3), (85, 9), (110, 1), (110, 2), (110, 3), (110,9 ), (113, 1), (113, 3), (113, 9), (114, 1),
 (114, 4), (114, 9), (116, 1), (116, 2), (118, 1), (118, 2), (118, 3), (118, 6), (118, 9), (119, 1), (119, 3), (119, 9), (120, 1), (120, 9), (120, 13), (122, 1), (122, 9),
 (124, 1), (124, 2), (124, 9), (125, 1), (125, 3), (125, 9), (126, 1), (126, 9), (132, 1), (132, 3), (132, 4), (132, 6), (132, 9), (133, 1), (133, 6), (133, 9),
-(134, 1), (134, 3), (134, 9), (137, 1), (137, 9), (140, 1), (140, 3), (140, 6);
+(134, 1), (134, 3), (134, 9), (136, 1), (136, 3), (137, 1), (137, 9), (138, 1), (138, 3), (140, 1), (140, 3), (140, 6), (141, 1), (141, 3), (141, 6), (141, 9);
 
 INSERT INTO solo_movie(movie_id, user_id, user_rating)
 VALUES (85, 1, 8), (85, 3, 2),
