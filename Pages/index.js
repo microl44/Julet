@@ -700,7 +700,7 @@ function CreateSortPanel()
 
 function ApplyEvent()
 {
-  //console.log("button clicked");
+  console.log("button clicked");
   var name;
   var genre;
   var rating;
@@ -708,6 +708,8 @@ function ApplyEvent()
   var picker;
   var participant;
   var type;
+
+
 
   //if X field doesn't contain the default value (empty), send it as an argument to the fetch api.
   if(filterName.value != "")
@@ -720,6 +722,8 @@ function ApplyEvent()
     {genre = filterGenre.options[filterGenre.selectedIndex].value;}
   if(filterRating.options[filterRating.selectedIndex].value !== "SELECT")
     {rating = filterRating.options[filterRating.selectedIndex].value;}
+
+  console.log([name, picker, participant, genre, rating]);
 
   GetMovies(name, genre, rating, jayornay, picker, participant, type);
 }
@@ -830,9 +834,12 @@ function CreateLoadingRow()
 //depricated function.
 async function GetMovies(name = null,  genre = null, rating = null, jayornay = null, picker = null, participant = null, type = null)
 {
-
+  const params = new URLSearchParams();
   isFetching = true;
 
+  console.log([name, genre, rating, jayornay, picker, participant, type]);
+
+  //console.log(`http://${host}/api/movies.php?${params}`)
   fetch(`http://${host}/api/movies.php?${params}`)
   .then(response => response.json())
   .then(data => 
@@ -857,14 +864,6 @@ function InsertMovie()
     var results;
     var movies = new Array();
     const params = new URLSearchParams();
-
-    console.log("sending movie:");
-    console.log(linkInput);
-    console.log(participantsInput);
-    console.log(jayornayInput);
-    console.log(pickerInput);
-    console.log(genreInput);
-    console.log(typeInput);
 
     params.append('link', linkInput);
     params.append('jayornay', jayornayInput);

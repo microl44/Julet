@@ -22,16 +22,21 @@ else
 {
     ?>
     <form action='../loginFunctions.php' method='POST'>
-        <div class='loginFormFirst'>
-            <label for='username'>Username:</label>
-            <input id='login-username' type='text' name='username'/>
+        <div class='loginFormRememberMeCB', style='float:left;'>
+            <label for='remember-me-cb' style='float:left'>Remember Me:</label>
+            <input id='remember-me-cb' class='loginBtn' type="checkbox" name="remember-me-cb" style='float:right'>
         </div>
-        <div class='loginFormSecond'>
-            <label for='password'>Password:</label>
-            <input id='login-password' type='password' name='password'/>
+        <div class='loginFormInputs' style='margin-left:70px'>
+            <div class='loginFormFirst'>
+                <label for='username'>Username:</label>
+                <input id='login-username' type='text' name='username'/>
+            </div>
+            <div class='loginFormSecond'>
+                <label for='password'>Password:</label>
+                <input id='login-password' type='password' name='password'/>
+            </div>
         </div>
         <input id='login-submit' class='loginBtn' type='submit' value='login'/> 
-
         <?php echo "<input type='hidden' value='" . $_SERVER['REQUEST_URI'] . "' name='url'> </input>"; ?>
     </form>
     <?php
